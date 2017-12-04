@@ -1,6 +1,5 @@
 ---
-layout: home
-author_profile: true
+layout: default
 ---
 
 # Welcome!
@@ -41,5 +40,5 @@ belong to [George]".
 <br/>
 
 This website is powered by [Minimal
-Mistakes](https://mmistakes.github.io/minimal-mistakes/) and is hosted on GitHub
+Mistakes](https://mmistakes.github.io/minimal-mistakes/) and hosted on GitHub
 Pages.
