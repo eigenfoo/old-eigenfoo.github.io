@@ -1,9 +1,9 @@
 # main links
 main:
   - title: "About"
-    url: https://eigenfoo.github.io/about/
-  # - title: "Blog"
-  #   url: /year-archive/
+    url: /about
+  - title: "Blog"
+    url: /blog
   # - title: "Sample Collections"
   #   url: /collection-archive/
   # - title: "Sitemap"
