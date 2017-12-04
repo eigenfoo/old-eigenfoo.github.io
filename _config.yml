@@ -5,14 +5,14 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # `jekyll serve`. If you change this file, please restart the server process.
 
-minimal_mistakes_skin    : "air"
+minimal_mistakes_skin    : "dirt"
 
 # Site Settings
 locale                   : "en"
 title                    : "Eigenfoobarbaz"
 title_separator          : "-"
 name                     : "George Ho"
-description              : "An amazing website."
+description              : "Math, computation and data"
 url                      : https://eigenfoo.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : eigenfoo/eigenfoo.github.io # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
