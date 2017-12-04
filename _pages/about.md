@@ -23,11 +23,3 @@ way.
 ## Resume 
 
 Click [here](https://raw.githubusercontent.com/eigenfoo/eigenfoo.github.io/master/stuff/resume.pdf) for a copy of my resume.
-
-## Contact
-
-[Emailing me](mailto:georgh0021@gmail.com) is probably the best way to go!
-
-You can also find me on [GitHub](https://github.com/eigenfoo),
-[LinkedIn](https://www.linkedin.com/in/george-ho-915080126/) and 
-[Twitter](https://twitter.com/_eigenfoo).
