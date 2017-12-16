@@ -84,7 +84,7 @@ analytics:
 author:
   name             : "George Ho"
   avatar           : /assets/images/profile-pic.png # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Math nerd, coffee lover, PyData enthusiast"
+  bio              : "A bandlimited signal"
   location         : "NYC | HKG"
   email            : georgh0021@gmail.com
   uri              :
