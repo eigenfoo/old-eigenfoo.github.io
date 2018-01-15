@@ -8,8 +8,13 @@
 minimal_mistakes_skin    : "dirt"
 
 # Site Settings
+<<<<<<< HEAD
 locale                   : "en"
 title                    : "Eigenfoobarbaz"
+=======
+locale                   : "en-US"
+title                    : "Site Title"
+>>>>>>> 9634bb84fb488cd1f92a1734cfb4c51305f20aa6
 title_separator          : "-"
 name                     : "George Ho"
 description              : "Math, computation and data"
@@ -51,6 +56,8 @@ reCaptcha:
   secret                 :
 atom_feed:
   path                   : # blank (default) uses feed.xml
+search                   : # true, false (default)
+search_full_content      : # true, false (default)
 
 # SEO Related
 google_site_verification :
@@ -88,6 +95,7 @@ author:
   location         : "NYC | HKG"
   email            : georgh0021@gmail.com
   uri              :
+  home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        :
   codepen          :
   dribbble         :
