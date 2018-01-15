@@ -22,6 +22,6 @@ I'm still a newcomer to all this, so there's still a _lot_ stuff for me to
 learn: this website is just to document my thoughts along the way.
 
 Click
-[here](https://raw.githubusercontent.com/eigenfoo/eigenfoo.github.io/master/stuff/resume.pdf)
+[here](https://raw.githubusercontent.com/eigenfoo/eigenfoo.github.io/master/assets/documents/resume.pdf)
 for a copy of my resume.
 
