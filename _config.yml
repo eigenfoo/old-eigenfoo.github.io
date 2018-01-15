@@ -8,13 +8,9 @@
 minimal_mistakes_skin    : "dirt"
 
 # Site Settings
-<<<<<<< HEAD
 locale                   : "en"
 title                    : "Eigenfoobarbaz"
-=======
 locale                   : "en-US"
-title                    : "Site Title"
->>>>>>> 9634bb84fb488cd1f92a1734cfb4c51305f20aa6
 title_separator          : "-"
 name                     : "George Ho"
 description              : "Math, computation and data"
@@ -93,7 +89,7 @@ author:
   avatar           : /assets/images/profile-pic.png # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "A bandlimited signal"
   location         : "NYC | HKG"
-  email            : georgh0021@gmail.com
+  email            : georgeho1618@gmail.com
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        :
