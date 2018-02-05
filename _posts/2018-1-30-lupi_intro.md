@@ -65,7 +65,7 @@ problem:
 
 > Minimize $$ \frac{1}{2} \|w\|^2 $$
 >
-> subject to $$ y_i [ w \cdot x_i + b ] \geq 1, \: 1 \leq i \leq l $$.
+> subject to $$ y_i [ w \cdot x_i + b ] \geq 1, \; 1 \leq i \leq l $$.
 
 Basically all this is saying is that we want to find the hyperplane that
 separates our data by the maximum margin. More technically speaking, this finds
@@ -80,7 +80,8 @@ that example. With that, the optimization becomes:
 
 > Minimize $$ \frac{1}{2} \|w\|^2 + C\sum_{i=1}^{l}{\xi_i} $$
 >
-> subject to $$ y_i [ w \cdot x_i + b ] \geq 1 - \xi_i, \: 1 \leq i \leq l $$.
+> subject to $$ y_i [ w \cdot x_i + b ] \geq 1 - \xi_i, \; \xi_i \geq 0, 1
+> \leq i \leq l $$.
 
 where $$C$$ is some regularization parameter.
 
@@ -129,10 +130,12 @@ optimization problem:
 > C \sum_{i=1}^{l}{w^{*} \cdot x_i^{*} + b^{*}} $$
 > 
 > subject to $$ y_i [ w \cdot x_i + b ] \geq 1 - (w^{*} \cdot x^{*} + b^{*}),
-> (w^{*} \cdot x^{*} + b^{*}) \geq 0, \: 1 \leq i \leq l $$.
+> \; (w^{*} \cdot x^{*} + b^{*}) \geq 0, 1 \leq i \leq l $$.
 
 where $$\gamma$$ indicates the extent to which the slack estimation should be
-regularized in comparison to the SVM.
+regularized in comparison to the SVM. Notice how this optimization problem is
+essentially identical to the non-separable classical SVM, except the slacks
+$$\xi_i$$ are now estimated with $$w^{*} \cdot x^{*} + b^{*}$$.
 
 Again, the method of actually solving this optimization problem involves
 Lagrange multipliers and quadratic programming, but I think the intuition is
@@ -145,7 +148,17 @@ has two: one in which the non-privileged information lives (where decisions are
 made), and one in which the privileged information lives (where slack variables
 are estimated).
 
-Of course, SVMs is a technique with many possible interpretations, of which my
+But what's the point of this second feature space? How does it help us? Vapnik
+terms this problem _knowledge transfer_: it's well and good for us to learn from
+the privileged information, but it's all for naught if we can't use this
+newfound knowledge in the test phase.
+
+The way knowledge transfer is resolved here is by assuming that _examples in the
+training set that are hard to separate in the privileged space, are also hard to
+separate in the regular space_. Therefore, we can use the privileged information
+to obtain an estimate for the slack variables.
+
+Of course, SVMs are a technique with many possible interpretations, of which my
 presentation (in terms of the optimization of $$w$$ and $$b$$) is just one. For
 example, it's possible to think of SVMs in terms of kernels functions, or as
 linear classifiers minimizing hinge loss. In all cases, it's possible and
