@@ -126,8 +126,8 @@ $$.
 In order to find $$w$$, $$b$$, $$w^{*}$$ and $$b^{*}$$, we solve the following
 optimization problem:
 
-> Minimize $$ \frac{1}{2} ( \|w\|^2 + \gamma \|w^{*}\|^2 ) +
-> C \sum_{i=1}^{l}{w^{*} \cdot x_i^{*} + b^{*}} $$
+> Minimize $$ \frac{1}{2} (\|w\|^2 + \gamma \|w^{*}\|^2) +
+> C \sum_{i=1}^{l}{(w^{*} \cdot x_i^{*} + b^{*})} $$
 > 
 > subject to $$ y_i [ w \cdot x_i + b ] \geq 1 - (w^{*} \cdot x^{*} + b^{*}),
 > \; (w^{*} \cdot x^{*} + b^{*}) \geq 0, 1 \leq i \leq l $$.
@@ -149,8 +149,8 @@ made), and one in which the privileged information lives (where slack variables
 are estimated).
 
 But what's the point of this second feature space? How does it help us? Vapnik
-terms this problem _knowledge transfer_: it's well and good for us to learn from
-the privileged information, but it's all for naught if we can't use this
+terms this problem _knowledge transfer_: it's all well and good for us to learn
+from the privileged information, but it's all for naught if we can't use this
 newfound knowledge in the test phase.
 
 The way knowledge transfer is resolved here is by assuming that _examples in the

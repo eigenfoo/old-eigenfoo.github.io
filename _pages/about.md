@@ -12,16 +12,15 @@ General Engineering. Prior to The Cooper Union, I attended the
 [Chinese International School](https://www.cis.edu.hk/) in Hong Kong, where 
 I studied for the International Baccalaureate (IB).
 
-I'm interested in anything that brings mathematics, computation and data
-together to do cool things. I'm still not entirely sure what that really means,
-but things like machine learning and data science interest me (I mean, that's a
-pretty vacuous statement since almost everyone in STEM is interested in those
-things nowadays).
+I'm interested in mathematics, computation and data, and especiallly anything
+that brings them together (bonus points if they're applied to do cool things!)
+That's the most faithful description of my passions that I could come up with,
+but I may as well pigeonhole myself and say _"I'm passionate about data science
+and machine learning"_.
 
-I'm still a newcomer to all this, so there's still a _lot_ stuff for me to
-learn: this website is just to document my thoughts along the way.
+This website is to document my thoughts and opinions as continue to [get pushed
+inexorably forward through time](https://xkcd.com/1524/).
 
 Click
 [here](https://raw.githubusercontent.com/eigenfoo/eigenfoo.github.io/master/assets/documents/resume.pdf)
-for a copy of my resume.
-
+for a copy of my resume!
