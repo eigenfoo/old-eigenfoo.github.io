@@ -10,8 +10,8 @@ header:
 ---
 
 In my last post, I introduced the LUPI paradigm and described one algorithm that
-adheres to that paradigm: SVM+. I described LUPI as a nascent perspective on
-machine learning that had great potential.
+adheres to that paradigm: SVM+. I described LUPI as a up-and-coming perspective
+of machine learning that had great potential.
 
 In this post, I'll describe some reasons why LUPI might not be so great, and
 some important reasons not to immediately rush to apply SVM+. Most of my
