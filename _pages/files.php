@@ -1,5 +1,12 @@
+---
+layout: archive
+permalink: /files
+title: "Files"
+author_profile: false
+---
+
 <?php
-echo "Here are our files";
+echo "Here are my files";
 $path = "./assets/";
 $dh = opendir($path);
 $i=1;
