@@ -5,21 +5,21 @@ title: "Files"
 author_profile: false
 ---
 
-<html>
-<body>
+<!doctype html>
 
-Welcome to George's files.
+<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js">
+    <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
 
-<?php
-$path = "./assets/";
-$dh = opendir($path);
-$i=1;
-while (($file = readdir($dh)) !== false) {
-    echo "<a href='$path/$file'>$file</a><br /><br />";
-    $i++;
-}
-closedir($dh);
-?> 
+        <?php
+          $path = "./assets/";
+          $dh = opendir($path);
+          $i = 1;
+          while (($file = readdir($dh)) !== false) {
+          echo "<a href='$path/$file'>$file</a><br /><br />";
+          $i++;
+          }
+          closedir($dh);
+        ?> 
 
-</body>
+    </body>
 </html>
