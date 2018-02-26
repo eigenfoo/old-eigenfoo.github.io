@@ -3,6 +3,12 @@ mathjax: true
 title: ~~Fruit~~ Loops and Learning - The LUPI Paradigm and SVM+
 excerpt: "Learning Using Privileged Information: what it is, how to do it, and
 why it's cool"
+categories:
+    - Mathematics
+    - Machine Learning
+tags:
+    - lupi
+    - svm+
 header:
   teaser: /assets/images/loops.jpeg
   overlay_image: /assets/images/loops.jpeg
