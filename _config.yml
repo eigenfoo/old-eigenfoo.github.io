@@ -52,9 +52,9 @@ reCaptcha:
   secret                 :
 atom_feed:
   path                   : # blank (default) uses feed.xml
-search                   : # true, false (default)
-search_full_content      : # true, false (default)
-search_provider          : # lunr (default), algolia
+search                   : true # true, false (default)
+search_full_content      : true # true, false (default)
+search_provider          : lunr  # lunr (default), algolia
 algolia:
   application_id         : # YOUR_APPLICATION_ID
   index_name             : # YOUR_INDEX_NAME
@@ -100,7 +100,7 @@ author:
   bitbucket        :
   codepen          :
   dribbble         :
-  flickr           : _eigenfoo
+  flickr           : 155778261@N04
   facebook         : eigenfoo
   foursquare       :
   github           : eigenfoo
