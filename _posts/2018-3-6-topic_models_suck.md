@@ -1,10 +1,10 @@
 ---
-title: "Why Topic Modelling Sucks"
+title: "Why [Topic Modelling] Sucks"
 excerpt: "When and why LDA might not be a great idea"
 categories:
     - Machine Learning
     - Natural Language Processing
-    - Why <thing> Sucks
+    - Why [thing] Sucks
 tags:
     - lda
     - tsne
@@ -41,7 +41,7 @@ use case and the task at hand: what is it about your application that makes it
 unsuitable for such a technique?
 
 Which is why I'm writing the first of what will hopefully be a series of posts
-on _"Why <thing> Sucks"_. I'll be outlining what I tried and why it
+on _"Why [thing] Sucks"_. I'll be outlining what I tried and why it
 didn't work. Documenting my failures and doing a quick post-mortem, if you will.
 Hopefully this will be useful to other people trying to do the same thing I'm
 doing.
