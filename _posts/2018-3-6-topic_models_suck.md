@@ -60,7 +60,7 @@ If you've already encountered LDA and have seen [plate
 notation](https://en.wikipedia.org/wiki/Plate_notation) before, this picture
 will probably refresh your memory:
 
-<img style="float: middle" width="500" height="500"
+<img style="float: middle" width="600" height="600"
 src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Smoothed_LDA.png">
 
 If you don't know what LDA is, fret not, for there is
@@ -125,11 +125,20 @@ Gibbs sampling.)
 
 Here are the results:
 
-<img style="float: middle" width="500" height="500"
-src="https://raw.githubusercontent.com/eigenfoo/eigenfoo.github.io/master/assets/images/lda_sucks1.png">
+<img style="float: middle" width="600" height="600"
+src="https://raw.githubusercontent.com/eigenfoo/eigenfoo.github.io/master/assets/images/lda-sucks.png">
 
 Horrible, right? Nowhere near the well-separated clusters that Shuai got with
-the 20 newsgroups. So, what went wrong? There's a [nice StackOverflow
+the 20 newsgroups. In fact, the tiny little huddles of around 5 to 10 comments
+are probably artifacts of the dimensionality reduction done by t-SNE, so those
+might even just be noise! You might say that there are at least 3 very large
+clusters, but even that's bad news! If they're clustered together, you would
+hope that they have the same topics, and that's definitely not the case here!
+These large clusters tells us that a lot of comments have roughly the same topic
+distribution, but their dominant topics (i.e. the topic with greatest
+probability) don't end up being the same.
+
+So, what went wrong? There's a [nice StackOverflow
 post](https://stackoverflow.com/questions/29786985/whats-the-disadvantage-of-lda-for-short-texts)
 that describes the problem well.
 
