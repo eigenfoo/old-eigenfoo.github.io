@@ -120,13 +120,13 @@ except using the great [`gensim`](https://radimrehurek.com/gensim/) library to
 perform LDA, which was built with large corpora and efficient online algorithms
 in mind.  (Specifically, `gensim` implements online variational inference with
 the EM algorthm, instead of using MCMC-based algorithms, which `lda` does. It
-seems that VB scales better to very large corpora than collapsed Gibbs
-sampling.)
+seems that variational Bayes scales better to very large corpora than collapsed
+Gibbs sampling.)
 
 Here are the results:
 
 <img style="float: middle" width="500" height="500"
-src="https://raw.githubusercontent.com/eigenfoo/eigenfoo.github.io/master/assets/images/lda-sucks1.png">
+src="https://raw.githubusercontent.com/eigenfoo/eigenfoo.github.io/master/assets/images/lda_sucks1.png">
 
 Horrible, right? Nowhere near the well-separated clusters that Shuai got with
 the 20 newsgroups. So, what went wrong? There's a [nice StackOverflow
@@ -238,4 +238,4 @@ some other sport, 13 is probably about American politics, and 18 looks like
 its about world news, etc.
 
 But almost all other topics are just collections of words: it's not immediately
-obvious to me what each topic has come to mean.
+obvious to me what each topic represents.
