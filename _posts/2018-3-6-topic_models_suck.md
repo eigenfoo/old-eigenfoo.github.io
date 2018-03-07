@@ -11,10 +11,9 @@ tags:
     - topic modelling
     - reddit
 header:
-  teaser: 
-  overlay_image: 
-  caption: ""
-  last_modified_at: 2018-03-06
+  teaser: /assets/images/lda-sucks.png
+  overlay_images: /assets/images/lda-sucks.png
+last_modified_at: 2018-03-06
 ---
 
 As I learn more and more about data science and machine learning, I've noticed
@@ -47,8 +46,6 @@ Hopefully this will be useful to other people trying to do the same thing I'm
 doing.
 
 ---
-
-## Topic Modelling
 
 So first up: topic modelling. Specifically, [latent Dirichlet
 allocation](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation), or LDA
