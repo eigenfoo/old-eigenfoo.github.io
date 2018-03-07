@@ -150,8 +150,8 @@ Note that I did these on a random subsample of 1000 comments, so as to reduce
 compute time.
 
 <figure class="half">
-    <a href="/assets/images/perplexity=50.jpg"><img src="/assets/images/perplexity=50.jpg"></a>
-    <a href="/assets/images/perplexity=100.jpg"><img src="/assets/images/perplexity=100.jpg></a>
+    <a href="/assets/images/perplexity50.jpg"><img src="/assets/images/perplexity50.jpg"></a>
+    <a href="/assets/images/perplexity100.jpg"><img src="/assets/images/perplexity100.jpg></a>
     <figcaption>t-SNE with perplexity values of 50 and 100, respectively.</figcaption>
 </figure>
 
