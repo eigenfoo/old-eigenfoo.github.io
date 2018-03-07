@@ -152,7 +152,7 @@ compute time.
 <figure class="half">
     <a href="/assets/images/perplexity=50.png"><img src="/assets/images/perplexity=50.png"></a>
     <a href="/assets/images/perplexity=100.png"><img src="/assets/images/perplexity=100.png></a>
-    <figcaption>Perplexity values of 50 and 100, respectively.</figcaption>
+    <figcaption>t-SNE with perplexity values of 50 and 100, respectively.</figcaption>
 </figure>
 
 So, what went wrong? There's a [nice StackOverflow
