@@ -56,7 +56,7 @@ for short (not to be confused with [the other
 LDA](https://eigenfoo.github.io/mathematics/machine%20learning/lda/), which
 I wrote a blog post about before).
 
-For those of you who've already encountered LDA and have seen [plate
+If you've already encountered LDA and have seen [plate
 notation](https://en.wikipedia.org/wiki/Plate_notation) before, this picture
 will probably refresh your memory:
 
