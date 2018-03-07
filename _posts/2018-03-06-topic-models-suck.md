@@ -1,11 +1,9 @@
 ---
 title: "Why Topic Modelling Sucks"
 excerpt: "When and why LDA might not be a great idea"
-categories:
-    - Machine Learning
-    - Natural Language Processing
-    - Why (thing) Sucks
 tags:
+    - ml
+    - nlp
     - lda
     - tsne
     - topic modelling
@@ -41,7 +39,7 @@ use case and the task at hand: what is it about your application that makes it
 unsuitable for such a technique?
 
 Which is why I'm writing the first of what will hopefully be a series of posts
-on _"Why (thing) Sucks"_. I'll be outlining what I tried and why it
+on _"Why (Thing) Sucks"_. I'll be outlining what I tried and why it
 didn't work. Documenting my failures and doing a quick post-mortem, if you will.
 Hopefully this will be useful to other people trying to do the same thing I'm
 doing.
@@ -59,7 +57,7 @@ notation](https://en.wikipedia.org/wiki/Plate_notation) before, this picture
 will probably refresh your memory:
 
 <img style="float: middle" width="600" height="600"
-src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Smoothed_LDA.png">
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Latent_Dirichlet_allocation.svg/593px-Latent_Dirichlet_allocation.svg.png">
 
 If you don't know what LDA is, fret not, for there is
 [no](http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf)
@@ -99,7 +97,7 @@ embedding](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embed
 Both techniques are well known and well documented, but I can't say that using
 them together is a popular choice of two techniques. However, there have been
 some successes. For instance, Shuai had some success with this method [when
-using it the 20 News Groups
+using it the 20 newsgroups
 dataset](https://shuaiw.github.io/2016/12/22/topic-modeling-and-tsne-visualzation.html);
 some work done by Kagglers have [yielded reasonable
 results](https://www.kaggle.com/ykhorramz/lda-and-t-sne-interactive-visualization),
@@ -110,21 +108,25 @@ The dataset that I applied this technique to was the [Reddit dataset on Google
 Bigquery](bigquery.cloud.google.com/dataset/fh-bigquery:reddit), which contains
 data on all Reddit subreddits, posts and comments for as long as Reddit's been
 around. I limited myself to the top 10 most active subreddits in December 2017
-(the most recent month for which we have data, at the time of writing).
+(the most recent month for which we have data, at the time of writing), and
+chose 20 to be the number of topics to model (any choice is as arbitrary as any
+other).
 
 I ran LDA and t-SNE exactly as Shuai described on [this blog
 post](https://shuaiw.github.io/2016/12/22/topic-modeling-and-tsne-visualzation.html),
 except using the great [`gensim`](https://radimrehurek.com/gensim/) library to
 perform LDA, which was built with large corpora and efficient online algorithms
-in mind.  (Specifically, `gensim` implements online variational inference with
+in mind. (Specifically, `gensim` implements online variational inference with
 the EM algorthm, instead of using MCMC-based algorithms, which `lda` does. It
 seems that variational Bayes scales better to very large corpora than collapsed
 Gibbs sampling.)
 
 Here are the results:
 
+<figure>
 <img style="float: middle" width="600" height="600"
 src="https://raw.githubusercontent.com/eigenfoo/eigenfoo.github.io/master/assets/images/lda-sucks.png">
+</figure>
 
 Horrible, right? Nowhere near the well-separated clusters that Shuai got with
 the 20 newsgroups. In fact, the tiny little huddles of around 5 to 10 comments
@@ -133,8 +135,25 @@ might even just be noise! You might say that there are at least 3 very large
 clusters, but even that's bad news! If they're clustered together, you would
 hope that they have the same topics, and that's definitely not the case here!
 These large clusters tells us that a lot of comments have roughly the same topic
-distribution, but their dominant topics (i.e. the topic with greatest
+distribution (i.e. they're close to each other in the high-dimensional
+topic-space), but their dominant topics (i.e. the topic with greatest
 probability) don't end up being the same.
+
+By the way, t-SNE turns out to be [a rather devious dimensionality reduction
+technique](https://distill.pub/2016/misread-tsne/), and you really need to
+experiment with the perplexity values in order to use it properly. I used the
+default `perplexity=30` from sklearn for the previous plot, but I repeated the
+visualizations for multiple other values and the results aren't so hot either.
+You can check out the results [on my
+flickr](https://www.flickr.com/photos/155778261@N04/albums/72157694226050095).
+Note that I did these on a random subsample of 1000 comments, so as to reduce
+compute time.
+
+<figure class="half">
+    <a href="/assets/images/perplexity=50.png"><img src="/assets/images/perplexity=50.png"></a>
+    <a href="/assets/images/perplexity=100.png"><img src="/assets/images/perplexity=100.png></a>
+    <figcaption>Perplexity values of 50 and 100, respectively.</figcaption>
+</figure>
 
 So, what went wrong? There's a [nice StackOverflow
 post](https://stackoverflow.com/questions/29786985/whats-the-disadvantage-of-lda-for-short-texts)
@@ -164,15 +183,6 @@ It's a very confusing comment, but probably made sense in the context of the
 post it responded to and the comments that came before it. As it is, however,
 its impossible for _me_ to figure out what topic this comment is about, let
 alone an algorithm!
-
-So yeah, there you have it, LDA sucks here.
-
-By the way, t-SNE turns out to be [a rather devious dimensionality reduction
-technique](https://distill.pub/2016/misread-tsne/), and you really need to know
-what you're doing to use it properly. I used the default `perplexity=30` from
-sklearn for the previous plot, but I repeated the visualizations for multiple
-other values, and the results aren't so hot either (note that I did these on a
-random subsample of 1000 comments, so as to reduce compute time).
 
 Also, just to drive the point home, here are the top 10 words in each of the 20
 topics that LDA came up with, on the same dataset as before:
@@ -246,3 +256,5 @@ its about world news, etc.
 
 But almost all other topics are just collections of words: it's not immediately
 obvious to me what each topic represents.
+
+So yeah, there you have it, LDA really sucks sometimes.
