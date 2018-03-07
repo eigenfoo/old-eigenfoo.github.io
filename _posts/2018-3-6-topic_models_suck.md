@@ -13,6 +13,7 @@ tags:
 header:
   teaser: /assets/images/lda-sucks.png
   overlay_images: /assets/images/lda-sucks.png
+  caption: "LDA and t-SNE of Reddit comments"
 last_modified_at: 2018-03-06
 ---
 
