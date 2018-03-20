@@ -1,8 +1,8 @@
 ---
 mathjax: true
 title: ~~Fruit~~ Loops and Learning - The LUPI Paradigm and SVM+
-excerpt: "Learning Using Privileged Information: what it is, how to do it, and
-why it's cool"
+excerpt: "Learning Using Privileged Information (LUPI) is a whole new way of
+thinking about machine learning. Here's what it is, and why it's cool."
 tags:
     - mathematics
     - machine learning

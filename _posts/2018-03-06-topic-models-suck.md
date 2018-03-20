@@ -1,6 +1,7 @@
 ---
-title: "Why Topic Modelling Sucks"
-excerpt: "When and why LDA might not be a great idea"
+title: "Why (Thing) Sucks - Topic Modelling"
+excerpt: "I spent ages trying to topic model when it was the opposite of what I
+should've been doing."
 tags:
     - ml
     - nlp
