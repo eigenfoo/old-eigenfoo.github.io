@@ -3,11 +3,8 @@ title: "Why (Thing) Sucks - Topic Modelling"
 excerpt: "I spent ages trying to topic model when it was the opposite of what I
 should've been doing."
 tags:
-    - ml
-    - nlp
-    - lda
-    - tsne
-    - topic modelling
+    - machine learning
+    - natural language processing
     - reddit
 header:
   teaser: /assets/images/lda-sucks.png

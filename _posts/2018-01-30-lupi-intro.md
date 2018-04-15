@@ -7,7 +7,6 @@ tags:
     - mathematics
     - machine learning
     - lupi
-    - svm+
 header:
   teaser: /assets/images/loops.jpeg
   overlay_image: /assets/images/loops.jpeg
