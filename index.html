@@ -1,8 +1,18 @@
 ---
-layout: home
-author_profile: true
+layout: splash
+permalink: /
+header:
+  overlay_image: /assets/images/fruit.jpg
+  caption: "Photo by David Di Veroli on Unsplash"
+author_profile: false
 ---
 <head>
-    <link rel="shortcut icon" type="image/x-icon"
-        href="https://raw.githubusercontent.com/eigenfoo/eigenfoo.github.io/master/favicon.ico">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
+
+<div class="grid__wrapper">
+  {% for post in paginator.posts %}
+    {% include archive-single.html type="grid" %}
+  {% endfor %}
+</div>
