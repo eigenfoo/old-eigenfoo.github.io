@@ -4,6 +4,8 @@ permalink: /
 header:
   overlay_image: /assets/images/fruit.jpg
   caption: "Photo by David Di Veroli on Unsplash"
+title: Eigenfoobarbaz
+excerpt: "Hi there! My name is George, and this is my bandlimited signal."
 author_profile: false
 ---
 <head>
@@ -12,7 +14,7 @@ author_profile: false
 </head>
 
 <div class="grid__wrapper">
-  {% for post in paginator.posts %}
+  {% for post in posts %}
     {% include archive-single.html type="grid" %}
   {% endfor %}
 </div>
