@@ -20,7 +20,7 @@ title_separator          : "-"
 name                     : "George Ho"
 description              : "Words and pictures about math, computation and data"
 url                      : https://eigenfoo.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : # the subpath of your site, e.g. "/blog"
+baseurl                  : / # the subpath of your site, e.g. "/blog"
 repository               : eigenfoo/eigenfoo.github.io # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 #breadcrumbs              : true # true, false (default)
