@@ -79,7 +79,7 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : /assets/images/profile-pic.png # Open Graph/Twitter default site image
+og_image                 : /assets/images/profile-pic.jpg # Open Graph/Twitter default site image
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
@@ -96,7 +96,7 @@ analytics:
 # Site Author
 author:
   name             : "George Ho"
-  avatar           : /assets/images/profile-pic.png # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : /assets/images/profile-pic.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "A bandlimited signal"
   location         : "NYC | HKG"
   email            : georgeho1618@gmail.com
@@ -112,7 +112,7 @@ author:
   gitlab           :
   google_plus      :
   keybase          :
-  instagram        :
+  instagram        : _eigenfoo
   lastfm           :
   linkedin         : george-ho-915080126 # "john-doe-12345678" (the last part of your profile url, e.g. https://www.linkedin.com/in/john-doe-12345678)
   pinterest        :
