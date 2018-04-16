@@ -4,6 +4,9 @@ permalink: /about
 title: "About Me"
 author_profile: true
 ---
+[My Resume](https://raw.githubusercontent.com/eigenfoo/eigenfoo.github.io/master/assets/documents/resume.pdf){: .btn .btn--primary .btn--large}
+
+![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
 
 Hi there, my name is George, and this is my personal blog.
 
@@ -18,7 +21,3 @@ that brings them together (bonus points if they're applied to do cool things!)
 That's the best description of my interests that I could come up with, but I may
 as well pigeonhole myself and say _"I'm passionate about data science and
 machine learning"_.
-
-Click
-[here](https://raw.githubusercontent.com/eigenfoo/eigenfoo.github.io/master/assets/documents/resume.pdf)
-for a copy of my resume!
