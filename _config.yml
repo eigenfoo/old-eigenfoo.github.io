@@ -99,7 +99,7 @@ author:
   avatar           : /assets/images/profile-pic.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "A bandlimited signal"
   location         : "NYC | HKG"
-  email            : georgeho1618@gmail.com
+  email            : hello@eigenfoo.xyz
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        :

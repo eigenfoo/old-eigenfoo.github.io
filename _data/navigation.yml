@@ -4,7 +4,7 @@ main:
     url: /about
   # - title: "Blog"
   #   url: /blog
-  - title: "Posts by Tag"
+  - title: "Blog Archive"
     url: /tags
   # - title: "Sample Collections"
   #   url: /collection-archive/
