@@ -9,7 +9,7 @@
 #
 # Review documentation to determine if you should use `theme` or `remote_theme`
 # https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
-remote_theme           : "mmistakes/minimal-mistakes"
+remote_theme             : "mmistakes/minimal-mistakes"
 minimal_mistakes_skin    : "dirt" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
@@ -21,7 +21,7 @@ name                     : "George Ho"
 description              : "Words and pictures about math, computation and data"
 url                      : http://eigenfoo.xyz # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : / # the subpath of your site, e.g. "/blog"
-repository               : eigenfoo/eigenfoo.github.io # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : eigenfoo/eigenfoo.xyz # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 #breadcrumbs              : true # true, false (default)
 words_per_minute         : 150
@@ -99,7 +99,7 @@ author:
   avatar           : /assets/images/profile-pic.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "A bandlimited signal"
   location         : "NYC | HKG"
-  email            : georgeho1618@gmail.com
+  email            : hello@eigenfoo.xyz
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        :
