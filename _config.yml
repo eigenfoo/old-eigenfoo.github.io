@@ -14,7 +14,7 @@ minimal_mistakes_skin    : "dirt" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "en"
-title                    : "Eigenfoobarbaz"
+title                    : "Eigenfoo"
 locale                   : "en-US"
 title_separator          : "-"
 name                     : "George Ho"
@@ -89,9 +89,9 @@ social:
 
 # Analytics
 analytics:
-  provider               : google # false (default), "google", "google-universal", "custom"
+  provider               : false # false (default), "google", "google-universal", "custom"
   google:
-    tracking_id          : UA-113362814-1
+    tracking_id          :
 
 # Site Author
 author:
