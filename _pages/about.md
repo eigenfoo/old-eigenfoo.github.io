@@ -21,10 +21,11 @@ that brings them together.
 
 It seemed like a clever idea at the time... but now people keep asking.
 
-_Eigen_ is a German for _own_, but probably a better translation - especially
-for mathematical terms like eigenvalue - would be _corresponding to_, or
-_characteristic of_. For example, an eigenvalue is the value _corresponding to_
-a matrix, or _characteristic of_ a matrix.
+_Eigen_ is a German for _own_, but probably a better translation (especially for
+mathematical terms like
+[eigenvalue](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors)) would
+be _corresponding to_, or _characteristic of_. For example, an eigenvalue is the
+value _corresponding to_ a matrix, or _characteristic of_ a matrix.
 
 _Foo_ is a [placeholder name in computer
 programming](https://en.wikipedia.org/wiki/Foobar), and is basically a techier
