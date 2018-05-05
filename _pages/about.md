@@ -8,16 +8,26 @@ author_profile: true
 
 ![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
 
-Hi there, my name is George, and this is my personal blog.
+Hi there, my name is George, and this is my personal website!
 
 I'm currently a junior at [The Cooper Union for the Advancement of Science
 and Art](http://cooper.edu/welcome) in New York, studying for a BSE in
-General Engineering. Prior to The Cooper Union, I attended the
-[Chinese International School](https://www.cis.edu.hk/) in Hong Kong, where 
-I studied for the International Baccalaureate (IB).
+General Engineering.
 
 I'm interested in mathematics, computation and data, and especiallly anything
-that brings them together (bonus points if they're applied to do cool things!)
-That's the best description of my interests that I could come up with, but I may
-as well pigeonhole myself and say _"I'm passionate about data science and
-machine learning"_.
+that brings them together.
+
+## What's with your username?
+
+It seemed like a clever idea at the time... but now people keep asking.
+
+_Eigen_ is a German for _own_, but probably a better translation - especially
+for mathematical terms like eigenvalue - would be _corresponding to_. For
+example, and eigenvalue is the value _corresponding to_ a matrix.
+
+_Foo_ is a [placeholder name in computer
+programming](https://en.wikipedia.org/wiki/Foobar), and is basically a techier
+version of "blah" or "thing".
+
+So taken together, `eigenfoo` probably means something like "things
+corresponding to [George]".
