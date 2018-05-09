@@ -20,13 +20,13 @@ that a lot of resources out there go something like this:
 > that was impossible/hard to do before! Look how well it does! So good! So
 > fast!
 > 
-> It's dangerous to go alone! Take this! It's our algorithm/code/paper! We used
-> it!  To do the thing! And now you can do the thing too!
+> Take this! It's our algorithm/code/paper! We used it to do the thing! And now
+> you can do the thing too!
 
-Joking and jeering aside, I do think its true that a lot of research and
-resources are focused on what things _can_ do, or what things are _good_ at
-doing. Invariably, when I actually implement the hyped-up "thing", I'd always be
-frustrated when I didn't get as good results as the original paper.
+Joking and jeering aside, I do think it’s true that a lot of research and
+resources focus on what things _can_ do, or what things are _good_ at doing.
+Whenever I actually implement the hyped-up "thing", I’m invariably frustrated
+when it doesn’t perform so well as originally described.
 
 Maybe I'm not smart enough to see this, but after I learn about a new technique
 or tool or model, it's not immediately obvious to me when _not_ to use it. I
@@ -36,7 +36,7 @@ the technique/tool/model better, but also sharpens your understanding of your
 use case and the task at hand: what is it about your application that makes it
 unsuitable for such a technique?
 
-Which is why I'm writing the first of what will hopefully be a series of posts
+Which is why I'm writing the first of what will (hopefully) be a series of posts
 on _"Why (Thing) Sucks"_. I'll be outlining what I tried and why it
 didn't work. Documenting my failures and doing a quick post-mortem, if you will.
 Hopefully this will be useful to other people trying to do the same thing I'm
@@ -47,15 +47,14 @@ doing.
 So first up: topic modelling. Specifically, [latent Dirichlet
 allocation](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation), or LDA
 for short (not to be confused with [the other
-LDA](https://eigenfoo.github.io/mathematics/machine%20learning/lda/), which
-I wrote a blog post about before).
+LDA](https://eigenfoo.xyz/lda/), which I wrote a blog post about before).
 
 If you've already encountered LDA and have seen [plate
 notation](https://en.wikipedia.org/wiki/Plate_notation) before, this picture
 will probably refresh your memory:
 
 <img style="float: middle" width="600" height="600"
-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Latent_Dirichlet_allocation.svg/593px-Latent_Dirichlet_allocation.svg.png">
+src="https://deliveryimages.acm.org/10.1145/1860000/1859210/figs/uf1.jpg">
 
 If you don't know what LDA is, fret not, for there is
 [no](http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf)
@@ -71,10 +70,10 @@ I'm going to move on to when and why LDA isn't the best idea.
 in which there isn't much text to model, or b) documents that don't coherently
 discuss a single topic._
 
-Wait, wtf? Did George just say that topic modelling sucks when there's not much
+Wait, what? Did George just say that topic modelling sucks when there's not much
 topic, and not much text to model? Isn't that obvious?
 
-_**Yes!** Exactly!_ Of course it's [obvious in
+_Yes! Exactly!_ Of course it's [obvious in
 retrospect](https://en.wikipedia.org/wiki/Egg_of_Columbus)! Which is why I was
 so upset when I realized I spent two whole weeks faffing around with LDA when
 topic models were the opposite of what I needed, and so frustrated that more
@@ -82,11 +81,12 @@ people aren't talking about when _not_ to use/do certain things.
 
 But anyways, `<\rant>` and let's move on to why I say what I'm saying.
 
-Recently, I've taken up a project in investigating and modelling hate speech on
-Reddit. There are, of course, many ways one can take this, but something I was
-interested in was finding similarities between subreddits, clustering comments,
-and visualizing these clusters somehow: would hate speech turn up naturally as a
-cluster? Of course, I turned to topic modelling and dimensionality reduction.
+Recently, I've taken up a project in modelling the textual data on Reddit using
+NLP techniques. There are, of course, many ways one count take this, but
+something I was interested in was finding similarities between subreddits,
+clustering comments, and visualizing these clusters somehow: what does Reddit
+talk about on average? Of course, I turned to topic modelling and dimensionality
+reduction.
 
 The techniques that I came across first were LDA ([latent Dirichlet
 allocation](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation)) and
@@ -103,12 +103,11 @@ and [the StackExchange community doesn't think its a ridiculous
 idea](https://stats.stackexchange.com/questions/305356/plot-latent-dirichlet-allocation-output-using-t-sne).
 
 The dataset that I applied this technique to was the [Reddit dataset on Google
-Bigquery](bigquery.cloud.google.com/dataset/fh-bigquery:reddit), which contains
-data on all Reddit subreddits, posts and comments for as long as Reddit's been
-around. I limited myself to the top 10 most active subreddits in December 2017
-(the most recent month for which we have data, at the time of writing), and
-chose 20 to be the number of topics to model (any choice is as arbitrary as any
-other).
+BigQuery](bigquery.cloud.google.com/dataset/fh-bigquery:reddit), which contains
+data on all subreddits, posts and comments for as long as Reddit has been around.
+I limited myself to the top 10 most active subreddits in December 2017 (the most
+recent month for which we have data, at the time of writing), and chose 20 to be
+the number of topics to model (any choice is as arbitrary as any other).
 
 I ran LDA and t-SNE exactly as Shuai described on [this blog
 post](https://shuaiw.github.io/2016/12/22/topic-modeling-and-tsne-visualzation.html),
@@ -137,13 +136,13 @@ distribution (i.e. they're close to each other in the high-dimensional
 topic-space), but their dominant topics (i.e. the topic with greatest
 probability) don't end up being the same.
 
-By the way, t-SNE turns out to be [a rather devious dimensionality reduction
+By the way, t-SNE turns out to be [a really devious dimensionality reduction
 technique](https://distill.pub/2016/misread-tsne/), and you really need to
 experiment with the perplexity values in order to use it properly. I used the
 default `perplexity=30` from sklearn for the previous plot, but I repeated the
 visualizations for multiple other values and the results aren't so hot either.
 You can check out the results [on my
-flickr](https://www.flickr.com/photos/155778261@N04/albums/72157694226050095).
+Flickr](https://www.flickr.com/photos/155778261@N04/albums/72157694226050095).
 Note that I did these on a random subsample of 1000 comments, so as to reduce
 compute time.
 
@@ -159,8 +158,9 @@ that describes the problem well.
 
 Firstly, latent Dirichlet allocation and other probabilistic topic models are
 very complex and flexible. While this means that they have very high variance
-and low bias, it also means that they need a lot of data. Particularly for LDA,
-which infers topics on a document-by-document basis, if there aren't enough
+and low bias, it also means that they need a lot of data (or data with a decent
+signal-to-noise ratio) for them to learn anything meaningful. Particularly for
+LDA, which infers topics on a document-by-document basis, if there aren't enough
 words in a document, there simply isn't enough data to infer a reliable topic
 distribution for that document.
 
@@ -176,11 +176,11 @@ words that pertain to what they're talking about). I'll give an example:
 
 Now, stopwords compose a little less than half of this comment, and they would
 be stripped before LDA even looks at it. But that aside, what is this comment
-about? What does the rock falling mean? What knowledge is the poster claiming?
-It's a very confusing comment, but probably made sense in the context of the
-post it responded to and the comments that came before it. As it is, however,
-its impossible for _me_ to figure out what topic this comment is about, let
-alone an algorithm!
+about? What does the rock falling mean? What knowledge is this user claiming?
+It's a very confusing comment, but probably made complete sense in the context
+of the post it responded to and the comments that came before it. As it is,
+however, its impossible for _me_ to figure out what topic this comment is about,
+let alone an algorithm!
 
 Also, just to drive the point home, here are the top 10 words in each of the 20
 topics that LDA came up with, on the same dataset as before:
@@ -247,7 +247,7 @@ Topic #19:
   reddit message askreddit post questions com reddit com subreddit compose message compose
 ```
 
-It's not entirely bad: topic 2 seems like its collecting the tokens from links
+Now, it's not entirely bad: topic 2 seems like its collecting the tokens from links
 (I didn't stopword those out, oops), topic 7 looks like its about football or
 some other sport, 13 is probably about American politics, and 18 looks like
 its about world news, etc.
