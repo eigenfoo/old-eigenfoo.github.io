@@ -39,9 +39,10 @@ unsuitable for such a technique?
 Which is why I'm writing the first of what will (hopefully) be a series of posts
 on _"Why [Thing] Sucks"_. The title is provocative but reductive: a better name
 might be _When and Why [Thing] Might Suck_... but that doesn't have quite the
-same ring to it. I'll be outlining what I tried and why it didn't work.
-Documenting my failures and doing a quick post-mortem, if you will. Hopefully
-this will be useful to other people trying to do the same thing I'm doing.
+same ring to it! In these articles I'll be outlining what I tried and why it
+didn't work: documenting my failures and doing a quick post-mortem, if you will.
+My hope is that this will be useful to anyone else trying to do the same thing
+I'm doing.
 
 ---
 
