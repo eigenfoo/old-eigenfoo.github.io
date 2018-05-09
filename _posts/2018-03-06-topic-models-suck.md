@@ -1,7 +1,7 @@
 ---
-title: "Why (Thing) Sucks - Topic Modelling"
-excerpt: "I spent ages trying to topic model when it was the opposite of what I
-should've been doing."
+title: "Why Topic Models Suck"
+excerpt: "I spent ages trying to train a topic model and it sucked. Afterwards,
+I realized why."
 tags:
     - machine learning
     - natural language processing
@@ -37,10 +37,11 @@ use case and the task at hand: what is it about your application that makes it
 unsuitable for such a technique?
 
 Which is why I'm writing the first of what will (hopefully) be a series of posts
-on _"Why (Thing) Sucks"_. I'll be outlining what I tried and why it
-didn't work. Documenting my failures and doing a quick post-mortem, if you will.
-Hopefully this will be useful to other people trying to do the same thing I'm
-doing.
+on _"Why [Thing] Sucks"_. The title is provocative but reductive: a better name
+might be _When and Why [Thing] Might Suck_... but that doesn't have quite the
+same ring to it. I'll be outlining what I tried and why it didn't work.
+Documenting my failures and doing a quick post-mortem, if you will. Hopefully
+this will be useful to other people trying to do the same thing I'm doing.
 
 ---
 
