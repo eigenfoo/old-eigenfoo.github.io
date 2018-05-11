@@ -5,8 +5,8 @@ theme](https://github.com/mmistakes/minimal-mistakes)).
 
 ## License
 
-The directories `/_posts`, `/drafts`, `/assets/documents` and their contents and
-subdirectories are copyrighted by me, George Ho, unless otherwise stated and may
-not be reused without my permission.
+The directories `/_posts`, `/drafts`, `/assets/documents`, their subdirectories
+and their contents are copyrighted by me, George Ho, unless otherwise stated and
+may not be reused without my permission.
 
 Everything else is published by Michael Rose under the MIT license.
