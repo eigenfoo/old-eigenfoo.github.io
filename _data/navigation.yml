@@ -10,3 +10,29 @@ main:
   #   url: /collection-archive/
   # - title: "Sitemap"
   #   url: /sitemap/
+
+blogroll:
+    - title: "Journals and Publications"
+      children:
+        - title: "Distill"
+          url: https://distill.pub/
+        - title: "The Gradient"
+          url: https://thegradient.pub/
+        - title: "Explosion AI"
+          url: https://explosion.ai/blog/
+        - title: "Stats and Bots"
+          url: https://blog.statsbot.co/
+        - title: "FastML"
+          url: http://fastml.com/
+    - title: "Personal Blogs"
+      children:
+        - title: "Thomas Wiecki"
+          url: http://twiecki.github.io/
+        - title: "Ines Montani"
+          url: http://ines.io/
+        - title: "Chris Olah"
+          url: http://colah.github.io/
+        - title: "Edwin Chen"
+          url: http://blog.echen.me/
+        - title: "Radim Řehůřek"
+          url: https://radimrehurek.com/blog/
