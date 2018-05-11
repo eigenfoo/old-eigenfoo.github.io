@@ -4,7 +4,7 @@ main:
     url: /about
   - title: "Blog"
     url: /blog
-  - title: "Blog Archive"
+  - title: "Tag Archive"
     url: /tags
   # - title: "Sample Collections"
   #   url: /collection-archive/
@@ -12,7 +12,7 @@ main:
   #   url: /sitemap/
 
 blogroll:
-    - title: "Journals and Publications"
+    - title: "Publications"
       children:
         - title: "Distill"
           url: https://distill.pub/
@@ -20,7 +20,7 @@ blogroll:
           url: https://thegradient.pub/
         - title: "Explosion AI"
           url: https://explosion.ai/blog/
-        - title: "Stats and Bots"
+        - title: "Stats & Bots"
           url: https://blog.statsbot.co/
         - title: "FastML"
           url: http://fastml.com/
