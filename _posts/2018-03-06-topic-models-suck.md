@@ -1,5 +1,5 @@
 ---
-title: "Why Topic Models Suck"
+title: "Why Latent Dirichlet Allocation Sucks"
 excerpt: "As I learn more and more about data science and machine learning, I've
 noticed that a lot of resources out there go something like this..." 
 tags:
