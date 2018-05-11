@@ -1,5 +1,5 @@
 ---
-layout: splash
+layout: home
 permalink: /
 header:
   overlay_image: /assets/images/splash.jpg
@@ -7,17 +7,10 @@ title: George Ho
 excerpt: "<q>I get satisfaction of three kinds. One is creating something, one
   is being paid for it and one is the feeling that I haven't just been sitting
   on my ass all afternoon.</q><br />- William F. Buckley Jr."
+author_profile: True
 ---
 
 <head>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
-
-<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
-
-{% for post in paginator.posts %}
-  {% include archive-single.html %}
-{% endfor %}
-
-{% include paginator.html %}
