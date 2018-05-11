@@ -1,7 +1,7 @@
 ---
 title: "Why Topic Models Suck"
-excerpt: "I spent ages trying to train a topic model and it sucked. Afterwards,
-I realized why."
+excerpt: "As I learn more and more about data science and machine learning, I've
+noticed that a lot of resources out there go something like this..." 
 tags:
     - machine learning
     - natural language processing
@@ -19,10 +19,10 @@ that a lot of resources out there go something like this:
 > Take this! It's our algorithm/code/paper! We used it to do the thing! And now
 > you can do the thing too!
 
-Joking and jeering aside, I do think it’s true that a lot of research and
-resources focus on what things _can_ do, or what things are _good_ at doing.
-Whenever I actually implement the hyped-up "thing", I’m invariably frustrated
-when it doesn’t perform so well as originally described.
+Jokes aside, I do think it’s true that a lot of research and resources focus on
+what things _can_ do, or what things are _good_ at doing. Whenever I actually
+implement the hyped-up "thing", I’m invariably frustrated when it doesn’t
+perform so well as originally described.
 
 Maybe I'm not smart enough to see this, but after I learn about a new technique
 or tool or model, it's not immediately obvious to me when _not_ to use it. I
