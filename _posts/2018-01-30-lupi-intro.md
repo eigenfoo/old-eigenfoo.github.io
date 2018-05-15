@@ -8,6 +8,7 @@ tags:
     - mathematics
     - machine learning
     - lupi
+comments: true
 header:
   overlay_image: /assets/images/loops.jpeg
   caption: "Photo credit: [wallpapercraze.com](http://wallpapercraze.com/images/wallpapers/fruitloops-441535.jpeg)"
