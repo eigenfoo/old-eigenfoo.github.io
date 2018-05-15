@@ -25,7 +25,7 @@ comments:
   # request.
   branch: "master"
 
-  commitMessage: "New Staticman comment"
+  commitMessage: "New Staticman comment."
 
   # (*) REQUIRED
   #

@@ -41,8 +41,8 @@ staticman:
   allowedFields          : ['name', 'email', 'url', 'message']
   branch                 : "master"
   commitMessage          : "New Staticman comment."
-  filename               : comment-{@timestamp}
-  format                 : "yml"
+  filename               : "comment-{@timestamp}"
+  format                 : "yaml"
   moderation             : true
   path                   : "/_data/comments/{options.slug}" (default)
   requiredFields         : ['name', 'email', 'message']
@@ -52,7 +52,7 @@ staticman:
     date:
       type               : "date"
       options:
-        format           : "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
+        format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
 reCaptcha:
   siteKey                : 6LdrOFkUAAAAAEJL_p0lFzli2fX0m89jYhJdNMnl
   secret                 : zgMLqsUrntalucaDYLY59OjmE4LbC9QS5Ybh6vzNzG8jv/uVHhSasvmzj4AKnFLa+Sbe/hLv5b+ta+t+kBlp8dLnBV7uLEMjEWhEyoxoG5i6Dqr7dg2Ky7mA3SDpZ3Wfl1EWrzm9FrjeViIcEwk096LdoQO8f7jRWPMc1im/qe4=
