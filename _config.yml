@@ -38,24 +38,24 @@ comments:
     num_posts            : # 5 (default)
     colorscheme          : # "light" (default), "dark"
 staticman:
-  allowedFields          : # ['name', 'email', 'url', 'message']
+  allowedFields          : ['name', 'email', 'url', 'message']
   branch                 : "master"
-  commitMessage          : # "New comment."
-  filename               : # comment-{@timestamp}
-  format                 : # "yml"
-  moderation             : # true
-  path                   : # "/_data/comments/{options.slug}" (default)
-  requiredFields         : # ['name', 'email', 'message']
+  commitMessage          : "New Staticman comment."
+  filename               : comment-{@timestamp}
+  format                 : "yml"
+  moderation             : true
+  path                   : "/_data/comments/{options.slug}" (default)
+  requiredFields         : ['name', 'email', 'message']
   transforms:
-    email                : # "md5"
+    email                : "md5"
   generatedFields:
     date:
-      type               : # "date"
+      type               : "date"
       options:
-        format           : # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
+        format           : "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
 reCaptcha:
-  siteKey                :
-  secret                 :
+  siteKey                : 6LdrOFkUAAAAAEJL_p0lFzli2fX0m89jYhJdNMnl
+  secret                 : zgMLqsUrntalucaDYLY59OjmE4LbC9QS5Ybh6vzNzG8jv/uVHhSasvmzj4AKnFLa+Sbe/hLv5b+ta+t+kBlp8dLnBV7uLEMjEWhEyoxoG5i6Dqr7dg2Ky7mA3SDpZ3Wfl1EWrzm9FrjeViIcEwk096LdoQO8f7jRWPMc1im/qe4=
 atom_feed:
   path                   : # blank (default) uses feed.xml
 search                   : true # true, false (default)
