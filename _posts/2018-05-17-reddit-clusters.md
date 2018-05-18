@@ -2,6 +2,10 @@
 title: Understanding Hate Speech on Reddit through Text Clustering
 excerpt: "This past semester I was lucky to be part of Data Science Projects for Social Good, an interdisciplinary class led by Professors Sam Keene and Will Shapiro at The Cooper Union."
 link: https://medium.com/@_eigenfoo/understanding-hate-speech-on-reddit-through-text-clustering-7dc7675bccae
+tags:
+    - reddit
+    - machine learning
+    - natural language processing
 header:
   overlay_image: /assets/images/reddit.jpg
   overlay_filter: 0.4
