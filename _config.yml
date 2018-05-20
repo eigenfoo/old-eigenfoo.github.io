@@ -19,16 +19,16 @@ locale                   : "en-US"
 title_separator          : "-"
 name                     : "George Ho"
 description              : "Words and pictures about math, computation and data"
-url                      : http://eigenfoo.xyz # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "https://eigenfoo.xyz" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : / # the subpath of your site, e.g. "/blog"
-repository               : eigenfoo/eigenfoo.xyz # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "eigenfoo/eigenfoo.xyz" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 #breadcrumbs              : true # true, false (default)
 words_per_minute         : 150
 comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2" "custom"
+  provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2" "custom"
   disqus:
-    shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : "eigenfoo" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
@@ -36,25 +36,9 @@ comments:
     appid                :
     num_posts            : # 5 (default)
     colorscheme          : # "light" (default), "dark"
-staticman:
-  allowedFields          : # ['name', 'email', 'url', 'message']
-  branch                 : # "master"
-  commitMessage          : # "New comment."
-  filename               : # comment-{@timestamp}
-  format                 : # "yml"
-  moderation             : # true
-  path                   : # "/_data/comments/{options.slug}" (default)
-  requiredFields         : # ['name', 'email', 'message']
-  transforms:
-    email                : # "md5"
-  generatedFields:
-    date:
-      type               : # "date"
-      options:
-        format           : # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
 reCaptcha:
-  siteKey                :
-  secret                 :
+  siteKey                : "6LdrOFkUAAAAAEJL_p0lFzli2fX0m89jYhJdNMnl"
+  secret                 : "zgMLqsUrntalucaDYLY59OjmE4LbC9QS5Ybh6vzNzG8jv/uVHhSasvmzj4AKnFLa+Sbe/hLv5b+ta+t+kBlp8dLnBV7uLEMjEWhEyoxoG5i6Dqr7dg2Ky7mA3SDpZ3Wfl1EWrzm9FrjeViIcEwk096LdoQO8f7jRWPMc1im/qe4="
 atom_feed:
   path                   : # blank (default) uses feed.xml
 search                   : true # true, false (default)
@@ -67,8 +51,8 @@ algolia:
   powered_by             : # true (default), false
 
 # SEO Related
-google_site_verification :
-bing_site_verification   :
+google_site_verification : "Zdv0cql1XqRYceXOkAcuJ7YVJjeo_Fxdx0m59dkZRKA"
+bing_site_verification   : "E1CD61B4DF8D45D44865B7E4CC75DE74"
 yandex_site_verification :
 naver_site_verification  :
 
