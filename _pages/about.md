@@ -4,7 +4,7 @@ permalink: /about
 title: "About Me"
 author_profile: true
 ---
-[Click for my Resume](https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){: .btn .btn--inverse .btn--x-large}
+[Click for my Resume](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){: .btn .btn--inverse .btn--x-large}
 
 ![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
 
