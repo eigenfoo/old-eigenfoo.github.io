@@ -26,12 +26,14 @@ blogroll:
           url: http://fastml.com/
     - title: "Personal Blogs"
       children:
+        - title: "Jake VanderPlas"
+          url: https://jakevdp.github.io/
+        - title: "Chris Olah"
+          url: http://colah.github.io/
         - title: "Thomas Wiecki"
           url: http://twiecki.github.io/
         - title: "Ines Montani"
           url: http://ines.io/
-        - title: "Chris Olah"
-          url: http://colah.github.io/
         - title: "Edwin Chen"
           url: http://blog.echen.me/
         - title: "Radim Řehůřek"
