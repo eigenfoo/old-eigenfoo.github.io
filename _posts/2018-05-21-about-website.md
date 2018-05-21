@@ -25,8 +25,8 @@ static... well, except for the comments. I gave
 [Staticman](https://staticman.net/) a shot, which probably would've been nice to
 have on some spiritual (?) level ("100% static! Woohoo!") but it wasn't working
 for whatever reason, so I just gave up. I use [Disqus](https://disqus.com/) for
-comments now.  I don't think I've spent enough time with either of these
-providers to really have a good opinion, but Disqus seems to be doing its job
+comments now. I don't think I've spent enough time with either of these
+providers to really form a good opinion, but Disqus seems to be doing its job
 just fine.
 
 All in all, I'm pretty happy with how smoothly this stuff works!
