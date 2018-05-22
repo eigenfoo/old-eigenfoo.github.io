@@ -4,8 +4,8 @@ main:
     url: /about
   - title: "Blog"
     url: /blog
-  - title: "Tag Archive"
-    url: /tags
+  - title: "Archive"
+    url: /archive
   # - title: "Sample Collections"
   #   url: /collection-archive/
   # - title: "Sitemap"
@@ -30,6 +30,8 @@ blogroll:
           url: https://jakevdp.github.io/
         - title: "Chris Olah"
           url: http://colah.github.io/
+        - title: "Jeff Knupp"
+          url: https://jeffknupp.com/
         - title: "Thomas Wiecki"
           url: http://twiecki.github.io/
         - title: "Ines Montani"
