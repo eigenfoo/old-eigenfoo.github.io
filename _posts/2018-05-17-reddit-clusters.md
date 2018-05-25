@@ -10,7 +10,7 @@ header:
   overlay_image: /assets/images/reddit.jpg
   overlay_filter: 0.4
   caption: "Snoo the Reddit Alien! Photo credit: [KnowYourMeme](http://knowyourmeme.com/memes/snoo)"
-last_modified_at: 05-14-2018
+last_modified_at: 2018-05-14
 ---
 
 This past semester I was lucky to be part of Data Science Projects for
