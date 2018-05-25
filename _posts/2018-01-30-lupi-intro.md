@@ -11,7 +11,7 @@ tags:
 header:
   overlay_image: /assets/images/loops.jpeg
   caption: "Photo credit: [wallpapercraze.com](http://wallpapercraze.com/images/wallpapers/fruitloops-441535.jpeg)"
-  last_modified_at: 2018-01-30
+last_modified_at: 2018-01-30
 ---
 
 Here's a short story you might know: you have a black box, whose name is
