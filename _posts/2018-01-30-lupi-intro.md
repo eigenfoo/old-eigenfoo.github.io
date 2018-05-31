@@ -9,8 +9,8 @@ tags:
     - machine learning
     - lupi
 header:
-  overlay_image: /assets/images/loops.jpeg
-  caption: "Photo credit: [wallpapercraze.com](http://wallpapercraze.com/images/wallpapers/fruitloops-441535.jpeg)"
+  overlay_image: /assets/images/cool-backgrounds/cool-background11.png
+  caption: "Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)"
 last_modified_at: 2018-01-30
 ---
 

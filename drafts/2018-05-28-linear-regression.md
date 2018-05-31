@@ -1,0 +1,267 @@
+---
+title: "Linear Regression"
+excerpt:
+tags:
+  - mathematics
+  - statistics
+  - sane and sound
+header:
+  overlay_image: /assets/images/cool-backgrounds/cool-background7.png
+  caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
+mathjax: true
+last_modified_at: 2018-05-28
+---
+
+_Linear regression_ is one of the most powerful and versatile workhorses of
+statistics, and yet somehow I've never really managed to understand it in class.
+The presentation always seemed very canned, each topic coming out like a
+sardine: packed so close together, but always slipping from your hands whenever
+you pick them up.
+
+I think that what makes linear regression so difficult to learn is that it is a
+topic that has been studied _ad nauseam_. Mathematicians, scientists,
+bioinformatician, statisticians, social scientists, psychologists... So many
+disciplines have their own understanding of linear regression, which means that
+the exact same idea has multiple names, notations and formalisms. Just as an
+example, what mathematicians call **Tikhonov regularization**, statisticians call
+**ridge regression**, machine learning experts call **weight decay**, and other
+people simply call **linear regularization**.
+
+With so many different possible ways to introduce linear regression, it's easy
+to get lost and drown. So what I've done is take the time to really dig into the
+machinery, and explain how all of this linear regression stuff hangs together,
+without mentioning any discipline-specific names. This might be helpful for
+people who have had some exposure to linear regression before, and some fuzzy
+recollection of what it might be, but really wants to see how everything fits
+together.
+
+## Intro and Road map
+
+So what is linear regression?
+
+The basic idea is this: we have some number that we're interested in. This
+number could be the price of a stock, the number of stars a restaurant has on
+Yelp... Let's denote this _number-that-we-are-interested-in_ by the letter
+$$y$$. Occasionally, we may have multiple observations for $$y$$ (e.g. we
+monitored the price of the stock over many days, or we surveyed many restaurants
+in a neighborhood). In this case, we stack these values of $$y$$ and consider
+them as a single vector: $$\bf{y}$$. To be explicit, if we have $$n$$
+observations of $$y$$, then $$\bf{y}$$ will be an $$n$$-dimensional vector.
+
+We also have some other numbers that we think are related to $$y$$. More
+explicitly, we have some other numbers that we suspect _tell us something_ about
+$$y$$. For example (in each of the above scenarios), they could be how the stock
+market is doing, or the average price of the food at this restaurant. Let us
+denote these _numbers-that-tell-us-something-about-y_ by the letter $$x$$.
+So if we have $$p$$ such numbers, we'd call them $$x_1, x_2, ..., x_p$$. Again,
+we occasionally have multiple observations: in which case, we arrange the $$x$$
+values into an $$n \cdot p$$ matrix which we call $$X$$; similarly, we stack the
+$$\beta$$s into a $$p$$-dimensional vectors, $$\bf{\beta}$$. Note that
+$$\alpha$$ remains common throughout all observations.
+
+If we have this setup, linear regression simply tells us that $$y$$ is a
+weighted sum of the $$x$$s, plus some constant term. Easier to show you.
+
+$$ y = \alpha + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p + \epsilon $$
+
+where the $$\alpha$$ and $$\beta$$s are all scalars to be determined, and the
+$$\epsilon$$ is an error term.
+
+If we consider $$n$$ different observations, we can write the equation much more
+succinctly by simply prepending a column of 1s to the $$\bf{X}$$ matrix and
+prepending an extra element to the $$\bf{\beta}$$ vector. Then the equation can
+be written as:
+
+$$ \bf{y} = \bf{X} \bf{\beta} + \bf{\epsilon} $$
+
+That's it. The hard part (and the whole zoo of different kinds of linear
+regressions) now comes from two questions:
+
+1. What can we assume, and more importantly, what _can't_ we assume about x, y?
+2. Given y and x values, how exactly do we find $$\alpha$$ and $$\beta$$?
+
+## The Small-Brain Solution: Ordinary Least Squares
+
+<img style="float: middle" src="http://i1.kym-cdn.com/photos/images/facebook/001/232/375/3fb.jpg">
+
+This section is mostly just a re-packaging of what you could find in any
+introductory statistics book, just in fewer words.
+
+Instead of futzing around with whether or not we have multiple observations,
+let's just assume we have $$n$$ observations: we can always set $$ n = 1 $$ if
+that's the case. So,
+
+- Let $$\bf{y}$$ $$\bf{\alpha}$$ and $$\beta$$ be $$p$$-dimensional vectors
+- Let $$\bf{X}$$ be an $$n \cdot p$$ matrix
+
+The simplest, small-brain way of getting our parameter $$\bf{\beta}$$ is by
+minimizing the sum of squares:
+
+$$\bf{\beta} = argmin |\bf{y} - \bf{X}\bf{\beta}|^2 $$
+
+Our estimate for $$\bf{\beta}$$ then has a miraculous closed-form solution given
+by:
+
+$$ \bf{\beta} = (\bf{X}^T \bf{X})^{-1} \bf{X} \bf{y} $$
+
+This solution is so (in)famous that it been blessed with a fairly universal
+name, but cursed with the unimpressive name _ordinary least squares_ (a.k.a.
+OLS).
+
+If you have a bit of mathematical statistics under your belt, it's worth noting
+that the least squares estimate for $$\bf{\beta}$$ has a load of nice
+statistical properties. It has a simple closed form solution, where the
+trickiest thing is a matrix inversion: hardly asking for a computational
+miracle. If we can assume that $$\epsilon$$ is zero-mean Gaussian, the least
+squares estimate is the maximum likelihood estimate. Even better, if the errors
+are uncorrelated and homoskedastic, then the least squares estimate is the best
+linear unbiased estimator. _Basically, this is very nice._ If most of that flew
+over your head, don't worry - in fact, forget I said anything at all.
+
+## Why the Small-Brain Solution Sucks
+
+[There are a ton of
+reasons.](http://www.clockbackward.com/2009/06/18/ordinary-least-squares-linear-regression-flaws-problems-and-pitfalls/)
+Here, I'll just highlight a few.
+
+1. The least-squares estimate of $$\bf{\beta}$$ is very susceptible to outliers
+2. Assumption of homoskedasticity
+3. If we have collinearity
+3. If we have too many features
+
+Points 1 and 2 are specific to the method of ordinary least squares, while 3 and
+4 are just suckish things about linear regression in general.
+
+### Outliers
+
+The OLS estimate for $$\bf{\beta}$$ is famously susceptible to outliers. As an
+example, consider the third dataset in [Anscombe's
+quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet). That is, the data
+is almost a perfect line, but the $$n$$th data point is a clear outlier. That
+single data point pulls the entire regression line closer to it, which means it
+fits the rest of the data worse, in order to accommodate that single outlier.
+
+<img style="float: middle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Anscombe%27s_quartet_3.svg/990px-Anscombe%27s_quartet_3.svg.png">
+
+### Heteroskedasticity
+
+Baked into the OLS estimate is an implicit assumption that the $$\epsilon$$s all
+have the same variance. That is, the amount of noise in our data is independent
+of what region of our feature space we're in. However, this is usually not a
+great assumption. For example, harking back to our stock price and Yelp rating
+examples, this assumption states that the price of a stock fluctuates just as
+much in the hour before lunch as it does in the last 10 minutes before market
+close, or that Michelin-star rated restaurants have as much variation in their
+Yelp ratings as do small coffee shops.
+
+The long and short of this is that some points in our training data are more
+likely to be impaired by noise than some other such points, which means that
+some points in our training set are more reliable/valuable than others. We don’t
+want to ignore the less reliable points completely but they should count less in
+our computation of $$\bf{\beta}$$ than points that come from regions of space
+with less noise. 
+
+### Collinearity
+
+Collinearity (or multi-collinearity) is just a fancy way of saying that our
+features are correlated. In the worst case, suppose that two of our columns in
+the $$\bf{X}$$ matrix are identical: that is, we have repeated data. Then, bad
+things happen: the matrix $$\bf{X}^T \bf{X}$$ no longer has full rank (or at
+least, becomes
+[ill-conditioned](https://en.wikipedia.org/wiki/Condition_number)), which means
+the actual inversion becomes an extremely sensitive operation and is liable to
+give you nonsensically large or small regression coefficients, which will impact
+model performance.
+
+### Too Many Features
+
+Having more data may be a good thing, but more specifically, having more
+_observations_ is a good thing. Having more _features_ might not be a great
+thing. In the extreme case, if you have more features than observations, (i.e.
+$$ n < p $$), then the OLS estimate of $$\bf{\beta}$$ fails to be unique. In
+fact, as you add more and more independent features to your model, you will find
+that model performance will begin to degrade long before you reach this point
+where $$ n < p $$.
+
+## Expanding-Brain Solutions and Practical Considerations
+
+<img style="float: middle" src="http://i1.kym-cdn.com/entries/icons/facebook/000/022/266/brain.jpg">
+
+Here I'll discuss some add-ons and plugins you can use to upgrade your Ordinary
+Least Squares Linear Regression™ to cope with the four problems I described
+above.
+
+### Heteroskedasticity
+
+(Iteratively Re-) Weighted Least Squares
+
+To do this one can use the technique known as weighted least squares which puts
+more “weight” on more reliable points. In practice though, since the amount of
+noise at each point in feature space is typically not known, approximate methods
+(such as feasible generalized least squares) which attempt to estimate the
+optimal weight for each training point are used.
+
+### Outliers
+
+Recall that OLS minimizes the sum of squares:
+
+$$\bf{\beta} = argmin |\bf{y} - \bf{X}\bf{\beta}|^2 $$
+
+A _regularized estimation_ scheme adds a penalty term on the size of the coefficients:
+
+$$\bf{\beta} = argmin |\bf{y} - \bf{X}\bf{\beta}|^2 + P(\bf{\beta}) $$
+
+where $$P$$ is some function of $$\bf{\beta}$$. Common choices for $$P$$ are:
+
+- $$P(\bf{\beta}) = |\bf{\beta}|_1 $$ (i.e. the $$l_1$$ norm)
+- $$P(\bf{\beta}) = |\bf{\beta}|_2 $$ (i.e. the $$l_2$$ norm)
+- $$P(\bf{\beta}) = a |\bf{\beta}|_1 + (1-a) |\bf{\beta}|_2 $$ (i.e.
+  interpolating between the $$l_1$$ and $$l_2$$ norms)
+
+While regularizes has empirically been found to be more resilient against
+outliers, it comes at a cost: the regression coefficients lose their nice
+interpretation of "effect of increasing this regressor by one unit".
+Indeed, regularization can be thought of as telling the machine: "I don't care
+about interpreting regression coefficients, so long as I get a reasonable fit
+that is resilient to overfitting". For this reason, regularization is usually
+used for prediction problems, and not for inference.
+
+An alternative solution would be to apply some pre-processing to our data: for
+example, some anomaly detection on our data points could remove outliers from
+the consideration of our linear regression. However, this method also comes with
+its own problems - what if it removes the wrong points? It has the potential to
+really mess up our model if it did.
+
+The main takeaway, then, is that outliers just suck.
+
+### Collinearity
+
+Collinearity a problem that comes and goes - sometimes it's there, othertimes
+not, and it's better to always check and correct for it than it is to risk
+having it there.
+
+There are many ways to [detect
+multicollinearity](https://en.wikipedia.org/wiki/Multicollinearity#Detection_of_multicollinearity),
+many ways to [remedy
+it](https://en.wikipedia.org/wiki/Multicollinearity#Remedies_for_multicollinearity)
+and [many consequences if you
+don't](https://en.wikipedia.org/wiki/Multicollinearity#Consequences_of_multicollinearity).
+The Wikipedia page is pretty good at outlining all of those, so I'll just defer
+to them.
+
+An alternative that Wikipedia doesn't mention is principal components regression
+(PCR), which is literally just principal components analysis followed by
+ordinary least squares. As you can imagine, by throwing away some of the
+lower-variance components, you can usually remove some of the collinearity.
+However, this comes at the cost of interpretability: there is no easy way to
+intuit the meaning of a principal component.
+
+A more sophisticated approach would be a close cousin of PCR: [partial least
+squares
+regression](https://en.wikipedia.org/wiki/Partial_least_squares_regression).
+It's a bit more mathematically involved, and I definitely don't have the time to
+do it full justice here. Google!
+
+### Too Many Features
+
+Least angle regression
