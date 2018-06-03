@@ -59,9 +59,7 @@ market is doing, or the average price of the food at this restaurant. Let us
 denote these _numbers-that-tell-us-something-about-y_ by the letter $$x$$.
 So if we have $$p$$ such numbers, we'd call them $$x_1, x_2, ..., x_p$$. Again,
 we occasionally have multiple observations: in which case, we arrange the $$x$$
-values into an $$n \times p$$ matrix which we call $$X$$; similarly, we stack the
-$$\beta$$s into a $$p$$-dimensional vectors, $${\bf \beta}$$. Note that
-$$\alpha$$ remains common throughout all observations.
+values into an $$n \times p$$ matrix which we call $$X$$.
 
 If we have this setup, linear regression simply tells us that $$y$$ is a
 weighted sum of the $$x$$s, plus some constant term. Easier to show you.
@@ -70,11 +68,16 @@ $$ y = \alpha + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p + \epsilon $$
 
 where the $$\alpha$$ and $$\beta$$s are all scalars to be determined, and the
 $$\epsilon$$ is an error term (a.k.a. the **residuals**).
+Note that we can pull the same stacking trick here: the $$\beta$$s will become a
+$$p$$-dimensional vector, $${\bf \beta}$$. Note that $$\alpha$$ remains common
+throughout all observations.
 
 If we consider $$n$$ different observations, we can write the equation much more
-succinctly by simply prepending a column of 1s to the $${\bf X}$$ matrix and
-prepending an extra element to the $${\bf \beta}$$ vector. Then the equation can
-be written as:
+succinctly if we simply prepend a column of $$1$$s to the $${\bf X}$$ matrix and
+prepend an extra element (what used to be the $$\alpha$$) to the
+$${\bf \beta}$$ vector.
+
+Then the equation can be written as:
 
 $$ {\bf y} = {\bf X} {\bf \beta} + {\bf \epsilon} $$
 
@@ -99,7 +102,7 @@ that's the case. So,
 - Let $${\bf X}$$ be an $$n \times p$$ matrix
 
 The simplest, small-brain way of getting our parameter $${\bf \beta}$$ is by
-minimizing the sum of squares:
+minimizing the sum of squares of the residuals:
 
 $${\bf \hat{\beta}} = argmin \|{\bf y} - {\bf X}{\bf \beta}\|^2 $$
 
@@ -107,6 +110,9 @@ Our estimate for $${\bf \beta}$$ then has a miraculous closed-form solution give
 by:
 
 $$ {\bf \hat{\beta}} = ({\bf X}^T {\bf X})^{-1} {\bf X} {\bf y} $$
+
+(Insert obligatory footnote here about [the Moore-Penrose inverse a.k.a. the
+pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse).)
 
 This solution is so (in)famous that it been blessed with a fairly universal
 name, but cursed with the unimpressive name _ordinary least squares_ (a.k.a.
