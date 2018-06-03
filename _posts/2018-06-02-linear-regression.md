@@ -39,7 +39,7 @@ There's going to be a fair amount of math (enough to properly explain the gist
 of linear regression), but I'm really not emphasizing proofs here, in favor of
 explaining the various flavors of linear regression.
 
-## Intro and Road map
+## So Uh, What is Linear Regression?
 
 So what is linear regression?
 
@@ -49,8 +49,8 @@ Yelp... Let's denote this _number-that-we-are-interested-in_ by the letter
 $$y$$. Occasionally, we may have multiple observations for $$y$$ (e.g. we
 monitored the price of the stock over many days, or we surveyed many restaurants
 in a neighborhood). In this case, we stack these values of $$y$$ and consider
-them as a single vector: $$\bf{y}$$. To be explicit, if we have $$n$$
-observations of $$y$$, then $$\bf{y}$$ will be an $$n$$-dimensional vector.
+them as a single vector: $$\textbf{y}$$. To be explicit, if we have $$n$$
+observations of $$y$$, then $$\textbf{y}$$ will be an $$n$$-dimensional vector.
 
 We also have some other numbers that we think are related to $$y$$. More
 explicitly, we have some other numbers that we suspect _tell us something_ about
@@ -59,8 +59,8 @@ market is doing, or the average price of the food at this restaurant. Let us
 denote these _numbers-that-tell-us-something-about-y_ by the letter $$x$$.
 So if we have $$p$$ such numbers, we'd call them $$x_1, x_2, ..., x_p$$. Again,
 we occasionally have multiple observations: in which case, we arrange the $$x$$
-values into an $$n \cdot p$$ matrix which we call $$X$$; similarly, we stack the
-$$\beta$$s into a $$p$$-dimensional vectors, $$\bf{\beta}$$. Note that
+values into an $$n \times p$$ matrix which we call $$X$$; similarly, we stack the
+$$\beta$$s into a $$p$$-dimensional vectors, $$\textbf{\beta}$$. Note that
 $$\alpha$$ remains common throughout all observations.
 
 If we have this setup, linear regression simply tells us that $$y$$ is a
@@ -72,17 +72,17 @@ where the $$\alpha$$ and $$\beta$$s are all scalars to be determined, and the
 $$\epsilon$$ is an error term (a.k.a. the **residuals**).
 
 If we consider $$n$$ different observations, we can write the equation much more
-succinctly by simply prepending a column of 1s to the $$\bf{X}$$ matrix and
-prepending an extra element to the $$\bf{\beta}$$ vector. Then the equation can
+succinctly by simply prepending a column of 1s to the $$\textbf{X}$$ matrix and
+prepending an extra element to the $$\textbf{\beta}$$ vector. Then the equation can
 be written as:
 
-$$ \bf{y} = \bf{X} \bf{\beta} + \bf{\epsilon} $$
+$$ \textbf{y} = \textbf{X} \textbf{\beta} + \textbf{\epsilon} $$
 
 That's it. The hard part (and the whole zoo of different kinds of linear
 regressions) now comes from two questions:
 
-1. What can we assume, and more importantly, what _can't_ we assume about x, y?
-2. Given y and x values, how exactly do we find $$\alpha$$ and $$\beta$$?
+1. What can we assume, and more importantly, what _can't_ we assume about $$X$$ and $$y$$?
+2. Given $$X$$ and $$y$$, how exactly do we find $$\alpha$$ and $$\beta$$?
 
 ## The Small-Brain Solution: Ordinary Least Squares
 
@@ -95,25 +95,25 @@ Instead of futzing around with whether or not we have multiple observations,
 let's just assume we have $$n$$ observations: we can always set $$ n = 1 $$ if
 that's the case. So,
 
-- Let $$\bf{y}$$ $$\bf{\alpha}$$ and $$\beta$$ be $$p$$-dimensional vectors
-- Let $$\bf{X}$$ be an $$n \cdot p$$ matrix
+- Let $$\textbf{y}$$ $$\textbf{\alpha}$$ and $$\beta$$ be $$p$$-dimensional vectors
+- Let $$\textbf{X}$$ be an $$n \times p$$ matrix
 
-The simplest, small-brain way of getting our parameter $$\bf{\beta}$$ is by
+The simplest, small-brain way of getting our parameter $$\textbf{\beta}$$ is by
 minimizing the sum of squares:
 
-$$\bf{\beta} = argmin |\bf{y} - \bf{X}\bf{\beta}|^2 $$
+$$\textbf{\hat{\beta}} = argmin |\textbf{y} - \textbf{X}\textbf{\beta}|^2 $$
 
-Our estimate for $$\bf{\beta}$$ then has a miraculous closed-form solution given
+Our estimate for $$\textbf{\beta}$$ then has a miraculous closed-form solution given
 by:
 
-$$ \bf{\beta} = (\bf{X}^T \bf{X})^{-1} \bf{X} \bf{y} $$
+$$ \textbf{\hat{\beta}} = (\textbf{X}^T \textbf{X})^{-1} \textbf{X} \textbf{y} $$
 
 This solution is so (in)famous that it been blessed with a fairly universal
 name, but cursed with the unimpressive name _ordinary least squares_ (a.k.a.
 OLS).
 
 If you have a bit of mathematical statistics under your belt, it's worth noting
-that the least squares estimate for $$\bf{\beta}$$ has a load of nice
+that the least squares estimate for $$\textbf{\beta}$$ has a load of nice
 statistical properties. It has a simple closed form solution, where the
 trickiest thing is a matrix inversion: hardly asking for a computational
 miracle. If we can assume that $$\epsilon$$ is zero-mean Gaussian, the least
@@ -128,7 +128,7 @@ over your head, don't worry - in fact, forget I said anything at all.
 reasons.](http://www.clockbackward.com/2009/06/18/ordinary-least-squares-linear-regression-flaws-problems-and-pitfalls/)
 Here, I'll just highlight a few.
 
-1. The least-squares estimate of $$\bf{\beta}$$ is very susceptible to outliers
+1. The least-squares estimate of $$\textbf{\beta}$$ is very susceptible to outliers
 2. Assumption of homoskedasticity
 3. If we have collinearity
 3. If we have too many features
@@ -138,7 +138,7 @@ Points 1 and 2 are specific to the method of ordinary least squares, while 3 and
 
 ### Outliers
 
-The OLS estimate for $$\bf{\beta}$$ is famously susceptible to outliers. As an
+The OLS estimate for $$\textbf{\beta}$$ is famously susceptible to outliers. As an
 example, consider the third dataset in [Anscombe's
 quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet). That is, the data
 is almost a perfect line, but the $$n$$th data point is a clear outlier. That
@@ -158,22 +158,27 @@ much in the hour before lunch as it does in the last 5 minutes before market
 close, or that Michelin-starred restaurants have as much variation in their Yelp
 ratings as do local coffee shops.
 
-A more nuanced flaw is this: not only can the residuals have different
-variances, but they may also even be correlated! There's no reason why not.
+Even worse: not only can the residuals have different variances, but they may
+also even be correlated! There's no reason why this can't be the case. Going
+back to the stock price example, we know that high-volatility regimes introduce
+much higher noise in the price of a stock, and volatility regimes tend to stay
+fairly constant over time (notwithstanding structural breaks), which means that
+the level of volatility (i.e. noise, or residual) suffers very high
+autocorrelation.
 
 The long and short of this is that some points in our training data are more
 likely to be impaired by noise and/or correlation than others, which means that
 some points in our training set are more reliable/valuable than others. We don’t
 want to ignore the less reliable points completely, but they should count less
-in our computation of $$\bf{\beta}$$ than points that come from regions of space
-with less noise, or not impaired as much by correlation.
+in our computation of $$\textbf{\beta}$$ than points that come from regions of
+space with less noise, or not impaired as much by correlation.
 
 ### Collinearity
 
 Collinearity (or multi-collinearity) is just a fancy way of saying that our
 features are correlated. In the worst case, suppose that two of our columns in
-the $$\bf{X}$$ matrix are identical: that is, we have repeated data. Then, bad
-things happen: the matrix $$\bf{X}^T \bf{X}$$ no longer has full rank (or at
+the $$\textbf{X}$$ matrix are identical: that is, we have repeated data. Then, bad
+things happen: the matrix $$\textbf{X}^T \textbf{X}$$ no longer has full rank (or at
 least, becomes
 [ill-conditioned](https://en.wikipedia.org/wiki/Condition_number)), which means
 the actual inversion becomes an extremely sensitive operation and is liable to
@@ -185,7 +190,7 @@ model performance.
 Having more data may be a good thing, but more specifically, having more
 _observations_ is a good thing. Having more _features_ might not be a great
 thing. In the extreme case, if you have more features than observations, (i.e.
-$$ n < p $$), then the OLS estimate of $$\bf{\beta}$$ generally fails to be
+$$ n < p $$), then the OLS estimate of $$\textbf{\beta}$$ generally fails to be
 unique. In fact, as you add more and more independent features to your model,
 you will find that model performance will begin to degrade long before you reach
 this point where $$ n < p $$.
@@ -210,13 +215,13 @@ on more valuable data points (i.e. those not impaired by noise or correlation).
 
 Mathematically, the OLS estimate is given by
 
-$$\bf{\beta} = argmin |\bf{y} - \bf{X}\bf{\beta}|^2 $$
+$$\textbf{\hat{\beta}} = argmin |\textbf{y} - \textbf{X}\textbf{\beta}|^2 $$
 
 whereas the GLS estimate is given by
 
-$$\bf{\beta} = argmin (\bf{y} - \bf{X}\bf{\beta})^T \Sigma (\bf{y} - \bf{X}\bf{\beta})$$
+$$\textbf{\hat{\beta}} = argmin (\textbf{y} - \textbf{X}\textbf{\beta})^T \textbf{\Sigma} (\textbf{y} - \textbf{X}\textbf{\beta})$$
 
-where $$\Sigma$$ is the _known_ covariance matrix of the residuals.
+where $$\textbf{\Sigma}$$ is the _known_ covariance matrix of the residuals.
 
 Now, the GLS estimator enjoys a lot of statistical properties: it is unbiased,
 consistent, efficient, and asymptotically normal. _Basically, this is very
@@ -235,24 +240,26 @@ these approximate estimators are _asymptotically_ more efficient, for small or
 medium data sets, they can end up being _less_ efficient than OLS. This is why
 some authors prefer to just use OLS and find _some other way_ to estimate the
 variance of the estimator (where this _some other way_ is, of course, robust to
-heterskedasticity or correlation).
+heteroskedasticity or correlation).
 
 ### Outliers
 
 Recall that OLS minimizes the sum of squares:
 
-$$\bf{\beta} = argmin |\bf{y} - \bf{X}\bf{\beta}|^2 $$
+$$\textbf{\beta} = argmin |\textbf{y} - \textbf{X}\textbf{\beta}|^2 $$
 
 A _regularized estimation_ scheme adds a penalty term on the size of the coefficients:
 
-$$\bf{\beta} = argmin |\bf{y} - \bf{X}\bf{\beta}|^2 + P(\bf{\beta}) $$
+$$\textbf{\beta} = argmin |\textbf{y} - \textbf{X}\textbf{\beta}|^2 + P(\textbf{\beta}) $$
 
-where $$P$$ is some function of $$\bf{\beta}$$. Common choices for $$P$$ are:
+where $$P$$ is some function of $$\textbf{\beta}$$. Common choices for $$P$$ are:
 
-- $$P(\bf{\beta}) = |\bf{\beta}|_1 $$ (i.e. the $$l_1$$ norm)
-- $$P(\bf{\beta}) = |\bf{\beta}|_2 $$ (i.e. the $$l_2$$ norm)
-- $$P(\bf{\beta}) = a |\bf{\beta}|_1 + (1-a) |\bf{\beta}|_2 $$ (i.e.
-  interpolating between the $$l_1$$ and $$l_2$$ norms)
+- $$P(\textbf{\beta}) = ||\textbf{\beta}||_1$$ (i.e. the $$l_1$$ norm)
+
+- $$P(\textbf{\beta}) = ||\textbf{\beta}||_2$$ (i.e. the $$l_2$$ norm)
+
+- $$P(\textbf{\beta}) = a ||\textbf{\beta}||_1 + (1-a) ||\textbf{\beta}||_2$$
+  (i.e. interpolating between the $$l_1$$ and $$l_2$$ norms)
 
 While regularizes has empirically been found to be more resilient against
 outliers, it comes at a cost: the regression coefficients lose their nice
