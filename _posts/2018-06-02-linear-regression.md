@@ -252,12 +252,11 @@ $${\bf \beta} = argmin |{\bf y} - {\bf X}{\bf \beta}|^2 + P({\bf \beta}) $$
 
 where $$P$$ is some function of $${\bf \beta}$$. Common choices for $$P$$ are:
 
-- $$P({\bf \beta}) = ||{\bf \beta}||_1$$ (i.e. the $$l_1$$ norm)
+- The $$l_1$$ norm: $$P({\bf \beta}) = ||{\bf \beta}||_1$$
 
-- $$P({\bf \beta}) = ||{\bf \beta}||_2$$ (i.e. the $$l_2$$ norm)
+- The $$l_2$$ norm: $$P({\bf \beta}) = ||{\bf \beta}||_2$$
 
-- $$P({\bf \beta}) = a ||{\bf \beta}||_1 + (1-a) ||{\bf \beta}||_2$$
-  (i.e. interpolating between the $$l_1$$ and $$l_2$$ norms)
+- Interpolating between the $$l_1$$ and $$l_2$$ norms: $$P({\bf \beta}) = a ||{\bf \beta}||_1 + (1-a) ||{\bf \beta}||_2$$
 
 While regularizes has empirically been found to be more resilient against
 outliers, it comes at a cost: the regression coefficients lose their nice
@@ -317,3 +316,11 @@ according to which features are most correlated with the target, and increases
 it has more explanatory power (i.e. more correlated with the target). Like so
 many other concepts in this post, I can't properly do LAR justice in such a
 short space, but hopefully the idea was made apparent.
+
+## So Now What?
+
+Well that was very rushed and very hand-wavy, but hopefully it gave you a
+high-level view of what linear regression is, and how all these other flavors of
+linear regression differ from the vanilla ordinary least squares, and how they
+were made to overcome specific shortcomings of the original OLS, instead of just
+being around for fun.
