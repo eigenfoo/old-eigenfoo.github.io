@@ -1,15 +1,15 @@
 ---
-title: "Linear Regression"
+title: "Today I Learned - Linear Regression"
 excerpt:
 tags:
   - mathematics
   - statistics
-  - sane and sound
+  - today i learned
 header:
-  overlay_image: /assets/images/cool-backgrounds/cool-background7.png
+  overlay_image: /assets/images/cool-backgrounds/cool-background6.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
 mathjax: true
-last_modified_at: 2018-05-28
+last_modified_at: 2018-06-02
 ---
 
 _Linear regression_ is one of the most powerful and versatile workhorses of
@@ -20,7 +20,7 @@ you pick them up.
 
 I think that what makes linear regression so difficult to learn is that it is a
 topic that has been studied _ad nauseam_. Mathematicians, scientists,
-bioinformatician, statisticians, social scientists, psychologists... So many
+bioinformaticians, statisticians, social scientists, psychologists... So many
 disciplines have their own understanding of linear regression, which means that
 the exact same idea has multiple names, notations and formalisms. Just as an
 example, what mathematicians call **Tikhonov regularization**, statisticians call
@@ -30,10 +30,14 @@ people simply call **linear regularization**.
 With so many different possible ways to introduce linear regression, it's easy
 to get lost and drown. So what I've done is take the time to really dig into the
 machinery, and explain how all of this linear regression stuff hangs together,
-without mentioning any discipline-specific names. This might be helpful for
-people who have had some exposure to linear regression before, and some fuzzy
-recollection of what it might be, but really wants to see how everything fits
-together.
+without mentioning any discipline-specific names. This post will hopefully be
+helpful for people who have had some exposure to linear regression before, and
+some fuzzy recollection of what it might be, but really wants to see how
+everything fits together.
+
+There's going to be a fair amount of math (enough to properly explain the gist
+of linear regression), but I'm really not emphasizing proofs here, in favor of
+explaining the various flavors of linear regression.
 
 ## Intro and Road map
 
@@ -65,7 +69,7 @@ weighted sum of the $$x$$s, plus some constant term. Easier to show you.
 $$ y = \alpha + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p + \epsilon $$
 
 where the $$\alpha$$ and $$\beta$$s are all scalars to be determined, and the
-$$\epsilon$$ is an error term.
+$$\epsilon$$ is an error term (a.k.a. the **residuals**).
 
 If we consider $$n$$ different observations, we can write the equation much more
 succinctly by simply prepending a column of 1s to the $$\bf{X}$$ matrix and
@@ -143,23 +147,26 @@ fits the rest of the data worse, in order to accommodate that single outlier.
 
 <img style="float: middle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Anscombe%27s_quartet_3.svg/990px-Anscombe%27s_quartet_3.svg.png">
 
-### Heteroskedasticity
+### Heteroskedasticity and Correlated Residuals
 
 Baked into the OLS estimate is an implicit assumption that the $$\epsilon$$s all
 have the same variance. That is, the amount of noise in our data is independent
 of what region of our feature space we're in. However, this is usually not a
 great assumption. For example, harking back to our stock price and Yelp rating
 examples, this assumption states that the price of a stock fluctuates just as
-much in the hour before lunch as it does in the last 10 minutes before market
-close, or that Michelin-star rated restaurants have as much variation in their
-Yelp ratings as do small coffee shops.
+much in the hour before lunch as it does in the last 5 minutes before market
+close, or that Michelin-starred restaurants have as much variation in their Yelp
+ratings as do local coffee shops.
+
+A more nuanced flaw is this: not only can the residuals have different
+variances, but they may also even be correlated! There's no reason why not.
 
 The long and short of this is that some points in our training data are more
-likely to be impaired by noise than some other such points, which means that
+likely to be impaired by noise and/or correlation than others, which means that
 some points in our training set are more reliable/valuable than others. We don’t
-want to ignore the less reliable points completely but they should count less in
-our computation of $$\bf{\beta}$$ than points that come from regions of space
-with less noise. 
+want to ignore the less reliable points completely, but they should count less
+in our computation of $$\bf{\beta}$$ than points that come from regions of space
+with less noise, or not impaired as much by correlation.
 
 ### Collinearity
 
@@ -178,10 +185,10 @@ model performance.
 Having more data may be a good thing, but more specifically, having more
 _observations_ is a good thing. Having more _features_ might not be a great
 thing. In the extreme case, if you have more features than observations, (i.e.
-$$ n < p $$), then the OLS estimate of $$\bf{\beta}$$ fails to be unique. In
-fact, as you add more and more independent features to your model, you will find
-that model performance will begin to degrade long before you reach this point
-where $$ n < p $$.
+$$ n < p $$), then the OLS estimate of $$\bf{\beta}$$ generally fails to be
+unique. In fact, as you add more and more independent features to your model,
+you will find that model performance will begin to degrade long before you reach
+this point where $$ n < p $$.
 
 ## Expanding-Brain Solutions and Practical Considerations
 
@@ -191,15 +198,44 @@ Here I'll discuss some add-ons and plugins you can use to upgrade your Ordinary
 Least Squares Linear Regression™ to cope with the four problems I described
 above.
 
-### Heteroskedasticity
+### Heteroskedasticity and Correlated Residuals
 
-(Iteratively Re-) Weighted Least Squares
+To cope with different levels of noise, we can turn to *generalized least
+squares* (a.k.a. GLS), which is basically a better version of ordinary least
+squares. A little bit of math jargon lets us explain GLS very concisely: instead
+of minimizing the _Euclidean norm_ of the residuals, we minimize its
+_Mahalanobis norm_: in this way, we take into account the second-moment
+structure of the residuals, and allows us to put more weight on the data points
+on more valuable data points (i.e. those not impaired by noise or correlation).
 
-To do this one can use the technique known as weighted least squares which puts
-more “weight” on more reliable points. In practice though, since the amount of
-noise at each point in feature space is typically not known, approximate methods
-(such as feasible generalized least squares) which attempt to estimate the
-optimal weight for each training point are used.
+Mathematically, the OLS estimate is given by
+
+$$\bf{\beta} = argmin |\bf{y} - \bf{X}\bf{\beta}|^2 $$
+
+whereas the GLS estimate is given by
+
+$$\bf{\beta} = argmin (\bf{y} - \bf{X}\bf{\beta})^T \Sigma (\bf{y} - \bf{X}\bf{\beta})$$
+
+where $$\Sigma$$ is the _known_ covariance matrix of the residuals.
+
+Now, the GLS estimator enjoys a lot of statistical properties: it is unbiased,
+consistent, efficient, and asymptotically normal. _Basically, this is very
+**very** nice._
+
+In practice though, since $$\Sigma$$ is usually not known, approximate methods
+(such as [weighted least
+squares](https://en.wikipedia.org/wiki/Least_squares#Weighted_least_squares), or
+[feasible generalized least
+squares](https://en.wikipedia.org/wiki/Generalized_least_squares#Feasible_generalized_least_squares))
+which attempt to estimate the optimal weight for each training point, are used.
+One thing that I found interesting while researching this was that these
+methods, while they attempt to approximate something better than OLS, may end up
+performing _worse_ than OLS! In other words (and more precisely), it's true that
+these approximate estimators are _asymptotically_ more efficient, for small or
+medium data sets, they can end up being _less_ efficient than OLS. This is why
+some authors prefer to just use OLS and find _some other way_ to estimate the
+variance of the estimator (where this _some other way_ is, of course, robust to
+heterskedasticity or correlation).
 
 ### Outliers
 
@@ -232,7 +268,7 @@ the consideration of our linear regression. However, this method also comes with
 its own problems - what if it removes the wrong points? It has the potential to
 really mess up our model if it did.
 
-The main takeaway, then, is that outliers just suck.
+The main takeaway, then, is that _outliers just suck_.
 
 ### Collinearity
 
@@ -264,4 +300,15 @@ do it full justice here. Google!
 
 ### Too Many Features
 
-Least angle regression
+Having too many features to choose from sounds like the first-world problem of
+data science, but it opens up the whole world of high-dimensional statistics and
+feature selection. There are a lot of techniques that are at your disposal to
+winnow down the number of features here, but the one that is most related to
+linear regression is [least angle
+regression](https://en.wikipedia.org/wiki/Least-angle_regression) (a.k.a. LAR or
+LARS). It's an iterative process that determines the regression coefficients
+according to which features are most correlated with the target, and increases
+(or decreases) these regression coefficients until some other feature looks like
+it has more explanatory power (i.e. more correlated with the target). Like so
+many other concepts in this post, I can't properly do LAR justice in such a
+short space, but hopefully the idea was made apparent.
