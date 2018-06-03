@@ -1,6 +1,8 @@
 ---
 title: "Today I Learned - Linear Regression"
-excerpt:
+excerpt: "Linear regression is one of the most powerful and versatile workhorses
+of statistics, and yet somehow I’ve never really managed to understand it in
+class."
 tags:
   - mathematics
   - statistics
@@ -257,7 +259,7 @@ where $$P$$ is some function of $${\bf \beta}$$. Common choices for $$P$$ are:
 - The $$l_2$$ norm: $$P({\bf \beta}) = \|{\bf \beta}\|_2$$
 
 - Interpolating between the $$l_1$$ and $$l_2$$ norms:
-  $$P({\bf \beta}) = a \|{\bf \beta}\|_1 + (1-a) \\|{\bf \beta}\\|_2$$, where $$0 < a < 1$$
+  $$P({\bf \beta}) = a \|{\bf \beta}\|_1 + (1-a) \|{\bf \beta}\|_2$$, where $$0 < a < 1$$
 
 While regularized regression has empirically been found to be more resilient to
 outliers, it comes at a cost: the regression coefficients lose their nice
