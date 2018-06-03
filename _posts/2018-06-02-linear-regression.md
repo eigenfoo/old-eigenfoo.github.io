@@ -99,7 +99,7 @@ that's the case. So,
 The simplest, small-brain way of getting our parameter $${\bf \beta}$$ is by
 minimizing the sum of squares:
 
-$${\bf \hat{\beta}} = argmin |{\bf y} - {\bf X}{\bf \beta}|^2 $$
+$${\bf \hat{\beta}} = argmin \|{\bf y} - {\bf X}{\bf \beta}\|^2 $$
 
 Our estimate for $${\bf \beta}$$ then has a miraculous closed-form solution given
 by:
@@ -213,7 +213,7 @@ on more valuable data points (i.e. those not impaired by noise or correlation).
 
 Mathematically, the OLS estimate is given by
 
-$${\bf \hat{\beta}} = argmin |{\bf y} - {\bf X}{\bf \beta}|^2 $$
+$${\bf \hat{\beta}} = argmin \|{\bf y} - {\bf X}{\bf \beta}\|^2 $$
 
 whereas the GLS estimate is given by
 
@@ -244,11 +244,11 @@ heteroskedasticity or correlation).
 
 Recall that OLS minimizes the sum of squares:
 
-$${\bf \hat{\beta}} = argmin |{\bf y} - {\bf X}{\bf \beta}|^2 $$
+$${\bf \hat{\beta}} = argmin \|{\bf y} - {\bf X}{\bf \beta}\|^2 $$
 
 A _regularized estimation_ scheme adds a penalty term on the size of the coefficients:
 
-$${\bf \hat{\beta}} = argmin |{\bf y} - {\bf X}{\bf \beta}|^2 + P({\bf \beta}) $$
+$${\bf \hat{\beta}} = argmin \|{\bf y} - {\bf X}{\bf \beta}\|^2 + P({\bf \beta}) $$
 
 where $$P$$ is some function of $${\bf \beta}$$. Common choices for $$P$$ are:
 
@@ -256,15 +256,16 @@ where $$P$$ is some function of $${\bf \beta}$$. Common choices for $$P$$ are:
 
 - The $$l_2$$ norm: $$P({\bf \beta}) = \|{\bf \beta}\|_2$$
 
-- Interpolating between the $$l_1$$ and $$l_2$$ norms: $$P({\bf \beta}) = a \|{\bf \beta}\|_1 + (1-a) \|{\bf \beta}\|_2$$
+- Interpolating between the $$l_1$$ and $$l_2$$ norms:
+  $$P({\bf \beta}) = a \|{\bf \beta}\|_1 + (1-a) \\|{\bf \beta}\\|_2$$, where $$0 < a < 1$$
 
-While regularizes has empirically been found to be more resilient against
+While regularized regression has empirically been found to be more resilient to
 outliers, it comes at a cost: the regression coefficients lose their nice
-interpretation of "effect of increasing this regressor by one unit".
-Indeed, regularization can be thought of as telling the machine: "I don't care
-about interpreting regression coefficients, so long as I get a reasonable fit
-that is resilient to overfitting". For this reason, regularization is usually
-used for prediction problems, and not for inference.
+interpretation of "the effect on the regressand of increasing this regressor by
+one unit". Indeed, regularization can be thought of as telling the universe: "I
+don't care about interpreting the regression coefficients, so long as I get a
+reasonable fit that is robust to overfitting". For this reason, regularization
+is usually used for prediction problems, and not for inference.
 
 An alternative solution would be to apply some pre-processing to our data: for
 example, some anomaly detection on our data points could remove outliers from
@@ -277,8 +278,8 @@ The main takeaway, then, is that _outliers just suck_.
 ### Collinearity
 
 Collinearity a problem that comes and goes - sometimes it's there, othertimes
-not, and it's better to always check and correct for it than it is to risk
-having it there.
+not, and it's better to always pretend it's there than it is to risk forgetting
+about it.
 
 There are many ways to [detect
 multicollinearity](https://en.wikipedia.org/wiki/Multicollinearity#Detection_of_multicollinearity),
