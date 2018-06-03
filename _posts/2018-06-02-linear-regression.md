@@ -244,19 +244,19 @@ heteroskedasticity or correlation).
 
 Recall that OLS minimizes the sum of squares:
 
-$${\bf \beta} = argmin |{\bf y} - {\bf X}{\bf \beta}|^2 $$
+$${\bf \hat{\beta}} = argmin |{\bf y} - {\bf X}{\bf \beta}|^2 $$
 
 A _regularized estimation_ scheme adds a penalty term on the size of the coefficients:
 
-$${\bf \beta} = argmin |{\bf y} - {\bf X}{\bf \beta}|^2 + P({\bf \beta}) $$
+$${\bf \hat{\beta}} = argmin |{\bf y} - {\bf X}{\bf \beta}|^2 + P({\bf \beta}) $$
 
 where $$P$$ is some function of $${\bf \beta}$$. Common choices for $$P$$ are:
 
-- The $$l_1$$ norm: $$P({\bf \beta}) = ||{\bf \beta}||_1$$
+- The $$l_1$$ norm: $$P({\bf \beta}) = \|{\bf \beta}\|_1$$
 
-- The $$l_2$$ norm: $$P({\bf \beta}) = ||{\bf \beta}||_2$$
+- The $$l_2$$ norm: $$P({\bf \beta}) = \|{\bf \beta}\|_2$$
 
-- Interpolating between the $$l_1$$ and $$l_2$$ norms: $$P({\bf \beta}) = a ||{\bf \beta}||_1 + (1-a) ||{\bf \beta}||_2$$
+- Interpolating between the $$l_1$$ and $$l_2$$ norms: $$P({\bf \beta}) = a \|{\bf \beta}\|_1 + (1-a) \|{\bf \beta}\|_2$$
 
 While regularizes has empirically been found to be more resilient against
 outliers, it comes at a cost: the regression coefficients lose their nice
