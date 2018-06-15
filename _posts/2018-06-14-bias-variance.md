@@ -18,9 +18,9 @@ bias-variance decomposition) _is_ (see
 [this excellent essay](http://scott.fortmann-roe.com/docs/BiasVariance.html) if
 you're shaky). Not that much has been said about how to _manage_ the bias or
 variance of your model. There's neat advice scattered thinly throughout the web,
-but I figure I'd consolidate them in one place. I'd also highly recommend [there
+but I figure I'd consolidate them in one place. I'd also highly recommend [these
 slides](http://cs229.stanford.edu/materials/ML-advice.pdf) from Andrew Ng at
-Stanford.
+Stanford, which I basically replicated for two of the three images below.
 
 <img align="middle" src="https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/master/assets/images/bias-variance.png">
 
