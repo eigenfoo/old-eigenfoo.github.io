@@ -1,8 +1,9 @@
 ---
-title: "Recipes for Managing the Bias-Variance Tradeoff"
+title: "Cookbook - Managing the Bias-Variance Tradeoff"
 excerpt:
 tags:
   - machine learning
+  - cookbook
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background10.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
