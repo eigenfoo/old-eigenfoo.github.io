@@ -17,26 +17,28 @@ last_modified_at: 2018-06-19
 ---
 
 Recently I've started using [PyMC3](https://github.com/pymc-devs/pymc3) for
-Bayesian modeling, and it's an absolute treat! The API only exposes as much of
-heavy machinery of MCMC as you need - by which I mean, `pm.sample()` (a.k.a., as
-[Thomas Wiecki](http://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/) puts
-it, the _Magic Inference Button™_). This really frees up your mind to think
-about the data in a probabilistic/generative/"Bayesian" way!
+Bayesian modeling, and it's an amazing piece of software! The API only exposes as much of heavy
+machinery of MCMC as you need - by which I mean, the `pm.sample()` method
+(a.k.a., as [Thomas
+Wiecki](http://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/) puts it, the
+_Magic Inference Button™_). This really frees up your mind to think about the
+data in a probabilistic/generative/"Bayesian" way!
 
 That being said however, I quickly realized that the water gets very deep very
 quickly: I thought about and explored the data, I specified a hierarchical model
 that made sense to me, I hit the _Magic Inference Button™_, and... uh, what now?
 I blinked at the red warnings the sampler spat out.
 
-This is a compilation of notes, tips, tricks and recipes that I've collected
-from everywhere: papers, documentation, asking questions to my [more
+So begins by long but rewarding exploration of Bayesian modeling. This is a
+compilation of notes, tips, tricks and recipes that I've collected from
+everywhere: papers, documentation, asking questions to my [more
 experienced](https://twitter.com/twiecki)
 [coworkers](https://twitter.com/aseyboldt). It's still very much a work in
 progress, but hopefully somebody else finds it useful!
 
 ## For the Uninitiated
 
-- First of all, *welcome!* It's a brave new world out there - where statistics
+- First of all, _welcome!_ It's a brave new world out there - where statistics
   is cool, Bayesian and (if you're lucky) even easy. Dive in!
 
 ### Bayesian Modeling
@@ -103,7 +105,7 @@ progress, but hopefully somebody else finds it useful!
   three parameters, where these parameters are drawn from a 3-level hierarchy.
 
 - More in-depth treatment here in [Betancourt and Girolami's
-  paper](https://arxiv.org/abs/1312.0906). *tl;dr:* hierarchical models all but
+  paper](https://arxiv.org/abs/1312.0906). **tl;dr:** hierarchical models all but
   _require_ you use to use Hamiltonian Monte Carlo, plus some practical tips and
   goodies on how to do that stuff in the real world.
 
@@ -128,7 +130,7 @@ idx = sklearn.LabelEncoder().fit_transform(species)
 heights = heights_per_species[idx]
 ```
 
-## MCMC: Initialization and Sampling
+## MCMC Initialization and Sampling
 
 - Have faith in PyMC3's default sampling and initialization settings: someone
   much more experienced than us took the time to choose them!
@@ -181,11 +183,11 @@ print('Percentage of Divergent Chains: {:.1f}'.format(diverging_perc))
      potential scale reduction factor, a.k.a. PSRF): are they all close to 1?
      If not, something is _horribly_ wrong. Consider respecifying or
      reparameterizing your model.
-   - the number of effective samples _per iteration_: does it fall drastically?
-     If so, this means that we are exploring less efficiently the longer we let
-     our chains run. Something bad is happening. Inspect the jointplots of
-     your variables, and plot the divergent samples. Do they cluster anywhere in
-     parameter space?
+   - the number of effective samples _per iteration_ (you may need to do the
+     division yourself): does it fall drastically?  If so, this means that we
+     are exploring less efficiently the longer we let our chains run. Something
+     bad is happening. Inspect the jointplots of your variables, and plot the
+     divergent samples. Do they cluster anywhere in parameter space?
    - the sign and magnitude of the inferred values: do they make sense, or are
      they unexpected and unreasonable? This could indicate a poorly specified
      model.
@@ -235,9 +237,8 @@ def inspect_variable(trace, var_1, var_2=None):
   divergences. However, divergences that _don't_ go away are cause for alarm.
 
 - Consider a _non-centered_ model. This is an amazing trick: it all boils down
-  to the familiar equation $ X = \sigma Z + \mu $ from STAT 101, but it honestly
+  to the familiar equation $$X = \sigma Z + \mu$$ from STAT 101, but it honestly
   works wonders. See [Thomas Wiecki's blog
   post](http://twiecki.github.io/blog/2017/02/08/bayesian-hierchical-non-centered/)
   on it, and [a page from the PyMC3
   documentation](https://docs.pymc.io/notebooks/Diagnosing_biased_Inference_with_Divergences.html).
-
