@@ -31,9 +31,9 @@ I blinked at the red warnings the sampler spat out.
 
 So begins by long but rewarding exploration of Bayesian modeling. This is a
 compilation of notes, tips, tricks and recipes that I've collected from
-everywhere: papers, documentation, asking questions to my [more
+everywhere: papers, documentation, peppering questions on my [more
 experienced](https://twitter.com/twiecki)
-[coworkers](https://twitter.com/aseyboldt). It's still very much a work in
+[colleagues](https://twitter.com/aseyboldt). It's still very much a work in
 progress, but hopefully somebody else finds it useful!
 
 ## For the Uninitiated
@@ -65,10 +65,10 @@ progress, but hopefully somebody else finds it useful!
   why the Metropolis-Hastings and Gibbs samplers suck), I'd check out his [paper
   on Hamiltonian Monte Carlo](https://arxiv.org/abs/1701.02434).
 
-## Formulating the Model
+## Model Formulation
 
 - Try thinking about _how_ your data would be generated: what kind of machine
-  has your data as outputs?
+  has your data as outputs? This will help you come up with a reasonable model.
 
 - Try to avoid correlated variables. Some of the more robust samplers (**cough**
   NUTS **cough** HMC **cough cough**) can cope with _a posteriori_ correlated random
@@ -78,13 +78,15 @@ progress, but hopefully somebody else finds it useful!
   usually okay. It's when the ellipse starts looking like a line that you should
   be alarmed.
 
-## Hierarchical Models
+### Hierarchical Models
 
 - First off, hierarchical models are great! [The PyMC3
   docs](https://docs.pymc.io/notebooks/GLM-hierarchical.html) opine on this at
   length, so let's not waste ink.
 
-- The poster child of a Bayesian hierarchical model is something like this:
+- The poster child of a Bayesian hierarchical model is something like this
+  (equations from
+  [Wikipedia](https://en.wikipedia.org/wiki/Bayesian_hierarchical_modeling)):
 
   <img style="float: center" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/765f37f86fa26bef873048952dccc6e8067b78f4">
 
@@ -106,29 +108,30 @@ progress, but hopefully somebody else finds it useful!
 
 - More in-depth treatment here in [Betancourt and Girolami's
   paper](https://arxiv.org/abs/1312.0906). **tl;dr:** hierarchical models all but
-  _require_ you use to use Hamiltonian Monte Carlo, plus some practical tips and
+  _require_ you use to use Hamiltonian Monte Carlo; and some practical tips and
   goodies on how to do that stuff in the real world.
 
-## Implementing the Model
+## Model Implementation
 
 - PyMC3 has one quirky piece of syntax, which I tripped up on for a while. It's
   described quite well in [this comment on Thomas Wiecki's
   blog](http://twiecki.github.io/blog/2014/03/17/bayesian-glms-3/#comment-2213376737).
   Basically, suppose you have several groups, and want to initialize several
   variables per group, but you want to initialize different numbers of variables
-  for each group. Then you need to use the quirky `random_variables[index]`
+  for each group. Then you need to use the quirky `variables[index]`
   notation. I suggest using `scikit-learn`'s `LabelEncoder` to easily create the
   index. For example, to make normally distributed heights for the iris dataset:
 
-``` python
-# Different numbers of examples for each species
-species = (48 * ['setosa'] + 52 * ['virginica'] + 63 * ['versicolor'])
-# One variable per group 
-heights_per_species = pm.Normal('heights_per_species',
-                              mu=0, sd=1, shape=len(species))
-idx = sklearn.LabelEncoder().fit_transform(species)
-heights = heights_per_species[idx]
-```
+    ``` python
+    # Different numbers of examples for each species
+    species = (48 * ['setosa'] + 52 * ['virginica'] + 63 * ['versicolor'])
+    num_species = len(list(set(species)))  # = 3
+    # One variable per group 
+    heights_per_species = pm.Normal('heights_per_species',
+                                    mu=0, sd=1, shape=num_species)
+    idx = sklearn.LabelEncoder().fit_transform(species)
+    heights = heights_per_species[idx]
+    ```
 
 ## MCMC Initialization and Sampling
 
@@ -138,9 +141,9 @@ heights = heights_per_species[idx]
 - Never initialize the sampler with the MAP estimate! In low dimensional
   problems the MAP estimate (a.k.a. the mode of the posterior) is often quite a
   reasonable point. But in high dimensions, the MAP becomes very strange. Check
-  out [Ferenc
-  Huszár's](http://www.inference.vc/high-dimensional-gaussian-distributions-are-soap-bubble/)
-  blog posts on high-dimensional Gaussians to see why. Besides, at the MAP the
+  out [Ferenc Huszár's blog
+  post](http://www.inference.vc/high-dimensional-gaussian-distributions-are-soap-bubble/)
+  on high-dimensional Gaussians to see why. Besides, at the MAP the
   derivatives of the posterior are zero, and that isn't great for
   derivative-based samplers.
 
@@ -150,9 +153,9 @@ heights = heights_per_species[idx]
   really hard to debug. I can only point to the [Folk Theorem of Statistical
   Computing](http://andrewgelman.com/2008/05/13/the_folk_theore/):
 
-> If you have computational problems, probably your model is wrong.
+    > If you have computational problems, probably your model is wrong.
 
-## Inspecting the Model
+## Model Inspection
 
 - You've hit the _Magic Inference Button™_, and you now have a `trace` object.
   What do you do now?
@@ -160,18 +163,18 @@ heights = heights_per_species[idx]
 1. Check for divergences. PyMC3's sampler will spit out a warning if there are
    diverging chains, but the following code snippet may make things easier:
 
-``` python
-# Display the total number and percentage of divergent chains
-diverging = trace['diverging']
-print('Number of Divergent Chains: {}'.format(diverging.nonzero()[0].size))
-diverging_perc = divergent.nonzero()[0].size / len(trace) * 100
-print('Percentage of Divergent Chains: {:.1f}'.format(diverging_perc))
-```
+    ``` python
+    # Display the total number and percentage of divergent chains
+    diverging = trace['diverging']
+    print('Number of Divergent Chains: {}'.format(diverging.nonzero()[0].size))
+    diverging_perc = divergent.nonzero()[0].size / len(trace) * 100
+    print('Percentage of Divergent Chains: {:.1f}'.format(diverging_perc))
+    ```
 
 2. Check the traceplot. You're looking for traceplots that look like "fuzzy
    caterpillars" (as Michael Betancourt puts it). If the trace moves into some
    region and stays there for a long time (a.k.a. there are some "sticky
-   regions", that's cause for concern! That indicates that once the sampler
+   regions"), that's cause for concern! That indicates that once the sampler
    moves into some region of parameter space, it gets stuck there (probably due
    to high curvature or other bad topological properties).
 
@@ -201,32 +204,32 @@ print('Percentage of Divergent Chains: {:.1f}'.format(diverging_perc))
    the parameter space (divergent samples will be colored differently, and will
    cluster near such neighborhoods).
 
-``` python
-def inspect_variable(trace, var_1, var_2=None):
-    # Traceplot of var_1. 
-    pm.traceplot(trace, varnames=[var_1])
+    ``` python
+    def inspect_variable(trace, var_1, var_2=None):
+        # Traceplot of var_1. 
+        pm.traceplot(trace, varnames=[var_1])
 
-    # Cumulating mean of var_1.
-    cum_mean = [np.mean(trace[var_1][:i])
-                for i in np.arange(1, len(trace[var_1]))]
-    plt.figure(figsize=(15, 4))
-    plt.plot(cum_mean, lw=2.5)
-    plt.xlabel('Iteration')
-    plt.ylabel('MCMC mean of {}'.format(var_1))
-    plt.title('MCMC estimation of {}'.format(var_1))
-    plt.show()
+        # Cumulating mean of var_1.
+        cum_mean = [np.mean(trace[var_1][:i])
+                    for i in np.arange(1, len(trace[var_1]))]
+        plt.figure(figsize=(15, 4))
+        plt.plot(cum_mean, lw=2.5)
+        plt.xlabel('Iteration')
+        plt.ylabel('MCMC mean of {}'.format(var_1))
+        plt.title('MCMC estimation of {}'.format(var_1))
+        plt.show()
 
-    # Scattergram between var_1 and var_2. To identify correlations
-    # and problematic neighborhoods in parameter space.
-    if var_2 is not None:
-        pm.pairplot(trace,
-                    sub_varnames=[var_1, var_2],
-                    divergences=True,
-                    color='C3',
-                    figsize=(10, 5),
-                    kwargs_divergence={'color': 'C2'})
-        plt.title('Scatter Plot between {} and {}'.format(var_1, var_2))
-```
+        # Scattergram between var_1 and var_2. To identify correlations
+        # and problematic neighborhoods in parameter space.
+        if var_2 is not None:
+            pm.pairplot(trace,
+                        sub_varnames=[var_1, var_2],
+                        divergences=True,
+                        color='C3',
+                        figsize=(10, 5),
+                        kwargs_divergence={'color': 'C2'})
+            plt.title('Scatter Plot between {} and {}'.format(var_1, var_2))
+    ```
 
 ## Fixing Divergences
 
