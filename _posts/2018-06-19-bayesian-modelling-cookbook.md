@@ -1,4 +1,4 @@
---
+---
 title: Cookbook - Bayesian Modeling with PyMC3
 excerpt:
 tags:
@@ -68,8 +68,8 @@ progress, but hopefully somebody else finds it useful!
 - Try thinking about _how_ your data would be generated: what kind of machine
   has your data as outputs?
 
-- Try to avoid correlated variables. Some of the more robust samplers (**cough
-  NUTS cough HMC cough cough**) can cope with _a posteriori_ correlated random
+- Try to avoid correlated variables. Some of the more robust samplers (**cough**
+  NUTS **cough** HMC **cough cough**) can cope with _a posteriori_ correlated random
   variables, but sampling is much easier for everyone involved if the variables
   are uncorrelated. By the way, the bar is pretty low here: if the
   jointplot/scattergram of the two variables looks like an ellipse, thats
@@ -83,9 +83,13 @@ progress, but hopefully somebody else finds it useful!
   length, so let's not waste ink.
 
 - The poster child of a Bayesian hierarchical model is something like this:
+
   <img style="float: center" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/765f37f86fa26bef873048952dccc6e8067b78f4">
+
   <img style="float: center" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/ca8c0e1233fd69fa4325c6eacf8462252ed6b00a">
+
   <img style="float: center" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/1e56b3077b1b3ec867d6a0f2539ba9a3e79b45c1">
+
   This hierarchy has 3 levels (some would say it has 2 levels, since there are
   only 2 levels of parameters that we need to infer, but whatever). This is
   fine, but any more levels, and it becomes harder for to sample. Try out a
@@ -173,7 +177,7 @@ print('Percentage of Divergent Chains: {:.1f}'.format(diverging_perc))
    respectively, are good numbers, with `tune` increasing commensurately). PyMC3
    has a nice helper function to pretty-print a summary table of the trace:
    `pm.summary(long_trace).round(2)`. Look out for:
-   - the $\hat{R}$ values (a.k.a. the Gelman-Rubin test statistic, a.k.a. the
+   - the $$\hat{R}$$ values (a.k.a. the Gelman-Rubin test statistic, a.k.a. the
      potential scale reduction factor, a.k.a. PSRF): are they all close to 1?
      If not, something is _horribly_ wrong. Consider respecifying or
      reparameterizing your model.
