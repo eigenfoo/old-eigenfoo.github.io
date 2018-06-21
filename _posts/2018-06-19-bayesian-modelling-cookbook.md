@@ -130,7 +130,7 @@ a work in progress, but hopefully somebody else finds it useful!
   # One variable per group 
   heights_per_species = pm.Normal('heights_per_species',
                                   mu=0, sd=1, shape=num_species)
-  idx = sklearn.LabelEncoder().fit_transform(species)
+  idx = sklearn.preprocessing.LabelEncoder().fit_transform(species)
   heights = heights_per_species[idx]
   ```
 
