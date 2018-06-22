@@ -22,7 +22,7 @@ as much of heavy machinery of MCMC as you need - by which I mean, the
 `pm.sample()` method (a.k.a., as [Thomas
 Wiecki](http://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/) puts it, the
 _Magic Inference Button™_). This really frees up your mind to think about your
-data and model, which is the heart and soul data science!
+data and model, which is really the heart and soul data science!
 
 That being said however, I quickly realized that the water gets very deep very
 fast: I explored my data set, specified a hierarchical model that made sense to
@@ -126,7 +126,7 @@ a work in progress, but hopefully somebody else finds it useful!
   ``` python
   # Different numbers of examples for each species
   species = (48 * ['setosa'] + 52 * ['virginica'] + 63 * ['versicolor'])
-  num_species = len(list(set(species)))
+  num_species = len(list(set(species)))  # 3
   # One variable per group 
   heights_per_species = pm.Normal('heights_per_species',
                                   mu=0, sd=1, shape=num_species)
@@ -147,18 +147,11 @@ a work in progress, but hopefully somebody else finds it useful!
   on high-dimensional Gaussians to see why. Besides, at the MAP the derivatives
   of the posterior are zero, and that isn't great for derivative-based samplers.
 
-- If you get scary errors that describe mathematical problems (e.g. `ValueError:
-  Mass matrix contains zeros on the diagonal. Some derivatives might always be
-  zero.`), then you're kinda shit out of luck: those kinds of errors are
-  exceptionally hard to debug. I can only point to the [Folk Theorem of
-  Statistical Computing](http://andrewgelman.com/2008/05/13/the_folk_theore/):
+## Chain Inspection
 
-  > If you're having computational problems, probably your model is wrong.
-
-## Model Inspection
-
-- You've hit the _Magic Inference Button™_, and you now have a `trace` object.
-  What do you do now?
+- You've hit the _Magic Inference Button™_, and you have a `trace` object. Now
+  what? First of all, make sure that your sampler didn't barf itself, and that
+  your chains are safe for consumption (i.e., analysis).
 
 1. Check for divergences. PyMC3's sampler will spit out a warning if there are
    diverging chains, but the following code snippet may make things easier:
@@ -171,14 +164,31 @@ a work in progress, but hopefully somebody else finds it useful!
    print('Percentage of Divergent Chains: {:.1f}'.format(diverging_perc))
    ```
 
-2. Check the traceplot. You're looking for traceplots that look like "fuzzy
-   caterpillars" (as Michael Betancourt puts it). If the trace moves into some
-   region and stays there for a long time (a.k.a. there are some "sticky
-   regions"), that's cause for concern! That indicates that once the sampler
-   moves into some region of parameter space, it gets stuck there (probably due
-   to high curvature or other bad topological properties).
+2. Check the traceplot (`pm.traceplot(trace)`). You're looking for traceplots
+   that look like "fuzzy caterpillars" (as Michael Betancourt puts it). If the
+   trace moves into some region and stays there for a long time (a.k.a. there
+   are some "sticky regions"), that's cause for concern! That indicates that
+   once the sampler moves into some region of parameter space, it gets stuck
+   there (probably due to high curvature or other bad topological properties).
 
-3. Run for both short _and_ long chains (`draws=500` and `draws=2000`,
+3. In addition to the traceplot, there are [a ton of other
+   plots](https://docs.pymc.io/api/plots.html) you can make with your trace:
+
+    - `pm.plot_posterior(trace)`: check if your posteriors look reasonable
+    - `pm.forestplot(trace)`: check if your variables have reasonable credible
+      intervals.
+    - `pm.autocorrplot(trace)`: check if your chains are impaired by high
+      autocorrelation. Also remember that thinning your chains is a waste of
+      time at best, and deluding yourself at worst. See Chris Fonnesbeck's
+      comment on [this GitHub
+      issue](https://github.com/pymc-devs/pymc/issues/23) and [Junpeng Lao's
+      reply to Michael Betancourt's
+      tweet](https://twitter.com/junpenglao/status/1009748562136256512)
+    - `pm.energyplot(trace)`: according to the docs, this can help diagnose poor
+      exploration by HMC algorithms. Not sure how, though. Stay tuned!
+    - `pm.densityplot(trace)`
+
+4. Run both short _and_ long chains (`draws=500` and `draws=2000`,
    respectively, are good numbers, with `tune` increasing commensurately). PyMC3
    has a nice helper function to pretty-print a summary table of the trace:
    `pm.summary(long_trace).round(2)`. Look out for:
@@ -193,45 +203,48 @@ a work in progress, but hopefully somebody else finds it useful!
      divergent samples. Do they cluster anywhere in parameter space?
    - the sign and magnitude of the inferred values: do they make sense, or are
      they unexpected and unreasonable? This could indicate a poorly specified
-     model.
+     model. (E.g. parameters of the unexpected sign that have low uncertainties
+     might indicate that your model needs interaction terms.)
 
-4. Run the following function (adapted from a code snippet in [the PyMC3
-   docs](https://docs.pymc.io/notebooks/Diagnosing_biased_Inference_with_Divergences.html))
-   to inspect your variables one at a time (if you have a plate of variables, it's
-   fine to pick a couple at random). The most interesting plot at this point
-   will be the jointplot/scattergram. It will tell you if the two random
-   variables are correlated, and help identify any troublesome neighborhoods in
-   the parameter space (divergent samples will be colored differently, and will
-   cluster near such neighborhoods).
+5. If you get scary errors that describe mathematical problems (e.g. `ValueError:
+   Mass matrix contains zeros on the diagonal. Some derivatives might always be
+   zero.`), then you're ~shit out of luck~ exceptionally unlucky: those kinds of
+   errors are notoriously hard to debug. I can only point to the [Folk Theorem of
+   Statistical Computing](http://andrewgelman.com/2008/05/13/the_folk_theore/):
+
+   > If you're having computational problems, probably your model is wrong.
+
+## Model Inspection
+
+- Admittedly the distinction between the previous section and this one is
+  somewhat artificial (since problems with your chains indicate problems with
+  your model), but I still think it's useful to make this distinction because
+  these checks indicate that you're thinking about your data in the wrong way,
+  (i.e. you made a poor modeling decision), and _not_ that the sampler is having
+  a hard time doing its job.
+
+1. Run the following snippet of code to inspect the pairplot of your variables
+   one at a time (if you have a plate of variables, it's fine to pick a couple
+   at random). It'll tell you if the two random variables are correlated, and
+   help identify any troublesome neighborhoods in the parameter space (divergent
+   samples will be colored differently, and will cluster near such
+   neighborhoods).
 
    ``` python
-   def inspect_variable(trace, var_1, var_2=None):
-       # Traceplot of var_1. 
-       pm.traceplot(trace, varnames=[var_1])
-
-       # Cumulating mean of var_1.
-       cum_mean = [np.mean(trace[var_1][:i])
-                   for i in np.arange(1, len(trace[var_1]))]
-       plt.figure(figsize=(15, 4))
-       plt.plot(cum_mean, lw=2.5)
-       plt.xlabel('Iteration')
-       plt.ylabel('MCMC mean of {}'.format(var_1))
-       plt.title('MCMC estimation of {}'.format(var_1))
-       plt.show()
-
-       # Scattergram between var_1 and var_2. To identify correlations
-       # and problematic neighborhoods in parameter space.
-       if var_2 is not None:
-           pm.pairplot(trace,
-                       sub_varnames=[var_1, var_2],
-                       divergences=True,
-                       color='C3',
-                       figsize=(10, 5),
-                       kwargs_divergence={'color': 'C2'})
-           plt.title('Scatter Plot between {} and {}'.format(var_1, var_2))
+   pm.pairplot(trace,
+               sub_varnames=[var_1, var_2],
+               divergences=True,
+               color='C3',
+               figsize=(10, 5),
+               kwargs_divergence={'color': 'C2'})
+   plt.title('Scatter Plot between {} and {}'.format(var_1, var_2))
    ```
 
-5. Run [_posterior predictive
+2. Pick a small subset of your raw data, and see what exactly your model does
+   with that data. A lot of problems with your model can be found by seeing how
+   your model treats extreme values in your data.
+
+3. Run [_posterior predictive
    checks_](https://docs.pymc.io/notebooks/posterior_predictive.html) (a.k.a.
    PPCs): sample from your posterior, plug it back in to your model, and
    "generate new data sets". PyMC3 even has a nice function to do all this for
@@ -241,6 +254,9 @@ a work in progress, but hopefully somebody else finds it useful!
    and only you know what patterns you care about. E.g. how close are the PPC
    means to the observed sample mean? What about the variance? Do you care about
    skewness or kurtosis? Outliers?
+
+4. Look at your posterior distribution. Does that even make sense? E.g. are
+   there outliers? Inspect them!
 
 ## Fixing Divergences
 
