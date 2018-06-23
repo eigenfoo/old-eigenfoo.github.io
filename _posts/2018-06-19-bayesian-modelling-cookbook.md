@@ -83,7 +83,7 @@ a work in progress, but hopefully somebody else finds it useful!
 
 - First off, hierarchical models are great! [The PyMC3
   docs](https://docs.pymc.io/notebooks/GLM-hierarchical.html) opine on this at
-  length, so let's not waste ink.
+  length, so let's not waste any digital ink.
 
 - The poster child of a Bayesian hierarchical model looks something like this
   (equations taken from
@@ -107,9 +107,9 @@ a work in progress, but hopefully somebody else finds it useful!
   from a 4-level hierarchy, maybe your observations can be modeled as the sum of
   three parameters, where these parameters are drawn from a 3-level hierarchy.
 
-- More in-depth treatment here in [Betancourt and Girolami's
-  paper](https://arxiv.org/abs/1312.0906). **tl;dr:** hierarchical models all but
-  _require_ you use to use Hamiltonian Monte Carlo; also included are some
+- More in-depth treatment here in [(Betancourt and Girolami,
+  2013)](https://arxiv.org/abs/1312.0906). **tl;dr:** hierarchical models all
+  but _require_ you use to use Hamiltonian Monte Carlo; also included are some
   practical tips and goodies on how to do that stuff in the real world.
 
 ## Model Implementation
@@ -174,7 +174,7 @@ a work in progress, but hopefully somebody else finds it useful!
 3. In addition to the traceplot, there are [a ton of other
    plots](https://docs.pymc.io/api/plots.html) you can make with your trace:
 
-    - `pm.plot_posterior(trace)`: check if your posteriors look reasonable
+    - `pm.plot_posterior(trace)`: check if your posteriors look reasonable.
     - `pm.forestplot(trace)`: check if your variables have reasonable credible
       intervals.
     - `pm.autocorrplot(trace)`: check if your chains are impaired by high
@@ -184,9 +184,12 @@ a work in progress, but hopefully somebody else finds it useful!
       issue](https://github.com/pymc-devs/pymc/issues/23) and [Junpeng Lao's
       reply to Michael Betancourt's
       tweet](https://twitter.com/junpenglao/status/1009748562136256512)
-    - `pm.energyplot(trace)`: according to the docs, this can help diagnose poor
-      exploration by HMC algorithms. Not sure how, though. Stay tuned!
-    - `pm.densityplot(trace)`
+    - `pm.energyplot(trace)`: ideally the energy and marginal energy
+      distributions should look very similar. Long tails in the distribution of
+      energy levels indicates deteriorated sampler efficiency.
+    - `pm.densityplot(trace)`: a souped-up version of `pm.plot_posterior`. It
+      doesn't seem to be wildly useful unless you're plotting posteriors from
+      multiple models.
 
 4. Run both short _and_ long chains (`draws=500` and `draws=2000`,
    respectively, are good numbers, with `tune` increasing commensurately). PyMC3
@@ -232,17 +235,16 @@ a work in progress, but hopefully somebody else finds it useful!
 
    ``` python
    pm.pairplot(trace,
-               sub_varnames=[var_1, var_2],
+               sub_varnames=[variable_1, variable_2],
                divergences=True,
                color='C3',
-               figsize=(10, 5),
                kwargs_divergence={'color': 'C2'})
-   plt.title('Scatter Plot between {} and {}'.format(var_1, var_2))
    ```
 
 2. Pick a small subset of your raw data, and see what exactly your model does
    with that data. A lot of problems with your model can be found by seeing how
-   your model treats extreme values in your data.
+   your model treats specific values in your data: in particular, common values
+   in your data set, or extreme values in your data set.
 
 3. Run [_posterior predictive
    checks_](https://docs.pymc.io/notebooks/posterior_predictive.html) (a.k.a.
@@ -255,8 +257,8 @@ a work in progress, but hopefully somebody else finds it useful!
    means to the observed sample mean? What about the variance? Do you care about
    skewness or kurtosis? Outliers?
 
-4. Look at your posterior distribution. Does that even make sense? E.g. are
-   there outliers? Inspect them!
+4. Look at your posteriors. Do they even make sense? E.g. are there outliers? Do
+   their uncertainties look reasonable? Inspect them!
 
 ## Fixing Divergences
 
@@ -270,5 +272,5 @@ a work in progress, but hopefully somebody else finds it useful!
   to the familiar equation $$X = \sigma Z + \mu$$ from STAT 101, but it honestly
   works wonders. See [Thomas Wiecki's blog
   post](http://twiecki.github.io/blog/2017/02/08/bayesian-hierchical-non-centered/)
-  on it, and [a page from the PyMC3
+  on it, and [this page from the PyMC3
   documentation](https://docs.pymc.io/notebooks/Diagnosing_biased_Inference_with_Divergences.html).
