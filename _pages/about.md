@@ -4,7 +4,7 @@ permalink: /about
 title: "About Me"
 author_profile: true
 ---
-[Click for my Resume](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){: .btn .btn--inverse .btn--x-large}
+[Click for my Resume](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){: .btn .btn--inverse .btn--large}
 
 ![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
 
@@ -15,7 +15,7 @@ and Art](http://cooper.edu/welcome) in New York, studying for a BSE in
 Engineering. I'm a two-time quantitative research and investments intern at
 [Quantopian](https://www.quantopian.com/).
 
-I'm interested in mathematics, computation and data, and especiallly anything
+I'm interested in mathematics, computation and data, and especially anything
 that brings them together.
 
 ## What's with your username?
