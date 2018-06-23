@@ -51,7 +51,9 @@ algolia:
   index_name             : # YOUR_INDEX_NAME
   search_only_api_key    : # YOUR_SEARCH_ONLY_API_KEY
   powered_by             : # true (default), false
-
+google:
+  search_engine_id       : # YOUR_SEARCH_ENGINE_ID
+  instant_search         : # false (default), true
 # SEO Related
 google_site_verification : "Zdv0cql1XqRYceXOkAcuJ7YVJjeo_Fxdx0m59dkZRKA"
 bing_site_verification   : "E1CD61B4DF8D45D44865B7E4CC75DE74"
