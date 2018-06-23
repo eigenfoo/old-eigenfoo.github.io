@@ -27,20 +27,20 @@ teaser                   : # path of fallback teaser image, e.g. "/assets/images
 words_per_minute         : 150
 comments:
   provider               : "staticman_v2" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2" "custom"
-    disqus:
-      shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
-    discourse:
-      server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
-    facebook:
-      # https://developers.facebook.com/docs/plugins/comments
-      appid                :
-      num_posts            : # 5 (default)
-      colorscheme          : # "light" (default), "dark"
+  disqus:
+    shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+  discourse:
+    server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
+  facebook:
+    # https://developers.facebook.com/docs/plugins/comments
+    appid                :
+    num_posts            : # 5 (default)
+    colorscheme          : # "light" (default), "dark"
 staticman:
-    branch                 : "master"
+    branch               : "master"
 reCaptcha:
-    siteKey                : "6LdrOFkUAAAAAEJL_p0lFzli2fX0m89jYhJdNMnl"
-    secret                 : "aoymS9tpys/imrK71b1YSVwa4dCE6HrLiatE6h+hwA3Xkbm0c6z3wsueiXCja0vUQWFFULHLZHXyyq6MEaGPXPHpXb2BcbgTN7EFcusZjHQbY6C26NXiV6Lmpymnp5EpoDkxHVkSe8i0UF3PO3z28w0X0V5F0RWDE/aEZ7fgeh4="
+    siteKey              : "6LdrOFkUAAAAAEJL_p0lFzli2fX0m89jYhJdNMnl"
+    secret               : "aoymS9tpys/imrK71b1YSVwa4dCE6HrLiatE6h+hwA3Xkbm0c6z3wsueiXCja0vUQWFFULHLZHXyyq6MEaGPXPHpXb2BcbgTN7EFcusZjHQbY6C26NXiV6Lmpymnp5EpoDkxHVkSe8i0UF3PO3z28w0X0V5F0RWDE/aEZ7fgeh4="
 atom_feed:
   path                   : # blank (default) uses feed.xml
 search                   : true # true, false (default)
