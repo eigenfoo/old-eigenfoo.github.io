@@ -61,24 +61,24 @@ comments:
   #   type: "comment"
 
   # Name of the site. Used in notification emails.
-  name: "Eigenfoo"
+  # name: "Eigenfoo"
 
   # Notification settings. When enabled, users can choose to receive notifications
   # via email when someone adds a reply or a new comment. This requires an account
   # with Mailgun, which you can get for free at http://mailgun.com.
-  notifications:
-    # Enable notifications
-    enabled: false
+  # notifications:
+  #   # Enable notifications
+  #   enabled: false
 
-    # (!) ENCRYPTED
-    #
-    # Mailgun API key
-    apiKey: "wcCua7fxyYoZg3vwZVoXkFpeqht0sTl3+YukfrniWKeAduzaMW9jfyoRvQW0NntI5woQ5HpUEhXYG4TqXBykBgA3xlqLu9gUGqotc3IQdnqYaoJ/Ykj4mZUGRb8FJCmU2eEr/m5qLFIp5dmHClUOxnYQSpLR9hRIWYK5vN2ST2E="
+  #   # (!) ENCRYPTED
+  #   #
+  #   # Mailgun API key
+  #   apiKey: "wcCua7fxyYoZg3vwZVoXkFpeqht0sTl3+YukfrniWKeAduzaMW9jfyoRvQW0NntI5woQ5HpUEhXYG4TqXBykBgA3xlqLu9gUGqotc3IQdnqYaoJ/Ykj4mZUGRb8FJCmU2eEr/m5qLFIp5dmHClUOxnYQSpLR9hRIWYK5vN2ST2E="
 
-    # (!) ENCRYPTED
-    #
-    # Mailgun domain (encrypted)
-    domain: "rNKYPnRLhgc3s9/GidUcDELOWTVCF9K57n3+SKlxlQd+shF5CSD2bFden71TOIoNVnDc13WeqezuY50bu6X5yZWkqmv9wQKiMqczzFK2Zdnm7waKBzXgZzEqr4fprUcgAMg78JTemTdX8BUy2eWv/A7HzEhfdgFu2PKnecPWEng="
+  #   # (!) ENCRYPTED
+  #   #
+  #   # Mailgun domain (encrypted)
+  #   domain: "rNKYPnRLhgc3s9/GidUcDELOWTVCF9K57n3+SKlxlQd+shF5CSD2bFden71TOIoNVnDc13WeqezuY50bu6X5yZWkqmv9wQKiMqczzFK2Zdnm7waKBzXgZzEqr4fprUcgAMg78JTemTdX8BUy2eWv/A7HzEhfdgFu2PKnecPWEng="
 
   # (*) REQUIRED
   #
@@ -92,13 +92,13 @@ comments:
   # List of transformations to apply to any of the fields supplied. Keys are
   # the name of the field and values are possible transformation types.
   transforms:
-    email: md5
+    email: "md5"
 
   # reCaptcha
   # Register your domain at https://www.google.com/recaptcha/ and choose reCAPTCHA V2
-  reCaptcha:
-    enabled: false
-    siteKey: "6LdrOFkUAAAAAEJL_p0lFzli2fX0m89jYhJdNMnl"
-    # Encrypt reCaptcha secret key using Staticman /encrypt endpoint
-    # For more information, https://staticman.net/docs/encryption
-    secret: "a/qwSu6Sg8JBuBdgQYJwEdI2DLLlcRcRwgmAiPxa1dxobDCpmH5KRcbLXMRqYE7Vvd/kPrfwwgxCBR74Rt3M87IvI6HzeCFjDW59MprplFeXU3EPDiDNy0KcsBynRaE9f+2aue/d20HlbR9dDXav7NJTVbRWP1u+aGFFfvJYWt8="
+  # reCaptcha:
+  #   enabled: false
+  #   siteKey: "6LdrOFkUAAAAAEJL_p0lFzli2fX0m89jYhJdNMnl"
+  #   # Encrypt reCaptcha secret key using Staticman /encrypt endpoint
+  #   # For more information, https://staticman.net/docs/encryption
+  #   secret: "a/qwSu6Sg8JBuBdgQYJwEdI2DLLlcRcRwgmAiPxa1dxobDCpmH5KRcbLXMRqYE7Vvd/kPrfwwgxCBR74Rt3M87IvI6HzeCFjDW59MprplFeXU3EPDiDNy0KcsBynRaE9f+2aue/d20HlbR9dDXav7NJTVbRWP1u+aGFFfvJYWt8="
