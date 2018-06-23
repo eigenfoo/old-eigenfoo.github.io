@@ -147,7 +147,7 @@ a work in progress, but hopefully somebody else finds it useful!
   on high-dimensional Gaussians to see why. Besides, at the MAP the derivatives
   of the posterior are zero, and that isn't great for derivative-based samplers.
 
-## Chain Inspection
+## MCMC Trace Inspection
 
 - You've hit the _Magic Inference Button™_, and you have a `trace` object. Now
   what? First of all, make sure that your sampler didn't barf itself, and that
@@ -217,6 +217,25 @@ a work in progress, but hopefully somebody else finds it useful!
 
    > If you're having computational problems, probably your model is wrong.
 
+### Fixing Divergences
+
+- Remember: if you have even _one_ diverging chain, you should be concerned.
+
+- Increase `target_accept`: usually 0.9 is a good number (currently the default
+  in PyMC3 is 0.8). This will help get rid of false positives from the test for
+  divergences. However, divergences that _don't_ go away are cause for alarm.
+
+- Consider a _non-centered_ model. This is an amazing trick: it all boils down
+  to the familiar equation $$X = \sigma Z + \mu$$ from STAT 101, but it honestly
+  works wonders. See [Thomas Wiecki's blog
+  post](http://twiecki.github.io/blog/2017/02/08/bayesian-hierchical-non-centered/)
+  on it, and [this page from the PyMC3
+  documentation](https://docs.pymc.io/notebooks/Diagnosing_biased_Inference_with_Divergences.html).
+
+- If that doesn't work, there may be something wrong with the way you're
+  thinking about your data: consider reparameterizing your model, or
+  respecifying it entirely.
+
 ## Model Inspection
 
 - Admittedly the distinction between the previous section and this one is
@@ -260,17 +279,3 @@ a work in progress, but hopefully somebody else finds it useful!
 4. Look at your posteriors. Do they even make sense? E.g. are there outliers? Do
    their uncertainties look reasonable? Inspect them!
 
-## Fixing Divergences
-
-- Remember: if you have even _one_ diverging chain, you should be concerned.
-
-- Increase `target_accept`: usually 0.9 is a good number (currently the default
-  in PyMC3 is 0.8). This will help get rid of false positives from the test for
-  divergences. However, divergences that _don't_ go away are cause for alarm.
-
-- Consider a _non-centered_ model. This is an amazing trick: it all boils down
-  to the familiar equation $$X = \sigma Z + \mu$$ from STAT 101, but it honestly
-  works wonders. See [Thomas Wiecki's blog
-  post](http://twiecki.github.io/blog/2017/02/08/bayesian-hierchical-non-centered/)
-  on it, and [this page from the PyMC3
-  documentation](https://docs.pymc.io/notebooks/Diagnosing_biased_Inference_with_Divergences.html).
