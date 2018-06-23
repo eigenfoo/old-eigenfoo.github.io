@@ -10,6 +10,7 @@ header:
   overlay_image: /assets/images/cool-backgrounds/cool-background5.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
 toc: true
+toc_sticky: true
 toc_label: "Recipes"
 toc_icon: "utensils"
 mathjax: true
@@ -211,7 +212,7 @@ a work in progress, but hopefully somebody else finds it useful!
 
 5. If you get scary errors that describe mathematical problems (e.g. `ValueError:
    Mass matrix contains zeros on the diagonal. Some derivatives might always be
-   zero.`), then you're ~shit out of luck~ exceptionally unlucky: those kinds of
+   zero.`), then you're ~~shit out of luck~~ exceptionally unlucky: those kinds of
    errors are notoriously hard to debug. I can only point to the [Folk Theorem of
    Statistical Computing](http://andrewgelman.com/2008/05/13/the_folk_theore/):
 

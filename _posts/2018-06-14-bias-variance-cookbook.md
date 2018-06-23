@@ -7,6 +7,10 @@ tags:
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background10.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
+toc: true
+toc_sticky: true
+toc_label: "Recipes"
+toc_icon: "utensils"
 last_modified_at: 2018-06-14
 ---
 
@@ -33,12 +37,12 @@ hand. Clear thinking is good!
 
 <img align="middle" src="https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/master/assets/images/high-variance.png">
 
-### To Diagnose:
+### To Diagnose
 - Testing error seems to decrease with the training test size, suggesting that
   more data will help.
 - Significant difference between the training and testing errors.
 
-### To Remedy:
+### To Remedy
 - Try to obtain more examples.
 - Perform some feature selection or feature engineering to get a high-quality
   set of features.
@@ -51,11 +55,11 @@ hand. Clear thinking is good!
 
 <img align="middle" src="https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/master/assets/images/high-bias.png">
 
-### To Diagnose:
+### To Diagnose
 - Even the training error is unacceptably high.
 - The training and testing errors quickly converge to a common value.
 
-### To Remedy:
+### To Remedy
 - Try to obtain/engineer more features (consider polynomial or interaction terms).
 - Consider using a more flexible model: perhaps nonlinear or even nonparametric
   models would be a better model?
