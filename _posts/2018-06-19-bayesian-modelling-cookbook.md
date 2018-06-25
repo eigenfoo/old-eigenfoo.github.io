@@ -14,7 +14,7 @@ toc_sticky: true
 toc_label: "Recipes"
 toc_icon: "utensils"
 mathjax: true
-last_modified_at: 2018-06-19
+last_modified_at: 2018-06-24
 ---
 
 Recently I've started using [PyMC3](https://github.com/pymc-devs/pymc3) for
@@ -223,6 +223,7 @@ a work in progress, but hopefully somebody else finds it useful!
 ### Divergences
 
 > `There were N divergences after tuning. Increase 'target_accept' or reparameterize.`
+>
 >   \- The _Magic Inference Button™_
 
 - Remember: if you have even _one_ diverging chain, you should be concerned.
