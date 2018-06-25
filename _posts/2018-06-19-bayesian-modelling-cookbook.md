@@ -175,28 +175,28 @@ a work in progress, but hopefully somebody else finds it useful!
 3. In addition to the traceplot, there are [a ton of other
    plots](https://docs.pymc.io/api/plots.html) you can make with your trace:
 
-    - `pm.plot_posterior(trace)`: check if your posteriors look reasonable.
-    - `pm.forestplot(trace)`: check if your variables have reasonable credible
-      intervals.
-    - `pm.autocorrplot(trace)`: check if your chains are impaired by high
-      autocorrelation. Also remember that thinning your chains is a waste of
-      time at best, and deluding yourself at worst. See Chris Fonnesbeck's
-      comment on [this GitHub
-      issue](https://github.com/pymc-devs/pymc/issues/23) and [Junpeng Lao's
-      reply to Michael Betancourt's
-      tweet](https://twitter.com/junpenglao/status/1009748562136256512)
-    - `pm.energyplot(trace)`: ideally the energy and marginal energy
-      distributions should look very similar. Long tails in the distribution of
-      energy levels indicates deteriorated sampler efficiency.
-    - `pm.densityplot(trace)`: a souped-up version of `pm.plot_posterior`. It
-      doesn't seem to be wildly useful unless you're plotting posteriors from
-      multiple models.
+   - `pm.plot_posterior(trace)`: check if your posteriors look reasonable.
+   - `pm.forestplot(trace)`: check if your variables have reasonable credible
+     intervals.
+   - `pm.autocorrplot(trace)`: check if your chains are impaired by high
+     autocorrelation. Also remember that thinning your chains is a waste of
+     time at best, and deluding yourself at worst. See Chris Fonnesbeck's
+     comment on [this GitHub
+     issue](https://github.com/pymc-devs/pymc/issues/23) and [Junpeng Lao's
+     reply to Michael Betancourt's
+     tweet](https://twitter.com/junpenglao/status/1009748562136256512)
+   - `pm.energyplot(trace)`: ideally the energy and marginal energy
+     distributions should look very similar. Long tails in the distribution of
+     energy levels indicates deteriorated sampler efficiency.
+   - `pm.densityplot(trace)`: a souped-up version of `pm.plot_posterior`. It
+     doesn't seem to be wildly useful unless you're plotting posteriors from
+     multiple models.
 
 4. Run both short _and_ long chains (`draws=500` and `draws=2000`,
    respectively, are good numbers, with `tune` increasing commensurately). PyMC3
    has a nice helper function to pretty-print a summary table of the trace:
    `pm.summary(long_trace).round(2)`. Look out for:
-   - the $$\hat{R}$$ values (a.k.a. the Gelman-Rubin test statistic, a.k.a. the
+   - the $$\hat{R}$$ values (a.k.a. the Gelman-Rubin statistic, a.k.a. the
      potential scale reduction factor, a.k.a. PSRF): are they all close to 1?
      If not, something is _horribly_ wrong. Consider respecifying or
      reparameterizing your model.
@@ -220,11 +220,20 @@ a work in progress, but hopefully somebody else finds it useful!
 
 ### Fixing Divergences
 
+> `There were N divergences after tuning. Increase 'target_accept' or reparameterize.`
+>   - The _Magic Inference Button™_
+
 - Remember: if you have even _one_ diverging chain, you should be concerned.
 
 - Increase `target_accept`: usually 0.9 is a good number (currently the default
   in PyMC3 is 0.8). This will help get rid of false positives from the test for
   divergences. However, divergences that _don't_ go away are cause for alarm.
+
+- Increasing `tune` can sometimes help as well: this gives the sampler more time
+  to 1) find the typical set and 2) find good values for step sizes, scaling
+  factors, etc. If you're running into divergences, it's always possible that
+  the sampler just hasn't started the mixing phase and is still trying to find
+  the typical set.
 
 - Consider a _non-centered_ model. This is an amazing trick: it all boils down
   to the familiar equation $$X = \sigma Z + \mu$$ from STAT 101, but it honestly
@@ -236,6 +245,52 @@ a work in progress, but hopefully somebody else finds it useful!
 - If that doesn't work, there may be something wrong with the way you're
   thinking about your data: consider reparameterizing your model, or
   respecifying it entirely.
+
+### Other Common Warnings
+
+- It's worth noting that far and away the worst warning to get is the one about
+  divergences. While a divergent chain indicates that your inference may be
+  flat-out _invalid_, the rest of these warnings indicate that your inference is
+  merely (uh, "merely") _inefficient_.
+
+- `The number of effective samples is smaller than XYZ for some parameters.`
+  - Quoting [Junpeng Lao on
+    discourse.pymc3.io](https://discourse.pymc.io/t/the-number-of-effective-samples-is-smaller-than-25-for-some-parameters/1050/3):
+    "A low number of effective samples is usually an indication of strong
+    autocorrelation in the chain."
+  - Make sure you're using an efficient sampler like NUTS. (And not, for
+    instance, Metropolis-Hastings. (I mean seriously, it's the 21st century, why
+    would you ever want Metropolis-Hastings?))
+  - Tweak the acceptance probability (`target_accept`) - it should be large
+    enough to ensure good exploration, but small enough to not reject all
+    proposals and get stuck.
+
+- `The gelman-rubin statistic is larger than XYZ for some parameters. This
+  indicates slight problems during sampling.`
+  - When PyMC3 samples, it runs several chains in parallel. Loosely speaking,
+    the Gelman-Rubin statistic measures how similar these chains are. Ideally it
+    should be close to 1.
+  - Increasing the `tune` parameter may help, for the same reasons as described
+    in the _Fixing Divergences_ section.
+
+- `The chain reached the maximum tree depth. Increase max_treedepth, increase
+  target_accept or reparameterize.`
+  - NUTS puts a cap on the depth of the trees that it evaluates during each
+    iteration, which is controlled through the `max_treedepth`. Reaching the maximum
+    allowable tree depth indicates that NUTS is prematurely pulling the plug to
+    avoid excessive compute time.
+  - Yeah, what the _Magic Inference Button™_ says: try increasing
+    `max_treedepth` or `target_accept`.
+
+### Model Reparameterization
+
+- Countless warnings have told you to engage in this strange activity of
+  "reparameterization". What even is that?
+  
+- The [Stan User
+  Manual](https://github.com/stan-dev/stan/releases/download/v2.17.1/stan-reference-2.17.1.pdf)
+  (specifically the _Programming Techniques_ section) has excellent explanations
+  and recipes for how you can reparameterize your model.
 
 ## Model Inspection
 
@@ -261,12 +316,20 @@ a work in progress, but hopefully somebody else finds it useful!
                kwargs_divergence={'color': 'C2'})
    ```
 
-2. Pick a small subset of your raw data, and see what exactly your model does
-   with that data. A lot of problems with your model can be found by seeing how
-   your model treats specific values in your data: in particular, common values
-   in your data set, or extreme values in your data set.
+2. Look at your posteriors (either from the traceplot, density plots or
+   posterior plots). Do they even make sense? E.g. are there outliers or long
+   tails that you weren't expecting? Do their uncertainties look reasonable to
+   you? If you had [a plate](https://en.wikipedia.org/wiki/Plate_notation) of
+   variables, are their posteriors different? Did you expect them to be that
+   way? If not, what about the data made the posteriors different? You're the
+   only one who knows your problem/use case, so the posteriors better look good
+   to you!
 
-3. Run [_posterior predictive
+3. Pick a small subset of your raw data, and see what exactly your model does
+   with that data (i.e. run the model on a specific subset of your data). I find
+   that a lot of problems with your model can be found this way.
+
+4. Run [_posterior predictive
    checks_](https://docs.pymc.io/notebooks/posterior_predictive.html) (a.k.a.
    PPCs): sample from your posterior, plug it back in to your model, and
    "generate new data sets". PyMC3 even has a nice function to do all this for
@@ -276,7 +339,3 @@ a work in progress, but hopefully somebody else finds it useful!
    and only you know what patterns you care about. E.g. how close are the PPC
    means to the observed sample mean? What about the variance? Do you care about
    skewness or kurtosis? Outliers?
-
-4. Look at your posteriors. Do they even make sense? E.g. are there outliers? Do
-   their uncertainties look reasonable? Inspect them!
-
