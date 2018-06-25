@@ -137,15 +137,17 @@ a work in progress, but hopefully somebody else finds it useful!
 
 ## MCMC Initialization and Sampling
 
-- Have faith in PyMC3's default sampling and initialization settings: someone
-  much more experienced than us took the time to choose them!
+- Have faith in PyMC3's default initialization and sampling settings: someone
+  much more experienced than us took the time to choose them! NUTS is the most
+  efficient MCMC sampler known to man, and `jitter+adapt diag`... well, you get
+  the point.
 
-- Never initialize the sampler with the MAP estimate! In low dimensional
+- Never initialize the sampler with the MAP estimate. In low dimensional
   problems the MAP estimate (a.k.a. the mode of the posterior) is often quite a
   reasonable point. But in high dimensions, the MAP becomes very strange. Check
   out [Ferenc Huszár's blog
   post](http://www.inference.vc/high-dimensional-gaussian-distributions-are-soap-bubble/)
-  on high-dimensional Gaussians to see why. Besides, at the MAP the derivatives
+  on high-dimensional Gaussians to see why. Besides, at the MAP all the derivatives
   of the posterior are zero, and that isn't great for derivative-based samplers.
 
 ## MCMC Trace Inspection
@@ -218,10 +220,10 @@ a work in progress, but hopefully somebody else finds it useful!
 
    > If you're having computational problems, probably your model is wrong.
 
-### Fixing Divergences
+### Divergences
 
 > `There were N divergences after tuning. Increase 'target_accept' or reparameterize.`
->   - The _Magic Inference Button™_
+>   \- The _Magic Inference Button™_
 
 - Remember: if you have even _one_ diverging chain, you should be concerned.
 
@@ -285,12 +287,11 @@ a work in progress, but hopefully somebody else finds it useful!
 ### Model Reparameterization
 
 - Countless warnings have told you to engage in this strange activity of
-  "reparameterization". What even is that?
-  
-- The [Stan User
+  "reparameterization". What even is that? Luckily, the [Stan User
   Manual](https://github.com/stan-dev/stan/releases/download/v2.17.1/stan-reference-2.17.1.pdf)
-  (specifically the _Programming Techniques_ section) has excellent explanations
-  and recipes for how you can reparameterize your model.
+  (specifically the _Reparameterization and Change of Variables_ section) has
+  an excellent explanation of reparameterization, and even some practical tips
+  to help you do it.
 
 ## Model Inspection
 
