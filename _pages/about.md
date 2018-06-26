@@ -9,7 +9,7 @@ Hello! My name is George, and this is my personal website. I'm a PyData
 ninja[^1], machine learner, math enthusiast and coffee ~~snob~~ lover.
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/portrait.png" alt="">
+  <img width="355" height="300" src="{{ site.url }}{{ site.baseurl }}/assets/images/portrait.png" alt="">
   <figcaption>I also really like sushi.</figcaption>
 </figure>
 
