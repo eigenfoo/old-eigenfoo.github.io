@@ -49,6 +49,4 @@ belonging to [George]".
 
 ---
 
-[^1]: A title I feel is sufficiently vague to avoid lying by saying I'm a "data
-scientist", yet sufficiently specific to conjure images of Python and data
-science :smiley:
+[^1]: A title I feel is sufficiently vague to avoid lying by saying I'm a "data scientist", yet sufficiently specific to conjure images of Python and data science :smiley:
