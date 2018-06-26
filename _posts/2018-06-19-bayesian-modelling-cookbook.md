@@ -37,7 +37,7 @@ experienced](https://twitter.com/twiecki)
 [colleagues](https://twitter.com/aseyboldt) with questions. It's still very much
 a work in progress, but hopefully somebody else finds it useful!
 
-<img style="middle" width=600 src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg">
+<img style="float: middle" width=600 src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg">
 
 ## For the Uninitiated
 
