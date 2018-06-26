@@ -5,10 +5,13 @@ title: "About Me"
 author_profile: true
 ---
 
-![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
-
 Hello! My name is George, and this is my personal website. I'm a PyData
 ninja[^1], machine learner, math enthusiast and coffee ~~snob~~ lover.
+
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/portrait.png" alt="">
+  <figcaption>I also really like sushi.</figcaption>
+</figure>
 
 I believe in dismantling and reassembling every idea I come across, instead of
 lukewarm-learning just enough to get the next job done. I believe that there
@@ -25,7 +28,7 @@ quantitative research and data science intern at
 [Quantopian](https://www.quantopian.com/) in Boston, where I help power research
 analytics and open-source software for the algorithmic hedge fund.
 
-[Click for my Resume](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){: .btn .btn--inverse .btn--large}
+[Click for my Resume](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){: .btn .btn--primary .btn--default}
 
 ## What's with your username?
 
@@ -47,5 +50,5 @@ belonging to [George]".
 ---
 
 [^1]: A title I feel is sufficiently vague to avoid lying by saying I'm a "data
-  scientist", yet sufficiently specific to conjure images of Python and data
-  science :smiley:
+scientist", yet sufficiently specific to conjure images of Python and data
+science :smiley:
