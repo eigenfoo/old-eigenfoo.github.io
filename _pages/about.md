@@ -4,27 +4,36 @@ permalink: /about
 title: "About Me"
 author_profile: true
 ---
-[Click for my Resume](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){: .btn .btn--inverse .btn--large}
 
 ![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
 
-Hi there, my name is George, and this is my personal website!
+Hello! My name is George, and this is my personal website. I'm a PyData
+ninja[^1], machine learner, math enthusiast and coffee ~~snob~~ lover. I also
+really like sushi.
 
-I'm currently a senior at [The Cooper Union for the Advancement of Science
-and Art](http://cooper.edu/welcome) in New York, studying for a BSE in
-Engineering. I'm a two-time quantitative research and investments intern at
-[Quantopian](https://www.quantopian.com/).
+I believe in dismantling and reassembling every idea I come across, instead of
+lukewarm-learning just enough to get the next job done. I believe that there
+aren't any difficult ideas under the sun, because everything was and will be
+conceived by ordinary people like me, not magicked out of the aether. I believe
+in common sense, reasonable decisions and disciplined hard work instead of
+~*~following my dreams~*~ and ~*~doing what I love~*~. In essence, I
+believe that mountain trekking is just a lot of avoiding potholes and not
+tripping over brambles.
 
-I'm interested in mathematics, computation and data, and especially anything
-that brings them together.
+I'm currently a senior at [The Cooper Union](http://cooper.edu/welcome) in New
+York, studying for a BSE in general engineering. I'm also a two-time
+quantitative research and data science intern at
+[Quantopian](https://www.quantopian.com/) in Boston, where I help power research
+analytics and open-source software for the algorithmic hedge fund.
+
+[Click for my Resume](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){: .btn .btn--primary .btn--default}
 
 ## What's with your username?
 
 It seemed like a clever pun at the time... but people keep asking, so maybe not.
-It sure is memorable, though.
 
 _Eigen_ is a German for _own_, but probably a better translation (especially for
-mathematical terms like
+math terms like
 [eigenvalue](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors)) would
 be _beloning to_, or _characteristic of_. For example, an eigenvalue is the
 value _belonging to_ a matrix, or _characteristic of_ a matrix.
@@ -35,3 +44,7 @@ version of "blah" or "thing".
 
 So taken together, `eigenfoo` probably means something like "things
 belonging to [George]".
+
+---
+
+[^1]: A title I feel is sufficiently vague to avoid lying by saying I'm a "data scientist", yet sufficiently specific to conjure images of Python and data science :smiley:

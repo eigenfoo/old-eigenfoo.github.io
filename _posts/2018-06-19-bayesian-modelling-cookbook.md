@@ -37,6 +37,9 @@ experienced](https://twitter.com/twiecki)
 [colleagues](https://twitter.com/aseyboldt) with questions. It's still very much
 a work in progress, but hopefully somebody else finds it useful!
 
+<img style="float: middle" width="600"
+src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg">
+
 ## For the Uninitiated
 
 - First of all, _welcome!_ It's a brave new world out there - where statistics
@@ -62,9 +65,8 @@ a work in progress, but hopefully somebody else finds it useful!
   especially the first few minutes where he provides a motivation for MCMC, that
   really put all this math into context for me.
 
-- For a more in-depth (and also mathematical) treatment of MCMC (and especially
-  why the Metropolis-Hastings and Gibbs samplers suck), I'd check out his [paper
-  on Hamiltonian Monte Carlo](https://arxiv.org/abs/1701.02434).
+- For a more in-depth (and mathematical) treatment of MCMC, I'd check out his
+  [paper on Hamiltonian Monte Carlo](https://arxiv.org/abs/1701.02434).
 
 ## Model Formulation
 
@@ -150,7 +152,7 @@ a work in progress, but hopefully somebody else finds it useful!
   on high-dimensional Gaussians to see why. Besides, at the MAP all the derivatives
   of the posterior are zero, and that isn't great for derivative-based samplers.
 
-## MCMC Trace Inspection
+## MCMC Trace Diagnostics
 
 - You've hit the _Magic Inference Button™_, and you have a `trace` object. Now
   what? First of all, make sure that your sampler didn't barf itself, and that
@@ -220,11 +222,17 @@ a work in progress, but hopefully somebody else finds it useful!
 
    > If you're having computational problems, probably your model is wrong.
 
-### Divergences
+### Fixing Divergences
 
 > `There were N divergences after tuning. Increase 'target_accept' or reparameterize.`
 >
 >   \- The _Magic Inference Button™_
+
+- Divergences in HMC occur when the sampler finds itself in regions of extremely
+  high curvature (such as the opening of the a hierarchical funnel). Broadly
+  speaking, the sampler is prone to malfunction in such regions, causing the
+  sampler to fly off towards to infinity. The ruins the chains by heavily
+  biasing the samples.
 
 - Remember: if you have even _one_ diverging chain, you should be concerned.
 
@@ -294,7 +302,7 @@ a work in progress, but hopefully somebody else finds it useful!
   an excellent explanation of reparameterization, and even some practical tips
   to help you do it.
 
-## Model Inspection
+## Model Diagnostics
 
 - Admittedly the distinction between the previous section and this one is
   somewhat artificial (since problems with your chains indicate problems with
