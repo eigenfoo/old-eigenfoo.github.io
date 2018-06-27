@@ -14,11 +14,10 @@ minimal_mistakes_skin    : "dirt" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "en"
-title                    : "Eigenfoo"
-locale                   : "en-US"
-title_separator          : "-"
+title                    : "eigenfoo.xyz"
+title_separator          : "|"
 name                     : "George Ho"
-description              : "Words and pictures about math, computation and data"
+description              : "PyData Ninja-hood, Machine Learning and Mathematics. Also, Coffee."
 url                      : "https://eigenfoo.xyz" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : / # the subpath of your site, e.g. "/blog"
 repository               : "eigenfoo/eigenfoo.xyz" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -39,8 +38,8 @@ comments:
 staticman:
     branch               :
 reCaptcha:
-    siteKey              : "6LdrOFkUAAAAAEJL_p0lFzli2fX0m89jYhJdNMnl"
-    secret               : "aoymS9tpys/imrK71b1YSVwa4dCE6HrLiatE6h+hwA3Xkbm0c6z3wsueiXCja0vUQWFFULHLZHXyyq6MEaGPXPHpXb2BcbgTN7EFcusZjHQbY6C26NXiV6Lmpymnp5EpoDkxHVkSe8i0UF3PO3z28w0X0V5F0RWDE/aEZ7fgeh4="
+    siteKey              :
+    secret               :
 atom_feed:
   path                   : # blank (default) uses feed.xml
 search                   : true # true, false (default)
@@ -54,6 +53,7 @@ algolia:
 google:
   search_engine_id       : # YOUR_SEARCH_ENGINE_ID
   instant_search         : # false (default), true
+
 # SEO Related
 google_site_verification : "Zdv0cql1XqRYceXOkAcuJ7YVJjeo_Fxdx0m59dkZRKA"
 bing_site_verification   : "E1CD61B4DF8D45D44865B7E4CC75DE74"
@@ -68,12 +68,13 @@ facebook:
   app_id                 :
   publisher              :
 og_image                 : /assets/images/profile-pic.jpg # Open Graph/Twitter default site image
+
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
   type                   : # Person or Organization (defaults to Person)
   name                   : # If the user or organization name differs from the site's name
-  links: # An array of links to social media profiles
+  links                  : # An array of links to social media profiles
 
 # Analytics
 analytics:
@@ -86,7 +87,7 @@ analytics:
 author:
   name             : "George Ho"
   avatar           : /assets/images/profile-pic.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "A bandlimited signal"
+  bio              : "PyData ninja, machine learner, math enthusiast and coffee snob"
   location         : "NYC | HKG"
   email            : hello@eigenfoo.xyz
   uri              :
