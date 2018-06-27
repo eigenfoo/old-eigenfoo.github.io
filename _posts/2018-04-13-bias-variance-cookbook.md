@@ -1,6 +1,8 @@
 ---
 title: "Cookbook - Managing the Bias-Variance Tradeoff"
-excerpt:
+excerpt: "The bias-variance tradeoff is a unique result in machine learning: it
+sits on extremely solid theoretical foundations, and has a ludicrously
+far-reaching scope of applicability."
 tags:
   - machine learning
   - cookbook

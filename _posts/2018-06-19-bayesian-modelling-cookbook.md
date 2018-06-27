@@ -1,6 +1,9 @@
 ---
 title: Cookbook - Bayesian Modeling with PyMC3
-excerpt:
+excerpt: "Recently I've started using [PyMC3](https://github.com/pymc-devs/pymc3) for
+Bayesian modeling, and it's an amazing piece of software! The API only exposes
+as much of heavy machinery of MCMC as you need - by which I mean, just the
+`pm.sample()` method."
 tags:
   - bayesian
   - mcmc
@@ -19,7 +22,7 @@ last_modified_at: 2018-06-24
 
 Recently I've started using [PyMC3](https://github.com/pymc-devs/pymc3) for
 Bayesian modeling, and it's an amazing piece of software! The API only exposes
-as much of heavy machinery of MCMC as you need - by which I mean, the
+as much of heavy machinery of MCMC as you need - by which I mean, just the
 `pm.sample()` method (a.k.a., as [Thomas
 Wiecki](http://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/) puts it, the
 _Magic Inference Button™_). This really frees up your mind to think about your

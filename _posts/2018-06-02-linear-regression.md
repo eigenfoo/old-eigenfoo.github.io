@@ -1,8 +1,8 @@
 ---
 title: "Through and Through - Linear Regression"
 excerpt: "Linear regression is one of the most powerful and versatile workhorses
-of statistics, and yet somehow I’ve never really managed to understand it in
-class."
+of statistics, and yet somehow I’ve never managed to really grok it in my
+classes."
 tags:
   - mathematics
   - statistics
@@ -15,7 +15,7 @@ last_modified_at: 2018-06-02
 ---
 
 _Linear regression_ is one of the most powerful and versatile workhorses of
-statistics, and yet somehow I've never really managed to understand it in class.
+statistics, and yet somehow I've never managed to really grok it in my classes.
 The presentation always seemed very canned, each topic coming out like a
 sardine: packed so close together, but always slipping from your hands whenever
 you pick them up.

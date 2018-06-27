@@ -8,17 +8,17 @@ author_profile: true
 ![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
 
 Hello! My name is George, and this is my personal website. I'm a PyData
-ninja[^1], machine learner, math enthusiast and coffee ~~snob~~ lover. I also
-really like sushi.
+ninja[^1], machine learner, math enthusiast and coffee ~~snob~~ lover. (I also
+really like sushi.)
 
 I believe in dismantling and reassembling every idea I come across, instead of
 lukewarm-learning just enough to get the next job done. I believe that there
-aren't any difficult ideas under the sun, because everything was and will be
+isn't anything too difficult to learn, because everything was (and will be)
 conceived by ordinary people like me, not magicked out of the aether. I believe
 in common sense, reasonable decisions and disciplined hard work instead of
-~*~following my dreams~*~ and ~*~doing what I love~*~. In essence, I
-believe that mountain trekking is just a lot of avoiding potholes and not
-tripping over brambles.
+~*~following my dreams~*~ and ~*~doing what I love~*~. In short, I believe in
+summitting mountains as much as the next guy - but I also believe that the best
+way to do that is to not fall into the pothole right in front of you.
 
 I'm currently a senior at [The Cooper Union](http://cooper.edu/welcome) in New
 York, studying for a BSE in general engineering. I'm also a two-time
