@@ -1,12 +1,12 @@
 ---
-title: "Today I Learned - Linear Regression"
+title: "Through and Through - Linear Regression"
 excerpt: "Linear regression is one of the most powerful and versatile workhorses
 of statistics, and yet somehow I’ve never really managed to understand it in
 class."
 tags:
   - mathematics
   - statistics
-  - today i learned
+  - through & through
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background6.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
