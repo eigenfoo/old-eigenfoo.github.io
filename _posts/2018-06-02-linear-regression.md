@@ -1,6 +1,11 @@
 ---
 title: "Through and Through - Linear Regression"
-excerpt: ""
+excerpt: "I was recently inspired by this following PyData London talk by
+[Vincent Warmerdam](http://koaning.io/). It's a great talk: he has a lot of
+great tricks to make simple, small-brain models really work wonders, and he
+emphasizes thinking about your problem in a logical way over trying to use
+_(Tensorflow)_ cutting-edge or _(deep learning)_ hyped-up methods just for the
+sake of using them..."
 tags:
   - mathematics
   - statistics
@@ -12,14 +17,14 @@ mathjax: true
 last_modified_at: 2018-06-02
 ---
 
-I was recently inspired by this following PyData London talk by [Vincent D.
+I was recently inspired by this following PyData London talk by [Vincent
 Warmerdam](http://koaning.io/). It's a great talk: he has a lot of great tricks
 to make simple, small-brain models really work wonders, and he emphasizes
-thinking about your problem in a logical way over trying to use
-cutting-_(TensorFlow)_-edge or hyped-_(deep learning)_-up methods just for the
-sake of using them - something I'm amazed that people need to be reminded of.
+thinking about your problem in a logical way over trying to use _(Tensorflow)_
+cutting-edge or _(deep learning)_ hyped-up methods just for the sake of using
+them - something I'm amazed that people seem to need to be reminded of.
 
-<iframe width="640" height="360" src="https://www.youtube.com/watch?v=68ABAU_V8qI" frameborder="0" allowfullscreen></iframe>
+<iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/68ABAU_V8qI?controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 
 One of my favorite tricks was the first one he discussed: extracting/forecasing
 the seasonality of the sales of something, just by using linear regression (and
