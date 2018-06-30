@@ -279,9 +279,9 @@ $${\bf \hat{\beta}} = argmin \|{\bf y} - {\bf X}{\bf \beta}\|^2 + P({\bf \beta})
 
 where $$P$$ is some function of $${\bf \beta}$$. Common choices for $$P$$ are:
 
-- $$P({\bf \beta}) = \|{\bf \beta}\|_1$$
+- The $$l_1$$ norm: $$P({\bf \beta}) = \|{\bf \beta}\|_1$$
 
-- $$P({\bf \beta}) = \|{\bf \beta}\|_2$$
+- The $$l_2$$ norm: $$P({\bf \beta}) = \|{\bf \beta}\|_2$$
 
 - Interpolating between the the first two:
   $$P({\bf \beta}) = a \|{\bf \beta}\|_1 + (1-a) \|{\bf \beta}\|_2$$, where $$0 < a < 1$$
