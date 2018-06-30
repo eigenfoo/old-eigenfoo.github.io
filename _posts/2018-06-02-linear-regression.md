@@ -1,8 +1,6 @@
 ---
 title: "Through and Through - Linear Regression"
-excerpt: "Linear regression is one of the most powerful and versatile workhorses
-of statistics, and yet somehow I’ve never managed to really grok it in my
-classes."
+excerpt: ""
 tags:
   - mathematics
   - statistics
@@ -14,11 +12,25 @@ mathjax: true
 last_modified_at: 2018-06-02
 ---
 
-_Linear regression_ is one of the most powerful and versatile workhorses of
-statistics, and yet somehow I've never managed to really grok it in my classes.
-The presentation always seemed very canned, each topic coming out like a
-sardine: packed so close together, but always slipping from your hands whenever
-you pick them up.
+I was recently inspired by this following PyData London talk by [Vincent D.
+Warmerdam](http://koaning.io/). It's a great talk: he has a lot of great tricks
+to make simple, small-brain models really work wonders, and he emphasizes
+thinking about your problem in a logical way over trying to use
+cutting-_(TensorFlow)_-edge or hyped-_(deep learning)_-up methods just for the
+sake of using them - something I'm amazed that people need to be reminded of.
+
+<iframe width="640" height="360" src="https://www.youtube.com/watch?v=68ABAU_V8qI" frameborder="0" allowfullscreen></iframe>
+
+One of my favorite tricks was the first one he discussed: extracting/forecasing
+the seasonality of the sales of something, just by using linear regression (and
+some other neat but ultimately simple tricks).
+
+That's when I started feeling guilty about not really
+[_grokking_](https://www.merriam-webster.com/dictionary/grok) linear regression.
+It sounds stupid of me to say, but I've never really managed to _really_
+understand in any of my studies: the presentation always seemed very canned,
+each topic coming out like a sardine: packed so close together, but always
+slipping from your hands whenever you pick them up.
 
 I think that what makes linear regression so difficult to learn is that it is a
 topic that has been studied _ad nauseam_. Mathematicians, scientists,
@@ -32,14 +44,15 @@ people simply call **linear regularization**.
 With so many different possible ways to introduce linear regression, it's easy
 to get lost and drown. So what I've done is take the time to really dig into the
 machinery, and explain how all of this linear regression stuff hangs together,
-without mentioning any discipline-specific names. This post will hopefully be
+trying not to mention any discipline-specific names. This post will hopefully be
 helpful for people who have had some exposure to linear regression before, and
 some fuzzy recollection of what it might be, but really wants to see how
 everything fits together.
 
 There's going to be a fair amount of math (enough to properly explain the gist
-of linear regression), but I'm really not emphasizing proofs here, in favor of
-explaining the various flavors of linear regression.
+of linear regression), but I'm really not emphasizing proofs here, and I'll even
+downplay explanations of the more advanced concepts, in favor of explaining the
+various flavors of linear regression and how everything hangs together.
 
 ## So Uh, What is Linear Regression?
 
@@ -260,11 +273,11 @@ $${\bf \hat{\beta}} = argmin \|{\bf y} - {\bf X}{\bf \beta}\|^2 + P({\bf \beta})
 
 where $$P$$ is some function of $${\bf \beta}$$. Common choices for $$P$$ are:
 
-- The $$l_1$$ norm: $$P({\bf \beta}) = \|{\bf \beta}\|_1$$
+- $$P({\bf \beta}) = \|{\bf \beta}\|_1$$
 
-- The $$l_2$$ norm: $$P({\bf \beta}) = \|{\bf \beta}\|_2$$
+- $$P({\bf \beta}) = \|{\bf \beta}\|_2$$
 
-- Interpolating between the $$l_1$$ and $$l_2$$ norms:
+- Interpolating between the the first two:
   $$P({\bf \beta}) = a \|{\bf \beta}\|_1 + (1-a) \|{\bf \beta}\|_2$$, where $$0 < a < 1$$
 
 While regularized regression has empirically been found to be more resilient to
@@ -281,7 +294,7 @@ the consideration of our linear regression. However, this method also comes with
 its own problems - what if it removes the wrong points? It has the potential to
 really mess up our model if it did.
 
-The main takeaway, then, is that _outliers just suck_.
+The main takeaway, then, is that _outliers kinda just suck_.
 
 ### Collinearity
 
@@ -295,8 +308,8 @@ many ways to [remedy
 it](https://en.wikipedia.org/wiki/Multicollinearity#Remedies_for_multicollinearity)
 and [many consequences if you
 don't](https://en.wikipedia.org/wiki/Multicollinearity#Consequences_of_multicollinearity).
-The Wikipedia page is pretty good at outlining all of those, so I'll just defer
-to them.
+The Wikipedia page is pretty good at outlining all of those, so I'll just point
+to that.
 
 An alternative that Wikipedia doesn't mention is principal components regression
 (PCR), which is literally just principal components analysis followed by
@@ -326,10 +339,23 @@ it has more explanatory power (i.e. more correlated with the target). Like so
 many other concepts in this post, I can't properly do LAR justice in such a
 short space, but hopefully the idea was made apparent.
 
-## So Now What?
+Of course, there are other methods for feature selection too: you can run a
+regularized regression to force most of the features to have zero or near-zero
+coefficients, or you could use any of the tools in
+[`sklearn.feature_selection`](http://scikit-learn.org/stable/modules/feature_selection.html).
 
-Well that was very rushed and very hand-wavy, but hopefully it gave you a
+## Now What?
+
+So that was pretty rushed and a bit hand-wavy, but hopefully it gave you a
 high-level view of what linear regression is, and how all these other flavors of
 linear regression differ from the vanilla ordinary least squares, and how they
-were made to overcome specific shortcomings of the original OLS, instead of just
-being around for fun.
+were made to remedy specific shortcomings of the original OLS.
+
+And it should come as no surprise that there are even more directions to take
+the concept of linear regression: [generalized linear models (a.k.a.
+GLMs)](https://en.wikipedia.org/wiki/Generalized_linear_model) allow you to
+model different kinds of $$y$$ variables (e.g. what if $$y$$ is a binary
+response, instead of a continuous variable?), and [Bayesian linear
+regression](https://www.quantstart.com/articles/Bayesian-Linear-Regression-Models-with-PyMC3)
+offers an amazing way to quantify the uncertainty in your coefficients. Big
+world; happy hunting!
