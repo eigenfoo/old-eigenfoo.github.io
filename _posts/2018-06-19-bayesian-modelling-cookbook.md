@@ -60,6 +60,15 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   Kruschke](https://sites.google.com/site/doingbayesiandataanalysis/) (a.k.a.
   _"the puppy book"_) is for the bucket list.
 
+- Here we come to a fork in the road. The central problem in Bayesian modelling
+  is this: given data and a probabilistic model that we think models this data,
+  how do we find the posterior distribution of the model's parameters? There are
+  currently two good solutions to this problem. One is Markov chain Monte Carlo
+  sampling (a.k.a. MCMC sampling), and the other is variational inference
+  (a.k.a. VI). Both methods are mathematical Death Stars: extremely powerful but
+  incredibly complicated. Nevertheless, I think it's important to get at least a
+  hand-wavy understanding of what these methods are.
+
 ### Markov Chain Monte Carlo
 
 - For a good high-level introduction to MCMC, I liked [Michael Betancourt's
@@ -70,6 +79,22 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 
 - For a more in-depth (and mathematical) treatment of MCMC, I'd check out his
   [paper on Hamiltonian Monte Carlo](https://arxiv.org/abs/1701.02434).
+
+### Variational Inference
+
+- VI has been around for a while, but it was only in 2017 (2 years ago, at the
+  time of writing) that _automatic differentiation variational inference_ was
+  invented. As such, variational inference is undergoing a renaissance and is
+  currently an active area of statistical research. Since it's such a nascent
+  field, most resources on it are very theoretical and academic in nature.
+
+- Chapters 9 and 10 (_Mixture Models and EM_, and _Approximate Inference_) in
+  Bishop's _Pattern Recognition and Machine Learning_ is an excellent, if
+  mathematically-intensive resource.
+
+- [This
+  tutorial](https://www.cs.princeton.edu/courses/archive/fall11/cos597C/lectures/variational-inference-i.pdf)
+  by David Blei is also excellent.
 
 ## Model Formulation
 
@@ -144,10 +169,16 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 
 - Have faith in PyMC3's default initialization and sampling settings: someone
   much more experienced than us took the time to choose them! NUTS is the most
-  efficient MCMC sampler known to man, and `jitter+adapt diag`... well, you get
+  efficient MCMC sampler known to man, and `jitter+adapt_diag`... well, you get
   the point.
 
-- Never initialize the sampler with the MAP estimate. In low dimensional
+- However, if you're truly grasping at straws, the more powerful initialization
+  setting would be `advi` or `advi+adapt_diag`, which uses variational
+  inference to initialize the sampler. An even better option would be to use
+  `advi+adapt_diag_grad`, which is (at the time of writing) an experimental
+  feature in beta.
+
+- Never initialize the sampler with the MAP estimate! In low dimensional
   problems the MAP estimate (a.k.a. the mode of the posterior) is often quite a
   reasonable point. But in high dimensions, the MAP becomes very strange. Check
   out [Ferenc Huszár's blog
@@ -265,7 +296,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 - It's worth noting that far and away the worst warning to get is the one about
   divergences. While a divergent chain indicates that your inference may be
   flat-out _invalid_, the rest of these warnings indicate that your inference is
-  merely (uh, "merely") _inefficient_.
+  merely (lol, "merely") _inefficient_.
 
 - `The number of effective samples is smaller than XYZ for some parameters.`
   - Quoting [Junpeng Lao on
@@ -303,7 +334,8 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   Manual](https://github.com/stan-dev/stan/releases/download/v2.17.1/stan-reference-2.17.1.pdf)
   (specifically the _Reparameterization and Change of Variables_ section) has
   an excellent explanation of reparameterization, and even some practical tips
-  to help you do it.
+  to help you do it (although your mileage may vary on how useful those tips
+  will be to you).
 
 ## Model Diagnostics
 
@@ -346,9 +378,11 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
    checks_](https://docs.pymc.io/notebooks/posterior_predictive.html) (a.k.a.
    PPCs): sample from your posterior, plug it back in to your model, and
    "generate new data sets". PyMC3 even has a nice function to do all this for
-   you: `pm.sample_ppc`. But what to do with these new data sets? That's a
+   you: `pm.sample_ppc`. But what do you do with these new data sets? That's a
    question only you can answer! The point of a PPC is to see if the generated
    data sets reproduce patterns you care about in the observed real data set,
    and only you know what patterns you care about. E.g. how close are the PPC
    means to the observed sample mean? What about the variance? Do you care about
-   skewness or kurtosis? Outliers?
+   skewness or kurtosis? Outliers? For an example of what a decent PPC can look
+   like, check out [this answer on Stats
+   StackExchange](https://stats.stackexchange.com/a/175738).
