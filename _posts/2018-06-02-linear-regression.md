@@ -20,15 +20,15 @@ last_modified_at: 2018-06-02
 I was recently inspired by this following PyData London talk by [Vincent
 Warmerdam](http://koaning.io/). It's a great talk: he has a lot of great tricks
 to make simple, small-brain models really work wonders, and he emphasizes
-thinking about your problem in a logical way over trying to use _(Tensorflow)_
-cutting-edge or _(deep learning)_ hyped-up methods just for the sake of using
+thinking about your problem in a logical way over trying to use cutting-edge
+_(Tensorflow)_ or hyped-up _(deep learning)_ methods just for the sake of using
 them - something I'm amazed that people seem to need to be reminded of.
 
 <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/68ABAU_V8qI?controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 
 
 One of my favorite tricks was the first one he discussed: extracting and
-forecasing the seasonality of the sales of something, just by using linear
+forecasting the seasonality of the sales of some product, just by using linear
 regression (and some other neat but ultimately simple tricks).
 
 That's when I started feeling guilty about not really
@@ -38,22 +38,11 @@ understand in any of my studies: the presentation always seemed very canned,
 each topic coming out like a sardine: packed so close together, but always
 slipping from your hands whenever you pick them up.
 
-I think that what makes linear regression so difficult to learn is that it is a
-topic that has been studied _ad nauseam_. Mathematicians, scientists,
-bioinformaticians, statisticians, social scientists, psychologists... So many
-disciplines have their own understanding of linear regression, which means that
-the exact same idea has multiple names, notations and formalisms. Just as an
-example, what mathematicians call **Tikhonov regularization**, statisticians call
-**ridge regression**, machine learning experts call **weight decay**, and other
-people simply call **linear regularization**.
-
-With so many different possible ways to introduce linear regression, it's easy
-to get lost and drown. So what I've done is take the time to really dig into the
-machinery, and explain how all of this linear regression stuff hangs together,
-trying not to mention any discipline-specific names. This post will hopefully be
-helpful for people who have had some exposure to linear regression before, and
-some fuzzy recollection of what it might be, but really wants to see how
-everything fits together.
+So what I've done is take the time to really dig into the machinery, and explain
+how all of this linear regression stuff hangs together, trying not to mention
+any domain-specific names. This post will hopefully be helpful for people who
+have had some exposure to linear regression before, and some fuzzy recollection
+of what it might be, but really wants to see how everything fits together.
 
 There's going to be a fair amount of math (enough to properly explain the gist
 of linear regression), but I'm really not emphasizing proofs here, and I'll even
@@ -86,10 +75,11 @@ weighted sum of the $$x$$s, plus some constant term. Easier to show you.
 $$ y = \alpha + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p + \epsilon $$
 
 where the $$\alpha$$ and $$\beta$$s are all scalars to be determined, and the
-$$\epsilon$$ is an error term (a.k.a. the **residuals**).
+$$\epsilon$$ is an error term (a.k.a. the **residual**).
+
 Note that we can pull the same stacking trick here: the $$\beta$$s will become a
-$$p$$-dimensional vector, $${\bf \beta}$$. Note that $$\alpha$$ remains common
-throughout all observations.
+$$p$$-dimensional vector, $${\bf \beta}$$, and similarly for the $$\epsilon$$s.
+Note that $$\alpha$$ remains common throughout all observations.
 
 If we consider $$n$$ different observations, we can write the equation much more
 succinctly if we simply prepend a column of $$1$$s to the $${\bf X}$$ matrix and
@@ -117,7 +107,7 @@ Instead of futzing around with whether or not we have multiple observations,
 let's just assume we have $$n$$ observations: we can always set $$ n = 1 $$ if
 that's the case. So,
 
-- Let $${\bf y}$$ $${\bf \alpha}$$ and $$\beta$$ be $$p$$-dimensional vectors
+- Let $${\bf y}$$ and $${\bf \beta}$$ be $$p$$-dimensional vectors
 - Let $${\bf X}$$ be an $$n \times p$$ matrix
 
 The simplest, small-brain way of getting our parameter $${\bf \beta}$$ is by
@@ -125,13 +115,13 @@ minimizing the sum of squares of the residuals:
 
 $${\bf \hat{\beta}} = argmin \|{\bf y} - {\bf X}{\bf \beta}\|^2 $$
 
-Our estimate for $${\bf \beta}$$ then has a miraculous closed-form solution given
-by:
+Our estimate for $${\bf \beta}$$ then has a "miraculous" closed-form solution
+given by:
 
 $$ {\bf \hat{\beta}} = ({\bf X}^T {\bf X})^{-1} {\bf X} {\bf y} $$
 
-(Insert obligatory footnote here about [the Moore-Penrose inverse a.k.a. the
-pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse).)
+\<Insert obligatory footnote here about [the Moore-Penrose inverse a.k.a. the
+pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse)./>
 
 This solution is so (in)famous that it been blessed with a fairly universal
 name, but cursed with the unimpressive name _ordinary least squares_ (a.k.a.
@@ -153,10 +143,10 @@ over your head, don't worry - in fact, forget I said anything at all.
 reasons.](http://www.clockbackward.com/2009/06/18/ordinary-least-squares-linear-regression-flaws-problems-and-pitfalls/)
 Here, I'll just highlight a few.
 
-1. The least-squares estimate of $${\bf \beta}$$ is very susceptible to outliers
+1. Susceptibilty to outliers
 2. Assumption of homoskedasticity
-3. If we have collinearity
-3. If we have too many features
+3. Collinearity in features
+4. Too many features
 
 Points 1 and 2 are specific to the method of ordinary least squares, while 3 and
 4 are just suckish things about linear regression in general.
@@ -164,7 +154,7 @@ Points 1 and 2 are specific to the method of ordinary least squares, while 3 and
 ### Outliers
 
 The OLS estimate for $${\bf \beta}$$ is famously susceptible to outliers. As an
-example, consider the third dataset in [Anscombe's
+example, consider the third data set in [Anscombe's
 quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet). That is, the data
 is almost a perfect line, but the $$n$$th data point is a clear outlier. That
 single data point pulls the entire regression line closer to it, which means it
@@ -269,7 +259,7 @@ heteroskedasticity or correlation).
 
 ### Outliers
 
-Recall that OLS minimizes the sum of squares:
+Recall that OLS minimizes the sum of squares (of residuals):
 
 $${\bf \hat{\beta}} = argmin \|{\bf y} - {\bf X}{\bf \beta}\|^2 $$
 
