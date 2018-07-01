@@ -28,21 +28,22 @@ them - something I'm amazed that people seem to need to be reminded of.
 
 
 One of my favorite tricks was the first one he discussed: extracting and
-forecasting the seasonality of the sales of some product, just by using linear
+forecasting the seasonality of sales of some product, just by using linear
 regression (and some other neat but ultimately simple tricks).
 
 That's when I started feeling guilty about not really
 [_grokking_](https://www.merriam-webster.com/dictionary/grok) linear regression.
-It sounds stupid of me to say, but I've never really managed to _really_
-understand in any of my studies: the presentation always seemed very canned,
+It sounds stupid for me to say, but I've never really managed to _really_
+understand it in any of my studies. The presentation always seemed very canned,
 each topic coming out like a sardine: packed so close together, but always
 slipping from your hands whenever you pick them up.
 
-So what I've done is take the time to really dig into the machinery, and explain
-how all of this linear regression stuff hangs together, trying not to mention
-any domain-specific names. This post will hopefully be helpful for people who
-have had some exposure to linear regression before, and some fuzzy recollection
-of what it might be, but really wants to see how everything fits together.
+So what I've done is take the time to really dig into the math and explain how
+all of this linear regression stuff hangs together, trying (and only partially
+succeeding) not to mention any domain-specific names. This post will hopefully
+be helpful for people who have had some exposure to linear regression before,
+and some fuzzy recollection of what it might be, but really wants to see how
+everything fits together.
 
 There's going to be a fair amount of math (enough to properly explain the gist
 of linear regression), but I'm really not emphasizing proofs here, and I'll even
@@ -206,11 +207,11 @@ Having more data may be a good thing, but more specifically, having more
 _observations_ is a good thing. Having more _features_ might not be a great
 thing. In the extreme case, if you have more features than observations, (i.e.
 $$ n < p $$), then the OLS estimate of $${\bf \beta}$$ generally fails to be
-unique. In fact, as you add more and more independent features to your model,
-you will find that model performance will begin to degrade long before you reach
-this point where $$ n < p $$.
+unique. In fact, as you add more and more features to your model, you will find
+that model performance will begin to degrade long before you reach this point
+where $$ n < p $$.
 
-## Expanding-Brain Solutions and Practical Considerations
+## Expanding-Brain Solutions
 
 <img style="float: middle" src="http://i1.kym-cdn.com/entries/icons/facebook/000/022/266/brain.jpg">
 
@@ -222,7 +223,7 @@ above.
 
 To cope with different levels of noise, we can turn to *generalized least
 squares* (a.k.a. GLS), which is basically a better version of ordinary least
-squares. A little bit of math jargon lets us explain GLS very concisely: instead
+squares. A little bit of math jargon lets us explain GLS very concisely. Instead
 of minimizing the _Euclidean norm_ of the residuals, we minimize its
 _Mahalanobis norm_: in this way, we take into account the second-moment
 structure of the residuals, and allows us to put more weight on the data points
@@ -273,7 +274,7 @@ where $$P$$ is some function of $${\bf \beta}$$. Common choices for $$P$$ are:
 
 - The $$l_2$$ norm: $$P({\bf \beta}) = \|{\bf \beta}\|_2$$
 
-- Interpolating between the the first two:
+- Interpolating between the the first two options:
   $$P({\bf \beta}) = a \|{\bf \beta}\|_1 + (1-a) \|{\bf \beta}\|_2$$, where $$0 < a < 1$$
 
 While regularized regression has empirically been found to be more resilient to
@@ -344,8 +345,8 @@ coefficients, or you could use any of the tools in
 
 So that was pretty rushed and a bit hand-wavy, but hopefully it gave you a
 high-level view of what linear regression is, and how all these other flavors of
-linear regression differ from the vanilla ordinary least squares, and how they
-were made to remedy specific shortcomings of the original OLS.
+linear regression differ from the ordinary least squares, and how they were made
+to remedy specific shortcomings of OLS.
 
 And it should come as no surprise that there are even more directions to take
 the concept of linear regression: [generalized linear models (a.k.a.
