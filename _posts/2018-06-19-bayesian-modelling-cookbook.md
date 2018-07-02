@@ -88,13 +88,12 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   currently an active area of statistical research. Since it's such a nascent
   field, most resources on it are very theoretical and academic in nature.
 
-- Chapters 9 and 10 (_Mixture Models and EM_, and _Approximate Inference_) in
-  Bishop's _Pattern Recognition and Machine Learning_ is an excellent, if
-  mathematically-intensive resource.
+- Chapter 10 (on approximate inference) in Bishop's _Pattern Recognition and
+  Machine Learning_ is an excellent, if mathematically-intensive, resource.
 
 - [This
   tutorial](https://www.cs.princeton.edu/courses/archive/fall11/cos597C/lectures/variational-inference-i.pdf)
-  by David Blei is also excellent.
+  by David Blei is also great.
 
 ## Model Formulation
 
@@ -192,7 +191,11 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   what? First of all, make sure that your sampler didn't barf itself, and that
   your chains are safe for consumption (i.e., analysis).
 
-1. Check for divergences. PyMC3's sampler will spit out a warning if there are
+1. Run the chain for as long as you have the patience or resources for. Make
+   sure that the `tune` parameter increases commensurately with the `draws`
+   parameter.
+
+2. Check for divergences. PyMC3's sampler will spit out a warning if there are
    diverging chains, but the following code snippet may make things easier:
 
    ``` python
@@ -203,19 +206,19 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
    print('Percentage of Divergent Chains: {:.1f}'.format(diverging_perc))
    ```
 
-2. Check the traceplot (`pm.traceplot(trace)`). You're looking for traceplots
+3. Check the traceplot (`pm.traceplot(trace)`). You're looking for traceplots
    that look like "fuzzy caterpillars" (as Michael Betancourt puts it). If the
    trace moves into some region and stays there for a long time (a.k.a. there
    are some "sticky regions"), that's cause for concern! That indicates that
    once the sampler moves into some region of parameter space, it gets stuck
    there (probably due to high curvature or other bad topological properties).
 
-3. In addition to the traceplot, there are [a ton of other
+4. In addition to the traceplot, there are [a ton of other
    plots](https://docs.pymc.io/api/plots.html) you can make with your trace:
 
    - `pm.plot_posterior(trace)`: check if your posteriors look reasonable.
    - `pm.forestplot(trace)`: check if your variables have reasonable credible
-     intervals.
+     intervals, and Gelman-Rubin scores close to 1.
    - `pm.autocorrplot(trace)`: check if your chains are impaired by high
      autocorrelation. Also remember that thinning your chains is a waste of
      time at best, and deluding yourself at worst. See Chris Fonnesbeck's
@@ -230,25 +233,19 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
      doesn't seem to be wildly useful unless you're plotting posteriors from
      multiple models.
 
-4. Run both short _and_ long chains (`draws=500` and `draws=2000`,
-   respectively, are good numbers, with `tune` increasing commensurately). PyMC3
-   has a nice helper function to pretty-print a summary table of the trace:
-   `pm.summary(long_trace).round(2)`. Look out for:
+5. PyMC3 has a nice helper function to pretty-print a summary table of the
+   trace: `pm.summary(trace)` (I usually tack on a `.round(2)` for my sanity).
+   Look out for:
    - the $$\hat{R}$$ values (a.k.a. the Gelman-Rubin statistic, a.k.a. the
-     potential scale reduction factor, a.k.a. PSRF): are they all close to 1?
-     If not, something is _horribly_ wrong. Consider respecifying or
-     reparameterizing your model.
-   - the number of effective samples _per iteration_ (you may need to do the
-     division yourself): does it fall drastically?  If so, this means that we
-     are exploring less efficiently the longer we let our chains run. Something
-     bad is happening. Inspect the jointplots of your variables, and plot the
-     divergent samples. Do they cluster anywhere in parameter space?
+     potential scale reduction factor, a.k.a. the PSRF): are they all close to
+     1? If not, something is _horribly_ wrong. Consider respecifying or
+     reparameterizing your model. You can also inspect these in the forest plot.
    - the sign and magnitude of the inferred values: do they make sense, or are
      they unexpected and unreasonable? This could indicate a poorly specified
      model. (E.g. parameters of the unexpected sign that have low uncertainties
      might indicate that your model needs interaction terms.)
 
-5. If you get scary errors that describe mathematical problems (e.g. `ValueError:
+6. If you get scary errors that describe mathematical problems (e.g. `ValueError:
    Mass matrix contains zeros on the diagonal. Some derivatives might always be
    zero.`), then you're ~~shit out of luck~~ exceptionally unlucky: those kinds of
    errors are notoriously hard to debug. I can only point to the [Folk Theorem of
@@ -346,7 +343,13 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   (i.e. you made a poor modeling decision), and _not_ that the sampler is having
   a hard time doing its job.
 
-1. Run the following snippet of code to inspect the pairplot of your variables
+1. At the risk of over-generalizing, there are only two things that can go wrong
+   in Bayesian modeling: either your data is wrong, or your model is wrong. And
+   it is a hell of a lot easier to debug your data than it is to debug your
+   model. Plot histograms of your data, count the number of data points, drop
+   any NaNs, etc. etc.
+
+2. Run the following snippet of code to inspect the pairplot of your variables
    one at a time (if you have a plate of variables, it's fine to pick a couple
    at random). It'll tell you if the two random variables are correlated, and
    help identify any troublesome neighborhoods in the parameter space (divergent
@@ -361,7 +364,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
                kwargs_divergence={'color': 'C2'})
    ```
 
-2. Look at your posteriors (either from the traceplot, density plots or
+3. Look at your posteriors (either from the traceplot, density plots or
    posterior plots). Do they even make sense? E.g. are there outliers or long
    tails that you weren't expecting? Do their uncertainties look reasonable to
    you? If you had [a plate](https://en.wikipedia.org/wiki/Plate_notation) of
@@ -370,11 +373,25 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
    only one who knows your problem/use case, so the posteriors better look good
    to you!
 
-3. Pick a small subset of your raw data, and see what exactly your model does
+4. Broadly speaking, there are three bad geometries that your posterior can
+   suffer from:
+   - highly correlated posteriors: this will probably cause divergences or
+     traces that don't look like "fuzzy caterpillars". Reparameterize to remove
+     these correlations. Either look at the jointplots of each pair of
+     variables, or look at the correlation matrix of all variables.
+   - posteriors that form "funnels": this will probably cause divergences. Try a
+     non-centered model (see below).
+   - long tailed posteriors: this will probably raise warnings about
+     `max_treedepth` being exceeded. If your data has long tails, you should
+     model that with a long-tailed distribution. If your data doesn't have long
+     tails, then your model is ill-specified: think through why your posteriors
+     are showing long tails.
+
+5. Pick a small subset of your raw data, and see what exactly your model does
    with that data (i.e. run the model on a specific subset of your data). I find
    that a lot of problems with your model can be found this way.
 
-4. Run [_posterior predictive
+6. Run [_posterior predictive
    checks_](https://docs.pymc.io/notebooks/posterior_predictive.html) (a.k.a.
    PPCs): sample from your posterior, plug it back in to your model, and
    "generate new data sets". PyMC3 even has a nice function to do all this for
