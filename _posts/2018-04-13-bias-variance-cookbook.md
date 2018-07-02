@@ -36,7 +36,7 @@ Andrew Ng at Stanford, in which he outlines some practical advice for machine
 learning models. I basically recreated some of his graphs for two of the three
 images below.
 
-<img align="middle" src="https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/master/assets/images/bias-variance.png">
+<a href="https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/master/assets/images/bias-variance.png"><img align="middle" src="https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/master/assets/images/bias-variance.png"></a>
 
 Of course, take this with a pinch of salt: the most important thing in
 statistical modelling is not overbearing guidelines or rigid dogma, but the
@@ -44,7 +44,7 @@ situation you have at hand. Clear thinking is always good!
 
 ## High Variance
 
-<img align="middle" src="https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/master/assets/images/high-variance.png">
+<a href="https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/master/assets/images/high-variance.png"><img align="middle" src="https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/master/assets/images/high-variance.png"></a>
 
 ### Diagnostics
 
@@ -72,7 +72,7 @@ situation you have at hand. Clear thinking is always good!
 
 ## High Bias
 
-<img align="middle" src="https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/master/assets/images/high-bias.png">
+<a href="https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/master/assets/images/high-bias.png"><img align="middle" src="https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/master/assets/images/high-bias.png"></a>
 
 ### Diagnostics
 

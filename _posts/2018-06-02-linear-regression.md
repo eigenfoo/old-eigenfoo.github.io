@@ -26,7 +26,6 @@ them - something I'm amazed that people seem to need to be reminded of.
 
 <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/68ABAU_V8qI?controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 
-
 One of my favorite tricks was the first one he discussed: extracting and
 forecasting the seasonality of sales of some product, just by using linear
 regression (and some other neat but ultimately simple tricks).
