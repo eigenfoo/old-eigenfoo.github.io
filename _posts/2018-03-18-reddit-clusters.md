@@ -2,7 +2,8 @@
 title: Understanding Hate Speech on Reddit through Text Clustering
 excerpt: "Have you heard of `/r/TheRedPill`? It’s an online forum (a subreddit, but I’ll
 explain that later) where people (usually men) espouse an ideology predicated
-entirely on gender."
+entirely on gender. 'Swallowers of the red pill', as they call themselves,
+maintain that it is _men_, not women, who are socially marginalized..."
 tags:
   - reddit
   - machine learning
@@ -169,8 +170,6 @@ clusters from each of the three subreddits, visualized as word clouds (you can
 think of word clouds as visual representations of the code snippet above), as
 well as an example comment from each of the clusters.
 
----
-
 ## `/r/TheRedPill`
 
 You already know `/r/TheRedPill`, so let me describe the clusters in more detail:
@@ -228,8 +227,6 @@ integrity and control over women.
 
 ```
 
----
-
 ## `/r/The_Donald`
 
 You may have already heard of `/r/The_Donald` (a.k.a. the "pro-Trump cesspool"),
@@ -277,8 +274,6 @@ United States! For every Centipede a brick, for every brick a Centipede!
 At this rate, the wall will be **1071.35224786 MILES WIDE** and **353.552300867 FEET
 HIGH** by tomorrow! **DO YOUR PART!**
 ```
-
----
 
 ## `/r/CringeAnarchy`
 
