@@ -1,5 +1,5 @@
 ---
-title: "Through and Through - Linear Regression"
+title: "Linear Regression for Starters"
 excerpt: "I was recently inspired by this following PyData London talk by
 [Vincent Warmerdam](http://koaning.io/). It's a great talk: he has a lot of
 great tricks to make simple, small-brain models really work wonders, and he
@@ -9,7 +9,7 @@ sake of using them..."
 tags:
   - mathematics
   - statistics
-  - through & through
+  - for starters
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background6.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'

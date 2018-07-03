@@ -67,7 +67,10 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   sampling (a.k.a. MCMC sampling), and the other is variational inference
   (a.k.a. VI). Both methods are mathematical Death Stars: extremely powerful but
   incredibly complicated. Nevertheless, I think it's important to get at least a
-  hand-wavy understanding of what these methods are.
+  hand-wavy understanding of what these methods are. If you're new to all this,
+  my personal recommendation is to invest your time in learning MCMC: it's been
+  around longer, we know that there are sufficiently robust tools to help you,
+  and there's a lot more support/documentation out there.
 
 ### Markov Chain Monte Carlo
 
@@ -278,7 +281,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   sampler to fly off towards to infinity. The ruins the chains by heavily
   biasing the samples.
 
-- Remember: if you have even _one_ diverging chain, you should be concerned.
+- Remember: if you have even _one_ diverging chain, you should be worried.
 
 - Increase `target_accept`: usually 0.9 is a good number (currently the default
   in PyMC3 is 0.8). This will help get rid of false positives from the test for
@@ -300,6 +303,14 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 - If that doesn't work, there may be something wrong with the way you're
   thinking about your data: consider reparameterizing your model, or
   respecifying it entirely.
+
+- Now, here's a little secret: a small number of divergences is acceptable, and
+  even to be expected but _only on particularly long and treacherous traces_.
+  That's not to say that you can ignore all your divergences if you're taking
+  `draws=10000`! Put it this way: if you have a single-digit number of traces,
+  you should be worried, and checking your posteriors, traces, correlation
+  matrix, $$\hat{R}$$s etc., and if you have a double-digit number of traces you
+  should be alarmed... and doing exactly the same thing.
 
 ### Other Common Warnings
 
