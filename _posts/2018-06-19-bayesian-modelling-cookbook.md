@@ -1,7 +1,7 @@
 ---
-title: Cookbook - Bayesian Modeling with PyMC3
+title: Cookbook - Bayesian Modelling with PyMC3
 excerpt: "Recently I've started using [PyMC3](https://github.com/pymc-devs/pymc3) for
-Bayesian modeling, and it's an amazing piece of software! The API only exposes
+Bayesian modelling, and it's an amazing piece of software! The API only exposes
 as much of heavy machinery of MCMC as you need - by which I mean, just the
 `pm.sample()` method."
 tags:
@@ -21,7 +21,7 @@ last_modified_at: 2018-06-24
 ---
 
 Recently I've started using [PyMC3](https://github.com/pymc-devs/pymc3) for
-Bayesian modeling, and it's an amazing piece of software! The API only exposes
+Bayesian modelling, and it's an amazing piece of software! The API only exposes
 as much of heavy machinery of MCMC as you need - by which I mean, just the
 `pm.sample()` method (a.k.a., as [Thomas
 Wiecki](http://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/) puts it, the
@@ -33,7 +33,7 @@ fast: I explored my data set, specified a hierarchical model that made sense to
 me, hit the _Magic Inference Button™_, and... uh, what now?  I blinked at the
 angry red warnings the sampler spat out.
 
-So began by long, rewarding and ongoing exploration of Bayesian modeling. This
+So began by long, rewarding and ongoing exploration of Bayesian modelling. This
 is a compilation of notes, tips, tricks and recipes that I've collected from
 everywhere: papers, documentation, peppering my [more
 experienced](https://twitter.com/twiecki)
@@ -48,9 +48,9 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 - First of all, _welcome!_ It's a brave new world out there - where statistics
   is cool, Bayesian and (if you're lucky) even easy. Dive in!
 
-### Bayesian Modeling
+### Bayesian modelling
 
-- For an introduction to general Bayesian methods and modeling, I really liked
+- For an introduction to general Bayesian methods and modelling, I really liked
   [Cam Davidson Pilon's _Bayesian Methods for
   Hackers_](http://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/):
   it really made the whole "thinking like a Bayesian" thing click for me.
@@ -133,7 +133,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 
 - If your hierarchy is too tall, you can truncate it by introducing a
   deterministic function of your parameters somewhere (this usually turns out to
-  just be a sum). For example, instead of modeling your observations are drawn
+  just be a sum). For example, instead of modelling your observations are drawn
   from a 4-level hierarchy, maybe your observations can be modeled as the sum of
   three parameters, where these parameters are drawn from a 3-level hierarchy.
 
@@ -143,6 +143,12 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   practical tips and goodies on how to do that stuff in the real world.
 
 ## Model Implementation
+
+- At the risk of over-generalizing, there are only two things that can go wrong
+  in Bayesian modelling: either your data is wrong, or your model is wrong. And
+  it is a hell of a lot easier to debug your data than it is to debug your
+  model. So before you even try implementing your model, plot histograms of your
+  data, count the number of data points, drop any NaNs, etc. etc.
 
 - PyMC3 has one quirky piece of syntax, which I tripped up on for a while. It's
   described quite well in [this comment on Thomas Wiecki's
@@ -207,11 +213,11 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
    ```
 
 3. Check the traceplot (`pm.traceplot(trace)`). You're looking for traceplots
-   that look like "fuzzy caterpillars" (as Michael Betancourt puts it). If the
-   trace moves into some region and stays there for a long time (a.k.a. there
-   are some "sticky regions"), that's cause for concern! That indicates that
-   once the sampler moves into some region of parameter space, it gets stuck
-   there (probably due to high curvature or other bad topological properties).
+   that look like "fuzzy caterpillars". If the trace moves into some region and
+   stays there for a long time (a.k.a. there are some "sticky regions"), that's
+   cause for concern! That indicates that once the sampler moves into some
+   region of parameter space, it gets stuck there (probably due to high
+   curvature or other bad topological properties).
 
 4. In addition to the traceplot, there are [a ton of other
    plots](https://docs.pymc.io/api/plots.html) you can make with your trace:
@@ -245,7 +251,14 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
      model. (E.g. parameters of the unexpected sign that have low uncertainties
      might indicate that your model needs interaction terms.)
 
-6. If you get scary errors that describe mathematical problems (e.g. `ValueError:
+6. As a drastic debugging measure, try to `pm.sample` with `draws=1`,
+   `tune=500`, and `discard_tuned_samples=False`, and inspect the traceplot.
+   During the tuning phase, we don't expect to see friendly fuzzy caterpillars,
+   but we _do_ expect to see good (if noisy) exploration of parameter space. So
+   if the sampler is getting stuck during the tuning phase, that might explain
+   why the trace looks horrible.
+
+7. If you get scary errors that describe mathematical problems (e.g. `ValueError:
    Mass matrix contains zeros on the diagonal. Some derivatives might always be
    zero.`), then you're ~~shit out of luck~~ exceptionally unlucky: those kinds of
    errors are notoriously hard to debug. I can only point to the [Folk Theorem of
@@ -340,16 +353,10 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   somewhat artificial (since problems with your chains indicate problems with
   your model), but I still think it's useful to make this distinction because
   these checks indicate that you're thinking about your data in the wrong way,
-  (i.e. you made a poor modeling decision), and _not_ that the sampler is having
+  (i.e. you made a poor modelling decision), and _not_ that the sampler is having
   a hard time doing its job.
 
-1. At the risk of over-generalizing, there are only two things that can go wrong
-   in Bayesian modeling: either your data is wrong, or your model is wrong. And
-   it is a hell of a lot easier to debug your data than it is to debug your
-   model. Plot histograms of your data, count the number of data points, drop
-   any NaNs, etc. etc.
-
-2. Run the following snippet of code to inspect the pairplot of your variables
+1. Run the following snippet of code to inspect the pairplot of your variables
    one at a time (if you have a plate of variables, it's fine to pick a couple
    at random). It'll tell you if the two random variables are correlated, and
    help identify any troublesome neighborhoods in the parameter space (divergent
@@ -364,7 +371,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
                kwargs_divergence={'color': 'C2'})
    ```
 
-3. Look at your posteriors (either from the traceplot, density plots or
+2. Look at your posteriors (either from the traceplot, density plots or
    posterior plots). Do they even make sense? E.g. are there outliers or long
    tails that you weren't expecting? Do their uncertainties look reasonable to
    you? If you had [a plate](https://en.wikipedia.org/wiki/Plate_notation) of
@@ -373,8 +380,8 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
    only one who knows your problem/use case, so the posteriors better look good
    to you!
 
-4. Broadly speaking, there are three bad geometries that your posterior can
-   suffer from:
+3. Broadly speaking, there are three kinds of bad geometries that your posterior
+   can suffer from:
    - highly correlated posteriors: this will probably cause divergences or
      traces that don't look like "fuzzy caterpillars". Reparameterize to remove
      these correlations. Either look at the jointplots of each pair of
@@ -384,14 +391,14 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
    - long tailed posteriors: this will probably raise warnings about
      `max_treedepth` being exceeded. If your data has long tails, you should
      model that with a long-tailed distribution. If your data doesn't have long
-     tails, then your model is ill-specified: think through why your posteriors
-     are showing long tails.
+     tails, then your model is ill-specified: perhaps a more informative prior
+     would help.
 
-5. Pick a small subset of your raw data, and see what exactly your model does
+4. Pick a small subset of your raw data, and see what exactly your model does
    with that data (i.e. run the model on a specific subset of your data). I find
    that a lot of problems with your model can be found this way.
 
-6. Run [_posterior predictive
+5. Run [_posterior predictive
    checks_](https://docs.pymc.io/notebooks/posterior_predictive.html) (a.k.a.
    PPCs): sample from your posterior, plug it back in to your model, and
    "generate new data sets". PyMC3 even has a nice function to do all this for
@@ -399,7 +406,20 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
    question only you can answer! The point of a PPC is to see if the generated
    data sets reproduce patterns you care about in the observed real data set,
    and only you know what patterns you care about. E.g. how close are the PPC
-   means to the observed sample mean? What about the variance? Do you care about
-   skewness or kurtosis? Outliers? For an example of what a decent PPC can look
-   like, check out [this answer on Stats
-   StackExchange](https://stats.stackexchange.com/a/175738).
+   means to the observed sample mean? What about the variance?
+   - For example, suppose you were modelling the levels of radon gas in
+     different counties in a country (through a hierarchical model). Then you
+     could sample radon gas levels from the posterior for each county, and take
+     the maximum within each county. You'd then have a distribution of maximum
+     radon gas levels across counties. You could then check if the _actual_
+     maximum radon gas level (in your observed data set) is acceptably within
+     that distribution. If it's much larger than the maxima, then you would know
+     that the actual likelihood has longer tails than you assumed (e.g. perhaps
+     you should use a Student's T instead of a normal?)
+   - Remember that how well the posterior predictive distribution fits the data
+     is of little consequence (e.g. the expectation that 90% of the data should
+     fall within the 90% credible interval of the posterior). The posterior
+     predictive distribution tells you what values for data you would expect if
+     we were to remeasure, given that you've already observed the data you did.
+     As such, it's informed by your prior as well as your data, and it's not
+     its job to adequately fit your data!
