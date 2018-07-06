@@ -105,7 +105,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   as help you arrive at a reasonable model formulation.
 
 - Try to avoid correlated variables. Some of the more robust samplers (**cough**
-  NUTS **cough** HMC **cough cough**) can cope with _a posteriori_ correlated random
+  NUTS **cough cough**) can cope with _a posteriori_ correlated random
   variables, but sampling is much easier for everyone involved if the variables
   are uncorrelated. By the way, the bar is pretty low here: if the
   jointplot/scattergram of the two variables looks like an ellipse, thats
@@ -114,7 +114,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 
 ### Hierarchical Models
 
-- First off, hierarchical models are great! [The PyMC3
+- First of all, hierarchical models are amazing! [The PyMC3
   docs](https://docs.pymc.io/notebooks/GLM-hierarchical.html) opine on this at
   length, so let's not waste any digital ink.
 
@@ -162,7 +162,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   notation. I suggest using `scikit-learn`'s `LabelEncoder` to easily create the
   index. For example, to make normally distributed heights for the iris dataset:
 
-  ``` python
+  ```python
   # Different numbers of examples for each species
   species = (48 * ['setosa'] + 52 * ['virginica'] + 63 * ['versicolor'])
   num_species = len(list(set(species)))  # 3
@@ -172,6 +172,22 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   idx = sklearn.preprocessing.LabelEncoder().fit_transform(species)
   heights = heights_per_species[idx]
   ```
+
+- You might find yourself in a situation in which you want to use a centered
+  parameterization for a portion of your data set, but a non-centered
+  parameterization for the rest of your data set (see below for what these
+  parameterizations are). There's a useful idiom for you here:
+
+  ```python
+  num_xs = 5
+  use_centered = np.array([0, 1, 1, 0, 1])  # len(use_centered) = num_xs
+  x_sd = pm.HalfCauchy('x_sd', sd=1)
+  x_raw = pm.Normal('x_raw', mu=0, sd=mu_x_sd**use_centered, shape=num_xs)
+  x = pm.Deterministic('x', x_sd**(1 - use_centered) * x_raw)
+  ```
+
+  You could even experiment with allowing `user_centered` to be _between_ 0 and
+  1, instead of being _either_ 0 or 1!
 
 ## MCMC Initialization and Sampling
 
@@ -207,7 +223,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 2. Check for divergences. PyMC3's sampler will spit out a warning if there are
    diverging chains, but the following code snippet may make things easier:
 
-   ``` python
+   ```python
    # Display the total number and percentage of divergent chains
    diverging = trace['diverging']
    print('Number of Divergent Chains: {}'.format(diverging.nonzero()[0].size))
@@ -293,7 +309,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   the sampler just hasn't started the mixing phase and is still trying to find
   the typical set.
 
-- Consider a _non-centered_ model. This is an amazing trick: it all boils down
+- Consider a _non-centered_ parameterization. This is an amazing trick: it all boils down
   to the familiar equation $$X = \sigma Z + \mu$$ from STAT 101, but it honestly
   works wonders. See [Thomas Wiecki's blog
   post](http://twiecki.github.io/blog/2017/02/08/bayesian-hierchical-non-centered/)
@@ -358,6 +374,19 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   to help you do it (although your mileage may vary on how useful those tips
   will be to you).
 
+- Asides from meekly pointing to other resources, there's not much I can do to
+  help: this stuff really comes from a combination of intuition, statistical
+  knowledge and good ol' experience. I can, however, cite some examples to give
+  you a better idea.
+  - The [_horseshoe
+    distribution_](http://proceedings.mlr.press/v5/carvalho09a.html) is known to
+    be a good shrinkage prior, as it is _very_ spikey near zero, and has _very_
+    long tails. However, modelling it using one parameter can give multimodal
+    posteriors - an exceptionally bad result. The trick is to reparameterize and
+    model it as the product of two parameters: one to create spikiness at zero,
+    and one to create long tails (which makes sense: to sample from the
+    horseshoe, take the product of samples from a normal and a half-Cauchy).
+
 ## Model Diagnostics
 
 - Admittedly the distinction between the previous section and this one is
@@ -374,7 +403,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
    samples will be colored differently, and will cluster near such
    neighborhoods).
 
-   ``` python
+   ```python
    pm.pairplot(trace,
                sub_varnames=[variable_1, variable_2],
                divergences=True,
@@ -391,19 +420,26 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
    only one who knows your problem/use case, so the posteriors better look good
    to you!
 
-3. Broadly speaking, there are three kinds of bad geometries that your posterior
+3. Broadly speaking, there are four kinds of bad geometries that your posterior
    can suffer from:
    - highly correlated posteriors: this will probably cause divergences or
-     traces that don't look like "fuzzy caterpillars". Reparameterize to remove
-     these correlations. Either look at the jointplots of each pair of
-     variables, or look at the correlation matrix of all variables.
-   - posteriors that form "funnels": this will probably cause divergences. Try a
-     non-centered model (see below).
+     traces that don't look like "fuzzy caterpillars". Either look at the
+     jointplots of each pair of variables, or look at the correlation matrix of
+     all variables.  Try using a centered parameterization, or reparameterize in
+     some other way, to remove these correlations.
+   - posteriors that form "funnels": this will probably cause divergences. Try
+     using a non-centered parameterization.
    - long tailed posteriors: this will probably raise warnings about
      `max_treedepth` being exceeded. If your data has long tails, you should
      model that with a long-tailed distribution. If your data doesn't have long
      tails, then your model is ill-specified: perhaps a more informative prior
      would help.
+   - multimodal posteriors: right now this is pretty much a death blow. At the
+     time of writing, all samplers have a hard time with multimodality, and
+     there's not much you can do about that. Try reparameterizing to get a
+     unimodal posterior. If that's not possible (perhaps you're _modelling_
+     multimodality using a mixture model), you're out of luck: just let NUTS
+     sample for a day or so, and hopefully you'll get a good trace.
 
 4. Pick a small subset of your raw data, and see what exactly your model does
    with that data (i.e. run the model on a specific subset of your data). I find
