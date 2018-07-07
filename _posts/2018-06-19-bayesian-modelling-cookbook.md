@@ -186,8 +186,14 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   x = pm.Deterministic('x', x_sd**(1 - use_centered) * x_raw)
   ```
 
-  You could even experiment with allowing `user_centered` to be _between_ 0 and
+  You could even experiment with allowing `use_centered` to be _between_ 0 and
   1, instead of being _either_ 0 or 1!
+
+- I prefer to use the `pm.Deterministic` function instead of simply using normal
+  arithmetic operations (e.g. I'd prefer to write `x = pm.Deterministic('x', y +
+  z)` instead of `x = y + z`). This means that you can index the `trace` object
+  later on with just `trace['x']`, instead of having to compute it yourself with
+  `trace['y'] + trace['z']`.
 
 ## MCMC Initialization and Sampling
 
@@ -378,6 +384,11 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   help: this stuff really comes from a combination of intuition, statistical
   knowledge and good ol' experience. I can, however, cite some examples to give
   you a better idea.
+  - The non-centered parameterization is a classic example. If you have a
+    parameter whose mean and variance you are also modelling, the non-centered
+    parameterization decouples the sampling of mean and variance from the
+    sampling of the parameter, so that they are now independent. In this way, we
+    avoid "funnels".
   - The [_horseshoe
     distribution_](http://proceedings.mlr.press/v5/carvalho09a.html) is known to
     be a good shrinkage prior, as it is _very_ spikey near zero, and has _very_
