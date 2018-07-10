@@ -92,11 +92,14 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   field, most resources on it are very theoretical and academic in nature.
 
 - Chapter 10 (on approximate inference) in Bishop's _Pattern Recognition and
-  Machine Learning_ is an excellent, if mathematically-intensive, resource.
-
-- [This
+  Machine Learning_ and [this
   tutorial](https://www.cs.princeton.edu/courses/archive/fall11/cos597C/lectures/variational-inference-i.pdf)
-  by David Blei is also great.
+  by David Blei are excellent, if a bit mathematically-intensive, resources.
+
+- The most hands-on explanation of variational inference I've seen is the docs
+  for [Pyro](http://pyro.ai/examples/svi_part_i.html), a probabilistic
+  programming language developed by Uber that specializes in variational
+  inference.
 
 ## Model Formulation
 
@@ -111,6 +114,10 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   jointplot/scattergram of the two variables looks like an ellipse, thats
   usually okay. It's when the ellipse starts looking like a line that you should
   be alarmed.
+
+- The [Stan GitHub
+  wiki](https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations) has
+  some excellent recommendations on how to choose good priors.
 
 ### Hierarchical Models
 
