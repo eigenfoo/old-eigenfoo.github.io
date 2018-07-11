@@ -48,7 +48,11 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 - First of all, _welcome!_ It's a brave new world out there - where statistics
   is cool, Bayesian and (if you're lucky) even easy. Dive in!
 
-### Bayesian modelling
+### Bayesian Modelling
+
+- If you don't know any probability, I'd recommend [Michael
+  Betancourt's](https://betanalpha.github.io/assets/case_studies/probability_theory.html)
+  crash-course in practical probability theory.
 
 - For an introduction to general Bayesian methods and modelling, I really liked
   [Cam Davidson Pilon's _Bayesian Methods for
@@ -117,7 +121,11 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 
 - The [Stan GitHub
   wiki](https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations) has
-  some excellent recommendations on how to choose good priors.
+  some excellent recommendations on how to choose good priors. Once you get a
+  good handle on the basics of using PyMC3, I _100% recommend_ reading this wiki
+  from start to end: the Stan community has fantastic resources on Bayesian
+  statistics, and even though their APIs are quite different, the mathematical
+  theory all translates over.
 
 ### Hierarchical Models
 
