@@ -119,6 +119,14 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   usually okay. It's when the ellipse starts looking like a line that you should
   be alarmed.
 
+- Try to avoid discrete latent variables, and discrete parameters in general.
+  There is no good method to sample them in a smart way (since discrete
+  parameters have no gradients); and with "naïve" samplers (i.e. those that do
+  not take advantage of the gradient), the number of samples one needs to make
+  good inferences generally scales exponentially in the number of parameters.
+  For an instance of this, see [this example on marginal Gaussian
+  mixtures](https://docs.pymc.io/notebooks/marginalized_gaussian_mixture_model.html).
+
 - The [Stan GitHub
   wiki](https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations) has
   some excellent recommendations on how to choose good priors. Once you get a
