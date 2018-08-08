@@ -20,6 +20,8 @@ blogroll:
           url: https://explosion.ai/blog/
         - title: "Stats & Bots"
           url: https://blog.statsbot.co/
+        - title: "fast.ai"
+          url: http://www.fast.ai/
         - title: "FastML"
           url: http://fastml.com/
     - title: "Personal Blogs"
