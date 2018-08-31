@@ -89,7 +89,7 @@ author:
   avatar           : /assets/images/profile-pic.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "PyData ninja, machine learner, coffee addict and general practitioner (get it, GP?) of Bayesian necromancy."
   location         : "NYC | HKG"
-  email            : gh@eigenfoo.xyz
+  email            : https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/master/assets/images/email.png
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        :
