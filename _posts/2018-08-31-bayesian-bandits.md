@@ -34,9 +34,9 @@ current machine or try a different machine.
 
 This problem is a central problem in decision theory and reinforcement learning:
 the agent (our gambler) starts out in a state of ignorance, but learns through
-interacting with its environment (playing slots). For more details, Cam Davidson
-Pilon has a great introduction to multi-armed bandits in Chapter 6 of his book
-[_Bayesian Methods for
+interacting with its environment (playing slots). For more details, Cam
+Davidson-Pilon has a great introduction to multi-armed bandits in Chapter 6 of
+his book [_Bayesian Methods for
 Hackers_](https://nbviewer.jupyter.org/github/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/blob/master/Chapter6_Priorities/Ch6_Priors_PyMC3.ipynb),
 and Tor Lattimore and Csaba Szepesvári cover a breathtaking amount of the
 underlying theory in their book [_Bandit Algorithms_](http://banditalgs.com/).
@@ -50,14 +50,14 @@ So let's get started! I assume that you are familiar with:
   conjugate model) is, and why one might like them.
 - [Python generators and the `yield`
   keyword](https://jeffknupp.com/blog/2013/04/07/improve-your-python-yield-and-generators-explained/),
-  to understand some of the code I've written[^3].
+  to understand some of the code I've written[^1].
 
 Dive in!
 
 ## The Algorithm
 
 The algorithm is straightforward. The description below is taken from Cam
-Davidson Pilon over at Data Origami[^1].
+Davidson-Pilon over at Data Origami[^2].
 
 For each round,
 
@@ -78,12 +78,12 @@ one of many algorithms out there. The main difference is that there are other
 ways to go from our current priors to a decision on which bandit to play
 next. E.g. instead of simply sampling from our priors, we could use the
 upper bound of the 90% credible region, or some dynamic quantile of the
-posterior (as in Bayes UCB). See Data Origami[^1] for more information.
+posterior (as in Bayes UCB). See Data Origami[^2] for more information.
 
 ### Stochastic (a.k.a. Stationary) Bandits
 
 Let's take this algorithm for a spin! Assume we have rewards which are Bernoulli
-distributed (this would be the situation we face when e.g. predicting
+distributed (this would be the situation we face when e.g. modelling
 click-through rates). The conjugate prior for the Bernoulli distribution is the
 Beta distribution (this is a special case of the Beta-Binomial model).
 
@@ -149,10 +149,10 @@ conjugate prior, or what if we don't even _know_ our rewards distribution?
 In general this problem is very difficult to solve. Theoretically, we could
 place some fairly uninformative prior on our rewards, and after every pull we
 could run MCMC to get our posterior, but that doesn't scale, especially for the
-online algorithms that we have in mind. Luckily a recent paper[^2] gives us some
-help, _if we assume rewards are bounded on the interval $$[0, 1]$$_ (of course,
-if we have bounded rewards, then we can just normalize them by their maximum
-value to get rewards between 0 and 1).
+online algorithms that we have in mind. Luckily a recent paper by Agrawal and
+Goyal[^3] gives us some help, _if we assume rewards are bounded on the interval
+$$[0, 1]$$_ (of course, if we have bounded rewards, then we can just normalize
+them by their maximum value to get rewards between 0 and 1).
 
 This solutions bootstraps the first Beta-Bernoulli model to this new situation.
 Here's what happens:
@@ -178,9 +178,10 @@ function.
 
 ## Final remarks
 
-Most of this theory isn't new. See Cam Davidson Pilon's great blog post about
-Bayesian bandits[^1] for a much more in-depth treatment, and of course, read
-papers if you want to go deeper!
+None of this theory is new: I'm just advertising it :blush:. See Cam
+Davidson-Pilon's great blog post about Bayesian bandits[^2] for a much more
+in-depth treatment, and of course, read around papers on arXiv if you want to go
+deeper!
 
 Also, if you want to see all the code that went into this blog post, check out
 [the notebook
@@ -188,8 +189,8 @@ here](https://github.com/eigenfoo/wanderings/blob/afcf37a8c6c2a2ac38f6708c1f3dd5
 
 ---
 
-[^1]: [https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits](https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits)
+[^1]: I've hopped on board the functional programming bandwagon, and couldn't help but think that to demonstrate this idea, I didn't need a framework, library or even class. Just two functions!
 
-[^2]: [http://proceedings.mlr.press/v23/agrawal12/agrawal12.pdf](http://proceedings.mlr.press/v23/agrawal12/agrawal12.pdf)
+[^2]: Davidson-Pilon, Cameron. "Multi-Armed Bandits." DataOrigami, 6 Apr. 2013, [dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits](https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits)
 
-[^3]: I've hopped on board the functional programming bandwagon, and couldn't help but think that to demonstrate this idea, I didn't need a framework, library or even class. Just two functions!
+[^3]: [arXiv:1111.1797](https://arxiv.org/abs/1111.1797)
