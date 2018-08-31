@@ -10,6 +10,7 @@ tags:
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background13.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
+mathjax: true
 last_modified_at: 2018-08-31
 ---
 
