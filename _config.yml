@@ -17,7 +17,7 @@ locale                   : "en"
 title                    : "Eigenfoo"
 title_separator          : "|"
 name                     : "George Ho"
-description              : "PyData science, machine learning and general necromancy through Bayesian statistics. Also, coffee."
+description              : ""
 url                      : "https://eigenfoo.xyz" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : / # the subpath of your site, e.g. "/blog"
 repository               : "eigenfoo/eigenfoo.xyz" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -87,7 +87,7 @@ analytics:
 author:
   name             : "George Ho"
   avatar           : /assets/images/profile-pic.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "PyData ninja, machine learner, Bayesian necromancer and coffee lover"
+  bio              : "PyData ninja, machine learner, coffee addict and general practitioner (get it, GP?) of Bayesian necromancy."
   location         : "NYC | HKG"
   email            : gh@eigenfoo.xyz
   uri              :
