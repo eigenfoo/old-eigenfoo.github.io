@@ -1,11 +1,11 @@
 # main links
 main:
+  - title: "Work"
+    url: /work
   - title: "About"
     url: /about
   - title: "Archive"
     url: /archive
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
   # - title: "Sitemap"
   #   url: /sitemap/
 
