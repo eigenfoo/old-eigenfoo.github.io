@@ -179,16 +179,17 @@ function.
 ## Final remarks
 
 Most of this theory isn't new. See Cam Davidson Pilon's great blog post about
-Bayesian bandits[^1] for a much more in-depth treatment.
+Bayesian bandits[^1] for a much more in-depth treatment, and of course, read
+papers if you want to go deeper!
 
-Also if you want to see all the code that went into this blog post, check out
+Also, if you want to see all the code that went into this blog post, check out
 [the notebook
 here](https://github.com/eigenfoo/wanderings/blob/afcf37a8c6c2a2ac38f6708c1f3dd50db2ebe71f/bayes/bayesian-bandits.ipynb).
 
 ---
 
-[^1] [https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits](https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits)
+[^1]: [https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits](https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits)
 
-[^2] [http://proceedings.mlr.press/v23/agrawal12/agrawal12.pdf](http://proceedings.mlr.press/v23/agrawal12/agrawal12.pdf)
+[^2]: [http://proceedings.mlr.press/v23/agrawal12/agrawal12.pdf](http://proceedings.mlr.press/v23/agrawal12/agrawal12.pdf)
 
-[^3] I've hopped on board the functional programming bandwagon, and couldn't help but think that to demonstrate this idea, I didn't need a framework, library or even class. Just two functions!
+[^3]: I've hopped on board the functional programming bandwagon, and couldn't help but think that to demonstrate this idea, I didn't need a framework, library or even class. Just two functions!
