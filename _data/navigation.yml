@@ -5,7 +5,7 @@ main:
   - title: "About"
     url: /about
   - title: "Archive"
-    url: /archive
+    url: /tags
   # - title: "Sitemap"
   #   url: /sitemap/
 
