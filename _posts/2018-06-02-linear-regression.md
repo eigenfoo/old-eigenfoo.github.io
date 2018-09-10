@@ -9,7 +9,6 @@ sake of using them..."
 tags:
   - mathematics
   - statistics
-  - for starters
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background6.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'

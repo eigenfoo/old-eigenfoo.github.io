@@ -5,10 +5,8 @@ Bayesian modelling, and it's an amazing piece of software! The API only exposes
 as much of heavy machinery of MCMC as you need - by which I mean, just the
 `pm.sample()` method."
 tags:
-  - bayesian
-  - mcmc
+  - bayesianism
   - pymc3
-  - cookbook
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background5.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'

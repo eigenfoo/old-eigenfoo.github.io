@@ -5,7 +5,6 @@ explain that later) where people (usually men) espouse an ideology predicated
 entirely on gender. 'Swallowers of the red pill', as they call themselves,
 maintain that it is _men_, not women, who are socially marginalized..."
 tags:
-  - reddit
   - machine learning
   - natural language processing
 header:

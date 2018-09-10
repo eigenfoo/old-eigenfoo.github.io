@@ -4,7 +4,7 @@ excerpt: "Let's talk about Bayesianism. It's developed a reputation (not
 entirely justified, but not entirely unjustified either) for being too
 mathematically sophisticated or too computationally intensive to work at scale."
 tags:
-  - bayesian
+  - bayesianism
   - reinforcement learning
   - machine learning
 header:

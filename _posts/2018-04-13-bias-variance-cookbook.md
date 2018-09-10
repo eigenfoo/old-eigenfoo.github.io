@@ -5,7 +5,6 @@ sits on extremely solid theoretical foundations, and has a ludicrously
 far-reaching scope of applicability."
 tags:
   - machine learning
-  - cookbook
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background10.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
