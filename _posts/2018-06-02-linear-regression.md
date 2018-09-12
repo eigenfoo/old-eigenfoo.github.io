@@ -114,13 +114,10 @@ minimizing the sum of squares of the residuals:
 
 $${\bf \hat{\beta}} = argmin \|{\bf y} - {\bf X}{\bf \beta}\|^2 $$
 
-Our estimate for $${\bf \beta}$$ then has a "miraculous" closed-form solution
-given by:
+Our estimate for $${\bf \beta}$$ then has a "miraculous" closed-form
+solution[^1] given by:
 
 $$ {\bf \hat{\beta}} = ({\bf X}^T {\bf X})^{-1} {\bf X} {\bf y} $$
-
-\<Insert obligatory footnote here about [the Moore-Penrose inverse a.k.a. the
-pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse)./>
 
 This solution is so (in)famous that it been blessed with a fairly universal
 name, but cursed with the unimpressive name _ordinary least squares_ (a.k.a.
@@ -354,3 +351,7 @@ response, instead of a continuous variable?), and [Bayesian linear
 regression](https://www.quantstart.com/articles/Bayesian-Linear-Regression-Models-with-PyMC3)
 offers an amazing way to quantify the uncertainty in your coefficients. Big
 world; happy hunting!
+
+---
+
+[^1]: Insert obligatory footnote here about [the Moore-Penrose inverse a.k.a. the pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse).
