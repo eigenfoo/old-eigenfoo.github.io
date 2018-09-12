@@ -190,7 +190,7 @@ here](https://github.com/eigenfoo/wanderings/blob/afcf37a8c6c2a2ac38f6708c1f3dd5
 
 ---
 
-[^1]: I've hopped on board the functional programming bandwagon, and couldn't help but think that to demonstrate this idea, I didn't need a framework, library or even class. Just two functions!
+[^1]: I've hopped on board the functional programming bandwagon, and couldn't help but think that to demonstrate this idea, I didn't need a framework, a library or even a class. Just two functions!
 
 [^2]: Davidson-Pilon, Cameron. "Multi-Armed Bandits." DataOrigami, 6 Apr. 2013, [dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits](https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits)
 
