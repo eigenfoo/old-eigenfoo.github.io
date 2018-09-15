@@ -35,12 +35,12 @@ It seemed like a clever pun at the time... but people keep asking, so maybe not.
 _Eigen_ is a German for _own_, but probably a better translation (especially for
 math terms like
 [eigenvalue](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors)) would
-be _beloning to_, or _characteristic of_. For example, an eigenvalue is the
-value _belonging to_ a matrix, or _characteristic of_ a matrix.
+be _belonging to_. For example, an eigenvalue is the value _belonging to_ a
+matrix.
 
 _Foo_ is a [placeholder name in computer
 programming](https://en.wikipedia.org/wiki/Foobar), and is basically a techier
-version of "blah" or "thing".
+version of "stuff" or "thing".
 
 So taken together, `eigenfoo` probably means something like "things
 belonging to [George]".
