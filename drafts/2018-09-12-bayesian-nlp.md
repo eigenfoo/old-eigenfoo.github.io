@@ -63,8 +63,10 @@ Some papers I read.
 
 ### Non-Negative Matrix Factorization (NMF)
 
-A [fairly well-known](https://en.wikipedia.org/wiki/Non-negative_matrix_factorization).
-[matrix factorization](http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html)
+A [fairly
+well-known](https://en.wikipedia.org/wiki/Non-negative_matrix_factorization).
+(but non-Bayesian!) [matrix
+factorization](http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html)
 [technique](https://arxiv.org/abs/1401.5226).
 
 Factorize your (entrywise non-negative) $$m \times n$$ matrix $$V$$ as
@@ -78,15 +80,46 @@ Enough said, I think.
 
 ### Probabilistic Matrix Factorization (PMF)
 
+Originally introduced as a paper at [NIPS
+2007](https://papers.nips.cc/paper/3208-probabilistic-matrix-factorization),
+_probabilistic matrix factorzation_ essentially the exact same model as NMF, but
+with uncorrelated (a.k.a. "spherical") multivariate Gaussian priors placed on
+the rows and columns of $$U$$ and $$V$$. Expressed as a hierarchical model, the
+graph would look like this:
 
+INSERT PMF GRAPH HERE
+
+Note that the priors are placed on the _rows_ of the $$U$$ and $$V$$ matrices.
+
+The authors then (somewhat disappointing) proceed to find the MAP estimate of
+the $$U$$ and $$V$$ matrices. They show that maximizing the posterior is
+equivalent to minimizing the sum-of-squared-errors loss function with two
+quadratic regularization terms:
+
+$$\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{M} {I_{ij} (R_{ij} - U_i^T V_j)^2} +
+\frac{\lambda_U}{2} \sum_{i=1}^{N} |U|_{Fro}^2 +
+\frac{\lambda_V}{2} \sum_{j=1}^{M} |V|_{Fro}^2 $$
+
+where $$I_{ij}$$ is 1 if document $$i$$ contains word $$j$$, and 0 otherwise.
+
+This loss function can be minimized via gradient descent, and implemented in
+your favorite deep learning framework (e.g. Tensorflow).
+
+The problem with this approach is that while the MAP estimate is often a
+reasonable point in low dimensions, it becomes very strange in high dimensions,
+and is usually not informative or special in any way. Read [Ferenc Huszár’s blog
+post](https://www.inference.vc/high-dimensional-gaussian-distributions-are-soap-bubble/)
+for more.
 
 ### Bayesian Probabilistic Matrix Factorization (BPMF)
+
+
 
 
 ---
 
 
-[^1]: Aggarwal, Charu C, and ChengXiang Zhai. “A Survey of Text Clustering Algorithms.” Mining Text Data, Springer, 2014, pp. 77–128. ([http://charuaggarwal.net/text-cluster.pdf](http://charuaggarwal.net/text-cluster.pdf))
+[^1]: Aggarwal, Charu C, and ChengXiang Zhai. "A Survey of Text Clustering Algorithms." Mining Text Data, Springer, 2014, pp. 77–128. ([http://charuaggarwal.net/text-cluster.pdf](http://charuaggarwal.net/text-cluster.pdf))
 
 [^2]: https://papers.nips.cc/paper/3208-probabilistic-matrix-factorization.pdf
 
