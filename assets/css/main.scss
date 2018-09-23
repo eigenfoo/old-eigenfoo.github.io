@@ -4,5 +4,12 @@
 
 @charset "utf-8";
 
+@font-face {
+    font-family: NicholsonGothic;
+    src: url("/assets/fonts/NicholsonGothic-Regular.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
