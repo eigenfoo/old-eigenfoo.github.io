@@ -24,7 +24,7 @@ as much of heavy machinery of MCMC as you need - by which I mean, just the
 `pm.sample()` method (a.k.a., as [Thomas
 Wiecki](http://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/) puts it, the
 _Magic Inference Button™_). This really frees up your mind to think about your
-data and model, which is really the heart and soul data science!
+data and model, which is really the heart and soul of data science!
 
 That being said however, I quickly realized that the water gets very deep very
 fast: I explored my data set, specified a hierarchical model that made sense to
