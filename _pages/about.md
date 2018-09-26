@@ -17,7 +17,7 @@ author_profile: true
 ![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
 
 Hello! My name is George, and this is my personal website. I'm a PyData
-ninja[^1], machine learner, math enthusiast and coffee ~~snob~~ ~~addict~~
+ninja, machine learner, math enthusiast and coffee ~~snob~~ ~~addict~~
 lover. (I also really like sushi.)
 
 I'm currently a senior at [The Cooper Union](http://cooper.edu/welcome) in New
