@@ -45,13 +45,14 @@ version of "stuff" or "thing".
 So taken together, `eigenfoo` probably means something like "things
 belonging to [George]".
 
-## What's your type? As in, typeface, not... you know.
+## What's your type? As in, typeface, not, uh. . .
+
+:wink:
 
 The amazing display font you see on this website is [Nicholson
 Gothic](http://fonts.plph.co/#nicholsongothic) from
 [Polyphony](http://polyphony.nyc/), an amazing creative collective based in New
 York. Check out their fonts [here](http://fonts.plph.co/)!
 
----
-
-[^1]: A title I feel is sufficiently vague to avoid lying by saying I'm a "data scientist", yet sufficiently specific to conjure images of Python and data science :smiley:
+The text font is Lato, pulled from [Google
+Fonts](https://fonts.google.com/specimen/Lato).
