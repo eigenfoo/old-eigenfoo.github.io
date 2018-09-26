@@ -49,7 +49,7 @@ belonging to [George]".
 
 :wink:
 
-The amazing display font you see on this website is [Nicholson
+The slick display font you see on this website is [Nicholson
 Gothic](http://fonts.plph.co/#nicholsongothic) from
 [Polyphony](http://polyphony.nyc/), an amazing creative collective based in New
 York. Check out their fonts [here](http://fonts.plph.co/)!
