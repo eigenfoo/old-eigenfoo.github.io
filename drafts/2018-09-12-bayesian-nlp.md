@@ -87,7 +87,9 @@ with uncorrelated (a.k.a. "spherical") multivariate Gaussian priors placed on
 the rows and columns of $$U$$ and $$V$$. Expressed as a hierarchical model, the
 graph would look like this:
 
-INSERT PMF GRAPH HERE
+<figure>
+    <a href="/assets/images/pmf.png"><img style="float: middle" src="/assets/images/pmf.png"></a>
+</figure>
 
 Note that the priors are placed on the _rows_ of the $$U$$ and $$V$$ matrices.
 
