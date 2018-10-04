@@ -17,7 +17,7 @@ author_profile: true
 ![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
 
 Hello! My name is George, and this is my personal website. I'm a PyData
-ninja[^1], machine learner, math enthusiast and coffee ~~snob~~ ~~addict~~
+ninja, machine learner, math enthusiast and coffee ~~snob~~ ~~addict~~
 lover. (I also really like sushi.)
 
 I'm currently a senior at [The Cooper Union](http://cooper.edu/welcome) in New
@@ -49,7 +49,7 @@ belonging to [George]".
 
 :wink:
 
-The amazing display font you see on this website is [Nicholson
+The slick display font you see on this website is [Nicholson
 Gothic](http://fonts.plph.co/#nicholsongothic) from
 [Polyphony](http://polyphony.nyc/), an amazing creative collective based in New
 York. Check out their fonts [here](http://fonts.plph.co/)!

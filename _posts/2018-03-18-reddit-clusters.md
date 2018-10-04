@@ -333,4 +333,5 @@ repository](https://github.com/eigenfoo/reddit-clusters).
 
 _This post was originally published [on
 Medium](https://medium.com/@_eigenfoo/understanding-hate-speech-on-reddit-through-text-clustering-7dc7675bccae)
-on May 18, 2018._
+on May 18, 2018. This post was also reprinted in the inaugural issue of Cooper
+Union's [UNION Journal](https://www.facebook.com/theunionjournal/)._
