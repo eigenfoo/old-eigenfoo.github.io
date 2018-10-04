@@ -82,10 +82,10 @@ Enough said, I think.
 
 Originally introduced as a paper at [NIPS
 2007](https://papers.nips.cc/paper/3208-probabilistic-matrix-factorization),
-_probabilistic matrix factorzation_ essentially the exact same model as NMF, but
-with uncorrelated (a.k.a. "spherical") multivariate Gaussian priors placed on
-the rows and columns of $$U$$ and $$V$$. Expressed as a hierarchical model, the
-graph would look like this:
+_probabilistic matrix factorzation_ is  essentially the exact same model as NMF,
+but with uncorrelated (a.k.a. "spherical") multivariate Gaussian priors placed
+on the rows and columns of $$U$$ and $$V$$. Expressed as a graphical model, PMF
+would look like this:
 
 <figure>
     <a href="/assets/images/pmf.png"><img style="float: middle" src="/assets/images/pmf.png"></a>
@@ -115,8 +115,38 @@ for more.
 
 ### Bayesian Probabilistic Matrix Factorization (BPMF)
 
+Strictly speaking, PMF is not a Bayesian model. After all, there aren't any
+priors or posteriors, only fixed hyperparameters and a MAP estimate. _Bayesian
+probabilistic matrix factorization_ is a fully Bayesian treatment of PMF.
 
+Instead of saying that the rows/columns of U and V are normally distributed with
+zero mean and some precision matrix, we place hyperpriors on the mean vector and
+precision matrices. The specific priors are Wishart priors on the covariance
+matrices (with scale matrix $$W_0$$ and $$\nu_0$$ degrees of freedom), and
+Gaussian priors on the means (with mean $$\mu_0$$ and and covariance equal to
+the covariance given by the Wishart prior). Expressed as a graphical model, BPMF
+would look like this:
 
+<figure>
+    <a href="/assets/images/bpmf.png"><img style="float: middle" src="/assets/images/bpmf.png"></a>
+</figure>
+
+Note that, as above, the priors are placed on the _rows_ of the $$U$$ and $$V$$
+matrices, and that $$n$$ is the dimensionality of latent space (i.e. the number
+of latent dimensions in the factorization).
+
+The authors then sample from the posterior distribution of $$U$$ and $$V$$ using
+a Gibbs sampler. Sampling takes several hours: somewhere between 5 to 180,
+depending on how many samples you want. Nevertheless, the authors demonstrate
+that BPMF can achieve more accurate and more robust results on the Netflix data
+set.
+
+I would propose several changes:
+ - Use an LKJ prior on the covariance matrices instead of a Wishart prior. [This
+   is known to be more numerically
+   stable](https://docs.pymc.io/notebooks/LKJ.html).
+ - Use a more robust sampler such as NUTS, or perhaps variational inference.
+   this is so we can achieve results faster, and iterate quicker.
 
 ---
 
