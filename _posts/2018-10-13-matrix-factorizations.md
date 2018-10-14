@@ -102,7 +102,8 @@ $$\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{M} {I_{ij} (R_{ij} - U_i^T V_j)^2} +
 \frac{\lambda_U}{2} \sum_{i=1}^{N} |U|_{Fro}^2 +
 \frac{\lambda_V}{2} \sum_{j=1}^{M} |V|_{Fro}^2 $$
 
-where $$I_{ij}$$ is 1 if document $$i$$ contains word $$j$$, and 0 otherwise.
+where $$|\cdot|_{Fro}$$ denotes the Frobenius norm, and $$I_{ij}$$ is 1 if document
+$$i$$ contains word $$j$$, and 0 otherwise.
 
 This loss function can be minimized via gradient descent, and implemented in
 your favorite deep learning framework (e.g. Tensorflow or PyTorch).
