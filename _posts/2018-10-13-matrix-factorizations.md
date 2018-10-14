@@ -82,7 +82,7 @@ Fairly simple: enough said, I think.
 
 Originally introduced as a paper at [NIPS
 2007](https://papers.nips.cc/paper/3208-probabilistic-matrix-factorization),
-_probabilistic matrix factorzation_ is essentially the exact same model as NMF,
+_probabilistic matrix factorization_ is essentially the exact same model as NMF,
 but with uncorrelated (a.k.a. "spherical") multivariate Gaussian priors placed
 on the rows and columns of $$U$$ and $$V$$. Expressed as a graphical model, PMF
 would look like this:
