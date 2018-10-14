@@ -1,5 +1,5 @@
 ---
-title: Probabilistic and Bayesian Matrix Factorization for Text Clustering
+title: Probabilistic and Bayesian Matrix Factorizations for Text Clustering
 excerpt: "Natural language processing is in a curious place right now. It's not
 immediately obvious how successful it's been, or how close the field is to
 viable, production-ready techniques (in the same way that, say, [computer vision
