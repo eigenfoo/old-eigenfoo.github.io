@@ -5,6 +5,7 @@ explain that later) where people (usually men) espouse an ideology predicated
 entirely on gender. 'Swallowers of the red pill', as they call themselves,
 maintain that it is _men_, not women, who are socially marginalized..."
 tags:
+  - reddit
   - machine learning
   - natural language processing
 header:
@@ -328,6 +329,12 @@ or look through images of the word clouds
 Finally, as has been said before, "Talk is cheap. Show me the code." For
 everything I’ve written to make these clusters, check out [this GitHub
 repository](https://github.com/eigenfoo/reddit-clusters).
+
+---
+
+**EDIT (11-08-2018):** If you're interested in the technical, data science side
+of the project, check out the slide deck and speaker notes from my recent talk
+on exactly that!
 
 ---
 
