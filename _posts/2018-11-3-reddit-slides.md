@@ -39,7 +39,7 @@ the slides have been scrubbed to be safe for work!
 
 ## Slides
 
-(Don't forget to take a look at the speaker notes! It's under _Open speaker
+(Don't forget to take a look at the speaker notes! They're under _Open speaker
 notes_.)
 
 <style>
