@@ -18,7 +18,9 @@ on well-known hateful and toxic subreddits, and collaborated with a
 cross-disciplinary team of artists, architects and engineers to present the
 findings at [The Cooper Union 2018 End of Year
 Show](https://cooper.edu/events-and-exhibitions/exhibitions/2018-student-exhibition).
-I also wrote [a blog post on my results](https://eigenfoo.xyz/reddit-clusters/).
+I also wrote [a blog post on my results](https://eigenfoo.xyz/reddit-clusters/),
+and [gave a talk on the data science that went into the
+project](https://eigenfoo.xyz/reddit-slides/).
 
 ## Software
 
