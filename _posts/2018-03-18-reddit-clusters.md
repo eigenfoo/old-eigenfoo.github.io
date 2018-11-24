@@ -3,13 +3,13 @@ title: Understanding Hate Speech on Reddit through Text Clustering
 excerpt: "Have you heard of `/r/TheRedPill`? It’s an online forum (a subreddit, but I’ll
 explain that later) where people (usually men) espouse an ideology predicated
 entirely on gender. 'Swallowers of the red pill', as they call themselves,
-maintain that it is _men_, not women, who are socially marginalized..."
+maintain that it is _men_, not women, who are socially marginalized…"
 tags:
   - reddit
   - machine learning
   - natural language processing
 header:
-  overlay_image: /assets/images/reddit.jpg
+  overlay_image: https://i.kym-cdn.com/entries/icons/original/000/017/390/reddit-snoo-vinyl-toy-16-1422482502-329653993671.pfHX0qSPQk6jv8Gb1QJf.jpg
   overlay_filter: 0.4
   caption: "Snoo the Reddit Alien! Photo credit: [KnowYourMeme](http://knowyourmeme.com/memes/snoo)"
 last_modified_at: 2018-03-18
@@ -20,7 +20,7 @@ last_modified_at: 2018-03-18
 
 Have you heard of `/r/TheRedPill`? It’s an online forum (a subreddit, but I’ll
 explain that later) where people (usually men) espouse an ideology predicated
-entirely on gender. "Swallowers of the red pill", as they call themselves,
+entirely on gender. “Swallowers of the red pill”, as they call themselves,
 maintain that it is _men_, not women, who are socially marginalized; that feminism
 is something between a damaging ideology and a symptom of societal retardation;
 that the patriarchy should actively assert its dominance over female
@@ -57,16 +57,16 @@ a related blog.
 
 The concept of the shit test very broad:
 
-> ... when somebody "gives you shit" and fucks around with your head to see how
+> … when somebody “gives you shit” and fucks around with your head to see how
 > you will react, what you are experiencing is typically a (series of) shit
 > test(s).
 
 A shit test is designed to test your temperament, or more colloquially,
-_"determine your frame"_.
+_“determine your frame”_.
 
-> Frame is a concept which essentially means "composure and self-control."
+> Frame is a concept which essentially means “composure and self-control”.
 >
-> ... if you can keep composure/seem unfazed and/or assert your boundaries
+> … if you can keep composure/seem unfazed and/or assert your boundaries
 > despite a shit test, generally speaking you will be considered to have passed
 > the shit test. If you get upset, offended, doubt yourself or show weakness in
 > any discernible way when shit tested, it will be generally considered that you
@@ -77,8 +77,8 @@ Finally, not only do shit tests test your frame, but they also serve a specific,
 > When it comes right down to it shit tests are typically women’s way of
 > flirting.
 >
-> ... Those who "pass" show they can handle the woman’s BS and is "on her
-> level", so to speak. This is where the evolutionary theory comes into play:
+> … Those who “pass” show they can handle the woman’s BS and is “on her
+> level”, so to speak. This is where the evolutionary theory comes into play:
 > you’re demonstrating her faux negativity doesn’t phase you [sic] and that
 > you’re an emotionally developed person who isn’t going to melt down at the
 > first sign of trouble. Ergo you’ll be able to protect her when threats to
@@ -133,10 +133,10 @@ The goal here is to understand what these subreddits are like, and expose their
 culture for people to see. To quote [Steve Huffman, Reddit’s
 CEO](https://www.inverse.com/article/43611-reddit-ceo-steve-huffman-hate-speech):
 
-> "I believe the best defense against racism and other repugnant views, both
+> “I believe the best defense against racism and other repugnant views, both
 > on Reddit and in the world, is instead of trying to control what people
 > can and cannot say through rules, is to repudiate these views in a free
-> conversation, and empower our communities to do so on Reddit."
+> conversation, and empower our communities to do so on Reddit.”
 
 And there’s no way we can refute and repudiate these deplorable views without
 knowing what those views are. And instead of spending hours of each of these
@@ -179,7 +179,7 @@ social/sexual exploits of the commenter.
 
 What is interesting is that, as sex-obsessed as `/r/TheRedPill` is, many
 swallowers (of the red pill) profess that sex is _not_ the purpose of the
-subreddit: the point is to becoming an "alpha male". Even more interesting,
+subreddit: the point is to becoming an “alpha male”. Even more interesting,
 there is more talk about what an alpha male _is_, and what kind of people
 _aren’t_ alpha, than there is about how people can _become_ alpha. This is the
 first cluster shown below, and comprises around 3% of all text on
@@ -201,7 +201,7 @@ and status, so when beta BS comes from their mouths, it’s seen as attractive
 because it balances out their already alpha state into that "mostly alpha but
 some beta" balance that makes women swoon.
 
-...
+…
 ```
 
 <figure class="half">
@@ -210,26 +210,26 @@ some beta" balance that makes women swoon.
 </figure>
 
 ```
-...
+…
 
 Since the dawn of humanity men were always in control, held all the power and
 women were happy because of it. But now men are forced to lose their masculinity
 and power or else they'll be killed/punished by other pussy men with big guns
 and laws who believe feminism is the right path for humanity.
 
-...
+…
 
 Feminism is really a blessing in disguise because it's a wake up call for men
 and a hidden cry for help from women for men to regain their masculinity,
 integrity and control over women.
 
-...
+…
 
 ```
 
 ## `/r/The_Donald`
 
-You may have already heard of `/r/The_Donald` (a.k.a. the "pro-Trump cesspool"),
+You may have already heard of `/r/The_Donald` (a.k.a. the “pro-Trump cesspool”),
 famed for their [takeover of the Reddit front
 page](https://en.wikipedia.org/wiki//r/The_Donald#Conflict_with_Reddit_management),
 and their [involvement in several recent
@@ -238,15 +238,15 @@ may therefore be surprising to learn that there is an iota of lucid discussion
 that goes on, although in a jeering, bullying tone.
 
 `/r/The_Donald` is the subreddit which has developed the most language and inside
-jokes: from "nimble navigators" to "swamp creatures", "spezzes" to the
-"Trumpire"… Explaining these memes would take too long: reach out, or Google, if
+jokes: from “nimble navigators” to “swamp creatures”, “spezzes” to the
+“Trumpire”… Explaining these memes would take too long: reach out, or Google, if
 you really want to know.
 
 The first cluster accounts for 5% of all text on `/r/The_Donald`, and contains
 (relatively) coherent arguments both for and against net neutrality. The second
 cluster accounts for 1% of the all text on `/r/The_Donald`, and is actually from
 the subreddit’s `MAGABrickBot`, which is a bot that keeps count of how many times
-the word "brick" has been used in comments, by automatically generating this
+the word “brick” has been used in comments, by automatically generating this
 comment.
 
 ```
@@ -304,7 +304,7 @@ whatever.
 </figure>
 
 ```
-...
+…
 
 Also, the distinction between bisexual and gay is academic. If you do a gay
 thing, you have done a gay thing. That's what "being gay" means to a LOT of
@@ -326,7 +326,7 @@ files
 or look through images of the word clouds
 [here](https://github.com/eigenfoo/reddit-clusters/tree/master/wordclouds/images).
 
-Finally, as has been said before, "Talk is cheap. Show me the code." For
+Finally, as has been said before, “Talk is cheap. Show me the code.” For
 everything I’ve written to make these clusters, check out [this GitHub
 repository](https://github.com/eigenfoo/reddit-clusters).
 

@@ -5,7 +5,7 @@ excerpt: "I was recently inspired by this following PyData London talk by
 great tricks to make simple, small-brain models really work wonders, and he
 emphasizes thinking about your problem in a logical way over trying to use
 _(Tensorflow)_ cutting-edge or _(deep learning)_ hyped-up methods just for the
-sake of using them..."
+sake of using them…"
 tags:
   - mathematics
   - statistics
@@ -21,7 +21,7 @@ Warmerdam](http://koaning.io/). It's a great talk: he has a lot of great tricks
 to make simple, small-brain models really work wonders, and he emphasizes
 thinking about your problem in a logical way over trying to use cutting-edge
 _(Tensorflow)_ or hyped-up _(deep learning)_ methods just for the sake of using
-them - something I'm amazed that people seem to need to be reminded of.
+them — something I'm amazed that people seem to need to be reminded of.
 
 <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/68ABAU_V8qI?controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 
@@ -52,7 +52,7 @@ various flavors of linear regression and how everything hangs together.
 
 The basic idea is this: we have some number that we're interested in. This
 number could be the price of a stock, the number of stars a restaurant has on
-Yelp... Let's denote this _number-that-we-are-interested-in_ by the letter
+Yelp… Let's denote this _number-that-we-are-interested-in_ by the letter
 $$y$$. Occasionally, we may have multiple observations for $$y$$ (e.g. we
 monitored the price of the stock over many days, or we surveyed many restaurants
 in a neighborhood). In this case, we stack these values of $$y$$ and consider
@@ -114,7 +114,7 @@ minimizing the sum of squares of the residuals:
 
 $${\bf \hat{\beta}} = argmin \|{\bf y} - {\bf X}{\bf \beta}\|^2 $$
 
-Our estimate for $${\bf \beta}$$ then has a "miraculous" closed-form
+Our estimate for $${\bf \beta}$$ then has a “miraculous” closed-form
 solution[^1] given by:
 
 $$ {\bf \hat{\beta}} = ({\bf X}^T {\bf X})^{-1} {\bf X} {\bf y} $$
@@ -131,7 +131,7 @@ miracle. If we can assume that $$\epsilon$$ is zero-mean Gaussian, the least
 squares estimate is the maximum likelihood estimate. Even better, if the errors
 are uncorrelated and homoskedastic, then the least squares estimate is the best
 linear unbiased estimator. _Basically, this is very nice._ If most of that flew
-over your head, don't worry - in fact, forget I said anything at all.
+over your head, don't worry — in fact, forget I said anything at all.
 
 ## Why the Small-Brain Solution Sucks
 
@@ -274,23 +274,23 @@ where $$P$$ is some function of $${\bf \beta}$$. Common choices for $$P$$ are:
 
 While regularized regression has empirically been found to be more resilient to
 outliers, it comes at a cost: the regression coefficients lose their nice
-interpretation of "the effect on the regressand of increasing this regressor by
-one unit". Indeed, regularization can be thought of as telling the universe: "I
+interpretation of “the effect on the regressand of increasing this regressor by
+one unit”. Indeed, regularization can be thought of as telling the universe: “I
 don't care about interpreting the regression coefficients, so long as I get a
-reasonable fit that is robust to overfitting". For this reason, regularization
+reasonable fit that is robust to overfitting”. For this reason, regularization
 is usually used for prediction problems, and not for inference.
 
 An alternative solution would be to apply some pre-processing to our data: for
 example, some anomaly detection on our data points could remove outliers from
 the consideration of our linear regression. However, this method also comes with
-its own problems - what if it removes the wrong points? It has the potential to
+its own problems — what if it removes the wrong points? It has the potential to
 really mess up our model if it did.
 
 The main takeaway, then, is that _outliers kinda just suck_.
 
 ### Collinearity
 
-Collinearity a problem that comes and goes - sometimes it's there, othertimes
+Collinearity a problem that comes and goes — sometimes it's there, othertimes
 not, and it's better to always pretend it's there than it is to risk forgetting
 about it.
 
@@ -354,4 +354,4 @@ world; happy hunting!
 
 ---
 
-[^1]: Insert obligatory footnote here about [the Moore-Penrose inverse a.k.a. the pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse).
+[^1]: Insert obligatory footnote here about [the Moore–Penrose inverse a.k.a. the pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse).

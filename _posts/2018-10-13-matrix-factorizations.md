@@ -20,14 +20,14 @@ viable, production-ready techniques (in the same way that, say, [computer vision
 is](https://clarifai.com/models/)). For example, [Sebastian
 Ruder](https://ruder.io) predicted that the field is [close to a watershed
 moment](https://thegradient.pub/nlp-imagenet/), and that within a year we'll
-have downloadable language models (that was six months ago, and, uh...).
+have downloadable language models (that was six months ago, and, uh…).
 However, [Ana Marasović](https://amarasovic.github.io/) points out that there is
 [a tremendous amount of work demonstrating
 that](https://thegradient.pub/frontiers-of-generalization-in-natural-language-processing/):
 
-> "despite good performance on benchmark datasets, modern NLP techniques are
+> “despite good performance on benchmark datasets, modern NLP techniques are
 > nowhere near the skill of humans at language understanding and reasoning when
-> making sense of novel natural language inputs".
+> making sense of novel natural language inputs”.
 
 I am confident that I am very bad at making lofty predictions about the future.
 Instead, I'll try to talk about something I know a bit about: simple solutions
@@ -83,7 +83,7 @@ Fairly simple: enough said, I think.
 Originally introduced as a paper at [NIPS
 2007](https://papers.nips.cc/paper/3208-probabilistic-matrix-factorization),
 _probabilistic matrix factorization_ is essentially the exact same model as NMF,
-but with uncorrelated (a.k.a. "spherical") multivariate Gaussian priors placed
+but with uncorrelated (a.k.a. “spherical”) multivariate Gaussian priors placed
 on the rows and columns of $$U$$ and $$V$$. Expressed as a graphical model, PMF
 would look like this:
 

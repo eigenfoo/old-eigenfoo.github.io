@@ -1,8 +1,8 @@
 ---
-title: Cookbook - Bayesian Modelling with PyMC3
+title: Cookbook — Bayesian Modelling with PyMC3
 excerpt: "Recently I've started using [PyMC3](https://github.com/pymc-devs/pymc3) for
 Bayesian modelling, and it's an amazing piece of software! The API only exposes
-as much of heavy machinery of MCMC as you need - by which I mean, just the
+as much of heavy machinery of MCMC as you need — by which I mean, just the
 `pm.sample()` method."
 tags:
   - bayesianism
@@ -20,7 +20,7 @@ last_modified_at: 2018-06-24
 
 Recently I've started using [PyMC3](https://github.com/pymc-devs/pymc3) for
 Bayesian modelling, and it's an amazing piece of software! The API only exposes
-as much of heavy machinery of MCMC as you need - by which I mean, just the
+as much of heavy machinery of MCMC as you need — by which I mean, just the
 `pm.sample()` method (a.k.a., as [Thomas
 Wiecki](http://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/) puts it, the
 _Magic Inference Button™_). This really frees up your mind to think about your
@@ -28,7 +28,7 @@ data and model, which is really the heart and soul of data science!
 
 That being said however, I quickly realized that the water gets very deep very
 fast: I explored my data set, specified a hierarchical model that made sense to
-me, hit the _Magic Inference Button™_, and... uh, what now?  I blinked at the
+me, hit the _Magic Inference Button™_, and… uh, what now?  I blinked at the
 angry red warnings the sampler spat out.
 
 So began by long, rewarding and ongoing exploration of Bayesian modelling. This
@@ -43,7 +43,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 
 ## For the Uninitiated
 
-- First of all, _welcome!_ It's a brave new world out there - where statistics
+- First of all, _welcome!_ It's a brave new world out there — where statistics
   is cool, Bayesian and (if you're lucky) even easy. Dive in!
 
 ### Bayesian Modelling
@@ -55,12 +55,12 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 - For an introduction to general Bayesian methods and modelling, I really liked
   [Cam Davidson Pilon's _Bayesian Methods for
   Hackers_](http://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/):
-  it really made the whole "thinking like a Bayesian" thing click for me.
+  it really made the whole “thinking like a Bayesian” thing click for me.
 
 - If you're willing to spend some money, I've heard that [_Doing Bayesian Data
   Analysis_ by
   Kruschke](https://sites.google.com/site/doingbayesiandataanalysis/) (a.k.a.
-  _"the puppy book"_) is for the bucket list.
+  _“the puppy book”_) is for the bucket list.
 
 - Here we come to a fork in the road. The central problem in Bayesian modelling
   is this: given data and a probabilistic model that we think models this data,
@@ -119,7 +119,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 
 - Try to avoid discrete latent variables, and discrete parameters in general.
   There is no good method to sample them in a smart way (since discrete
-  parameters have no gradients); and with "naïve" samplers (i.e. those that do
+  parameters have no gradients); and with “naïve” samplers (i.e. those that do
   not take advantage of the gradient), the number of samples one needs to make
   good inferences generally scales exponentially in the number of parameters.
   For an instance of this, see [this example on marginal Gaussian
@@ -168,7 +168,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 
 ## Model Implementation
 
-- At the risk of over-generalizing, there are only two things that can go wrong
+- At the risk of overgeneralizing, there are only two things that can go wrong
   in Bayesian modelling: either your data is wrong, or your model is wrong. And
   it is a hell of a lot easier to debug your data than it is to debug your
   model. So before you even try implementing your model, plot histograms of your
@@ -195,7 +195,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   ```
 
 - You might find yourself in a situation in which you want to use a centered
-  parameterization for a portion of your data set, but a non-centered
+  parameterization for a portion of your data set, but a noncentered
   parameterization for the rest of your data set (see below for what these
   parameterizations are). There's a useful idiom for you here:
 
@@ -220,7 +220,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 
 - Have faith in PyMC3's default initialization and sampling settings: someone
   much more experienced than us took the time to choose them! NUTS is the most
-  efficient MCMC sampler known to man, and `jitter+adapt_diag`... well, you get
+  efficient MCMC sampler known to man, and `jitter+adapt_diag`… well, you get
   the point.
 
 - However, if you're truly grasping at straws, the more powerful initialization
@@ -259,8 +259,8 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
    ```
 
 3. Check the traceplot (`pm.traceplot(trace)`). You're looking for traceplots
-   that look like "fuzzy caterpillars". If the trace moves into some region and
-   stays there for a long time (a.k.a. there are some "sticky regions"), that's
+   that look like “fuzzy caterpillars”. If the trace moves into some region and
+   stays there for a long time (a.k.a. there are some “sticky regions”), that's
    cause for concern! That indicates that once the sampler moves into some
    region of parameter space, it gets stuck there (probably due to high
    curvature or other bad topological properties).
@@ -270,7 +270,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 
    - `pm.plot_posterior(trace)`: check if your posteriors look reasonable.
    - `pm.forestplot(trace)`: check if your variables have reasonable credible
-     intervals, and Gelman-Rubin scores close to 1.
+     intervals, and Gelman–Rubin scores close to 1.
    - `pm.autocorrplot(trace)`: check if your chains are impaired by high
      autocorrelation. Also remember that thinning your chains is a waste of
      time at best, and deluding yourself at worst. See Chris Fonnesbeck's
@@ -288,7 +288,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 5. PyMC3 has a nice helper function to pretty-print a summary table of the
    trace: `pm.summary(trace)` (I usually tack on a `.round(2)` for my sanity).
    Look out for:
-   - the $$\hat{R}$$ values (a.k.a. the Gelman-Rubin statistic, a.k.a. the
+   - the $$\hat{R}$$ values (a.k.a. the Gelman–Rubin statistic, a.k.a. the
      potential scale reduction factor, a.k.a. the PSRF): are they all close to
      1? If not, something is _horribly_ wrong. Consider respecifying or
      reparameterizing your model. You can also inspect these in the forest plot.
@@ -316,7 +316,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 
 > `There were N divergences after tuning. Increase 'target_accept' or reparameterize.`
 >
->   \- The _Magic Inference Button™_
+>   \— The _Magic Inference Button™_
 
 - Divergences in HMC occur when the sampler finds itself in regions of extremely
   high curvature (such as the opening of the a hierarchical funnel). Broadly
@@ -336,7 +336,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   the sampler just hasn't started the mixing phase and is still trying to find
   the typical set.
 
-- Consider a _non-centered_ parameterization. This is an amazing trick: it all boils down
+- Consider a _noncentered_ parameterization. This is an amazing trick: it all boils down
   to the familiar equation $$X = \sigma Z + \mu$$ from STAT 101, but it honestly
   works wonders. See [Thomas Wiecki's blog
   post](http://twiecki.github.io/blog/2017/02/08/bayesian-hierchical-non-centered/)
@@ -353,31 +353,31 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   `draws=10000`! Put it this way: if you have a single-digit number of traces,
   you should be worried, and checking your posteriors, traces, correlation
   matrix, $$\hat{R}$$s etc., and if you have a double-digit number of traces you
-  should be alarmed... and doing exactly the same thing.
+  should be alarmed… and doing exactly the same thing.
 
 ### Other Common Warnings
 
 - It's worth noting that far and away the worst warning to get is the one about
   divergences. While a divergent chain indicates that your inference may be
   flat-out _invalid_, the rest of these warnings indicate that your inference is
-  merely (lol, "merely") _inefficient_.
+  merely (lol, “merely”) _inefficient_.
 
 - `The number of effective samples is smaller than XYZ for some parameters.`
   - Quoting [Junpeng Lao on
     discourse.pymc3.io](https://discourse.pymc.io/t/the-number-of-effective-samples-is-smaller-than-25-for-some-parameters/1050/3):
-    "A low number of effective samples is usually an indication of strong
-    autocorrelation in the chain."
+    “A low number of effective samples is usually an indication of strong
+    autocorrelation in the chain.”
   - Make sure you're using an efficient sampler like NUTS. (And not, for
-    instance, Metropolis-Hastings. (I mean seriously, it's the 21st century, why
-    would you ever want Metropolis-Hastings?))
-  - Tweak the acceptance probability (`target_accept`) - it should be large
+    instance, Metropolis–Hastings. (I mean seriously, it's the 21st century, why
+    would you ever want Metropolis–Hastings?))
+  - Tweak the acceptance probability (`target_accept`) — it should be large
     enough to ensure good exploration, but small enough to not reject all
     proposals and get stuck.
 
 - `The gelman-rubin statistic is larger than XYZ for some parameters. This
   indicates slight problems during sampling.`
   - When PyMC3 samples, it runs several chains in parallel. Loosely speaking,
-    the Gelman-Rubin statistic measures how similar these chains are. Ideally it
+    the Gelman–Rubin statistic measures how similar these chains are. Ideally it
     should be close to 1.
   - Increasing the `tune` parameter may help, for the same reasons as described
     in the _Fixing Divergences_ section.
@@ -394,7 +394,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 ### Model Reparameterization
 
 - Countless warnings have told you to engage in this strange activity of
-  "reparameterization". What even is that? Luckily, the [Stan User
+  “reparameterization”. What even is that? Luckily, the [Stan User
   Manual](https://github.com/stan-dev/stan/releases/download/v2.17.1/stan-reference-2.17.1.pdf)
   (specifically the _Reparameterization and Change of Variables_ section) has
   an excellent explanation of reparameterization, and even some practical tips
@@ -405,16 +405,16 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   help: this stuff really comes from a combination of intuition, statistical
   knowledge and good ol' experience. I can, however, cite some examples to give
   you a better idea.
-  - The non-centered parameterization is a classic example. If you have a
-    parameter whose mean and variance you are also modelling, the non-centered
+  - The noncentered parameterization is a classic example. If you have a
+    parameter whose mean and variance you are also modelling, the noncentered
     parameterization decouples the sampling of mean and variance from the
     sampling of the parameter, so that they are now independent. In this way, we
-    avoid "funnels".
+    avoid “funnels”.
   - The [_horseshoe
     distribution_](http://proceedings.mlr.press/v5/carvalho09a.html) is known to
     be a good shrinkage prior, as it is _very_ spikey near zero, and has _very_
     long tails. However, modelling it using one parameter can give multimodal
-    posteriors - an exceptionally bad result. The trick is to reparameterize and
+    posteriors — an exceptionally bad result. The trick is to reparameterize and
     model it as the product of two parameters: one to create spikiness at zero,
     and one to create long tails (which makes sense: to sample from the
     horseshoe, take the product of samples from a normal and a half-Cauchy).
@@ -455,12 +455,12 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 3. Broadly speaking, there are four kinds of bad geometries that your posterior
    can suffer from:
    - highly correlated posteriors: this will probably cause divergences or
-     traces that don't look like "fuzzy caterpillars". Either look at the
+     traces that don't look like “fuzzy caterpillars”. Either look at the
      jointplots of each pair of variables, or look at the correlation matrix of
      all variables.  Try using a centered parameterization, or reparameterize in
      some other way, to remove these correlations.
-   - posteriors that form "funnels": this will probably cause divergences. Try
-     using a non-centered parameterization.
+   - posteriors that form “funnels”: this will probably cause divergences. Try
+     using a noncentered parameterization.
    - long tailed posteriors: this will probably raise warnings about
      `max_treedepth` being exceeded. If your data has long tails, you should
      model that with a long-tailed distribution. If your data doesn't have long
@@ -480,7 +480,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 5. Run [_posterior predictive
    checks_](https://docs.pymc.io/notebooks/posterior_predictive.html) (a.k.a.
    PPCs): sample from your posterior, plug it back in to your model, and
-   "generate new data sets". PyMC3 even has a nice function to do all this for
+   “generate new data sets”. PyMC3 even has a nice function to do all this for
    you: `pm.sample_ppc`. But what do you do with these new data sets? That's a
    question only you can answer! The point of a PPC is to see if the generated
    data sets reproduce patterns you care about in the observed real data set,
