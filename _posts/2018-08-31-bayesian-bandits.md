@@ -28,7 +28,7 @@ MCMC sampling and suffering, by demonstrating a Bayesian approach to a classic
 reinforcement learning problem: the _multi-armed bandit_.
 
 The problem is this: imagine a gambler at a row of slot machines (each machine
-being a "one-armed bandit"), who must devise a strategy so as to maximize
+being a “one-armed bandit”), who must devise a strategy so as to maximize
 rewards. This strategy includes which machines to play, how many times to play
 each machine, in which order to play them, and whether to continue with the
 current machine or try a different machine.
@@ -124,9 +124,9 @@ Here's what we need to change:
 - The rewards distribution on line 5 (in practice, you don't get to pick this,
   so _technically_ there's nothing to change if you're doing this in
   production!)
-- The sampling from the prior on lines 17-18
-- The variables you need to keep track of and update rule on lines 12-13 and
-  24-25.
+- The sampling from the prior on lines 17–18
+- The variables you need to keep track of and update rule on lines 12–13 and
+  24–25.
 
 Without further ado:
 
@@ -192,6 +192,6 @@ here](https://github.com/eigenfoo/wanderings/blob/afcf37a8c6c2a2ac38f6708c1f3dd5
 
 [^1]: I've hopped on board the functional programming bandwagon, and couldn't help but think that to demonstrate this idea, I didn't need a framework, a library or even a class. Just two functions!
 
-[^2]: Davidson-Pilon, Cameron. "Multi-Armed Bandits." DataOrigami, 6 Apr. 2013, [dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits](https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits)
+[^2]: Davidson-Pilon, Cameron. “Multi-Armed Bandits.” DataOrigami, 6 Apr. 2013, [dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits](https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits)
 
 [^3]: [arXiv:1111.1797](https://arxiv.org/abs/1111.1797)

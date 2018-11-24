@@ -1,5 +1,5 @@
 ---
-title: Modelling Hate Speech on Reddit - A Three-Act Play (Slide Deck)
+title: Modelling Hate Speech on Reddit — A Three-Act Play (Slide Deck)
 excerpt: "In this talk, I present a recent project to model hate speech on
 Reddit. In three acts, I chronicle the thought processes and stumbling blocks of
 the project, with each act applying a different form of machine learning:
