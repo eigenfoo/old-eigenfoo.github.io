@@ -10,33 +10,41 @@ main:
   #   url: /sitemap/
 
 blogroll:
-    - title: "Publications"
+    - title: "Company Blogs"
       children:
-        - title: "Distill"
-          url: https://distill.pub/
-        - title: "The Gradient"
-          url: https://thegradient.pub/
+        - title: "Etsy Engineering"
+          url: https://codeascraft.com/
         - title: "Explosion AI"
           url: https://explosion.ai/blog/
-        - title: "Stats & Bots"
-          url: https://blog.statsbot.co/
-        - title: "fast.ai"
-          url: http://www.fast.ai/
+        - title: "Facebook Research"
+          url: https://research.fb.com/
         - title: "FastML"
           url: http://fastml.com/
+        - title: "Generable"
+          url: https://www.generable.com/blog/
+        - title: "Google AI"
+          url: https://ai.googleblog.com/
+        - title: "Uber Engineering"
+          url: https://eng.uber.com/
+        - title: "Stitch Fix Technology"
+          url: https://multithreaded.stitchfix.com/blog/
     - title: "Personal Blogs"
       children:
-        - title: "Jake VanderPlas"
-          url: https://jakevdp.github.io/
+        - title: "Austin Rochford"
+          url: https://austinrochford.com/
         - title: "Chris Olah"
           url: http://colah.github.io/
-        - title: "Jeff Knupp"
-          url: https://jeffknupp.com/
-        - title: "Thomas Wiecki"
-          url: http://twiecki.github.io/
-        - title: "Ines Montani"
-          url: http://ines.io/
+        - title: "Colin Carroll"
+          url: https://colindcarroll.com/
         - title: "Edwin Chen"
           url: http://blog.echen.me/
-        - title: "Radim Řehůřek"
-          url: https://radimrehurek.com/blog/
+        - title: "Ferenc Huszár"
+          url: https://www.inference.vc/
+        - title: "Sebastian Raschka"
+          url: https://sebastianraschka.com/blog/index.html
+        - title: "Sebastian Ruder"
+          url: http://ruder.io/
+        - title: "Thomas Wiecki"
+          url: http://twiecki.github.io/
+        - title: "Will Wolf"
+          url: http://willwolf.io/
