@@ -158,7 +158,7 @@ fits the rest of the data worse, in order to accommodate that single outlier.
 
 <img style="float: middle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Anscombe%27s_quartet_3.svg/990px-Anscombe%27s_quartet_3.svg.png">
 
-### Heteroskedasticity and Correlated Residuals
+### Heteroskedasticity and correlated residuals
 
 Baked into the OLS estimate is an implicit assumption that the $$\epsilon$$s all
 have the same variance. That is, the amount of noise in our data is independent
@@ -196,7 +196,7 @@ the actual inversion becomes an extremely sensitive operation and is liable to
 give you nonsensically large or small regression coefficients, which will impact
 model performance.
 
-### Too Many Features
+### Too many features
 
 Having more data may be a good thing, but more specifically, having more
 _observations_ is a good thing. Having more _features_ might not be a great
@@ -214,7 +214,7 @@ Here I'll discuss some add-ons and plugins you can use to upgrade your Ordinary
 Least Squares Linear Regression™ to cope with the four problems I described
 above.
 
-### Heteroskedasticity and Correlated Residuals
+### Heteroskedasticity and correlated residuals
 
 To cope with different levels of noise, we can turn to *generalized least
 squares* (a.k.a. GLS), which is basically a better version of ordinary least
@@ -316,7 +316,7 @@ regression](https://en.wikipedia.org/wiki/Partial_least_squares_regression).
 It's a bit more mathematically involved, and I definitely don't have the time to
 do it full justice here. Google!
 
-### Too Many Features
+### Too many features
 
 Having too many features to choose from sounds like the first-world problem of
 data science, but it opens up the whole world of high-dimensional statistics and

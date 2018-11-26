@@ -81,7 +81,7 @@ next. E.g. instead of simply sampling from our priors, we could use the
 upper bound of the 90% credible region, or some dynamic quantile of the
 posterior (as in Bayes UCB). See Data Origami[^2] for more information.
 
-### Stochastic (a.k.a. Stationary) Bandits
+### Stochastic (a.k.a. stationary) bandits
 
 Let's take this algorithm for a spin! Assume we have rewards which are Bernoulli
 distributed (this would be the situation we face when e.g. modelling
@@ -109,7 +109,7 @@ GitHub](https://github.com/eigenfoo/wanderings/blob/afcf37a8c6c2a2ac38f6708c1f3d
     <a href="/assets/images/beta-binomial.png"><img style="float: middle" src="/assets/images/beta-binomial.png"></a>
 </figure>
 
-### Generalizing to Conjugate Models
+### Generalizing to conjugate models
 
 In fact, this algorithm isn't just limited to Bernoulli-distributed rewards: it
 will work for any [conjugate
@@ -141,7 +141,7 @@ considering how much of a pain MCMC or approximate inference methods would be,
 compared to literal _counting_. Conjugate models aren't just textbook examples:
 they're _(gasp)_ actually useful!
 
-### Generalizing to Arbitrary Rewards Distributions
+### Generalizing to arbitrary rewards distributions
 
 OK, so if we have a conjugate model, we can use Thompson sampling to solve the
 multi-armed bandit problem. But what if our rewards distribution doesn't have a

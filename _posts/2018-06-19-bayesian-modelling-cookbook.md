@@ -46,7 +46,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 - First of all, _welcome!_ It's a brave new world out there — where statistics
   is cool, Bayesian and (if you're lucky) even easy. Dive in!
 
-### Bayesian Modelling
+### Bayesian modelling
 
 - If you don't know any probability, I'd recommend [Michael
   Betancourt's](https://betanalpha.github.io/assets/case_studies/probability_theory.html)
@@ -65,7 +65,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 - Here we come to a fork in the road. The central problem in Bayesian modelling
   is this: given data and a probabilistic model that we think models this data,
   how do we find the posterior distribution of the model's parameters? There are
-  currently two good solutions to this problem. One is Markov chain Monte Carlo
+  currently two good solutions to this problem. One is Markov-chain Monte Carlo
   sampling (a.k.a. MCMC sampling), and the other is variational inference
   (a.k.a. VI). Both methods are mathematical Death Stars: extremely powerful but
   incredibly complicated. Nevertheless, I think it's important to get at least a
@@ -74,7 +74,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   around longer, we know that there are sufficiently robust tools to help you,
   and there's a lot more support/documentation out there.
 
-### Markov Chain Monte Carlo
+### Markov-chain Monte Carlo
 
 - For a good high-level introduction to MCMC, I liked [Michael Betancourt's
   StanCon 2017
@@ -85,7 +85,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 - For a more in-depth (and mathematical) treatment of MCMC, I'd check out his
   [paper on Hamiltonian Monte Carlo](https://arxiv.org/abs/1701.02434).
 
-### Variational Inference
+### Variational inference
 
 - VI has been around for a while, but it was only in 2017 (2 years ago, at the
   time of writing) that _automatic differentiation variational inference_ was
@@ -133,7 +133,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   statistics, and even though their APIs are quite different, the mathematical
   theory all translates over.
 
-### Hierarchical Models
+### Hierarchical models
 
 - First of all, hierarchical models are amazing! [The PyMC3
   docs](https://docs.pymc.io/notebooks/GLM-hierarchical.html) opine on this at
@@ -312,7 +312,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 
    > If you're having computational problems, probably your model is wrong.
 
-### Fixing Divergences
+### Fixing divergences
 
 > `There were N divergences after tuning. Increase 'target_accept' or reparameterize.`
 >
@@ -355,7 +355,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   matrix, $$\hat{R}$$s etc., and if you have a double-digit number of traces you
   should be alarmed… and doing exactly the same thing.
 
-### Other Common Warnings
+### Other common warnings
 
 - It's worth noting that far and away the worst warning to get is the one about
   divergences. While a divergent chain indicates that your inference may be
@@ -391,7 +391,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   - Yeah, what the _Magic Inference Button™_ says: try increasing
     `max_treedepth` or `target_accept`.
 
-### Model Reparameterization
+### Model reparameterization
 
 - Countless warnings have told you to engage in this strange activity of
   “reparameterization”. What even is that? Luckily, the [Stan User
