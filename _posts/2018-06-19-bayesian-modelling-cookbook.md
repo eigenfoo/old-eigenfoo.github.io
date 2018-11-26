@@ -316,7 +316,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
 
 > `There were N divergences after tuning. Increase 'target_accept' or reparameterize.`
 >
->   \— The _Magic Inference Button™_
+>  — The _Magic Inference Button™_
 
 - Divergences in HMC occur when the sampler finds itself in regions of extremely
   high curvature (such as the opening of the a hierarchical funnel). Broadly
