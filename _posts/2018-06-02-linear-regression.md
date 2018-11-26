@@ -112,7 +112,7 @@ that's the case. So,
 The simplest, small-brain way of getting our parameter $${\bf \beta}$$ is by
 minimizing the sum of squares of the residuals:
 
-$${\bf \hat{\beta}} = argmin \|{\bf y} - {\bf X}{\bf \beta}\|^2 $$
+$${\bf \hat{\beta}} = \text{argmin} \|{\bf y} - {\bf X}{\bf \beta}\|^2 $$
 
 Our estimate for $${\bf \beta}$$ then has a “miraculous” closed-form
 solution[^1] given by:
@@ -226,11 +226,11 @@ on more valuable data points (i.e. those not impaired by noise or correlation).
 
 Mathematically, the OLS estimate is given by
 
-$${\bf \hat{\beta}} = argmin \|{\bf y} - {\bf X}{\bf \beta}\|^2 $$
+$${\bf \hat{\beta}} = \text{argmin} \|{\bf y} - {\bf X}{\bf \beta}\|^2 $$
 
 whereas the GLS estimate is given by
 
-$${\bf \hat{\beta}} = argmin ({\bf y} - {\bf X}{\bf \beta})^T {\bf \Sigma} ({\bf y} - {\bf X}{\bf \beta})$$
+$${\bf \hat{\beta}} = \text{argmin} ({\bf y} - {\bf X}{\bf \beta})^T {\bf \Sigma} ({\bf y} - {\bf X}{\bf \beta})$$
 
 where $${\bf \Sigma}$$ is the _known_ covariance matrix of the residuals.
 
@@ -257,11 +257,11 @@ heteroskedasticity or correlation).
 
 Recall that OLS minimizes the sum of squares (of residuals):
 
-$${\bf \hat{\beta}} = argmin \|{\bf y} - {\bf X}{\bf \beta}\|^2 $$
+$${\bf \hat{\beta}} = \text{argmin} \|{\bf y} - {\bf X}{\bf \beta}\|^2 $$
 
 A _regularized estimation_ scheme adds a penalty term on the size of the coefficients:
 
-$${\bf \hat{\beta}} = argmin \|{\bf y} - {\bf X}{\bf \beta}\|^2 + P({\bf \beta}) $$
+$${\bf \hat{\beta}} = \text{argmin} \|{\bf y} - {\bf X}{\bf \beta}\|^2 + P({\bf \beta}) $$
 
 where $$P$$ is some function of $${\bf \beta}$$. Common choices for $$P$$ are:
 
