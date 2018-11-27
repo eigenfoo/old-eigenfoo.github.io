@@ -4,14 +4,14 @@ excerpt:
 tags:
   - bayesianism
 header:
-  overlay_image: /assets/images/cool-backgrounds/cool-background1.png
+  overlay_image: /assets/images/cool-backgrounds/cool-background6.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
 last_modified_at:
 ---
 
 This post is to expose the inner workings of Bayesian inference.
 
-## Markov-chain Monte Carlo
+## Markov-Chain Monte Carlo
 
 ### For the uninitiated
 
@@ -31,6 +31,9 @@ This post is to expose the inner workings of Bayesian inference.
    Dynamics](http://www.mcmchandbook.net/HandbookChapter5.pdf) by Radford Neal
 4. [Hamiltonian Monte Carlo
    explained](https://arogozhnikov.github.io/2016/12/19/markov_chain_monte_carlo.html)
+5. [Hamiltonian Monte Carlo in
+   PyMC3](https://colindcarroll.com/talk/hamiltonian-monte-carlo/) by Colin
+   Carroll
 
 ### Sequential Monte Carlo and particle filters
 
@@ -49,7 +52,7 @@ This post is to expose the inner workings of Bayesian inference.
 2. [The Markov-chain Monte Carlo Interactive
    Gallery](https://chi-feng.github.io/mcmc-demo/) by Chi Feng
 
-## Variational inference
+## Variational Inference
 
 ### For the uninitiated
 
@@ -60,7 +63,18 @@ This post is to expose the inner workings of Bayesian inference.
    Learning](https://www.microsoft.com/en-us/research/people/cmbishop/#!prml-book)
    by Christopher Bishop
 
-## Further topics
+## Open-Source Packages
+
+1. [Stan](http://mc-stan.org/)
+2. [PyMC3](http://docs.pymc.io)
+3. [Pyro](http://pyro.ai)
+4. [Edward](http://edwardlib.org/)
+5. [Tensorflow Probability](https://www.tensorflow.org/probability/)
+6. [Infer.NET](https://dotnet.github.io/infer/)
+7. [BUGS](https://www.mrc-bsu.cam.ac.uk/software/bugs/)
+8. [JAGS](http://mcmc-jags.sourceforge.net/)
+
+## Further Topics
 
 ### Approximate Bayesian computation and likelihood-free methods
 
@@ -71,4 +85,3 @@ This post is to expose the inner workings of Bayesian inference.
 
 1. [Expectation propagation as a way of life: A framework for Bayesian inference
    on partitioned data](https://arxiv.org/abs/1412.4869)
-
