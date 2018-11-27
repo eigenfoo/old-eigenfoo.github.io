@@ -15,14 +15,14 @@ last_modified_at: 2018-10-13
 ---
 
 Natural language processing is in a curious place right now. It's not
-immediately obvious how successful it's been, or how close the field is to
-viable, production-ready techniques (in the same way that, say, [computer vision
-is](https://clarifai.com/models/)). For example, [Sebastian
+immediately obvious how much of a resounding success it's been, or how close the
+field is to viable, production-ready techniques (in the same way that, say,
+[computer vision is](https://clarifai.com/models/)). For example, [Sebastian
 Ruder](https://ruder.io) predicted that the field is [close to a watershed
 moment](https://thegradient.pub/nlp-imagenet/), and that within a year we'll
-have downloadable language models (that was six months ago, and, uh…).
-However, [Ana Marasović](https://amarasovic.github.io/) points out that there is
-[a tremendous amount of work demonstrating
+have downloadable language models (that was six months ago, and, uh…).  However,
+[Ana Marasović](https://amarasovic.github.io/) points out that there is [a
+tremendous amount of work demonstrating
 that](https://thegradient.pub/frontiers-of-generalization-in-natural-language-processing/):
 
 > “despite good performance on benchmark datasets, modern NLP techniques are
