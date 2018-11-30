@@ -5,10 +5,10 @@ Reddit. In three acts, I chronicle the thought processes and stumbling blocks of
 the project, with each act applying a different form of machine learning:
 supervised learning, topic modelling and text clustering."
 tags:
-  - talks
   - reddit
   - machine learning
   - natural language processing
+  - talks
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background8.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'

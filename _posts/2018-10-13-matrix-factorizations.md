@@ -1,12 +1,13 @@
 ---
 title: Probabilistic and Bayesian Matrix Factorizations for Text Clustering
-excerpt: "Natural language processing is in a curious place right now. It's not
-immediately obvious how successful it's been, or how close the field is to
-viable, production-ready techniques (in the same way that, say, [computer vision
-is](https://clarifai.com/models/))."
+excerpt: "Natural language processing is in a curious place right now. It was always a
+late bloomer (as far as machine learning subfields go), and it's not immediately
+obvious how close the field is to viable, large-scale, production-ready
+techniques."
 tags:
   - bayesianism
   - natural language processing
+  - talks
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background15.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
@@ -14,23 +15,24 @@ mathjax: true
 last_modified_at: 2018-10-13
 ---
 
-Natural language processing is in a curious place right now. It's not
-immediately obvious how successful it's been, or how close the field is to
-viable, production-ready techniques (in the same way that, say, [computer vision
+Natural language processing is in a curious place right now. It was always a
+late bloomer (as far as machine learning subfields go), and it's not immediately
+obvious how close the field is to viable, large-scale, production-ready
+techniques (in the same way that, say, [computer vision
 is](https://clarifai.com/models/)). For example, [Sebastian
 Ruder](https://ruder.io) predicted that the field is [close to a watershed
-moment](https://thegradient.pub/nlp-imagenet/), and that within a year we'll
-have downloadable language models (that was six months ago, and, uh…).
-However, [Ana Marasović](https://amarasovic.github.io/) points out that there is
-[a tremendous amount of work demonstrating
+moment](https://thegradient.pub/nlp-imagenet/), and that soon we'll have
+downloadable language models. However, [Ana
+Marasović](https://amarasovic.github.io/) points out that there is [a tremendous
+amount of work demonstrating
 that](https://thegradient.pub/frontiers-of-generalization-in-natural-language-processing/):
 
 > “despite good performance on benchmark datasets, modern NLP techniques are
 > nowhere near the skill of humans at language understanding and reasoning when
 > making sense of novel natural language inputs”.
 
-I am confident that I am very bad at making lofty predictions about the future.
-Instead, I'll try to talk about something I know a bit about: simple solutions
+I am confident that I am _very_ bad at making lofty predictions about the
+future. Instead, I'll talk about something I know a bit about: simple solutions
 to concrete problems, with some Bayesianism thrown in for good measure
 :grinning:.
 
@@ -45,18 +47,11 @@ organization](https://www-users.cs.umn.edu/~hanxx023/dmclass/scatter.pdf),
 and [document
 classification](http://www.kamalnigam.com/papers/emcat-aaai98.pdf)).
 
-A natural question is: why is matrix factorization[^1] a good technique to use
-for text clustering? Because it is both a clustering and a feature engineering
-technique: it gives us a better view of the latent space! Matrix factorization
-lives an interesting double life: clustering technique by day, feature
-transformation technique by night. [Aggarwal and
-Zhai](http://charuaggarwal.net/text-cluster.pdf) suggest that chaining matrix
-factorization with some other clustering technique (e.g. agglomerative
-clustering or topic modelling) is common practice and is called _concept
-decomposition_, but I haven't seen any other source back this up.
-
 What follows is a literature review of three matrix factorization techniques for
-machine learning: one classical, one probabilistic and one Bayesian. Dive in!
+machine learning: one classical, one probabilistic and one Bayesian. I also
+experimented with applying these methods to text clustering: I gave a guest
+lecture on my results to a graduate-level machine learning class at The Cooper
+Union (the slide deck is below). Dive in!
 
 ## Non-Negative Matrix Factorization (NMF)
 
@@ -157,6 +152,45 @@ I would propose two changes to the original paper:
    collaborative filtering, we would want to use variational inference. Netflix
    ain't waiting 5 hours for their recommendations.
 
+## Application to Text Clustering
+
+Most of the work in these matrix factorization techniques focus on
+dimensionality reduction: that is, the problem of finding two factor matrices
+that faithfully reconstruct the original matrix when multiplied together.
+However, I was interested in applying the exact same techniques to a separate
+task: text clustering.
+
+A natural question is: why is matrix factorization[^1] a good technique to use
+for text clustering? Because it is simultaneously a clustering and a feature
+engineering technique: not only does it offer us a latent representation of the
+original data, but it also gives us a way to easily _reconstruct_ the original
+data from the latent variables! This is something that [latent Dirichlet
+allocation](https://eigenfoo.xyz/lda-sucks), for instance, cannot do.
+
+Matrix factorization lives an interesting double life: clustering technique by
+day, feature transformation technique by night. [Aggarwal and
+Zhai](http://charuaggarwal.net/text-cluster.pdf) suggest that chaining matrix
+factorization with some other clustering technique (e.g. agglomerative
+clustering or topic modelling) is common practice and is called _concept
+decomposition_, but I haven't seen any other source back this up.
+
+I experimented with using these techniques to cluster subreddits ([sound
+familiar?](https://eigenfoo.xyz/reddit-clusters)). In a nutshell, nothing seemed
+to work out very well, and I opine on why I think that's the case in the slide
+deck below. This talk was delivered to a graduate-level course in frequentist
+machine learning[^2].
+
+<style>
+.responsive-wrap iframe{ max-width: 100%;}
+</style>
+<div class="responsive-wrap">
+<!-- this is the embed code provided by Google -->
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vT_yB6dMJCnnwKRtkGbdx90lhYGGH329QAGrYw8SaR2mCh0VuocMWGEVJ2XhFNp44JQtPV_vOlQkslo/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe> 
+<!-- Google embed ends -->
+</div>
+
 ---
 
 [^1]: which is, by the way, a [severely underappreciated technique in machine learning](http://scikit-learn.org/stable/modules/decomposition.html)
+
+[^2]: Two freshmen wandered in to the first lecture, and only 30 minutes in did one of them blurt out, _“wait, this isn't general chemistry?”_ :joy: Hence, the first slide of my talk!
