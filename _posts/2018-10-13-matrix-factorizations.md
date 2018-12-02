@@ -177,7 +177,7 @@ I experimented with using these techniques to cluster subreddits ([sound
 familiar?](https://eigenfoo.xyz/reddit-clusters)). In a nutshell, nothing seemed
 to work out very well, and I opine on why I think that's the case in the slide
 deck below. This talk was delivered to a graduate-level course in frequentist
-machine learning[^2].
+machine learning.
 
 <style>
 .responsive-wrap iframe{ max-width: 100%;}
@@ -191,5 +191,3 @@ machine learning[^2].
 ---
 
 [^1]: which is, by the way, a [severely underappreciated technique in machine learning](http://scikit-learn.org/stable/modules/decomposition.html)
-
-[^2]: Two freshmen wandered in to the first lecture, and only 30 minutes in did one of them blurt out, _“wait, this isn't general chemistry?”_ :joy: Hence, the first slide of my talk!
