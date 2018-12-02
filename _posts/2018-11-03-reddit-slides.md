@@ -40,8 +40,7 @@ the slides have been scrubbed to be safe for work!
 
 ## Slides
 
-(Don't forget to take a look at the speaker notes! They're under _Open speaker
-notes_.)
+(Don't forget to take a look at the speaker notes!)
 
 <style>
 .responsive-wrap iframe{ max-width: 100%;}

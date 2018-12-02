@@ -178,7 +178,7 @@ I experimented with using these techniques to cluster subreddits ([sound
 familiar?](https://eigenfoo.xyz/reddit-clusters)). In a nutshell, nothing seemed
 to work out very well, and I opine on why I think that's the case in the slide
 deck below. This talk was delivered to a graduate-level course in frequentist
-machine learning.
+machine learning. Don't forget to take a look at the speaker notes too!
 
 <style>
 .responsive-wrap iframe{ max-width: 100%;}
