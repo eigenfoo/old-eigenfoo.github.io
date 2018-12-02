@@ -20,6 +20,7 @@ late bloomer (as far as machine learning subfields go), and it's not immediately
 obvious how close the field is to viable, large-scale, production-ready
 techniques (in the same way that, say, [computer vision
 is](https://clarifai.com/models/)). For example, [Sebastian
+Ruder](https://ruder.io) predicted that the field is [close to a watershed
 moment](https://thegradient.pub/nlp-imagenet/), and that soon we'll have
 downloadable language models. However, [Ana
 Marasović](https://amarasovic.github.io/) points out that there is [a tremendous
