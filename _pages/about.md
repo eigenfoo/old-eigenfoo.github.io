@@ -5,15 +5,6 @@ title: "About Me"
 author_profile: true
 ---
 
-> It is a profoundly erroneous truism, repeated by all copy-books and by eminent
-> people when they are making speeches, that we should cultivate the habit of
-> thinking of what we are doing. The precise opposite is the case. **Civilization
-> advances by extending the number of important operations which we can perform
-> without thinking about them.** Operations of thought are like cavalry charges in
-> a battle — they are strictly limited in number, they require fresh horses, and
-> must only be made at decisive moments. 
-> - Alfred North Whitehead (my emphasis)
-
 ![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
 
 Hello! My name is George, and this is my personal website. I'm a PyData
@@ -45,7 +36,16 @@ version of "stuff" or "thing".
 So taken together, `eigenfoo` probably means something like "things
 belonging to [George]".
 
-## What's your type? As in, typeface, not, uh. . .
+## Do you have a privacy policy?
+
+Yeah! [Check it out here](https://eigenfoo.xyz/privacy).
+
+tldr: I use
+[Disqus](https://help.disqus.com/terms-and-policies/disqus-privacy-policy) for
+comments, and [Google Analytics](https://policies.google.com/privacy) for site
+analytics. Email me if you have any questions or concerns!
+
+## What's your type? As in, typeface, not, um. . .
 
 :wink:
 
