@@ -347,14 +347,6 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   thinking about your data: consider reparameterizing your model, or
   respecifying it entirely.
 
-- Now, here's a little secret: a small number of divergences is acceptable, and
-  even to be expected but _only on particularly long and treacherous traces_.
-  That's not to say that you can ignore all your divergences if you're taking
-  `draws=10000`! Put it this way: if you have a single-digit number of traces,
-  you should be worried, and checking your posteriors, traces, correlation
-  matrix, $$\hat{R}$$s etc., and if you have a double-digit number of traces you
-  should be alarmed… and doing exactly the same thing.
-
 ### Other common warnings
 
 - It's worth noting that far and away the worst warning to get is the one about
