@@ -8,8 +8,8 @@ author_profile: true
 ![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
 
 Hello! My name is George, and this is my personal website. I'm a PyData
-ninja, machine learner, math enthusiast and coffee ~~snob~~ ~~addict~~
-lover. (I also really like sushi.)
+ninja, machine learner, math enthusiast and coffee ~~addict~~ lover. (I also
+really like sushi.)
 
 I'm currently a senior at [The Cooper Union](http://cooper.edu/welcome) in New
 York, studying for a BSE in general engineering. I'm also a two-time
@@ -42,8 +42,9 @@ Yeah! [Check it out here](https://eigenfoo.xyz/privacy).
 
 tldr: I use
 [Disqus](https://help.disqus.com/terms-and-policies/disqus-privacy-policy) for
-comments, and [Google Analytics](https://policies.google.com/privacy) for site
-analytics. Email me if you have any questions or concerns!
+comments, and [Clicky](https://clicky.com/terms/privacy) for site analytics.
+[Email me](mailto:privacy@eigenfoo.xyz?subject=Privacy Policy) if you have any
+questions or concerns!
 
 ## What's your type? As in, typeface, not, um. . .
 

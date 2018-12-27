@@ -109,6 +109,6 @@ author_profile: false
 <h2>Contact Us</h2>
 <p>If you have any questions about this Privacy Policy, please contact us:</p>
 <ul>
-<li>By email: <a href="mailto:gh@eigenfoo.xyz?subject=Website Privacy Policy">gh@eigenfoo.xyz</a></li>
+<li>By email: <a href="mailto:privacy@eigenfoo.xyz?subject=Privacy Policy">privacy@eigenfoo.xyz</a></li>
 <li>By visiting this page on our website: <a href="https://eigenfoo.xyz/privacy/">https://eigenfoo.xyz/privacy/</a></li>
 </ul>
