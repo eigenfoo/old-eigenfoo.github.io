@@ -5,11 +5,10 @@ title: "Privacy Policy"
 author_profile: false
 ---
 
+<p>Effective date: December 27, 2018</p>
 
-<p>Effective date: December 18, 2018</p>
 
-
-<p>Eigenfoo ("us", "we", or "our") operates the <a href="https://eigenfoo.xyz/">https://eigenfoo.xyz/</a> website (the "Service").</p>
+<p>Eigenfoo ("us", "we", or "our") operates the <a href="https:/eigenfoo.xyz/">https://eigenfoo.xyz/</a> website (the "Service").</p>
 
 <p>This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data. Our Privacy Policy  for Eigenfoo is based on the <a href="https://www.freeprivacypolicy.com/blog/sample-privacy-policy-template/">Free Privacy Policy Template Website</a>.</p>
 
@@ -38,22 +37,22 @@ author_profile: false
 <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.</p>
 <p>Examples of Cookies we use:</p>
 <ul>
-<li><strong>Session Cookies.</strong> We use Session Cookies to operate our Service.</li>
-<li><strong>Preference Cookies.</strong> We use Preference Cookies to remember your preferences and various settings.</li>
-<li><strong>Security Cookies.</strong> We use Security Cookies for security purposes.</li>
+    <li><strong>Session Cookies.</strong> We use Session Cookies to operate our Service.</li>
+    <li><strong>Preference Cookies.</strong> We use Preference Cookies to remember your preferences and various settings.</li>
+    <li><strong>Security Cookies.</strong> We use Security Cookies for security purposes.</li>
 </ul>
 
 <h2>Use of Data</h2>
 
-<p>Eigenfoo uses the collected data for various purposes:</p>    
+<p>Eigenfoo uses the collected data for various purposes:</p>
 <ul>
-<li>To provide and maintain the Service</li>
-<li>To notify you about changes to our Service</li>
-<li>To allow you to participate in interactive features of our Service when you choose to do so</li>
-<li>To provide customer care and support</li>
-<li>To provide analysis or valuable information so that we can improve the Service</li>
-<li>To monitor the usage of the Service</li>
-<li>To detect, prevent and address technical issues</li>
+    <li>To provide and maintain the Service</li>
+    <li>To notify you about changes to our Service</li>
+    <li>To allow you to participate in interactive features of our Service when you choose to do so</li>
+    <li>To provide customer care and support</li>
+    <li>To provide analysis or valuable information so that we can improve the Service</li>
+    <li>To monitor the usage of the Service</li>
+    <li>To detect, prevent and address technical issues</li>
 </ul>
 
 <h2>Transfer Of Data</h2>
@@ -67,11 +66,11 @@ author_profile: false
 <h3>Legal Requirements</h3>
 <p>Eigenfoo may disclose your Personal Data in the good faith belief that such action is necessary to:</p>
 <ul>
-<li>To comply with a legal obligation</li>
-<li>To protect and defend the rights or property of Eigenfoo</li>
-<li>To prevent or investigate possible wrongdoing in connection with the Service</li>
-<li>To protect the personal safety of users of the Service or the public</li>
-<li>To protect against legal liability</li>
+    <li>To comply with a legal obligation</li>
+    <li>To protect and defend the rights or property of Eigenfoo</li>
+    <li>To prevent or investigate possible wrongdoing in connection with the Service</li>
+    <li>To protect the personal safety of users of the Service or the public</li>
+    <li>To protect against legal liability</li>
 </ul>
 
 <h2>Security Of Data</h2>
@@ -82,12 +81,11 @@ author_profile: false
 <p>These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.</p>
 
 <h3>Analytics</h3>
-<p>We may use third-party Service Providers to monitor and analyze the use of our Service.</p>    
+<p>We may use third-party Service Providers to monitor and analyze the use of our Service.</p>
 <ul>
 <li>
-<p><strong>Google Analytics</strong></p>
-<p>Google Analytics is a web analytics service offered by Google that tracks and reports website traffic. Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google services. Google may use the collected data to contextualize and personalize the ads of its own advertising network.</p>
-<p>You can opt-out of having made your activity on the Service available to Google Analytics by installing the Google Analytics opt-out browser add-on. The add-on prevents the Google Analytics JavaScript (ga.js, analytics.js, and dc.js) from sharing information with Google Analytics about visits activity.</p>                <p>For more information on the privacy practices of Google, please visit the Google Privacy & Terms web page: <a href="https://policies.google.com/privacy/">https://policies.google.com/privacy/</a></p>
+<p><strong>Clicky</strong></p>
+<p>Clicky is a web analytics service. Read the Privacy Policy for Clicky here: <a href="https://clicky.com/terms">https://clicky.com/terms/</a></p>
 </li>
 </ul>
 
@@ -111,7 +109,6 @@ author_profile: false
 <h2>Contact Us</h2>
 <p>If you have any questions about this Privacy Policy, please contact us:</p>
 <ul>
-<li>By email: <a href="mailto:gh@eigenfoo.xyz?subject=Privacy Policy">gh@eigenfoo.xyz</a></li>
+<li>By email: <a href="mailto:gh@eigenfoo.xyz?subject=Website Privacy Policy">gh@eigenfoo.xyz</a></li>
 <li>By visiting this page on our website: <a href="https://eigenfoo.xyz/privacy/">https://eigenfoo.xyz/privacy/</a></li>
-
 </ul>
