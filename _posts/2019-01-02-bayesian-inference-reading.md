@@ -152,6 +152,10 @@ use, it is interesting to see what they are.
    Ranganath, Jaan Altosaar, Dustin Tran and David Blei. The original OPVI
    paper.
 
+(I've tried to include as many relevant and helpful resources as I could find,
+but if you feel like I've missed something, [drop me a
+line](https://twitter.com/@_eigenfoo)!)
+
 ---
 
 [^1]: [Relevant tweet here.](https://twitter.com/year_progress/status/1079889949871300608)
