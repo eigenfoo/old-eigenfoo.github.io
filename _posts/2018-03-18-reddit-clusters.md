@@ -333,8 +333,8 @@ repository](https://github.com/eigenfoo/reddit-clusters).
 ---
 
 **EDIT (11-08-2018):** If you're interested in the technical, data science side
-of the project, check out the slide deck and speaker notes from my recent talk
-on exactly that!
+of the project, check out the slide deck and speaker notes from [my recent
+talk](https://eigenfoo.xyz/reddit-slides/) on exactly that!
 
 ---
 
