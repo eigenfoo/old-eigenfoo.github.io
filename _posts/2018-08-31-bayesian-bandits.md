@@ -5,6 +5,7 @@ entirely justified, but not entirely unjustified either) for being too
 mathematically sophisticated or too computationally intensive to work at scale."
 tags:
   - bayesianism
+  - pymc3
   - reinforcement learning
   - machine learning
 header:
