@@ -1,9 +1,8 @@
 ---
 title: Probabilistic and Bayesian Matrix Factorizations for Text Clustering
-excerpt: "Natural language processing is in a curious place right now. It was always a
-late bloomer (as far as machine learning subfields go), and it's not immediately
-obvious how close the field is to viable, large-scale, production-ready
-techniques."
+excerpt: "Is there such a thing as Bayesian NLP? You can use matrix
+factorization to cluster text, and you can make factorization Bayesian... So I
+gave it a shot!"
 tags:
   - bayesianism
   - natural language processing
