@@ -178,7 +178,7 @@ function.
     <a href="/assets/images/bounded.png"><img style="float: middle" src="/assets/images/bounded.png"></a>
 </figure>
 
-## Final remarks
+## Final Remarks
 
 None of this theory is new: I'm just advertising it :blush:. See Cam
 Davidson-Pilon's great blog post about Bayesian bandits[^2] for a much more
