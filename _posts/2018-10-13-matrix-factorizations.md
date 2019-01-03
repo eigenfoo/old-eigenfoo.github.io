@@ -1,6 +1,6 @@
 ---
 title: Probabilistic and Bayesian Matrix Factorizations for Text Clustering
-excerpt: "Is there such a thing as Bayesian NLP? You can use matrix
+excerpt: "Is there such a thing as Bayesian NLP? Well, you can use matrix
 factorization to cluster text, and you can make factorization Bayesian... So I
 gave it a shot!"
 tags:

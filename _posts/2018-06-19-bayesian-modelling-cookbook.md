@@ -1,9 +1,8 @@
 ---
 title: Cookbook — Bayesian Modelling with PyMC3
-excerpt: "Recently I've started using [PyMC3](https://github.com/pymc-devs/pymc3) for
-Bayesian modelling, and it's an amazing piece of software! The API only exposes
-as much of heavy machinery of MCMC as you need — by which I mean, just the
-`pm.sample()` method."
+excerpt: "This is a compilation of notes, tips, tricks and recipes for Bayesian
+modelling that I've collected from everywhere: papers, documentation, peppering
+my more experienced colleagues with questions."
 tags:
   - bayesianism
   - pymc3

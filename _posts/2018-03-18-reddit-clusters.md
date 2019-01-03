@@ -1,9 +1,8 @@
 ---
 title: Understanding Hate Speech on Reddit through Text Clustering
-excerpt: "Have you heard of `/r/TheRedPill`? It’s an online forum (a subreddit, but I’ll
-explain that later) where people (usually men) espouse an ideology predicated
-entirely on gender. 'Swallowers of the red pill', as they call themselves,
-maintain that it is _men_, not women, who are socially marginalized…"
+excerpt: "A recent project on trying to model hate speech on Reddit through text
+clustering — from 'nimble navigators' to 'swamp creatures', 'spezzes' to the
+'Trumpire'..."
 tags:
   - reddit
   - machine learning

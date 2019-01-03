@@ -1,8 +1,8 @@
 ---
 title: Multi-Armed Bandits, Conjugate Models and Bayesian Reinforcement Learning
-excerpt: "Let's talk about Bayesianism. It's developed a reputation (not
-entirely justified, but not entirely unjustified either) for being too
-mathematically sophisticated or too computationally intensive to work at scale."
+excerpt: "In this blog post I hope to show that there is more to Bayesianism than just
+MCMC sampling and suffering, by demonstrating a Bayesian approach to a classic
+reinforcement learning problem: the _multi-armed bandit_."
 tags:
   - bayesianism
   - pymc3
