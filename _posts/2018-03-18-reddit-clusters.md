@@ -2,7 +2,7 @@
 title: Understanding Hate Speech on Reddit through Text Clustering
 excerpt: "A recent project on trying to model hate speech on Reddit through text
 clustering — from 'nimble navigators' to 'swamp creatures', 'spezzes' to the
-'Trumpire'..."
+'Trumpire'."
 tags:
   - reddit
   - machine learning
