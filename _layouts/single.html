@@ -58,9 +58,11 @@ layout: default
         {% endif %}
       </footer>
 
+      <!-- Disable social sharing and post pagination
       {% if page.share %}{% include social-share.html %}{% endif %}
 
       {% include post_pagination.html %}
+      -->
     </div>
 
     {% if jekyll.environment == 'production' and site.comments.provider and page.comments %}
@@ -68,6 +70,7 @@ layout: default
     {% endif %}
   </article>
 
+  <!-- Disable related posts
   {% comment %}<!-- only show related on a post page when `related: true` -->{% endcomment %}
   {% if page.id and page.related and site.related_posts.size > 0 %}
     <div class="page__related">
@@ -92,4 +95,5 @@ layout: default
       </div>
     </div>
   {% endif %}
+  -->
 </div>
