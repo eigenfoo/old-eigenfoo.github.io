@@ -103,13 +103,13 @@ analytics:
 # Site Author
 author:
   name             : "George Ho"
-  avatar           : /assets/images/profile-pic.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/profile-pic.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "PyData ninja, machine learner, coffee addict and general practitioner (get it, GP?) of Bayesian necromancy."
   location         : "NYC | HKG"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/master/assets/images/email.png
+      url: "https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/master/assets/images/email.png"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/@_eigenfoo/"
@@ -123,15 +123,12 @@ author:
 # Site Footer
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/@_eigenfoo/"
-    - label: "GitHub"
+    - label: "Privacy"
+      icon: "fas fa-fw fa-user-secret"
+      url: "https://eigenfoo.xyz/privacy/"
+    - label: "Source"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/eigenfoo/"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/eigenfoo/"
+      url: "https://github.com/eigenfoo/eigenfoo.xyz/"
 
 
 # Reading Files
