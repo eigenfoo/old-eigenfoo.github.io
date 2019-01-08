@@ -5,10 +5,10 @@ title: "Privacy Policy"
 author_profile: false
 ---
 
-<p>Effective date: December 27, 2018</p>
+<p>Effective date: January 08, 2019</p>
 
 
-<p>Eigenfoo ("us", "we", or "our") operates the <a href="https:/eigenfoo.xyz/">https://eigenfoo.xyz/</a> website (the "Service").</p>
+<p>Eigenfoo ("us", "we", or "our") operates the <a href="https://eigenfoo.xyz/">https://eigenfoo.xyz/</a> website (the "Service").</p>
 
 <p>This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data. Our Privacy Policy  for Eigenfoo is based on the <a href="https://www.freeprivacypolicy.com/blog/sample-privacy-policy-template/">Free Privacy Policy Template Website</a>.</p>
 
@@ -24,7 +24,11 @@ author_profile: false
 <p>While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you ("Personal Data"). Personally identifiable information may include, but is not limited to:</p>
 
 <ul>
-<li>Email address</li><li>First name and last name</li><li>Cookies and Usage Data</li>
+<li><strong>GitHub profile.</strong> We use <a href="https://utteranc.es/">utterances</a> to provide comments, which stores all data in GitHub issues. Commenting will identify you by your GitHub user profile.</li>
+</ul>
+
+<ul>
+<li>Cookies and Usage Data</li>
 </ul>
 
 <h3>Usage Data</h3>
@@ -37,22 +41,22 @@ author_profile: false
 <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.</p>
 <p>Examples of Cookies we use:</p>
 <ul>
-    <li><strong>Session Cookies.</strong> We use Session Cookies to operate our Service.</li>
-    <li><strong>Preference Cookies.</strong> We use Preference Cookies to remember your preferences and various settings.</li>
-    <li><strong>Security Cookies.</strong> We use Security Cookies for security purposes.</li>
+<li><strong>Session Cookies.</strong> We use Session Cookies to operate our Service.</li>
+<li><strong>Preference Cookies.</strong> We use Preference Cookies to remember your preferences and various settings.</li>
+<li><strong>Security Cookies.</strong> We use Security Cookies for security purposes.</li>
 </ul>
 
 <h2>Use of Data</h2>
 
 <p>Eigenfoo uses the collected data for various purposes:</p>
 <ul>
-    <li>To provide and maintain the Service</li>
-    <li>To notify you about changes to our Service</li>
-    <li>To allow you to participate in interactive features of our Service when you choose to do so</li>
-    <li>To provide customer care and support</li>
-    <li>To provide analysis or valuable information so that we can improve the Service</li>
-    <li>To monitor the usage of the Service</li>
-    <li>To detect, prevent and address technical issues</li>
+<li>To provide and maintain the Service</li>
+<li>To notify you about changes to our Service</li>
+<li>To allow you to participate in interactive features of our Service when you choose to do so</li>
+<li>To provide customer care and support</li>
+<li>To provide analysis or valuable information so that we can improve the Service</li>
+<li>To monitor the usage of the Service</li>
+<li>To detect, prevent and address technical issues</li>
 </ul>
 
 <h2>Transfer Of Data</h2>
@@ -66,11 +70,11 @@ author_profile: false
 <h3>Legal Requirements</h3>
 <p>Eigenfoo may disclose your Personal Data in the good faith belief that such action is necessary to:</p>
 <ul>
-    <li>To comply with a legal obligation</li>
-    <li>To protect and defend the rights or property of Eigenfoo</li>
-    <li>To prevent or investigate possible wrongdoing in connection with the Service</li>
-    <li>To protect the personal safety of users of the Service or the public</li>
-    <li>To protect against legal liability</li>
+<li>To comply with a legal obligation</li>
+<li>To protect and defend the rights or property of Eigenfoo</li>
+<li>To prevent or investigate possible wrongdoing in connection with the Service</li>
+<li>To protect the personal safety of users of the Service or the public</li>
+<li>To protect against legal liability</li>
 </ul>
 
 <h2>Security Of Data</h2>
@@ -85,7 +89,7 @@ author_profile: false
 <ul>
 <li>
 <p><strong>Clicky</strong></p>
-<p>Clicky is a web analytics service. Read the Privacy Policy for Clicky here: <a href="https://clicky.com/terms">https://clicky.com/terms/</a></p>
+<p>Clicky is a web analytics service. Read the Privacy Policy for Clicky here: <a href="https://clicky.com/terms">https://clicky.com/terms</a></p>
 </li>
 </ul>
 
@@ -111,4 +115,5 @@ author_profile: false
 <ul>
 <li>By email: <a href="mailto:privacy@eigenfoo.xyz?subject=Privacy Policy">privacy@eigenfoo.xyz</a></li>
 <li>By visiting this page on our website: <a href="https://eigenfoo.xyz/privacy/">https://eigenfoo.xyz/privacy/</a></li>
+
 </ul>
