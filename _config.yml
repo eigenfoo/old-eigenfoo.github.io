@@ -129,6 +129,9 @@ footer:
     - label: "Source"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/eigenfoo/eigenfoo.xyz/"
+    - label: "Sitemap"
+      icon: "fas fa-fw fa-sitemap"
+      url: "https://eigenfoo.xyz/sitemap.xml"
 
 
 # Reading Files
