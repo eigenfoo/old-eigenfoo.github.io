@@ -1,4 +1,4 @@
-# [`https://eigenfoo.xyz/`](https://eigenfoo.xyz/)
+# [`eigenfoo.xyz`](https://eigenfoo.xyz/)
 
 The source of my personal website and blog.
 
