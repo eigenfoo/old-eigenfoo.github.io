@@ -25,7 +25,7 @@ teaser                   : # path of fallback teaser image, e.g. "/assets/images
 #breadcrumbs              : true # true, false (default)
 words_per_minute         : 150
 comments:
-  provider               : "utterances" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2", "utterances", "custom"
+  provider               : "custom" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2", "utterances", "custom"
   disqus:
     shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
@@ -36,7 +36,7 @@ comments:
     num_posts            : # 5 (default)
     colorscheme          : # "light" (default), "dark"
   utterances:
-    theme                : "github-light" # "github-light" (default), "github-dark"
+    theme                : # "github-light" (default), "github-dark"
 staticman:
   allowedFields          : # ['name', 'email', 'url', 'message']
   branch                 : # "master"
