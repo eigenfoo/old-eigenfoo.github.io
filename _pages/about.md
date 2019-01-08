@@ -41,8 +41,8 @@ belonging to [George]".
 Yeah! [Check it out here](https://eigenfoo.xyz/privacy).
 
 tldr: I use
-[Disqus](https://help.disqus.com/terms-and-policies/disqus-privacy-policy) for
-comments, and [Clicky](https://clicky.com/terms/privacy) for site analytics.
+[utterances](https://github.com/utterance/utterances/blob/master/PRIVACY-POLICY.md)
+for comments, and [Clicky](https://clicky.com/terms/privacy) for site analytics.
 [Email me](mailto:privacy@eigenfoo.xyz?subject=Privacy Policy) if you have any
 questions or concerns!
 

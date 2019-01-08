@@ -24,7 +24,8 @@ project](https://eigenfoo.xyz/reddit-slides/).
 
 ## Software
 
-Here are some open source software libraries that I contribute to regularly.
+Here are some open source software libraries that I've made substantial
+contributions to.
 
 ### [PyMC3](https://github.com/pymc-devs/pymc3)
 
