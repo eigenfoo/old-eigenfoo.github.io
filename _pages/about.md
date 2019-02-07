@@ -11,9 +11,9 @@ Hello! My name is George, and this is my personal website. I'm a PyData
 ninja, machine learner, math enthusiast and coffee ~~addict~~ lover. (I also
 really like sushi.)
 
-I'm currently a data scientist/research analyst at
+I'm currently a data scientist/ research analyst at
 [Point72](http://point72.com), working out of their New York office. I help
-power their internal research efforts, with a particular penchant of Bayesian
+power their internal research efforts, with a particular penchant for Bayesian
 modelling and data analysis.
 
 Previously, I studied engineering at [The Cooper
