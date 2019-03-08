@@ -35,7 +35,7 @@ that.
 
     * Like a recurrent model, an autoregressive model's output $$h_t$$ at time
       $$t$$ depends on not just $$x_t$$, but also $$x$$'s from previous time
-      steps. However, unlike a recurrent model, the previous $$x$$'s are not
+      steps. However, _unlike_ a recurrent model, the previous $$x$$'s are not
       provided via some hidden state: they are given as just another input to
       the model.
     * The following animation of Google DeepMind's WaveNet illustrates this
@@ -49,6 +49,14 @@ that.
 
     * Put simply, **an autoregressive model is merely a sequential model in
       which one predicts future values from past values.**
+    * Autoregressive models offer a compelling bargain: you can have stable,
+      parallel and easy-to-optimize training, faster inference time
+      computations, and completely do away with [backpropagation through
+      time](https://en.wikipedia.org/wiki/Backpropagation_through_time), if you
+      are willing to accept a model that (by design) _cannot have_ infinite
+      memory. There is
+      [research](http://www.offconvex.org/2018/07/27/approximating-recurrent/)
+      to support that for many applications, this is a worthwhile tradeoff.
 
 - Generative
     * Informally, a generative model is one that can generate new data after
@@ -57,8 +65,8 @@ that.
       $$P(X, Y)$$ of the observation $$X$$ and the target variable $$Y$$.
       Contrast this to a discriminative model that models the conditional
       distribution $$P(X|Y)$$.
-    * Generative adversarial networks (GANs), variational autoencoders (VAEs)
-      and normalizing flow models are all examples of generative models.
+    * Generative adversarial networks (GANs) and variational autoencoders (VAEs)
+      are all examples of generative models.
 
 - Sequence model
     * Although sequence models are, well, sequential (duh), there has been
@@ -77,43 +85,59 @@ good degree of success in the real world. Each model merits discussion, but
 unfortunately there isn't enough space to devote to a detailed discussion about
 them.
 
- - [PixelCNN](https://arxiv.org/abs/1601.06759) by Google DeepMind was probably
-   the first such model, and the progenitor of most of the other models below.
-   The authors demonstrated that images were sequential too. This was a
-   reduction from PixelRNN.
- - [PixelCNN++](https://arxiv.org/abs/1701.05517) by OpenAI was an improvement
-   on PixelCNN.
- - [Wavenet](https://deepmind.com/blog/wavenet-generative-model-raw-audio/) by
-   Google DeepMind was
- - [Transformer, a.k.a. _"attention is all you
-   need"_](https://arxiv.org/abs/1706.03762)
+- [PixelCNN by Google DeepMind](https://arxiv.org/abs/1601.06759) was probably
+  the first such model, and the progenitor of most of the other models below.
+  Ironically, they spend the bulk of their paper discussing a recurrent model,
+  PixelRNN, and consider PixelCNN as a "workaround" to avoid excessive
+  computational burden. However, PixelCNN is probably this paper's most lasting
+  contribution to the field.
+- [PixelCNN++ by OpenAI](https://arxiv.org/abs/1701.05517) is, unsurprisingly,
+  PixelCNN but with various improvements.
+- [Wavenet by Google
+  DeepMind](https://deepmind.com/blog/wavenet-generative-model-raw-audio/) is
+  heavily inspired by PixelCNN, and models raw audio, not just encoded music.
+  They had to pull [a neat trick from signals
+  processing](https://en.wikipedia.org/wiki/%CE%9C-law_algorithm) in order to
+  cope with the sheer size of audio (high-quality audio involves at least
+  16-bit precision samples, which means a 66,000-softmax per time step!)
+- [Transformer, a.k.a. _the "attention is all you need" model_ by Google
+  Brain](https://arxiv.org/abs/1706.03762) is
 
 These models also have uses in specific applications, such as [neural machine
 translation in linear time](https://arxiv.org/abs/1610.10099) and
 [video](https://arxiv.org/abs/1610.00527).
 
-## Some Observations
+## Thoughts and Observations
 
-### Modelling the likelihood
+Here are some general comments on autoregressive models generally.
 
-These models model the _likelihood_ of data. They can do by modelling the
-likelihood function directly (a simple task when the likelihood is discrete), or
-by modelling the parameters of some pdf.
+- Given previous values $$x_1, x_2, ..., x_t$$, these models do not provide a
+  _value_ for $$x_{t+1}$$, they provide a _probability distribution_ for it.
+  Explicitly, they model $$P(x_{t+1} | x_1, x_2, ..., x_t)$$
+    * If the $$x$$'s are discrete, then you can do this by outputting an
+      $$N$$-way softmaxxed tensor, where $$N$$ is the number of discrete
+      classes. This is what the original PixelCNN did, but gets messy when $$N$$
+      is large (e.g. in the case of Wavenet, where $$N = 2^16$$).
+    * If the $$x$$'s are continuous, there is still hope: you can model the
+      probability distribution itself as the sum of basis functions, and having
+      the model output the parameters of these basis functions. This massively
+      reduces the memory footprint of the model. This was an important
+      contribution of PixelCNN++.
 
-### Supervised learning!
+- Autoregressive models are supervised.
+    * With the success and hype of GANs and VAEs, it is easy to assume that
+      all generative models are unsupervised: this is not true!
+    * Way more stable than GANs, and can use all the good stuff from ML101:
+      train-valid-test splits, cross validation, loss metrics, etc.
 
-These models are supervised learning. With the success of GANs and VAEs, it is
-easy to assume generative models must be unsupervised learning. This is not
-true! Modelling the likelihood is what allows this to be supervised.
+- Autoregressive models work for both continuous and discrete data
+    * Autoregressive models have worked for audio, video, images and text:
+    * Unlike GANs, which have a hard time learning discrete data.
 
-Way more stable than GANs, and can use all the good stuff from ML101 - cross
-validation, loss metrics, etc.
+- Conditioning
+    * Both discrete and continuous!
 
-### Autoregressive models work for both continuous and discrete data
-
-Unlike GANs, which have a hard time learning discrete data.
-
-### Variable output lengths
+- Variable output lengths
 
 None of these models worry about "stopping". Audio and images have a fixed
 number of time steps: generate $$N$$ audio samples, or $$N^2$$ pixel values.
@@ -121,25 +145,24 @@ Text is a bit different: thankfully it is discrete, so we can have one more
 category to indicate "stop". None of these models have both a variable number of
 outputs _and_ continuous inference variables.
 
-### Modelling multiple timescales
+- Autoregressive models can model multiple timescales
+    * E.g. sound. Important correlations at the millisecond scale, and important
+      patterns at the minute scale (esp. for music).
 
-E.g. sound. Important correlations at the millisecond scale, and important
-patterns at the minute scale (esp. for music).
+    <figure>
+        <a href="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig1-Anim-160908-r01.gif"><img src="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig1-Anim-160908-r01.gif"></a>
+        <figcaption>Audio exhibits patterns at multiple timescales. Source: <a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/">Google DeepMind</a>.</figcaption>
+    </figure>
 
-<figure>
-    <a href="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig1-Anim-160908-r01.gif"><img src="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig1-Anim-160908-r01.gif"></a>
-    <figcaption>Audio exhibits patterns at multiple timescales. Source: <a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/">Google DeepMind</a>.</figcaption>
-</figure>
+    * Context stacks in WaveNet, or multi-scale PixelRNN.
 
-Context stacks in WaveNet, or multi-scale PixelRNN.
-
-### It's amazing that this all works!
-
-> **Recurrent models trained in practice are effectively feed-forward.** This
-> could happen either because truncated backpropagation time cannot learn
-> patterns significantly longer than $$k$$ steps, or, more provocatively,
-> because models _trainable by gradient descent_ cannot have long-term memory.
-> - [John Miller](http://www.offconvex.org/2018/07/27/approximating-recurrent/)
+- It's amazing that this all works!
+    * > **Recurrent models trained in practice are effectively feed-forward.** This
+      > could happen either because truncated backpropagation through time
+      > cannot learn patterns significantly longer than $$k$$ steps, or, more
+      > provocatively, because models _trainable by gradient descent_ cannot
+      > have long-term memory.
+      > - [John Miller](http://www.offconvex.org/2018/07/27/approximating-recurrent/)
 
 ---
 
