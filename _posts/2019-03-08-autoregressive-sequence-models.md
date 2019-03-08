@@ -117,7 +117,7 @@ Here are some general comments on autoregressive models generally.
     * If the $$x$$'s are discrete, then you can do this by outputting an
       $$N$$-way softmaxxed tensor, where $$N$$ is the number of discrete
       classes. This is what the original PixelCNN did, but gets messy when $$N$$
-      is large (e.g. in the case of Wavenet, where $$N = 2^16$$).
+      is large (e.g. in the case of Wavenet, where $$N = 2^{16}$$).
     * If the $$x$$'s are continuous, there is still hope: you can model the
       probability distribution itself as the sum of basis functions, and having
       the model output the parameters of these basis functions. This massively
@@ -156,7 +156,7 @@ outputs _and_ continuous inference variables.
 
     * Context stacks in WaveNet, or multi-scale PixelRNN.
 
-- It's amazing that this all works!
+- How the hell can any of this work?
     * > **Recurrent models trained in practice are effectively feed-forward.** This
       > could happen either because truncated backpropagation through time
       > cannot learn patterns significantly longer than $$k$$ steps, or, more
