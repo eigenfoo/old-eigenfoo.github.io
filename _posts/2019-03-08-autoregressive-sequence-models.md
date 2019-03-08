@@ -85,8 +85,8 @@ them.
    on PixelCNN.
  - [Wavenet](https://deepmind.com/blog/wavenet-generative-model-raw-audio/) by
    Google DeepMind was
- - [Transformer, a.k.a. _the "attention is all you need"
-   model_](https://arxiv.org/abs/1706.03762)
+ - [Transformer, a.k.a. _"attention is all you
+   need"_](https://arxiv.org/abs/1706.03762)
 
 These models also have uses in specific applications, such as [neural machine
 translation in linear time](https://arxiv.org/abs/1610.10099) and
@@ -96,15 +96,15 @@ translation in linear time](https://arxiv.org/abs/1610.10099) and
 
 ### Modelling the likelihood
 
- - These models model the _likelihood_ of data. They can do by modelling the
-   likelihood function directly (a simple task when the likelihood is discrete),
-   or by modelling the parameters of some pdf.
+These models model the _likelihood_ of data. They can do by modelling the
+likelihood function directly (a simple task when the likelihood is discrete), or
+by modelling the parameters of some pdf.
 
 ### Supervised learning!
 
- - These models are supervised learning. With the success of GANs and VAEs, it
-   is easy to assume generative models must be unsupervised learning. This is
-   not true! Modelling the likelihood is what allows this to be supervised.
+These models are supervised learning. With the success of GANs and VAEs, it is
+easy to assume generative models must be unsupervised learning. This is not
+true! Modelling the likelihood is what allows this to be supervised.
 
 Way more stable than GANs, and can use all the good stuff from ML101 - cross
 validation, loss metrics, etc.
@@ -113,24 +113,23 @@ validation, loss metrics, etc.
 
 Unlike GANs, which have a hard time learning discrete data.
 
-### Stopping problem
+### Variable output lengths
 
- - None of these models worry about "stopping". Audio and images have a fixed
-   number of time steps: generate $$N$$ audio samples, or $$N^2$$ pixel values.
-   Text is a bit different: thankfully it is discrete, so we can have one more
-   category to indicate "stop". None of these models have both a variable number
-   of outputs _and_ continuous inference variables.
+None of these models worry about "stopping". Audio and images have a fixed
+number of time steps: generate $$N$$ audio samples, or $$N^2$$ pixel values.
+Text is a bit different: thankfully it is discrete, so we can have one more
+category to indicate "stop". None of these models have both a variable number of
+outputs _and_ continuous inference variables.
 
 ### Modelling multiple timescales
 
-E.g. sound. Important co
+E.g. sound. Important correlations at the millisecond scale, and important
+patterns at the minute scale (esp. for music).
 
 <figure>
     <a href="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig1-Anim-160908-r01.gif"><img src="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig1-Anim-160908-r01.gif"></a>
     <figcaption>Audio exhibits patterns at multiple timescales. Source: <a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/">Google DeepMind</a>.</figcaption>
 </figure>
-
-
 
 Context stacks in WaveNet, or multi-scale PixelRNN.
 
