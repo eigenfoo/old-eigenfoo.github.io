@@ -44,7 +44,7 @@ that.
 
     <figure>
         <a href="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig2-Anim-160908-r01.gif"><img src="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig2-Anim-160908-r01.gif"></a>
-        <figcaption>WaveNet animation. Source: <a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/">DeepMind</a>.</figcaption>
+        <figcaption>WaveNet animation. Source: <a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/">Google DeepMind</a>.</figcaption>
     </figure>
 
     * Put simply, **an autoregressive model is merely a sequential model in
@@ -73,7 +73,9 @@ these models do what they do: i.e. they describe properties of the network or
 its architecture.
 
 Despite the technicality involved in describing these models, they have seen a
-good degree of success in the real world:
+good degree of success in the real world. Each model merits discussion, but
+unfortunately there isn't enough space to devote to a detailed discussion about
+them.
 
  - [PixelCNN](https://arxiv.org/abs/1601.06759) by Google DeepMind was probably
    the first such model, and the progenitor of most of the other models below.
@@ -83,7 +85,8 @@ good degree of success in the real world:
    on PixelCNN.
  - [Wavenet](https://deepmind.com/blog/wavenet-generative-model-raw-audio/) by
    Google DeepMind was
- - [Transformer](https://arxiv.org/abs/1706.03762)
+ - [Transformer, a.k.a. _the "attention is all you need"
+   model_](https://arxiv.org/abs/1706.03762)
 
 These models also have uses in specific applications, such as [neural machine
 translation in linear time](https://arxiv.org/abs/1610.10099) and
@@ -103,6 +106,13 @@ translation in linear time](https://arxiv.org/abs/1610.10099) and
    is easy to assume generative models must be unsupervised learning. This is
    not true! Modelling the likelihood is what allows this to be supervised.
 
+Way more stable than GANs, and can use all the good stuff from ML101 - cross
+validation, loss metrics, etc.
+
+### Autoregressive models work for both continuous and discrete data
+
+Unlike GANs, which have a hard time learning discrete data.
+
 ### Stopping problem
 
  - None of these models worry about "stopping". Audio and images have a fixed
@@ -110,6 +120,19 @@ translation in linear time](https://arxiv.org/abs/1610.10099) and
    Text is a bit different: thankfully it is discrete, so we can have one more
    category to indicate "stop". None of these models have both a variable number
    of outputs _and_ continuous inference variables.
+
+### Modelling multiple timescales
+
+E.g. sound. Important co
+
+<figure>
+    <a href="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig1-Anim-160908-r01.gif"><img src="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig1-Anim-160908-r01.gif"></a>
+    <figcaption>Audio exhibits patterns at multiple timescales. Source: <a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/">Google DeepMind</a>.</figcaption>
+</figure>
+
+
+
+Context stacks in WaveNet, or multi-scale PixelRNN.
 
 ### It's amazing that this all works!
 
