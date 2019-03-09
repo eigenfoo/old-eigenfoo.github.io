@@ -9,7 +9,7 @@ header:
   overlay_image: /assets/images/cool-backgrounds/cool-background10.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
 mathjax: true
-last_modified_at: 2019-03-08
+last_modified_at: 2019-03-09
 ---
 
 My current project involves working with a class of fairly niche and interesting
@@ -24,11 +24,12 @@ words are kind of unnecessary), so let's unpack that.
     * Well, these papers are using TensorFlow or PyTorch... so they must be
       "deep" :wink:
     * You would think this word is unnecessary, but it's actually not!
-      Autoregressive time series models such as
+      Linear autoregressive time series models like
       [ARMA](https://en.wikipedia.org/wiki/Autoregressive%E2%80%93moving-average_model)
       or
       [ARCH](https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity)
-      have been known to statisticians for ages.
+      have been used in statistics, econometrics and financial modelling for
+      ages.
 
 - Autoregressive
     * [Stanford has a good introduction](https://deepgenerativemodels.github.io/notes/autoregressive/)
@@ -131,7 +132,7 @@ ByteNet can perform neural machine translation (in linear
 time!)](https://arxiv.org/abs/1610.10099) and [Google DeepMind's Video Pixel
 Network can model video](https://arxiv.org/abs/1610.00527).
 
-## Some Observations
+## Some Thoughts and Observations
 
 Here are some general thoughts and comments I have on deep autoregressive
 models.
