@@ -1,13 +1,15 @@
 ---
 title: Autoregressive Generative Models
-excerpt:
+excerpt: "My current project involves working with a class of fairly niche and
+interesting neural networks that aren't usually seen on a first pass through
+deep learning. I thought I'd write up my reading and research and post it."
 tags:
   - deep learning
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background10.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
 mathjax: true
-last_modified_at: 2019-03-08
+last_modified_at: 2019-03-22
 ---
 
 My current project involves working with a class of fairly niche and interesting
