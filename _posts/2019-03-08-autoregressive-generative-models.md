@@ -1,5 +1,5 @@
 ---
-title: Autoregressive Generative Models
+title: Autoregressive Generative Models — A Brief Survey
 excerpt: "My current project involves working with a class of fairly niche and
 interesting neural networks that aren't usually seen on a first pass through
 deep learning. I thought I'd write up my reading and research and post it."
@@ -9,7 +9,7 @@ header:
   overlay_image: /assets/images/cool-backgrounds/cool-background10.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
 mathjax: true
-last_modified_at: 2019-03-22
+last_modified_at: 2019-03-08
 ---
 
 My current project involves working with a class of fairly niche and interesting
@@ -49,16 +49,17 @@ words are kind of unnecessary), so let's unpack that.
         <figcaption>WaveNet animation. Source: <a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/">Google DeepMind</a>.</figcaption>
     </figure>
 
-    * Put simply, **an autoregressive model is merely a sequential model in
-      which one predicts future values from past values.**
-    * Autoregressive models offer a compelling bargain: you can have stable,
-      parallel and easy-to-optimize training, faster inference time
-      computations, and completely do away with [backpropagation through
+    * Put simply, **an autoregressive model is merely a feed-forward model which
+      predicts future values from past values.**
+    * I'll explain this more later, but it's worth saying now: autoregressive
+      models offer a compelling bargain. You can have stable, parallel and
+      easy-to-optimize training, faster inference computations, and completely
+      do away with the fickleness of [truncated backpropagation through
       time](https://en.wikipedia.org/wiki/Backpropagation_through_time), if you
       are willing to accept a model that (by design) _cannot have_ infinite
       memory. There is [some recent
       research](http://www.offconvex.org/2018/07/27/approximating-recurrent/) to
-      suggest that for many applications, this is a worthwhile tradeoff.
+      suggest that this is a worthwhile tradeoff.
 
 - Generative
     * Informally, a generative model is one that can generate new data after
@@ -68,7 +69,7 @@ words are kind of unnecessary), so let's unpack that.
       Contrast this to a discriminative model that models the conditional
       distribution $$P(X|Y)$$.
     * Generative adversarial networks (GANs) and variational autoencoders (VAEs)
-      are all examples of generative models.
+      are examples of generative models.
 
 - Sequence model
     * Fairly self explanatory. A model that deals with sequential data, whether
@@ -77,8 +78,8 @@ words are kind of unnecessary), so let's unpack that.
     * Although sequence models are  sequential (duh), there has been good
       success at applying them to non-sequential data. For example, PixelRNN and
       PixelCNN (more on them below) can generate entire images, even though
-      images are not sequential in nature: the model just generates a pixel at a
-      time, in sequence!
+      images are not sequential in nature: the model generates a pixel at a
+      time, in sequence![^2]
     * Notice that an autoregressive model is automatically a sequence model, so
       technically it's redundant to further describe these models as sequential
       (which makes this unnecessary word #2). Still, it's a good thing to wrap
@@ -119,9 +120,10 @@ These models have also found applications, such as [neural machine translation
 (in linear time!)](https://arxiv.org/abs/1610.10099) and [modelling
 video](https://arxiv.org/abs/1610.00527).
 
-## Observations and Thoughts
+## Some Observations
 
-Here are some general comments on autoregressive models generally.
+Here are some general thoughts and comments I had on autoregressive generative
+models.
 
 - Given previous values $$x_1, x_2, ..., x_t$$, these models do not provide a
   _value_ for $$x_{t+1}$$, they provide a _probability distribution_ for it.
@@ -139,17 +141,20 @@ Here are some general comments on autoregressive models generally.
 - Autoregressive models are supervised.
     * With the success and hype of GANs and VAEs, it is easy to assume that
       all generative models are unsupervised: this is not true!
-    * Way more stable than GANs, and can use all the good stuff from ML101:
-      train-valid-test splits, cross validation, loss metrics, etc.
+    * This means that that training is stable and highly parallelizable, that it
+      is straightfoward to tune hyperparameters, and that inference is
+      computationally inexpensive. We can also break out all the good stuff
+      from ML-101: train-valid-test splits, cross validation, loss metrics, etc.
+      These are all things that we lose when we resort to e.g. GANs.
 
-- Autoregressive sequential models work for both continuous and discrete data.
+- Autoregressive models work on both continuous and discrete data.
     * Autoregressive sequential models have worked for audio (WaveNet), images
       (PixelCNN++) and text (Transformer): these models are very flexible in the
       kind of data that they can model.
     * Contrast this to GANs, which (as far as I'm aware) cannot model discrete
       data.
 
-- Autoregressive sequential models can be conditioned.
+- Autoregressive models are very amenable to conditioning.
     * There are many options for conditioning! You can condition on both
       discrete and continuous variables; you can condition at multiple time
       scales; you can even condition on latent embeddings or the outputs of
@@ -199,7 +204,7 @@ Here are some general comments on autoregressive models generally.
         + Google DeepMind composed _several_ PixelRNNs to form a so-called
           "multi-scale" PixelRNN.
 
-- How the hell can any of this work?
+- It's amazing that this stuff actually works!
     * RNNs are theoretically more expressive and powerful than autoregressive
       models. However, recent work suggests that such infinite-horizon memory is
       seldom achieved in practice.
@@ -215,3 +220,5 @@ Here are some general comments on autoregressive models generally.
 ---
 
 [^1]: There's actually a lot more nuance than meets the eye in this animation, but all I'm trying to illustrate is the feed-forward nature of autoregressive models.
+
+[^2]: I personally think it's breathtakingly that machines can do this. Imagine your phone keyboard's word suggestions (those are autoregressive!) spitting out an entire novel. Or imagine weaving a sweater but you had to choose the color of every stitch, in order, in advance.
