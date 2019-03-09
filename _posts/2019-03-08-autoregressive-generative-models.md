@@ -1,5 +1,5 @@
 ---
-title: Autoregressive Generative Models
+title: Autoregressive Generative Models — A Brief Survey
 excerpt: "My current project involves working with a class of fairly niche and
 interesting neural networks that aren't usually seen on a first pass through
 deep learning. I thought I'd write up my reading and research and post it."
@@ -9,7 +9,7 @@ header:
   overlay_image: /assets/images/cool-backgrounds/cool-background10.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
 mathjax: true
-last_modified_at: 2019-03-22
+last_modified_at: 2019-03-08
 ---
 
 My current project involves working with a class of fairly niche and interesting
@@ -119,7 +119,7 @@ These models have also found applications, such as [neural machine translation
 (in linear time!)](https://arxiv.org/abs/1610.10099) and [modelling
 video](https://arxiv.org/abs/1610.00527).
 
-## Observations and Thoughts
+## Some Observations
 
 Here are some general comments on autoregressive models generally.
 
