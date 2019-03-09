@@ -1,5 +1,5 @@
 ---
-title: Autoregressive Generative Models — A Brief Survey
+title: Autoregressive Models in Deep Learning — A Brief Survey
 excerpt: "My current project involves working with a class of fairly niche and
 interesting neural networks that aren't usually seen on a first pass through
 deep learning. I thought I'd write up my reading and research and post it."
@@ -23,7 +23,13 @@ words are kind of unnecessary), so let's unpack that.
 - Deep
     * Well, these papers are using TensorFlow or PyTorch... so they must be
       "deep" :wink:
-    * This is unnecessary word #1.
+    * You would think this word is unnecessary, but it's actually not!
+      Autoregressive time series models such as
+      [ARMA](https://en.wikipedia.org/wiki/Autoregressive%E2%80%93moving-average_model)
+      or
+      [ARCH](https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity)
+      have been known to statisticians for ages.
+
 - Autoregressive
     * [Stanford has a good introduction](https://deepgenerativemodels.github.io/notes/autoregressive/)
       to autoregressive generative models, but I think a good way to explain
@@ -64,12 +70,16 @@ words are kind of unnecessary), so let's unpack that.
 - Generative
     * Informally, a generative model is one that can generate new data after
       learning from the dataset.
-    * More formally, a generative model models the joint distribution
-      $$P(X, Y)$$ of the observation $$X$$ and the target variable $$Y$$.
-      Contrast this to a discriminative model that models the conditional
-      distribution $$P(X|Y)$$.
+    * More formally, a generative model models the joint distribution $$P(X,
+      Y)$$ of the observation $$X$$ and the target variable $$Y$$.  Contrast
+      this to a discriminative model that models the conditional distribution
+      $$P(X|Y)$$.
     * Generative adversarial networks (GANs) and variational autoencoders (VAEs)
       are examples of generative models.
+    * This is actually unnecessary word #1: any autoregressive model can be run
+      sequentially to generate a new sequence! Start with your seed $$x_1, x_2,
+      ..., x_k$$ and predict $$x_{k+1}$$. Then use $$x_2, x_3, ..., x_{k+1}$$ to
+      predict $$x_{k+2}$$, and so on.
 
 - Sequence model
     * Fairly self explanatory. A model that deals with sequential data, whether
@@ -116,27 +126,29 @@ them.
   models like
   [BERT](https://ai.googleblog.com/2018/11/open-sourcing-bert-state-of-art-pre.html).
 
-These models have also found applications, such as [neural machine translation
-(in linear time!)](https://arxiv.org/abs/1610.10099) and [modelling
-video](https://arxiv.org/abs/1610.00527).
+These models have also found applications: for example, [Google DeepMind's
+ByteNet can perform neural machine translation (in linear
+time!)](https://arxiv.org/abs/1610.10099) and [Google DeepMind's Video Pixel
+Network can model video](https://arxiv.org/abs/1610.00527).
 
 ## Some Observations
 
-Here are some general thoughts and comments I had on autoregressive generative
+Here are some general thoughts and comments I have on deep autoregressive
 models.
 
 - Given previous values $$x_1, x_2, ..., x_t$$, these models do not provide a
-  _value_ for $$x_{t+1}$$, they provide a _probability distribution_ for it.
-  Explicitly, they model $$P(x_{t+1} | x_1, x_2, ..., x_t)$$
+  _value_ for $$x_{t+1}$$, they provide the _conditional probability
+  distribution_ $$P(x_{t+1} | x_1, x_2, ..., x_t)$$ for $$x_t$$. 
     * If the $$x$$'s are discrete, then you can do this by outputting an
       $$N$$-way softmaxxed tensor, where $$N$$ is the number of discrete
-      classes. This is what the original PixelCNN did, but gets messy when $$N$$
-      is large (e.g. in the case of WaveNet, where $$N = 2^{16}$$).
-    * If the $$x$$'s are continuous, there is still hope: you can model the
-      probability distribution itself as the sum of basis functions, and having
-      the model output the parameters of these basis functions. This massively
-      reduces the memory footprint of the model. This was an important
-      contribution of PixelCNN++.
+      classes. This is what the original PixelCNN did, but gets problematic when
+      $$N$$ is large (e.g. in the case of WaveNet, where $$N = 2^{16}$$).
+    * If the $$x$$'s are continuous, you can model the probability distribution
+      itself as the sum of basis functions, and having the model output the
+      parameters of these basis functions. This massively reduces the memory
+      footprint of the model, and was an important contribution of PixelCNN++.
+    * Theoretically you could have an autoregressive model that _doesn't_ model
+      the conditional distribution... but most recent models do.
 
 - Autoregressive models are supervised.
     * With the success and hype of GANs and VAEs, it is easy to assume that
