@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/eigenfoo
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://eigenfoo.xyz
+  * I am eigenfoo (https://keybase.io/eigenfoo) on keybase.
+  * I have a public key ASCsD4wjzqoNalT86VzogMM7vxt5G8z1qv6uFtYRWd9aOQo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101bb7b2366fc4ff504b200099d154f60f85d4215ab8034f715d8baec805ed334550a",
+      "host": "keybase.io",
+      "kid": "0120ac0f8c23ceaa0d6a54fce95ce880c33bbf1b791bccf5aafeae16d61159df5a390a",
+      "uid": "706a8779f50026a9bdcbaea5c6355719",
+      "username": "eigenfoo"
+    },
+    "merkle_root": {
+      "ctime": 1552151312,
+      "hash": "2e95ca6b6c915861def05b5625c14c6225d80c79d83f41c18291bb544455c7b9833178f34bbbd4d82b542d6903b399d8688bc6db238dae7eb91db6ec8ac80f01",
+      "hash_meta": "d2c3102725b750f513044923a62aa5d3a009249afbaa607465783bc8627ce33f",
+      "seqno": 4909649
+    },
+    "service": {
+      "entropy": "mlO/OWoMSz9mQJ5NaW8tqzN9",
+      "hostname": "eigenfoo.xyz",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "3.1.0"
+  },
+  "ctime": 1552151323,
+  "expire_in": 504576000,
+  "prev": "281c63ff56dea055e35289d76a35e2a217557095ce2bcfec480215989f51d6ed",
+  "seqno": 7,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgrA+MI86qDWpU/Olc6IDDO78beRvM9ar+rhbWEVnfWjkKp3BheWxvYWTESpcCB8QgKBxj/1beoFXjUonXajXiohdVcJXOK8/sSAIVmJ9R1u3EIF9xnJfcFMqvzUnE2Rk8RQVAROVRtuBXKTpvPJjBaYDSAgHCo3NpZ8RAKGMejOGiUr63bhiV6gn+Q9jCSrPl4VyyCS/5YHMxaSWiCuHtjS7HRa+IigmvP1FYGUWC4jWFfC6vcBoUrVGkCqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIC5bsKUyFL7BYtXLDG8/CKwN1hkm5HZqAb2eDl8Gd7LEo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/eigenfoo
+
+==================================================================
