@@ -91,30 +91,29 @@ these models do what they do: i.e. they describe properties of the network or
 its architecture.
 
 Despite the technicality involved in describing these models, they have seen a
-good degree of success in the real world. Each model merits discussion, but
-unfortunately there isn't enough space to devote to a detailed discussion about
-them.
+good amount of success in the real world. Each model merits discussion, but
+there isn't enough space here to do any of them justice.
 
-- [PixelCNN by Google DeepMind](https://arxiv.org/abs/1601.06759) was probably
-  the first such model, and the progenitor of most of the other models below.
-  Ironically, they spend the bulk of their paper discussing a recurrent model,
-  PixelRNN, and consider PixelCNN as a "workaround" to avoid excessive
-  computational burden. However, PixelCNN is probably this paper's most lasting
-  contribution to the field.
-- [PixelCNN++ by OpenAI](https://arxiv.org/abs/1701.05517) is, unsurprisingly,
-  PixelCNN but with various improvements.
-- [WaveNet by Google
-  DeepMind](https://deepmind.com/blog/wavenet-generative-model-raw-audio/) is
-  heavily inspired by PixelCNN, and models raw audio, not just encoded music.
-  They had to pull [a neat trick from signals
-  processing](https://en.wikipedia.org/wiki/%CE%9C-law_algorithm) in order to
-  cope with the sheer size of audio (high-quality audio involves at least
-  16-bit precision samples, which means a 66,000-softmax per time step!)
-- [Transformer, a.k.a. _the "attention is all you need" model_ by Google
-  Brain](https://arxiv.org/abs/1706.03762) is (by now) a mainstay of NLP,
-  performing very well at many NLP tasks and being incorporated into subsequent
-  models like
-  [BERT](https://ai.googleblog.com/2018/11/open-sourcing-bert-state-of-art-pre.html).
+1. [PixelCNN by Google DeepMind](https://arxiv.org/abs/1601.06759) was probably
+   the first viable autoregressive generative model, and the progenitor of most
+   of the other models below. Ironically, the authors spend the bulk of their
+   paper discussing a recurrent model, PixelRNN, and consider PixelCNN as a
+   "workaround" to avoid excessive computational burden. However, PixelCNN is
+   probably this paper's most lasting contribution.
+2. [PixelCNN++ by OpenAI](https://arxiv.org/abs/1701.05517) is, unsurprisingly,
+   PixelCNN but with various improvements.
+3. [WaveNet by Google
+   DeepMind](https://deepmind.com/blog/wavenet-generative-model-raw-audio/) is
+   heavily inspired by PixelCNN, and models raw audio, not just encoded music.
+   They had to pull [a neat trick from telecommunications/signals
+   processing](https://en.wikipedia.org/wiki/%CE%9C-law_algorithm) in order to
+   cope with the sheer size of audio (high-quality audio involves at least
+   16-bit precision samples, which means a 66,000-softmax per time step!)
+4. [Transformer, a.k.a. _the "attention is all you need" model_ by Google
+   Brain](https://arxiv.org/abs/1706.03762) is (by now) a mainstay of NLP,
+   performing very well at many NLP tasks and being incorporated into subsequent
+   models like
+   [BERT](https://ai.googleblog.com/2018/11/open-sourcing-bert-state-of-art-pre.html).
 
 These models have also found applications, such as [neural machine translation
 (in linear time!)](https://arxiv.org/abs/1610.10099) and [modelling
