@@ -13,4 +13,4 @@ kill:  # Kill jekyll process.
 	rm nohup.out
 
 clean:  # Remove _site/ directories.
-	rm -rf _site/ _posts/_site/
+	rm -rf nohup.out _site/ _posts/_site/
