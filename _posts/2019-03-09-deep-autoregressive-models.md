@@ -217,11 +217,14 @@ Network can model video](https://arxiv.org/abs/1610.00527).[^3]
 
      * There are two main ways capture these many patterns at these many
        different time scales: either make the receptive field of your model
-       _extremely_ wide (e.g. through dilated convolutions), or pull some other,
-       model-specific or data-specific trick.
-         + WaveNet uses "context stacks".
-         + Google DeepMind composed _several_ PixelRNNs to form a so-called
-           "multi-scale" PixelRNN.
+       _extremely_ wide (e.g. through dilated convolutions), or condition your
+       model on a subsampled version of your generated output, which is in turn
+       produced by an unconditioned model.
+         + Google DeepMind composes an unconditional PixelRNN with one or more
+           conditional PixelRNNs to form a so-called "multi-scale" PixelRNN: the
+           first PixelRNN generates a lower-resolution image that conditions the
+           subsequent PixelRNNs.
+         + WaveNet employs a technique and calls them "context stacks".
 
 7. How the hell can any of this stuff work?
      * RNNs are theoretically more expressive and powerful than autoregressive
