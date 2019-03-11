@@ -15,8 +15,9 @@ last_modified_at: 2019-03-09
 My current project involves working with deep autoregressive models: a class of
 remarkable neural networks that aren't usually seen on a first pass through deep
 learning. These notes are a quick write-up of my reading and research: I assume
-basic familiarity with deep learning, and aim to highlight similarities between
-asdf, instead of commenting on individual architectures.
+basic familiarity with deep learning, and aim to highlight general trends and
+similarities across autoregressive models, instead of commenting on individual
+architectures.
 
 **tldr:** _Deep autoregressive models are sequence models, yet feed-forward
 (i.e. not recurrent); generative models, yet supervised. They are a compelling
