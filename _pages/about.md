@@ -36,24 +36,9 @@ version of "stuff" or "thing".
 So taken together, `eigenfoo` probably means something like "things
 belonging to [George]".
 
-## Do you have a privacy policy?
-
-Yeah! [Check it out here](https://eigenfoo.xyz/privacy).
-
-tldr: I use
-[utterances](https://github.com/utterance/utterances/blob/master/PRIVACY-POLICY.md)
-for comments, and [Clicky](https://clicky.com/terms/privacy) for site analytics.
-[Email me](mailto:privacy@eigenfoo.xyz?subject=Privacy Policy) if you have any
-questions or concerns!
-
-## What's your type? As in, typeface, not, um. . .
-
-:wink:
-
-The slick display font you see on this website is [Nicholson
-Gothic](http://fonts.plph.co/#nicholsongothic) from
-[Polyphony](http://polyphony.nyc/), an amazing creative collective based in New
-York. Check out their fonts [here](http://fonts.plph.co/)!
-
-The text font is Lato, pulled from [Google
-Fonts](https://fonts.google.com/specimen/Lato).
+<form style="background-color:#DDDDDD;" action="http://tinyletter.com/eigenfoo" method="post" target="popupwindow" onsubmit="window.open('http://tinyletter.com/eigenfoo', 'popupwindow');return true">
+<h2>Want to get my blog posts by email?</h2>
+<p>Join my mailing list! Powered by <a href="http://tinyletter.com">TinyLetter</a>.</p>
+<div class="input-group">
+<input type="text" style="width:350px" name="email" value="email@example.com" onfocus="if (this.value == 'email@example.com') {this.value = '';}" onblur="if (this.value == '') {this.value = 'email@example.com';}">
+<input type="hidden" value="1" name="embed"/><input type="submit" value="Subscribe">
