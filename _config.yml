@@ -274,6 +274,7 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
+      subscribe: true
       comments: true
       share: false
       related: false
@@ -285,3 +286,8 @@ defaults:
     values:
       layout: single
       author_profile: true
+      read_time: false
+      subscribe: false
+      comments: false
+      share: false
+      related: false
