@@ -56,6 +56,14 @@ layout: default
         {% elsif page.date %}
           <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Updated:" }}</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time></p>
         {% endif %}
+
+        <hr>
+        <h1>Want to get my blog posts by email?</h1>
+        <p>Join my mailing list!</p>
+        <form action="http://tinyletter.com/eigenfoo" method="post" target="popupwindow" onsubmit="window.open('http://tinyletter.com/eigenfoo', 'popupwindow'); return true">
+        <input style="border:1px solid" type="text" name="email" value="email@example.com" onfocus="if (this.value == 'email@example.com') {this.value = '';}" onblur="if (this.value == '') {this.value = 'email@example.com';}">
+        <input type="submit" value="Subscribe">
+
       </footer>
 
       {% if page.share %}{% include social-share.html %}{% endif %}

@@ -35,10 +35,3 @@ version of "stuff" or "thing".
 
 So taken together, `eigenfoo` probably means something like "things
 belonging to [George]".
-
-<form style="background-color:#DDDDDD;" action="http://tinyletter.com/eigenfoo" method="post" target="popupwindow" onsubmit="window.open('http://tinyletter.com/eigenfoo', 'popupwindow');return true">
-<h2>Want to get my blog posts by email?</h2>
-<p>Join my mailing list! Powered by <a href="http://tinyletter.com">TinyLetter</a>.</p>
-<div class="input-group">
-<input type="text" style="width:350px" name="email" value="email@example.com" onfocus="if (this.value == 'email@example.com') {this.value = '';}" onblur="if (this.value == '') {this.value = 'email@example.com';}">
-<input type="hidden" value="1" name="embed"/><input type="submit" value="Subscribe">
