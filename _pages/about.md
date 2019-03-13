@@ -2,7 +2,7 @@
 layout: single
 permalink: /about/
 title: "About Me"
-author_profile: true
+subscribe: true
 ---
 
 ![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
