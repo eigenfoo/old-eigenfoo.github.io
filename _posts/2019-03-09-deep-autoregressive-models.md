@@ -141,7 +141,7 @@ Network can model video](https://arxiv.org/abs/1610.00527).[^3]
 
 1. Given previous values $$x_1, x_2, ..., x_t$$, these models do not output a
    _value_ for $$x_{t+1}$$, they output the _predictive probability
-   distribution_ $$P(x_{t+1} | x_1, x_2, ..., x_t)$$ for $$x_t$$. 
+   distribution_ $$P(x_{t+1} | x_1, x_2, ..., x_t)$$ for $$x_{t+1}$$.
      * If the $$x$$'s are discrete, then you can do this by outputting an
        $$N$$-way softmaxxed tensor, where $$N$$ is the number of discrete
        classes. This is what the original PixelCNN did, but gets problematic when
