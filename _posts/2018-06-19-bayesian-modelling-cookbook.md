@@ -202,7 +202,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   num_xs = 5
   use_centered = np.array([0, 1, 1, 0, 1])  # len(use_centered) = num_xs
   x_sd = pm.HalfCauchy('x_sd', sd=1)
-  x_raw = pm.Normal('x_raw', mu=0, sd=mu_x_sd**use_centered, shape=num_xs)
+  x_raw = pm.Normal('x_raw', mu=0, sd=x_sd**use_centered, shape=num_xs)
   x = pm.Deterministic('x', x_sd**(1 - use_centered) * x_raw)
   ```
 
