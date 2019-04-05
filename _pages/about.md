@@ -7,12 +7,12 @@ author_profile: true
 
 ![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
 
-Hello! My name is George, and this is my personal website. I'm a PyData
-ninja, machine learner, math enthusiast and coffee ~~addict~~ lover. (I also
-really like sushi.)
+Hello! My name is George, and this is my personal website. I'm a data scientist,
+machine learner, dabbling mathematician and coffee ~~addict~~ lover. (I also really
+like sushi.)
 
-I'm currently a data scientist/ research analyst at
-[Point72](http://point72.com), working out of their New York office. I help
+I'm currently a data scientist/ research analyst at [Point72 Asset
+Management](http://point72.com), working out of their New York office. I help
 power their internal research efforts, with a particular penchant for Bayesian
 modelling and data analysis.
 
@@ -38,25 +38,3 @@ version of "stuff" or "thing".
 
 So taken together, `eigenfoo` probably means something like "things
 belonging to [George]".
-
-## Do you have a privacy policy?
-
-Yeah! [Check it out here](https://eigenfoo.xyz/privacy).
-
-tldr: I use
-[utterances](https://github.com/utterance/utterances/blob/master/PRIVACY-POLICY.md)
-for comments, and [Clicky](https://clicky.com/terms/privacy) for site analytics.
-[Email me](mailto:privacy@eigenfoo.xyz?subject=Privacy Policy) if you have any
-questions or concerns!
-
-## What's your type? As in, typeface, not, um. . .
-
-:wink:
-
-The slick display font you see on this website is [Nicholson
-Gothic](http://fonts.plph.co/#nicholsongothic) from
-[Polyphony](http://polyphony.nyc/), an amazing creative collective based in New
-York. Check out their fonts [here](http://fonts.plph.co/)!
-
-The text font is Lato, pulled from [Google
-Fonts](https://fonts.google.com/specimen/Lato).
