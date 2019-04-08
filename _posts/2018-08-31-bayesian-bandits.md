@@ -1,11 +1,10 @@
 ---
-title: Multi-Armed Bandits, Conjugate Models and Bayesian Reinforcement Learning
+title: Multi-Armed Bandits and Conjugate Models — Bayesian Reinforcement Learning (Part 1)
 excerpt: "In this blog post I hope to show that there is more to Bayesianism than just
 MCMC sampling and suffering, by demonstrating a Bayesian approach to a classic
 reinforcement learning problem: the _multi-armed bandit_."
 tags:
   - bayesianism
-  - pymc3
   - reinforcement learning
   - machine learning
 header:
@@ -14,6 +13,9 @@ header:
 mathjax: true
 last_modified_at: 2018-08-31
 ---
+
+> This is the first of a two-post series about Bayesian bandits. Check out the
+> second post [here](https://eigenfoo.xyz/bayesian-bandits-2/).
 
 Let's talk about Bayesianism. It's developed a reputation (not entirely
 justified, but not entirely unjustified either) for being too mathematically
