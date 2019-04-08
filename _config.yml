@@ -104,7 +104,7 @@ analytics:
 author:
   name             : "George Ho"
   avatar           : "/assets/images/profile-pic.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "PyData ninja, machine learner, coffee addict and general practitioner (get it, GP?) of Bayesian necromancy."
+  bio              : "Point72 data scientist and PyMC core developer. Bayesianism, deep learning and coffee."
   location         : "NYC | HKG"
   links:
     - label: "Email"

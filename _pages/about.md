@@ -8,17 +8,17 @@ author_profile: true
 ![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
 
 Hello! My name is George, and this is my personal website. I'm a data scientist,
-machine learner, dabbling mathematician and coffee ~~addict~~ lover. (I also really
-like sushi.)
+machine learner, math enthusiast and coffee ~~addict~~ lover. (I also really
+like sushi, in case you haven't noticed.)
 
-I'm currently a data scientist/ research analyst at [Point72 Asset
-Management](http://point72.com), working out of their New York office. I help
-power their internal research efforts, with a particular penchant for Bayesian
-modelling and data analysis.
+I'm currently a data scientist/ research analyst at [Point72 Asset Management,
+L.P.](http://point72.com), working out of their New York office. I help power
+their internal research efforts, with a particular focus on Bayesian modelling
+and data analysis.
 
-Previously, I studied engineering at [The Cooper
-Union](http://cooper.edu/welcome) in New York, and interned at
-[Quantopian](https://www.quantopian.com/) in Boston.
+Previously, I studied engineering at [The Cooper Union](http://cooper.edu/) in
+New York, and interned at [Quantopian, Inc.](https://www.quantopian.com/) in
+Boston.
 
 [Click for my Resume](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){: .btn .btn--primary .btn--default}
 
