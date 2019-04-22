@@ -3,9 +3,12 @@ sudo: false
 rvm:
   - 2.4.1
 
-install: bundle install
+install:
+  - bundle install
 
-script: ./scripts/build.sh
+script:
+  - bundle exec jekyll build
+  - bundle exec htmlproofer ./_site --only-4xx --check-html
 
 env:
   global:
