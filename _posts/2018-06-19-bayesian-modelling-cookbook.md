@@ -253,7 +253,7 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
    # Display the total number and percentage of divergent chains
    diverging = trace['diverging']
    print('Number of Divergent Chains: {}'.format(diverging.nonzero()[0].size))
-   diverging_perc = divergent.nonzero()[0].size / len(trace) * 100
+   diverging_perc = diverging.nonzero()[0].size / len(trace) * 100
    print('Percentage of Divergent Chains: {:.1f}'.format(diverging_perc))
    ```
 
