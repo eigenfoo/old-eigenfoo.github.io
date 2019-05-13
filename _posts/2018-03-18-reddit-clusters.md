@@ -148,7 +148,10 @@ Now, how do we do this? This can be done using _clustering_, a machine learning
 technique in which we’re given data points, and tasked with grouping them in
 some way. A picture will explain better than words:
 
-<a href="https://cdn-images-1.medium.com/max/600/1*yeDcQuDzOa4yPwnP-FyRnA.png"><img align="middle" src="https://cdn-images-1.medium.com/max/800/1*_M5Nx0AjQTGsYzrCHWP4Fw.png"></a>
+<figure>
+    <a href="{{ site.url }}{{ site.baseurl }}/assets/images/clusters.png"><img src="{{ site.url }}{{ site.baseurl }}/assets/images/clusters.png"></a>
+    <figcaption>Clustering.</figcaption>
+</figure>
 
 The clustering algorithm was hard to decide on. After several dead ends were
 explored, I settled on non-negative matrix factorization of the document-term
@@ -204,8 +207,9 @@ some beta" balance that makes women swoon.
 ```
 
 <figure class="half">
-    <a href="https://cdn-images-1.medium.com/max/600/1*tD_vrXqkvWjKiDBvXQcV9g.png"><img src="https://cdn-images-1.medium.com/max/600/1*tD_vrXqkvWjKiDBvXQcV9g.png"></a>
-    <a href="https://cdn-images-1.medium.com/max/600/1*yeDcQuDzOa4yPwnP-FyRnA.png"><img src="https://cdn-images-1.medium.com/max/600/1*yeDcQuDzOa4yPwnP-FyRnA.png"></a>
+    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/TheRedPill/13_3.21%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/TheRedPill/13_3.21%25.png"></a>
+    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/TheRedPill/06_6.41%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/TheRedPill/06_6.41%25.png"></a>
+    <figcaption>Wordclouds from /r/TheRedPill.</figcaption>
 </figure>
 
 ```
@@ -258,8 +262,9 @@ beginning...
 ```
 
 <figure class="half">
-    <a href="https://cdn-images-1.medium.com/max/600/1*_8INm_IScvEnVWSZrvbXmw.png"><img src="https://cdn-images-1.medium.com/max/600/1*_8INm_IScvEnVWSZrvbXmw.png"></a>
-    <a href="https://cdn-images-1.medium.com/max/600/1*FBnzykJ4RzEOhkIIE3hP0w.png"><img src="https://cdn-images-1.medium.com/max/600/1*FBnzykJ4RzEOhkIIE3hP0w.png"></a>
+    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/The_Donald/00_5.19%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/The_Donald/00_5.19%25.png"></a>
+    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/The_Donald/02_1.26%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/The_Donald/02_1.26%25.png"></a>
+    <figcaption>Wordclouds from /r/The_Donald.</figcaption>
 </figure>
 
 ```
@@ -298,8 +303,9 @@ whatever.
 ```
 
 <figure class="half">
-    <a href="https://cdn-images-1.medium.com/max/600/1*HBzJNutPwxOZdPIKcaxf5Q.png"><img src="https://cdn-images-1.medium.com/max/600/1*HBzJNutPwxOZdPIKcaxf5Q.png"></a>
-    <a href="https://cdn-images-1.medium.com/max/600/1*m91cvXrui_72R70BcQh2jg.png"><img src="https://cdn-images-1.medium.com/max/600/1*m91cvXrui_72R70BcQh2jg.png"></a>
+    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/CringeAnarchy/08_3.10%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/CringeAnarchy/08_3.10%25.png"></a>
+    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/CringeAnarchy/12_2.92%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/CringeAnarchy/12_2.92%25.png"></a>
+    <figcaption>Wordclouds from /r/CringeAnarchy.</figcaption>
 </figure>
 
 ```
@@ -337,7 +343,11 @@ talk](https://eigenfoo.xyz/reddit-slides/) on exactly that!
 
 ---
 
-_This post was originally published [on
-Medium](https://medium.com/@_eigenfoo/understanding-hate-speech-on-reddit-through-text-clustering-7dc7675bccae)
-on May 18, 2018. This post was also reprinted in the inaugural issue of Cooper
-Union's [UNION Journal](https://www.facebook.com/theunionjournal/)._
+_This post was originally published on Medium on May 18, 2018: I have since
+[migrated away from
+Medium](https://medium.com/@nikitonsky/medium-is-a-poor-choice-for-blogging-bb0048d19133)
+and [deleted my account](https://bts.nomadgate.com/medium-evergreen-content) and
+[all my stories](https://www.joshjahans.com/ditching-medium/)._
+
+_This post was also reprinted in the inaugural issue of The Cooper Union's
+[UNION Journal](https://www.facebook.com/theunionjournal/)._

@@ -119,13 +119,16 @@ author:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/eigenfoo/"
+    - label: "Keybase"
+      icon: "fab fa-fw fa-keybase"
+      url: "https://keybase.io/eigenfoo"
 
 # Site Footer
 footer:
   links:
     - label: "Privacy"
       icon: "fas fa-fw fa-user-secret"
-      url: "https://eigenfoo.xyz/privacy/"
+      url: /privacy
     - label: "Source"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/eigenfoo/eigenfoo.xyz/"
@@ -271,6 +274,7 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
+      subscribe: true
       comments: true
       share: false
       related: false
@@ -282,3 +286,8 @@ defaults:
     values:
       layout: single
       author_profile: true
+      read_time: false
+      subscribe: false
+      comments: false
+      share: false
+      related: false

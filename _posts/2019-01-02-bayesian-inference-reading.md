@@ -54,12 +54,19 @@ So without further ado...
 2. [A Conceptual Introduction to Hamiltonian Monte
    Carlo](https://arxiv.org/abs/1701.02434) by Michael Betancourt. An excellent
    paper for a solid conceptual understanding and principled intuition for HMC.
-3. [The No-U-Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte
+3. [Exercises in Automatic Differentiation using `autograd` and
+   `jax`](https://colindcarroll.com/2019/04/06/exercises-in-automatic-differentiation-using-autograd-and-jax/)
+   by Colin Carroll. This is the first in a series of blog posts that explain
+   HMC from the very beginning. See also [Hamiltonian Monte Carlo from
+   Scratch](https://colindcarroll.com/2019/04/11/hamiltonian-monte-carlo-from-scratch/)
+   and [Step Size Adaptation in Hamiltonian Monte
+   Carlo](https://colindcarroll.com/2019/04/21/step-size-adaptation-in-hamiltonian-monte-carlo/).
+4. [The No-U-Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte
    Carlo](https://arxiv.org/abs/1111.4246) by Matthew Hoffman and Andrew Gelman.
    The original NUTS paper.
-4. [MCMC Using Hamiltonian
+5. [MCMC Using Hamiltonian
    Dynamics](http://www.mcmchandbook.net/HandbookChapter5.pdf) by Radford Neal.
-5. [Hamiltonian Monte Carlo in
+6. [Hamiltonian Monte Carlo in
    PyMC3](https://colindcarroll.com/talk/hamiltonian-monte-carlo/) by Colin
    Carroll.
 

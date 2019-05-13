@@ -2,7 +2,6 @@
 layout: single
 permalink: /work/
 title: Work
-author_profile: true
 ---
 
 ## Projects

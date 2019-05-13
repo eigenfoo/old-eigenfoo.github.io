@@ -5,58 +5,57 @@ title: "Privacy Policy"
 author_profile: false
 ---
 
-<p>Effective date: January 08, 2019</p>
+<p>Effective date: March 13, 2019</p>
 
 
-<p>Eigenfoo ("us", "we", or "our") operates the <a href="https://eigenfoo.xyz/">https://eigenfoo.xyz/</a> website (the "Service").</p>
+<p>Eigenfoo ("us", "we", or "our") operates the https://eigenfoo.xyz website (hereinafter referred to as the "Service").</p>
 
-<p>This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data. Our Privacy Policy  for Eigenfoo is based on the <a href="https://www.freeprivacypolicy.com/blog/sample-privacy-policy-template/">Free Privacy Policy Template Website</a>.</p>
+<p>This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data. Our Privacy Policy  for Eigenfoo is created with the help of the <a href="https://privacypolicies.com/">Privacy Policies website</a>.</p>
 
-<p>We use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this policy.</p>
+<p>We use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, the terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, accessible from https://eigenfoo.xyz</p>
 
 
 <h2>Information Collection And Use</h2>
 
 <p>We collect several different types of information for various purposes to provide and improve our Service to you.</p>
 
-<h3>Personal Data</h3>
+<h3>Types of Data Collected</h3>
+
+<h4>Personal Data</h4>
 
 <p>While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you ("Personal Data"). Personally identifiable information may include, but is not limited to:</p>
 
 <ul>
-<li><strong>GitHub profile.</strong> We use <a href="https://utteranc.es/">utterances</a> to provide comments, which stores all data in GitHub issues. Commenting will identify you by your GitHub user profile.</li>
+<li>Email address</li><li>Cookies and Usage Data</li>
 </ul>
 
-<ul>
-<li>Cookies and Usage Data</li>
-</ul>
+<h4>Usage Data</h4>
 
-<h3>Usage Data</h3>
+<p>We may also collect information on how the Service is accessed and used ("Usage Data"). This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data.</p>
 
-<p>We may also collect information how the Service is accessed and used ("Usage Data"). This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data.</p>
+<h4>Tracking & Cookies Data</h4>
 
-<h3>Tracking & Cookies Data</h3>
 <p>We use cookies and similar tracking technologies to track the activity on our Service and hold certain information.</p>
 <p>Cookies are files with small amount of data which may include an anonymous unique identifier. Cookies are sent to your browser from a website and stored on your device. Tracking technologies also used are beacons, tags, and scripts to collect and track information and to improve and analyze our Service.</p>
-<p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.</p>
+<p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service. You can learn more how to manage cookies in the <a href="https://privacypolicies.com/blog/how-to-delete-cookies/">Browser Cookies Guide</a>.</p>
 <p>Examples of Cookies we use:</p>
 <ul>
-<li><strong>Session Cookies.</strong> We use Session Cookies to operate our Service.</li>
-<li><strong>Preference Cookies.</strong> We use Preference Cookies to remember your preferences and various settings.</li>
-<li><strong>Security Cookies.</strong> We use Security Cookies for security purposes.</li>
+    <li><strong>Session Cookies.</strong> We use Session Cookies to operate our Service.</li>
+    <li><strong>Preference Cookies.</strong> We use Preference Cookies to remember your preferences and various settings.</li>
+    <li><strong>Security Cookies.</strong> We use Security Cookies for security purposes.</li>
 </ul>
 
 <h2>Use of Data</h2>
 
 <p>Eigenfoo uses the collected data for various purposes:</p>
 <ul>
-<li>To provide and maintain the Service</li>
-<li>To notify you about changes to our Service</li>
-<li>To allow you to participate in interactive features of our Service when you choose to do so</li>
-<li>To provide customer care and support</li>
-<li>To provide analysis or valuable information so that we can improve the Service</li>
-<li>To monitor the usage of the Service</li>
-<li>To detect, prevent and address technical issues</li>
+    <li>To provide and maintain the Service</li>
+    <li>To notify you about changes to our Service</li>
+    <li>To allow you to participate in interactive features of our Service when you choose to do so</li>
+    <li>To provide customer care and support</li>
+    <li>To provide analysis or valuable information so that we can improve the Service</li>
+    <li>To monitor the usage of the Service</li>
+    <li>To detect, prevent and address technical issues</li>
 </ul>
 
 <h2>Transfer Of Data</h2>
@@ -70,11 +69,11 @@ author_profile: false
 <h3>Legal Requirements</h3>
 <p>Eigenfoo may disclose your Personal Data in the good faith belief that such action is necessary to:</p>
 <ul>
-<li>To comply with a legal obligation</li>
-<li>To protect and defend the rights or property of Eigenfoo</li>
-<li>To prevent or investigate possible wrongdoing in connection with the Service</li>
-<li>To protect the personal safety of users of the Service or the public</li>
-<li>To protect against legal liability</li>
+    <li>To comply with a legal obligation</li>
+    <li>To protect and defend the rights or property of Eigenfoo</li>
+    <li>To prevent or investigate possible wrongdoing in connection with the Service</li>
+    <li>To protect the personal safety of users of the Service or the public</li>
+    <li>To protect against legal liability</li>
 </ul>
 
 <h2>Security Of Data</h2>
@@ -87,12 +86,9 @@ author_profile: false
 <h3>Analytics</h3>
 <p>We may use third-party Service Providers to monitor and analyze the use of our Service.</p>
 <ul>
-<li>
-<p><strong>Clicky</strong></p>
-<p>Clicky is a web analytics service. Read the Privacy Policy for Clicky here: <a href="https://clicky.com/terms">https://clicky.com/terms</a></p>
-</li>
+<li><p><strong>Clicky</strong></p>
+<p>Clicky is a web analytics service. Read the Privacy Policy for Clicky here: <a href="https://clicky.com/terms">https://clicky.com/terms</a></p></li>
 </ul>
-
 
 <h2>Links To Other Sites</h2>
 <p>Our Service may contain links to other sites that are not operated by us. If you click on a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.</p>
@@ -113,7 +109,7 @@ author_profile: false
 <h2>Contact Us</h2>
 <p>If you have any questions about this Privacy Policy, please contact us:</p>
 <ul>
-<li>By email: <a href="mailto:privacy@eigenfoo.xyz?subject=Privacy Policy">privacy@eigenfoo.xyz</a></li>
-<li>By visiting this page on our website: <a href="https://eigenfoo.xyz/privacy/">https://eigenfoo.xyz/privacy/</a></li>
+        <li>By email: george@eigenfoo.xyz</li>
 
-</ul>
+        </ul>
+
