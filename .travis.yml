@@ -7,7 +7,7 @@ install:
   - bundle install
 
 script:
-  - bundle exec jekyll build
+  - bundle exec jekyll build --future
   - bundle exec htmlproofer ./_site --only-4xx --check-html
 
 env:
