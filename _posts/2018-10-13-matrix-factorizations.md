@@ -82,7 +82,7 @@ on the rows and columns of $$U$$ and $$V$$. Expressed as a graphical model, PMF
 would look like this:
 
 <figure>
-    <a href="/assets/images/pmf.png"><img style="float: middle" src="/assets/images/pmf.png"></a>
+    <a href="/assets/images/pmf.png"><img style="float: middle" src="/assets/images/pmf.png" alt="Graphical model (using plate notation) for probabilistic matrix factorization (PMF)"></a>
 </figure>
 
 Note that the priors are placed on the _rows_ of the $$U$$ and $$V$$ matrices.
@@ -125,7 +125,7 @@ covariance given by the Wishart prior). Expressed as a graphical model, BPMF
 would look like this:
 
 <figure>
-    <a href="/assets/images/bpmf.png"><img style="float: middle" src="/assets/images/bpmf.png"></a>
+    <a href="/assets/images/bpmf.png"><img style="float: middle" src="/assets/images/bpmf.png" alt="Graphical model (using plate notation) for Bayesian probabilistic matrix factorization (BPMF)"></a>
 </figure>
 
 Note that, as above, the priors are placed on the _rows_ of the $$U$$ and $$V$$
