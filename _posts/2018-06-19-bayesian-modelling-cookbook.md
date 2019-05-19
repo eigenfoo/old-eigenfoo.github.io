@@ -38,7 +38,8 @@ experienced](https://twitter.com/twiecki)
 a work in progress, but hopefully somebody else finds it useful!
 
 <img style="float: middle" width="600"
-src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg">
+src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg"
+alt="PyMC3 logo">
 
 ## For the Uninitiated
 
@@ -142,11 +143,17 @@ src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.s
   (equations taken from
   [Wikipedia](https://en.wikipedia.org/wiki/Bayesian_hierarchical_modeling)):
 
-  <img style="float: center" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/765f37f86fa26bef873048952dccc6e8067b78f4">
+  <img style="float: center"
+  src="https://wikimedia.org/api/rest_v1/media/math/render/svg/765f37f86fa26bef873048952dccc6e8067b78f4"
+  alt="Example Bayesian hierarchical model equation #1">
 
-  <img style="float: center" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/ca8c0e1233fd69fa4325c6eacf8462252ed6b00a">
+  <img style="float: center"
+  src="https://wikimedia.org/api/rest_v1/media/math/render/svg/ca8c0e1233fd69fa4325c6eacf8462252ed6b00a"
+  alt="Example Bayesian hierarchical model equation #2">
 
-  <img style="float: center" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/1e56b3077b1b3ec867d6a0f2539ba9a3e79b45c1">
+  <img style="float: center"
+  src="https://wikimedia.org/api/rest_v1/media/math/render/svg/1e56b3077b1b3ec867d6a0f2539ba9a3e79b45c1"
+  alt="Example Bayesian hierarchical model equation #3">
 
   This hierarchy has 3 levels (some would say it has 2 levels, since there are
   only 2 levels of parameters to infer, but honestly whatever: by my count there
