@@ -14,8 +14,8 @@ mathjax: true
 last_modified_at: 2018-08-31
 ---
 
-> This is the first of a two-post series about Bayesian bandits. Check out the
-> second post [here](https://eigenfoo.xyz/bayesian-bandits-2/).
+> This is the first of a two-part series about Bayesian bandit algorithms. Check
+> out the second post [here](https://eigenfoo.xyz/bayesian-bandits-2/).
 
 Let's talk about Bayesianism. It's developed a reputation (not entirely
 justified, but not entirely unjustified either) for being too mathematically
