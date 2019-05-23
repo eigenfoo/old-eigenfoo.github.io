@@ -1,5 +1,7 @@
 # [`eigenfoo.xyz`](https://eigenfoo.xyz/)
 
+[![Build Status](https://travis-ci.org/eigenfoo/eigenfoo.github.io.svg?branch=master)](https://travis-ci.org/eigenfoo/eigenfoo.github.io)
+
 The source of my personal website and blog.
 
 ## License

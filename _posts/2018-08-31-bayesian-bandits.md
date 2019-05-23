@@ -109,7 +109,7 @@ out the [Jupyter notebook on my
 GitHub](https://github.com/eigenfoo/wanderings/blob/afcf37a8c6c2a2ac38f6708c1f3dd50db2ebe71f/bayes/bayesian-bandits.ipynb)
 
 <figure>
-    <a href="/assets/images/beta-binomial.png"><img style="float: middle" src="/assets/images/beta-binomial.png"></a>
+    <a href="/assets/images/beta-binomial.png"><img style="float: middle" src="/assets/images/beta-binomial.png" alt="Posterior distribution after several pulls for the Beta-Binomial model"></a>
 </figure>
 
 ### Generalizing to conjugate models
@@ -136,7 +136,7 @@ Without further ado:
 <script src="https://gist.github.com/eigenfoo/e9a9933d94524e6dee717276c6b6f732.js"></script>
 
 <figure>
-    <a href="/assets/images/gamma-poisson.png"><img style="float: middle" src="/assets/images/gamma-poisson.png"></a>
+    <a href="/assets/images/gamma-poisson.png"><img style="float: middle" src="/assets/images/gamma-poisson.png" alt="Posterior distribution after several pulls for the Gamma-Poisson model"></a>
 </figure>
 
 This really demonstrates how lean and mean conjugate models can be, especially
@@ -177,7 +177,7 @@ function.
 <script src="https://gist.github.com/eigenfoo/7a397fef8aaa028c5119c9f86860d72e.js"></script>
 
 <figure>
-    <a href="/assets/images/bounded.png"><img style="float: middle" src="/assets/images/bounded.png"></a>
+    <a href="/assets/images/bounded.png"><img style="float: middle" src="/assets/images/bounded.png" alt="Posterior distribution after several pulls with an arbitrary reward distribution (e.g. the logit normal)"></a>
 </figure>
 
 ## Final Remarks

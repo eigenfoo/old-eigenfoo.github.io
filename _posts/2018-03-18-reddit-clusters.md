@@ -149,7 +149,7 @@ technique in which we’re given data points, and tasked with grouping them in
 some way. A picture will explain better than words:
 
 <figure>
-    <a href="{{ site.url }}{{ site.baseurl }}/assets/images/clusters.png"><img src="{{ site.url }}{{ site.baseurl }}/assets/images/clusters.png"></a>
+    <a href="{{ site.url }}{{ site.baseurl }}/assets/images/clusters.png"><img src="{{ site.url }}{{ site.baseurl }}/assets/images/clusters.png" alt="Illustration of clustering"></a>
     <figcaption>Clustering.</figcaption>
 </figure>
 
@@ -207,8 +207,8 @@ some beta" balance that makes women swoon.
 ```
 
 <figure class="half">
-    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/TheRedPill/13_3.21%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/TheRedPill/13_3.21%25.png"></a>
-    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/TheRedPill/06_6.41%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/TheRedPill/06_6.41%25.png"></a>
+    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/TheRedPill/13_3.21%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/TheRedPill/13_3.21%25.png" alt="/r/TheRedPill cluster #13"></a>
+    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/TheRedPill/06_6.41%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/TheRedPill/06_6.41%25.png" alt="/r/TheRedPill cluster #6"></a>
     <figcaption>Wordclouds from /r/TheRedPill.</figcaption>
 </figure>
 
@@ -262,8 +262,8 @@ beginning...
 ```
 
 <figure class="half">
-    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/The_Donald/00_5.19%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/The_Donald/00_5.19%25.png"></a>
-    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/The_Donald/02_1.26%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/The_Donald/02_1.26%25.png"></a>
+    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/The_Donald/00_5.19%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/The_Donald/00_5.19%25.png" alt="/r/The_Donald cluster #0"></a>
+    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/The_Donald/02_1.26%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/The_Donald/02_1.26%25.png" alt="/r/The_Donald cluster #2"></a>
     <figcaption>Wordclouds from /r/The_Donald.</figcaption>
 </figure>
 
@@ -303,8 +303,8 @@ whatever.
 ```
 
 <figure class="half">
-    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/CringeAnarchy/08_3.10%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/CringeAnarchy/08_3.10%25.png"></a>
-    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/CringeAnarchy/12_2.92%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/CringeAnarchy/12_2.92%25.png"></a>
+    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/CringeAnarchy/08_3.10%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/CringeAnarchy/08_3.10%25.png" alt="/r/CringeAnarchy cluster #8"></a>
+    <a href="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/CringeAnarchy/12_2.92%25.png"><img src="https://raw.githubusercontent.com/eigenfoo/reddit-clusters/master/wordclouds/images/CringeAnarchy/12_2.92%25.png" alt="/r/CringeAnarchy cluster #8"></a>
     <figcaption>Wordclouds from /r/CringeAnarchy.</figcaption>
 </figure>
 
@@ -327,7 +327,7 @@ provocative results to put here.
 
 If you still have the stomach for this stuff, scroll through the complete log
 files
-[here](https://github.com/eigenfoo/reddit-clusters/tree/master/clustering/results),
+[here](https://github.com/eigenfoo/reddit-clusters/tree/master/clustering/nmf/results),
 or look through images of the word clouds
 [here](https://github.com/eigenfoo/reddit-clusters/tree/master/wordclouds/images).
 
