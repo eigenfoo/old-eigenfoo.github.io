@@ -2,7 +2,7 @@
 title: Decaying Posteriors and Contextual Bandits — Bayesian Reinforcement Learning (Part 2)
 excerpt:
 tags:
-  - bayesian
+  - bayesianism
   - reinforcement learning
   - machine learning
 header:
