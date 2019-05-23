@@ -47,7 +47,7 @@ autoregressive generative sequence models_. That's quite a mouthful of jargon
        more well-known.
 
      <figure>
-         <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png"><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png"></a>
+         <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png"><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png" alt="Recurrent neural network (RNN) block diagram, both rolled and unrolled"></a>
          <figcaption>Obligatory RNN diagram. Source: <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">Chris Olah</a>.</figcaption>
      </figure>
 
@@ -60,7 +60,7 @@ autoregressive generative sequence models_. That's quite a mouthful of jargon
        several input $$x$$ values.[^1]
 
      <figure>
-         <a href="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig2-Anim-160908-r01.gif"><img src="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig2-Anim-160908-r01.gif"></a>
+         <a href="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig2-Anim-160908-r01.gif"><img src="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig2-Anim-160908-r01.gif" alt="WaveNet animation"></a>
          <figcaption>WaveNet animation. Source: <a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/">Google DeepMind</a>.</figcaption>
      </figure>
 
@@ -212,7 +212,7 @@ Network can model video](https://arxiv.org/abs/1610.00527).[^3]
        animation:
 
      <figure>
-         <a href="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig1-Anim-160908-r01.gif"><img src="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig1-Anim-160908-r01.gif"></a>
+         <a href="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig1-Anim-160908-r01.gif"><img src="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig1-Anim-160908-r01.gif" alt="Audio at multiple timescales"></a>
          <figcaption>Audio exhibits patterns at multiple timescales. Source: <a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/">Google DeepMind</a>.</figcaption>
      </figure>
 
