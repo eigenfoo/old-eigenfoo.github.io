@@ -1,9 +1,12 @@
-.PHONY: help draft serve clean stop
+.PHONY: help setup draft serve clean stop
 .DEFAULT_GOAL = help
 
 help:
 	@printf "Usage:\n"
 	@grep -E '^[a-zA-Z_-]+:.*?# .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?# "}; {printf "\033[1;34mmake %-10s\033[0m%s\n", $$1, $$2}'
+
+setup:  # Set up environment for blogging and development.
+	bundle install
 
 draft:  # Start a draft blog post.
 	( \
@@ -27,8 +30,8 @@ draft:  # Start a draft blog post.
 serve:  # Serve site locally.
 	jekyll serve --incremental 2>&1 >> /dev/null &
 
-clean:  # Remove _site/ and _posts/_site/ directories
-	rm -rf _site/ _posts/_site/
-
 stop: clean  # Stop local serving.
 	PID="$(shell pgrep -f jekyll)"; kill $$PID
+
+clean:  # Remove _site/ and _posts/_site/ directories
+	rm -rf _site/ _posts/_site/

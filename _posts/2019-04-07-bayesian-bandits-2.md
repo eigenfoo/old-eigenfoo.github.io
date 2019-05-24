@@ -20,20 +20,32 @@ on the Bayesian bandit algorithm.
 
 <figure>
     <a href="https://fsmedia.imgix.net/29/fd/a4/56/8363/4fb0/8c62/20e80649451b/the-multi-armed-bandit-determines-what-you-see-on-the-internet.jpeg?rect=0%2C34%2C865%2C432&auto=format%2Ccompress&dpr=2&w=650"><img src="https://fsmedia.imgix.net/29/fd/a4/56/8363/4fb0/8c62/20e80649451b/the-multi-armed-bandit-determines-what-you-see-on-the-internet.jpeg?rect=0%2C34%2C865%2C432&auto=format%2Ccompress&dpr=2&w=650" alt="Cartoon of a multi-armed bandit"></a>
-    <figcaption>A multi-armed bandit situation. Source: <a href="https://www.inverse.com/article/13762-how-the-multi-armed-bandit-determines-what-ads-and-stories-you-see-online">Inverse</a>.</figcaption>
+    <figcaption>An example of a multi-armed bandit situation. Source: <a href="https://www.inverse.com/article/13762-how-the-multi-armed-bandit-determines-what-ads-and-stories-you-see-online">Inverse</a>.</figcaption>
 </figure>
 
 ## Nonstationary Bandits
 
 In the previous blog post, we concerned ourselves with stationary bandits: in
-other words, we assumed that the rewards distribution did not change over time.
-In the real world though, customer preferences change.
+other words, we assumed that the rewards distribution for each arm did not
+change over time.
+
+In the real world though, rewards distributions need not be stationary: customer
+preferences change, trading algorithms deteriorate, news articles rise and fall
+in relevance.
+
+Nonstationarity could mean either of two things for our model:
+
+1. either we are lucky enough to know that the rewards distributions have the
+   same functional form throughout all time, and that it is merely the
+   parameters that are liable to change,
+2. or we are particularly unlucky and the rewards distributions are arbitrary
+   and changing.
 
 ### Decaying posteriors
 
 Thankfully, there is a nice solution to deal with
 
-First, some notation. Suppose we have a model with parameters $$\theta$$. We
+But first, some notation. Suppose we have a model with parameters $$\theta$$. We
 place a prior $$\pi_0(\theta)$$ on it, and, at $$t$$th time step, we observe
 data $$D_t$$, compute the likelihood $$P(D_t | \theta)$$ and update the
 posterior to $$\pi_t(\theta)$$.
@@ -56,11 +68,19 @@ For $$ 0 < \epsilon << 1 $$,
 
 $$ \pi_{t+1}(\theta | D_{1:t+1}) \propto [ P(D_{t+1} | \theta) \cdot \pi_t (\theta | D_{1:t}) ]^{1-\epsilon} \cdot \pi_0(\theta)^\epsilon $$
 
-If we stop collecting data at time $$T$$, then
+Notice that if we stop collecting data at time $$T$$, then
 
 $$ \pi_t(\theta | D_{1:T}) \rightarrow \pi_0(\theta) $$
 
-- https://austinrochford.com/resources/talks/boston-bayesians-2017-bayes-bandits.slides.html#/3
+- in case 1, this trick works easily
+- in case 2, can we bootstrap the Agarwal trick?
+
+For more information, see [Austin Rochford's talk for Boston
+Bayesians](https://austinrochford.com/resources/talks/boston-bayesians-2017-bayes-bandits.slides.html#/3)
+about Bayesian bandit algorithms for e-commerce.
+
+- https://stats.stackexchange.com/questions/182862/prior-pdf-decay-in-recursive-bayesian-estimation
+- https://www.tandfonline.com/doi/abs/10.1080/01621459.2018.1469995
 
 ## Contextual Bandits
 
