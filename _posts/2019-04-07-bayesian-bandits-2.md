@@ -46,31 +46,36 @@ Nonstationarity could mean either of two things for our model:
 Thankfully, there is a nice solution to deal with
 
 But first, some notation. Suppose we have a model with parameters $$\theta$$. We
-place a prior $$\pi_0(\theta)$$ on it, and, at $$t$$th time step, we observe
-data $$D_t$$, compute the likelihood $$P(D_t | \theta)$$ and update the
-posterior to $$\pi_t(\theta)$$.
+place a prior $$\color{purple}{\pi_0(\theta)}$$ on it, and at $$t$$'th time
+step, we observe data $$D_t$$, compute the likelihood $$\color{blue}{P(D_t |
+\theta)}$$ and update the posterior from $$\color{red}{\pi_t(\theta |
+D_{1:t})}$$ to $$\color{green}{\pi_{t+1}(\theta | D_{1:t+1})}$$.
 
 This is the (ubiquitous) Bayesian update rule, which is given by
 
-$$ \pi_{t+1}(\theta | D_{1:t+1}) \propto P(D_{t+1} | \theta) \cdot \pi_t (\theta | D_{1:t}) $$
+$$ \color{green}{\pi_{t+1}(\theta | D_{1:t+1})} \propto \color{blue}{P(D_{t+1} |
+\theta)} \cdot \color{red}{\pi_t (\theta | D_{1:t})} $$
 
 However, for problems with nonstationary rewards distributions, we would like
 data points observed a long time ago to have less weight than more recently
 observed data points. This is only prudent in the face of a nonstationary
 rewards distribution: after all, the rewards distribution may have changed
 significantly between when we observed those data points and the current time.
+
 We would rather abandon most (if not all) of our data in favor of a more
-conservative posterior.
+conservative posterior. This can be achieved by making our posterior "forget"
+old data points.
 
-This can be achieved by making our posterior "forget" old data points.
+For $$ 0 < \color{magenta}{\epsilon} \ll 1 $$,
 
-For $$ 0 < \epsilon << 1 $$,
+$$ \color{green}{\pi_{t+1}(\theta | D_{1:t+1})} \propto \color{magenta}{[}
+\color{blue}{P(D_{t+1} | \theta)} \cdot \color{red}{\pi_t (\theta | D_{1:t})}
+{\color{magenta}{]^{1-\epsilon}}} \cdot
+\color{purple}{\pi_0(\theta)}^\color{magenta}{\epsilon} $$
 
-$$ \pi_{t+1}(\theta | D_{1:t+1}) \propto [ P(D_{t+1} | \theta) \cdot \pi_t (\theta | D_{1:t}) ]^{1-\epsilon} \cdot \pi_0(\theta)^\epsilon $$
-
-Notice that if we stop collecting data at time $$T$$, then
-
-$$ \pi_t(\theta | D_{1:T}) \rightarrow \pi_0(\theta) $$
+Notice that if we stop collecting data at time $$T$$, then $$
+\color{red}{\pi_t(\theta | D_{1:T})} \rightarrow \color{purple}{\pi_0(\theta)}
+$$ as $$ t \rightarrow \infty $$.
 
 - in case 1, this trick works easily
 - in case 2, can we bootstrap the Agarwal trick?
