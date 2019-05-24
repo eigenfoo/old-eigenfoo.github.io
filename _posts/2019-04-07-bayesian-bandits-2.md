@@ -18,7 +18,10 @@ last_modified_at: 2019-06-23
 This will be a more theoretical blog post, outlining the theoretical variations
 on the Bayesian bandit algorithm.
 
-![Cartoon of a multi-armed bandit](https://cdn-images-1.medium.com/max/1200/1*FH4t-DcuKWfLYRWvd4JIjA.png)
+<figure>
+    <a href="https://fsmedia.imgix.net/29/fd/a4/56/8363/4fb0/8c62/20e80649451b/the-multi-armed-bandit-determines-what-you-see-on-the-internet.jpeg?rect=0%2C34%2C865%2C432&auto=format%2Ccompress&dpr=2&w=650"><img src="https://fsmedia.imgix.net/29/fd/a4/56/8363/4fb0/8c62/20e80649451b/the-multi-armed-bandit-determines-what-you-see-on-the-internet.jpeg?rect=0%2C34%2C865%2C432&auto=format%2Ccompress&dpr=2&w=650" alt="Cartoon of a multi-armed bandit"></a>
+    <figcaption>A multi-armed bandit situation. Source: <a href="https://www.inverse.com/article/13762-how-the-multi-armed-bandit-determines-what-ads-and-stories-you-see-online">Inverse</a>.</figcaption>
+</figure>
 
 ## Nonstationary Bandits
 
@@ -84,11 +87,14 @@ where, on each round:
 
 ### Bayesian contextual bandits
 
+There are many ways to make a bandit algorithm model context: linear regression
+is a classic example.
+
+- https://en.wikipedia.org/wiki/Multi-armed_bandit#Approximate_solutions_for_contextual_bandit
 - https://people.orie.cornell.edu/pfrazier/Presentations/2012.10.INFORMS.Bandit.pdf
 
 ## References
 
-- https://en.wikipedia.org/wiki/Multi-armed_bandit
+- https://en.wikipedia.org/wiki/Multi-armed_bandit#Contextual_bandit
 - https://github.com/VowpalWabbit/vowpal_wabbit/wiki/Contextual-Bandit-algorithms
-- https://github.com/david-cortes/contextualbandits
 - https://arxiv.org/abs/1802.04064
