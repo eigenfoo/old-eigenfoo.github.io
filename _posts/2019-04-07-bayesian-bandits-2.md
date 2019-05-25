@@ -35,9 +35,10 @@ in relevance.
 
 Nonstationarity could mean either of two things for our model:
 
-1. either we are lucky enough to know that the rewards distributions have the
-   same functional form throughout all time, and that it is merely the
-   parameters that are liable to change,
+1. either we are lucky enough to know that rewards are identically distributed
+   throughout all time (e.g. the rewards are always normally distributed, or
+   binomially distributed), and that it is merely the parameters of these
+   distributions that are liable to change,
 2. or we are particularly unlucky and the rewards distributions are arbitrary
    and changing.
 
@@ -51,41 +52,39 @@ step, we observe data $$D_t$$, compute the likelihood $$\color{blue}{P(D_t |
 \theta)}$$ and update the posterior from $$\color{red}{\pi_t(\theta |
 D_{1:t})}$$ to $$\color{green}{\pi_{t+1}(\theta | D_{1:t+1})}$$.
 
-This is the (ubiquitous) Bayesian update rule, which is given by
+This is a (very common) application of Bayes' Theorem. Explicitly, it is given
+by
 
 $$ \color{green}{\pi_{t+1}(\theta | D_{1:t+1})} \propto \color{blue}{P(D_{t+1} |
 \theta)} \cdot \color{red}{\pi_t (\theta | D_{1:t})} $$
 
 However, for problems with nonstationary rewards distributions, we would like
-data points observed a long time ago to have less weight than more recently
-observed data points. This is only prudent in the face of a nonstationary
+data points observed a long time ago to have less weight than data points
+observed more recently. This is only prudent in the face of a nonstationary
 rewards distribution: after all, the rewards distribution may have changed
-significantly between when we observed those data points and the current time.
+significantly between when we observed those data points and now.
 
-We would rather abandon most (if not all) of our data in favor of a more
-conservative posterior. This can be achieved by making our posterior "forget"
-old data points.
-
-For $$ 0 < \color{magenta}{\epsilon} \ll 1 $$,
+In the absence of recent data, we would like to adopt a more conservative
+"no-data" prior, rather than allow our posterior to be informed by outdated
+data. This can be achieved by modifying the Bayesian update to:
 
 $$ \color{green}{\pi_{t+1}(\theta | D_{1:t+1})} \propto \color{magenta}{[}
 \color{blue}{P(D_{t+1} | \theta)} \cdot \color{red}{\pi_t (\theta | D_{1:t})}
 {\color{magenta}{]^{1-\epsilon}}} \cdot
 \color{purple}{\pi_0(\theta)}^\color{magenta}{\epsilon} $$
 
+for some $$ 0 < \color{magenta}{\epsilon} \ll 1 $$.
+
 Notice that if we stop collecting data at time $$T$$, then $$
 \color{red}{\pi_t(\theta | D_{1:T})} \rightarrow \color{purple}{\pi_0(\theta)}
 $$ as $$ t \rightarrow \infty $$.
 
-- in case 1, this trick works easily
-- in case 2, can we bootstrap the Agarwal trick?
+- in case 1, with a conjugate model, this works great
+- in case 2, can we still use Agarwal's trick?
 
 For more information, see [Austin Rochford's talk for Boston
 Bayesians](https://austinrochford.com/resources/talks/boston-bayesians-2017-bayes-bandits.slides.html#/3)
 about Bayesian bandit algorithms for e-commerce.
-
-- https://stats.stackexchange.com/questions/182862/prior-pdf-decay-in-recursive-bayesian-estimation
-- https://www.tandfonline.com/doi/abs/10.1080/01621459.2018.1469995
 
 ## Contextual Bandits
 
@@ -103,6 +102,8 @@ first blog post](https://eigenfoo.xyz/bayesian-bandits/)) as follows:
 
 However, this formulation fails to capture an important phenomenon: there is
 almost always extra information that is available while making each decision.
+GIVE SOME EXAMPLES.
+
 To take advantage of this information, we might think of a different formulation
 where, on each round:
 
