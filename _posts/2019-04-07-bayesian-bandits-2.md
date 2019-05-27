@@ -27,24 +27,22 @@ on the Bayesian bandit algorithm.
 
 In the previous blog post, we concerned ourselves with stationary bandits: in
 other words, we assumed that the rewards distribution for each arm did not
-change over time.
+change over time. In the real world though, rewards distributions need not be
+stationary: customer preferences change, trading algorithms deteriorate, news
+articles rise and fall in relevance.
 
-In the real world though, rewards distributions need not be stationary: customer
-preferences change, trading algorithms deteriorate, news articles rise and fall
-in relevance.
-
-Nonstationarity could mean either of two things for our model:
+Nonstationarity could mean one of two things for our model:
 
 1. either we are lucky enough to know that rewards are identically distributed
    throughout all time (e.g. the rewards are always normally distributed, or
-   binomially distributed), and that it is merely the parameters of these
+   always binomially distributed), and that it is merely the parameters of these
    distributions that are liable to change,
-2. or we are particularly unlucky and the rewards distributions are arbitrary
-   and changing.
+2. or we aren't so unlucky and the rewards distributions are arbitrary and
+   changing.
 
-### Decaying posteriors
+### Decaying evidence and posteriors
 
-Thankfully, there is a nice solution to deal with
+There is a nice trick to deal with both forms of nonstationarity.
 
 But first, some notation. Suppose we have a model with parameters $$\theta$$. We
 place a prior $$\color{purple}{\pi_0(\theta)}$$ on it, and at $$t$$'th time
@@ -73,14 +71,16 @@ $$ \color{green}{\pi_{t+1}(\theta | D_{1:t+1})} \propto \color{magenta}{[}
 {\color{magenta}{]^{1-\epsilon}}} \cdot
 \color{purple}{\pi_0(\theta)}^\color{magenta}{\epsilon} $$
 
-for some $$ 0 < \color{magenta}{\epsilon} \ll 1 $$.
+for some $$ 0 < \color{magenta}{\epsilon} \ll 1 $$. We can think of
+$$\color{magenta}{\epsilon}$$ as controlling the rate of decay of the
+evidence/posterior (i.e. how quickly we should distrust past data points).
 
 Notice that if we stop collecting data at time $$T$$, then $$
 \color{red}{\pi_t(\theta | D_{1:T})} \rightarrow \color{purple}{\pi_0(\theta)}
 $$ as $$ t \rightarrow \infty $$.
 
-- in case 1, with a conjugate model, this works great
-- in case 2, can we still use Agarwal's trick?
+Decaying the evidence (and therefore the posterior) is a nice trick that can be
+used to address both types of nonstationarity identified in the previous section.
 
 For more information, see [Austin Rochford's talk for Boston
 Bayesians](https://austinrochford.com/resources/talks/boston-bayesians-2017-bayes-bandits.slides.html#/3)
@@ -113,14 +113,29 @@ where, on each round:
 
 ### Bayesian contextual bandits
 
+In other words, contextual bandits call for some way of taking context as input
+and producing actions as output. Obviously, this can be done in many ways.
+
 There are many ways to make a bandit algorithm model context: linear regression
 is a classic example.
+
+Prior: $$ \theta_a \sim N(\mu_0, \Sigma_0) $$
+
+Observation: $$ y_n = \theta_{a_n} \cdot x_n $$
+
+Choose the action $$a$$ that maximizes the expected reward.
 
 - https://en.wikipedia.org/wiki/Multi-armed_bandit#Approximate_solutions_for_contextual_bandit
 - https://people.orie.cornell.edu/pfrazier/Presentations/2012.10.INFORMS.Bandit.pdf
 
-## References
+## Further Reading
 
-- https://en.wikipedia.org/wiki/Multi-armed_bandit#Contextual_bandit
-- https://github.com/VowpalWabbit/vowpal_wabbit/wiki/Contextual-Bandit-algorithms
-- https://arxiv.org/abs/1802.04064
+- As always, the [Wikipedia page for contextual
+  bandits](https://en.wikipedia.org/wiki/Multi-armed_bandit#Contextual_bandit)
+  is always a good place to start reading.
+- For non-Bayesian approaches to contextual bandits, [Vowpal
+  Wabbit](https://github.com/VowpalWabbit/vowpal_wabbit/wiki/Contextual-Bandit-algorithms)
+  is a great resource: [Microsoft Research](https://www.microsoft.com/research/)
+  has [extensively researched](https://arxiv.org/abs/1402.0555v2) contextual
+  bandit algorithms, provided both blazingly fast implementations of recent
+  algorithms, and written good documentation for them.
