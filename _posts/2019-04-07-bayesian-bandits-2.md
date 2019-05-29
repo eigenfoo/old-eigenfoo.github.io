@@ -15,8 +15,11 @@ last_modified_at: 2019-06-23
 > This is the second of a two-part series about Bayesian bandit algorithms.
 > Check out the first post [here](https://eigenfoo.xyz/bayesian-bandits/).
 
-This will be a more theoretical blog post, outlining the theoretical variations
-on the Bayesian bandit algorithm.
+In my previous post, I outlined
+
+Unlike the first blog post, this blog post will more theoretical and math-heavy,
+outlining the variations on the multi-armed bandit problem and extensions to the
+vanilla Thompson sampling algorithm presented in the first blog post.
 
 <figure>
     <a href="https://fsmedia.imgix.net/29/fd/a4/56/8363/4fb0/8c62/20e80649451b/the-multi-armed-bandit-determines-what-you-see-on-the-internet.jpeg?rect=0%2C34%2C865%2C432&auto=format%2Ccompress&dpr=2&w=650"><img src="https://fsmedia.imgix.net/29/fd/a4/56/8363/4fb0/8c62/20e80649451b/the-multi-armed-bandit-determines-what-you-see-on-the-internet.jpeg?rect=0%2C34%2C865%2C432&auto=format%2Ccompress&dpr=2&w=650" alt="Cartoon of a multi-armed bandit"></a>
@@ -40,9 +43,10 @@ Nonstationarity could mean one of two things for our model:
 2. or we aren't so unlucky and the rewards distributions are arbitrary and
    changing.
 
-### Decaying evidence and posteriors
+Luckily, there is a neat trick to deal with both forms of nonstationarity, which
+we'll get into next!
 
-There is a nice trick to deal with both forms of nonstationarity.
+### Decaying evidence and posteriors
 
 But first, some notation. Suppose we have a model with parameters $$\theta$$. We
 place a prior $$\color{purple}{\pi_0(\theta)}$$ on it, and at $$t$$'th time
@@ -88,6 +92,9 @@ about Bayesian bandit algorithms for e-commerce.
 
 ## Contextual Bandits
 
+This is an extension to the multi-armed bandit problem itself, not a variation
+on any of the methods used to tackle it.
+
 ### What even is a contextual bandit?
 
 We first need to know what contextual bandits are, let alone Bayesian contextual
@@ -102,7 +109,9 @@ first blog post](https://eigenfoo.xyz/bayesian-bandits/)) as follows:
 
 However, this formulation fails to capture an important phenomenon: there is
 almost always extra information that is available while making each decision.
-GIVE SOME EXAMPLES.
+For instance, online ads occur in the context of the web page in which they
+appear, and online store recommendations are given in the context of the user's
+current cart contents.
 
 To take advantage of this information, we might think of a different formulation
 where, on each round:
@@ -110,6 +119,8 @@ where, on each round:
 1. The world announces some context information $$x$$.
 2. A policy chooses an arm $$a$$ from $$k$$ arms.
 3. The world reveals the reward $$R_a$$ of the chosen arm.
+
+In other words,
 
 ### Bayesian contextual bandits
 
