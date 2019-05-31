@@ -15,7 +15,8 @@ last_modified_at: 2019-06-23
 > This is the second of a two-part series about Bayesian bandit algorithms.
 > Check out the first post [here](https://eigenfoo.xyz/bayesian-bandits/).
 
-In my previous post, I outlined
+In my previous post, I outlined the multi-armed bandit problem, and a Bayesian
+approach to the
 
 Unlike the first blog post, this blog post will more theoretical and math-heavy,
 outlining the variations on the multi-armed bandit problem and extensions to the
@@ -120,15 +121,17 @@ where, on each round:
 2. A policy chooses an arm $$a$$ from $$k$$ arms.
 3. The world reveals the reward $$R_a$$ of the chosen arm.
 
-In other words,
+In other words, contextual bandits call for some way of taking context as input
+and producing actions as output.
+
+Alternatively, if you think of regular multi-armed bandits as taking no input
+whatsoever (but still producing outputs: actions), you can think of contextual
+bandits as algorithms that both take inputs and produce outputs.
 
 ### Bayesian contextual bandits
 
-In other words, contextual bandits call for some way of taking context as input
-and producing actions as output. Obviously, this can be done in many ways.
-
-There are many ways to make a bandit algorithm model context: linear regression
-is a classic example.
+Clearly, there are many ways to make a bandit algorithm model context: linear
+regression is a classic example.
 
 Prior: $$ \theta_a \sim N(\mu_0, \Sigma_0) $$
 
@@ -137,6 +140,7 @@ Observation: $$ y_n = \theta_{a_n} \cdot x_n $$
 Choose the action $$a$$ that maximizes the expected reward.
 
 - https://en.wikipedia.org/wiki/Multi-armed_bandit#Approximate_solutions_for_contextual_bandit
+
 - https://people.orie.cornell.edu/pfrazier/Presentations/2012.10.INFORMS.Bandit.pdf
 
 ## Further Reading
@@ -144,6 +148,7 @@ Choose the action $$a$$ that maximizes the expected reward.
 - As always, the [Wikipedia page for contextual
   bandits](https://en.wikipedia.org/wiki/Multi-armed_bandit#Contextual_bandit)
   is always a good place to start reading.
+
 - For non-Bayesian approaches to contextual bandits, [Vowpal
   Wabbit](https://github.com/VowpalWabbit/vowpal_wabbit/wiki/Contextual-Bandit-algorithms)
   is a great resource: [Microsoft Research](https://www.microsoft.com/research/)
