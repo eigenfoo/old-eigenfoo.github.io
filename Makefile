@@ -28,7 +28,7 @@ draft:  # Start a draft blog post.
 	)
 
 serve:  # Serve site locally.
-	jekyll serve --incremental 2>&1 >> /dev/null &
+	bundle exec jekyll serve --incremental 2>&1 >> /dev/null &
 
 stop: clean  # Stop local serving.
 	PID="$(shell pgrep -f jekyll)"; kill $$PID
