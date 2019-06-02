@@ -9,22 +9,22 @@ header:
   overlay_image: /assets/images/cool-backgrounds/cool-background14.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
 mathjax: true
-last_modified_at: 2019-06-31
+last_modified_at: 2019-06-02
 ---
 
 > This is the second of a two-part series about Bayesian bandit algorithms.
 > Check out the first post [here](https://eigenfoo.xyz/bayesian-bandits/).
 
-In my previous post, I outlined the multi-armed bandit problem, and a Bayesian
-bandit algorithm based on Thompson sampling. I demonstrated that conjugate
-models made it possible to run the bandit algorithm online: the same is even
-true for non-conjugate models, so long as the rewards were bounded.
+In the previous blog post, I introduced multi-armed bandits, and a Bayesian
+approach to modelling it (Thompson sampling). We saw that conjugate models made
+it possible to run the bandit algorithm online: the same is even true for
+non-conjugate models, so long as the rewards are bounded.
 
-In this blog post, I'll take a look at two
+In this blog post, I'll take a look at two extensions to the multi-armed bandit.
+The first allows the bandit to model nonstationary rewards distributions,
+whereas the second allows the bandit to model context.
 
-Unlike the first blog post, this blog post will more theoretical and math-heavy,
-outlining the variations on the multi-armed bandit problem and extensions to the
-vanilla Thompson sampling algorithm presented in the first blog post.
+Dive in!
 
 <figure>
     <a href="https://fsmedia.imgix.net/29/fd/a4/56/8363/4fb0/8c62/20e80649451b/the-multi-armed-bandit-determines-what-you-see-on-the-internet.jpeg?rect=0%2C34%2C865%2C432&auto=format%2Ccompress&dpr=2&w=650"><img src="https://fsmedia.imgix.net/29/fd/a4/56/8363/4fb0/8c62/20e80649451b/the-multi-armed-bandit-determines-what-you-see-on-the-internet.jpeg?rect=0%2C34%2C865%2C432&auto=format%2Ccompress&dpr=2&w=650" alt="Cartoon of a multi-armed bandit"></a>
@@ -36,20 +36,20 @@ vanilla Thompson sampling algorithm presented in the first blog post.
 In the previous blog post, we concerned ourselves with stationary bandits: in
 other words, we assumed that the rewards distribution for each arm did not
 change over time. In the real world though, rewards distributions need not be
-stationary: customer preferences change, trading algorithms deteriorate, news
-articles rise and fall in relevance.
+stationary: customer preferences change, trading algorithms deteriorate, and
+news articles rise and fall in relevance.
 
-Nonstationarity could mean one of two things for our model:
+Nonstationarity could mean one of two things for us:
 
-1. either we are lucky enough to know that rewards are identically distributed
+1. either we are lucky enough to know that rewards are similarly distributed
    throughout all time (e.g. the rewards are always normally distributed, or
    always binomially distributed), and that it is merely the parameters of these
    distributions that are liable to change,
 2. or we aren't so unlucky and the rewards distributions are arbitrary and
    changing.
 
-Luckily, there is a neat trick to deal with both forms of nonstationarity, which
-we'll get into next!
+There is a neat trick to deal with both forms of nonstationarity, which we'll
+get into next!
 
 ### Decaying evidence and posteriors
 
@@ -68,12 +68,10 @@ $$ \color{green}{\pi_{t+1}(\theta | D_{1:t+1})} \propto \color{blue}{P(D_{t+1} |
 However, for problems with nonstationary rewards distributions, we would like
 data points observed a long time ago to have less weight than data points
 observed more recently. This is only prudent in the face of a nonstationary
-rewards distribution: after all, the rewards distribution may have changed
-significantly between when we observed those data points and now.
-
-In the absence of recent data, we would like to adopt a more conservative
-"no-data" prior, rather than allow our posterior to be informed by outdated
-data. This can be achieved by modifying the Bayesian update to:
+rewards distribution: in the absence of recent data, we would like to adopt a
+more conservative "no-data" prior, rather than allow our posterior to be
+informed by outdated data. This can be achieved by modifying the Bayesian update
+to:
 
 $$ \color{green}{\pi_{t+1}(\theta | D_{1:t+1})} \propto \color{magenta}{[}
 \color{blue}{P(D_{t+1} | \theta)} \cdot \color{red}{\pi_t (\theta | D_{1:t})}
@@ -89,9 +87,12 @@ Notice that if we stop collecting data at time $$T$$, then $$
 $$ as $$ t \rightarrow \infty $$.
 
 Decaying the evidence (and therefore the posterior) is a nice trick that can be
-used to address both types of nonstationarity identified in the previous section.
+used to address both types of nonstationarity identified in the previous
+section: simply use the decaying update step when updating the conjugate model
+hyperparameters.
 
-For more information, see [Austin Rochford's talk for Boston
+For more information on decaying evidence and posteriors, check out [Austin
+Rochford's talk for Boston
 Bayesians](https://austinrochford.com/resources/talks/boston-bayesians-2017-bayes-bandits.slides.html#/3)
 about Bayesian bandit algorithms for e-commerce.
 
@@ -131,29 +132,47 @@ many ways to make a bandit algorithm take context into account: linear
 regression is a classic example: we assume that the rewards, $$y$$, are a linear
 function of the context, $$z$$.
 
-Refer to _Pattern Recognition and Machine Learning_ by Christopher Bishop if
-you're shaky on the details (Chapter 3.3 on Bayesian linear regression, and
-specifically exercises 3.12 and 3.13[^3]). Briefly though, if you place a Gaussian
-prior on the regression weights and an inverse gamma prior on the noise
-parameter, then these priors will be conjugate to a Gaussian likelihood, and the
-posterior predictive distribution for the rewards will be a Student's t.
+If you're shaky on the details of Bayesian linear regression, refer to [_Pattern
+Recognition and Machine
+Learning_](https://www.microsoft.com/en-us/research/people/cmbishop/#!prml-book)
+by Christopher Bishop (specifically, section 3.3 on Bayesian linear regression
+and exercises 3.12 and 3.13[^3]). Briefly though, if we place a Gaussian prior
+on the regression weights and an inverse gamma prior on the noise parameter
+(that is, the noise of the observations), then these priors will be conjugate to
+a Gaussian likelihood, and the posterior predictive distribution for the rewards
+will be a Student's t.
 
-However, we need to maintain posteriors of the rewards for each arm (so that we
-can do Thompson sampling), so we need to run a separate Bayesian linear
-regression for each arm.
+Since we need to maintain posteriors of the rewards for each arm (so that we can
+do Thompson sampling), we need to run a separate Bayesian linear regression for
+each arm. At every iteration we then Thompson sample from each Student's t
+posterior, and choose the arm with the highest sample.
 
-- https://arxiv.org/pdf/1802.09127.pdf
-- https://launchpad.ai/blog/2018/10/11/how-to-make-data-driven-decisions-with-contextual-bandits-the-case-for-bayesian-inference
-- https://github.com/tensorflow/models/tree/master/research/deep_contextual_bandits
+Of course, linear regression is the textbook example of a model that offers
+interpretability but lacks expressiveness. In most circumstances we would want
+to be able to model nonlinear functions as well. One (perfectly valid) way of
+doing this would be to hand-engineer some features and/or some basis functions
+before feeding that into our Bayesian linear regression. However, in the 21st
+century, the trendier thing to do is to have a neural network learn those
+features for you. This is exactly what is proposed in a [2018 paper by Google
+Brain](https://arxiv.org/pdf/1802.09127.pdf). They find that this setup - which
+they dub NeuralLinear - works well across
 
-- https://people.orie.cornell.edu/pfrazier/Presentations/2012.10.INFORMS.Bandit.pdf
-- https://en.wikipedia.org/wiki/Multi-armed_bandit#Approximate_solutions_for_contextual_bandit
+However, I would criticize their characterization of the NeuralLinear algorithm:
+if offers principled and interpretable uncertainty estimates for a
+_non-interpretable_ representation learnt by a neural network.
+
+For more information, be sure to check out the [Google Brain
+paper](https://arxiv.org/pdf/1802.09127.pdf) and the [TensorFlow code that
+accompanies
+it](https://github.com/tensorflow/models/tree/master/research/deep_contextual_bandits).
 
 ## Further Reading
 
 - As always, the [Wikipedia page for contextual
   bandits](https://en.wikipedia.org/wiki/Multi-armed_bandit#Contextual_bandit)
   is always a good place to start reading.
+
+  https://en.wikipedia.org/wiki/Multi-armed_bandit#Approximate_solutions_for_contextual_bandit
 
 - For non-Bayesian approaches to contextual bandits, [Vowpal
   Wabbit](https://github.com/VowpalWabbit/vowpal_wabbit/wiki/Contextual-Bandit-algorithms)
