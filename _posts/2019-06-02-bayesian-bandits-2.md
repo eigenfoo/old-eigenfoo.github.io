@@ -1,6 +1,8 @@
 ---
 title: Decaying Posteriors and Contextual Bandits — Bayesian Reinforcement Learning (Part 2)
-excerpt:
+excerpt: "In this blog post, we'll take a look at two extensions to the
+multi-armed bandit.  The first allows the bandit to model nonstationary rewards
+distributions, whereas the second allows the bandit to model context."
 tags:
   - bayesianism
   - reinforcement learning
@@ -15,16 +17,15 @@ last_modified_at: 2019-06-02
 > This is the second of a two-part series about Bayesian bandit algorithms.
 > Check out the first post [here](https://eigenfoo.xyz/bayesian-bandits/).
 
-In the previous blog post, I introduced multi-armed bandits, and a Bayesian
-approach to modelling it (Thompson sampling). We saw that conjugate models made
-it possible to run the bandit algorithm online: the same is even true for
-non-conjugate models, so long as the rewards are bounded.
+In [the previous blog post](https://eigenfoo.xyz/bayesian-bandits/), I
+introduced multi-armed bandits and a Bayesian approach (Thompson sampling) to
+modelling them. We saw that conjugate models made it possible to run the bandit
+algorithm online: the same is even true for non-conjugate models, so long as the
+rewards are bounded.
 
-In this blog post, I'll take a look at two extensions to the multi-armed bandit.
-The first allows the bandit to model nonstationary rewards distributions,
-whereas the second allows the bandit to model context.
-
-Dive in!
+In this follow-up blog post, we'll take a look at two extensions to the
+multi-armed bandit. The first allows the bandit to model nonstationary rewards
+distributions, whereas the second allows the bandit to model context. Jump in!
 
 <figure>
     <a href="https://fsmedia.imgix.net/29/fd/a4/56/8363/4fb0/8c62/20e80649451b/the-multi-armed-bandit-determines-what-you-see-on-the-internet.jpeg?rect=0%2C34%2C865%2C432&auto=format%2Ccompress&dpr=2&w=650"><img src="https://fsmedia.imgix.net/29/fd/a4/56/8363/4fb0/8c62/20e80649451b/the-multi-armed-bandit-determines-what-you-see-on-the-internet.jpeg?rect=0%2C34%2C865%2C432&auto=format%2Ccompress&dpr=2&w=650" alt="Cartoon of a multi-armed bandit"></a>
@@ -33,11 +34,11 @@ Dive in!
 
 ## Nonstationary Bandits
 
-In the previous blog post, we concerned ourselves with stationary bandits: in
-other words, we assumed that the rewards distribution for each arm did not
-change over time. In the real world though, rewards distributions need not be
-stationary: customer preferences change, trading algorithms deteriorate, and
-news articles rise and fall in relevance.
+Previously, we concerned ourselves with stationary bandits: in other words, we
+assumed that the rewards distribution for each arm did not change over time. In
+the real world though, rewards distributions need not be stationary: customer
+preferences change, trading algorithms deteriorate, and news articles rise and
+fall in relevance.
 
 Nonstationarity could mean one of two things for us:
 
@@ -45,33 +46,31 @@ Nonstationarity could mean one of two things for us:
    throughout all time (e.g. the rewards are always normally distributed, or
    always binomially distributed), and that it is merely the parameters of these
    distributions that are liable to change,
-2. or we aren't so unlucky and the rewards distributions are arbitrary and
-   changing.
+2. or we aren't so unlucky, and the rewards distributions are not only changing,
+   but don't even have a nice parametric form.
 
-There is a neat trick to deal with both forms of nonstationarity, which we'll
-get into next!
+Good news, though: there is a neat trick to deal with both forms of
+nonstationarity!
 
 ### Decaying evidence and posteriors
 
 But first, some notation. Suppose we have a model with parameters $$\theta$$. We
-place a prior $$\color{purple}{\pi_0(\theta)}$$ on it[^1], and at $$t$$'th time
-step, we observe data $$D_t$$, compute the likelihood $$\color{blue}{P(D_t |
-\theta)}$$ and update the posterior from $$\color{red}{\pi_t(\theta |
+place a prior $$\color{purple}{\pi_0(\theta)}$$ on it[^1], and at the $$t$$'th
+time step, we observe data $$D_t$$, compute the likelihood $$\color{blue}{P(D_t
+| \theta)}$$ and update the posterior from $$\color{red}{\pi_t(\theta |
 D_{1:t})}$$ to $$\color{green}{\pi_{t+1}(\theta | D_{1:t+1})}$$.
 
-This is a (very common) application of Bayes' Theorem. Explicitly, it is given
-by
+This is a quintessential application of Bayes' Theorem. Mathematically:
 
 $$ \color{green}{\pi_{t+1}(\theta | D_{1:t+1})} \propto \color{blue}{P(D_{t+1} |
 \theta)} \cdot \color{red}{\pi_t (\theta | D_{1:t})} $$
 
 However, for problems with nonstationary rewards distributions, we would like
 data points observed a long time ago to have less weight than data points
-observed more recently. This is only prudent in the face of a nonstationary
-rewards distribution: in the absence of recent data, we would like to adopt a
-more conservative "no-data" prior, rather than allow our posterior to be
-informed by outdated data. This can be achieved by modifying the Bayesian update
-to:
+observed recently. This is only prudent: in the absence of recent data, we would
+like to adopt a more conservative "no-data" prior, rather than allow our
+posterior to be informed by outdated data. This can be achieved by modifying the
+Bayesian update to:
 
 $$ \color{green}{\pi_{t+1}(\theta | D_{1:t+1})} \propto \color{magenta}{[}
 \color{blue}{P(D_{t+1} | \theta)} \cdot \color{red}{\pi_t (\theta | D_{1:t})}
@@ -81,8 +80,7 @@ $$ \color{green}{\pi_{t+1}(\theta | D_{1:t+1})} \propto \color{magenta}{[}
 for some $$ 0 < \color{magenta}{\epsilon} \ll 1 $$. We can think of
 $$\color{magenta}{\epsilon}$$ as controlling the rate of decay of the
 evidence/posterior (i.e. how quickly we should distrust past data points).
-
-Notice that if we stop collecting data at time $$T$$, then $$
+Notice how if we stop collecting data at time $$T$$, then $$
 \color{red}{\pi_t(\theta | D_{1:T})} \rightarrow \color{purple}{\pi_0(\theta)}
 $$ as $$ t \rightarrow \infty $$.
 
@@ -126,11 +124,11 @@ bandits as algorithms that both take inputs and produce outputs.
 
 ### Bayesian contextual bandits
 
-The contextual bandit problem is an extremely general framework for thinking
-about sequential decision making (or reinforcement learning). Clearly, there are
-many ways to make a bandit algorithm take context into account: linear
-regression is a classic example: we assume that the rewards, $$y$$, are a linear
-function of the context, $$z$$.
+The contextual bandit problem is an very general framework for thinking about
+sequential decision making (or reinforcement learning). Clearly, there are many
+ways to make a bandit algorithm take context into account: linear regression is
+a classic example: we assume that the rewards, $$y$$, are a linear function of
+the context, $$z$$.
 
 If you're shaky on the details of Bayesian linear regression, refer to [_Pattern
 Recognition and Machine
@@ -147,40 +145,39 @@ do Thompson sampling), we need to run a separate Bayesian linear regression for
 each arm. At every iteration we then Thompson sample from each Student's t
 posterior, and choose the arm with the highest sample.
 
-Of course, linear regression is the textbook example of a model that offers
-interpretability but lacks expressiveness. In most circumstances we would want
-to be able to model nonlinear functions as well. One (perfectly valid) way of
-doing this would be to hand-engineer some features and/or some basis functions
-before feeding that into our Bayesian linear regression. However, in the 21st
+Of course, Bayesian linear regression is a textbook example of a model that
+offers uncertainty estimates but lacks expressiveness. In most circumstances, we
+want to model nonlinear functions as well. One (perfectly valid) way of doing
+this would be to hand-engineer some nonlinear features and/or basis functions
+before feeding them into a Bayesian linear regression. However, in the 21st
 century, the trendier thing to do is to have a neural network learn those
 features for you. This is exactly what is proposed in a [2018 paper by Google
-Brain](https://arxiv.org/pdf/1802.09127.pdf). They find that this setup - which
-they dub NeuralLinear - works well across
+Brain](https://arxiv.org/pdf/1802.09127.pdf). They find that this model — which
+they dub NeuralLinear — performs fairly well across a variety of tasks. In the
+words of the authors:
 
-However, I would criticize their characterization of the NeuralLinear algorithm:
-if offers principled and interpretable uncertainty estimates for a
-_non-interpretable_ representation learnt by a neural network.
+> We believe [NeuralLinear's] main strength is that it is able to
+> _simultaneously_ learn a data representation that greatly simplifies the task
+> at hand, and to accurately quantify the uncertainty over linear models that
+> explain the observed rewards in terms of the proposed representation.
 
 For more information, be sure to check out the [Google Brain
 paper](https://arxiv.org/pdf/1802.09127.pdf) and the [TensorFlow code that
 accompanies
 it](https://github.com/tensorflow/models/tree/master/research/deep_contextual_bandits).
 
-## Further Reading
-
-- As always, the [Wikipedia page for contextual
-  bandits](https://en.wikipedia.org/wiki/Multi-armed_bandit#Contextual_bandit)
-  is always a good place to start reading.
-
-  https://en.wikipedia.org/wiki/Multi-armed_bandit#Approximate_solutions_for_contextual_bandit
+## Final Remarks and Further Reading
 
 - For non-Bayesian approaches to contextual bandits, [Vowpal
   Wabbit](https://github.com/VowpalWabbit/vowpal_wabbit/wiki/Contextual-Bandit-algorithms)
   is a great resource: [John Langford](http://hunch.net/~jl/) and the team at
   [Microsoft Research](https://www.microsoft.com/research/) has [extensively
   researched](https://arxiv.org/abs/1402.0555v2) contextual bandit algorithms.
-  They've provided both blazingly fast implementations of recent algorithms, and
+  They've provided blazingly fast implementations of recent algorithms and
   written good documentation for them.
+
+- For more theory, [_Bandit Algorithms_ by Tor Lattimore and Csaba
+  Szepesvári](https://banditalgs.com/) is an amazing book.
 
 ---
 
@@ -188,4 +185,4 @@ it](https://github.com/tensorflow/models/tree/master/research/deep_contextual_ba
 
 [^2]: This explanation is largely drawn from [from John Langford's `hunch.net`](http://hunch.net/?p=298).
 
-[^3]: If you don't want to do Bishop's exercises, the answers are given in equations 1 and 2 of [the Google Brain paper](https://arxiv.org/abs/1802.09127) :wink:.
+[^3]: If you don't want to do Bishop's exercises, there's a partially complete solutions manual [on GitHub](https://github.com/GoldenCheese/PRML-Solution-Manual/) :wink:

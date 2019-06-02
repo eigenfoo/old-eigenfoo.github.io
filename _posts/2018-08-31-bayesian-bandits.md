@@ -191,6 +191,9 @@ Also, if you want to see all the code that went into this blog post, check out
 [the notebook
 here](https://github.com/eigenfoo/wanderings/blob/afcf37a8c6c2a2ac38f6708c1f3dd50db2ebe71f/bayes/bayesian-bandits.ipynb).
 
+> This is the first of a two-part series about Bayesian bandit algorithms. Check
+> out the second post [here](https://eigenfoo.xyz/bayesian-bandits-2/).
+
 ---
 
 [^1]: I've hopped on board the functional programming bandwagon, and couldn't help but think that to demonstrate this idea, I didn't need a framework, a library or even a class. Just two functions!
