@@ -9,7 +9,7 @@ header:
   overlay_image: /assets/images/cool-backgrounds/cool-background14.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
 mathjax: true
-last_modified_at: 2019-06-23
+last_modified_at: 2019-06-31
 ---
 
 > This is the second of a two-part series about Bayesian bandit algorithms.
@@ -50,7 +50,7 @@ we'll get into next!
 ### Decaying evidence and posteriors
 
 But first, some notation. Suppose we have a model with parameters $$\theta$$. We
-place a prior $$\color{purple}{\pi_0(\theta)}$$ on it, and at $$t$$'th time
+place a prior $$\color{purple}{\pi_0(\theta)}$$ on it[^1], and at $$t$$'th time
 step, we observe data $$D_t$$, compute the likelihood $$\color{blue}{P(D_t |
 \theta)}$$ and update the posterior from $$\color{red}{\pi_t(\theta |
 D_{1:t})}$$ to $$\color{green}{\pi_{t+1}(\theta | D_{1:t+1})}$$.
@@ -93,17 +93,8 @@ about Bayesian bandit algorithms for e-commerce.
 
 ## Contextual Bandits
 
-This is an extension to the multi-armed bandit problem itself, not a variation
-on any of the methods used to tackle it.
-
-### What even is a contextual bandit?
-
-We first need to know what contextual bandits are, let alone Bayesian contextual
-bandits. The most succinct explanation I've come across is [from John Langford's
-`hunch.net`](http://hunch.net/?p=298).
-
-Briefly, we can think of the $$k$$-armed bandit problem (as presented in [my
-first blog post](https://eigenfoo.xyz/bayesian-bandits/)) as follows:
+We can think of the $$k$$-armed bandit problem (as presented in [my first blog
+post](https://eigenfoo.xyz/bayesian-bandits/)) as follows[^2]:
 
 1. A policy chooses an arm $$a$$ from $$k$$ arms.
 2. The world reveals the reward $$R_a$$ of the chosen arm.
@@ -130,18 +121,29 @@ bandits as algorithms that both take inputs and produce outputs.
 
 ### Bayesian contextual bandits
 
-Clearly, there are many ways to make a bandit algorithm model context: linear
-regression is a classic example.
+The contextual bandit problem is an extremely general framework for thinking
+about sequential decision making (or reinforcement learning). Clearly, there are
+many ways to make a bandit algorithm take context into account: linear
+regression is a classic example: we assume that the rewards, $$y$$, are a linear
+function of the context, $$z$$.
 
-Prior: $$ \theta_a \sim N(\mu_0, \Sigma_0) $$
+Refer to _Pattern Recognition and Machine Learning_ by Christopher Bishop if
+you're shaky on the details (Chapter 3.3 on Bayesian linear regression, and
+specifically exercises 3.12 and 3.13[^3]). Briefly though, if you place a Gaussian
+prior on the regression weights and an inverse gamma prior on the noise
+parameter, then these priors will be conjugate to a Gaussian likelihood, and the
+posterior predictive distribution for the rewards will be a Student's t.
 
-Observation: $$ y_n = \theta_{a_n} \cdot x_n $$
+However, we need to maintain posteriors of the rewards for each arm (so that we
+can do Thompson sampling), so we need to run a separate Bayesian linear
+regression for each arm.
 
-Choose the action $$a$$ that maximizes the expected reward.
-
-- https://en.wikipedia.org/wiki/Multi-armed_bandit#Approximate_solutions_for_contextual_bandit
+- https://arxiv.org/pdf/1802.09127.pdf
+- https://launchpad.ai/blog/2018/10/11/how-to-make-data-driven-decisions-with-contextual-bandits-the-case-for-bayesian-inference
+- https://github.com/tensorflow/models/tree/master/research/deep_contextual_bandits
 
 - https://people.orie.cornell.edu/pfrazier/Presentations/2012.10.INFORMS.Bandit.pdf
+- https://en.wikipedia.org/wiki/Multi-armed_bandit#Approximate_solutions_for_contextual_bandit
 
 ## Further Reading
 
@@ -151,7 +153,16 @@ Choose the action $$a$$ that maximizes the expected reward.
 
 - For non-Bayesian approaches to contextual bandits, [Vowpal
   Wabbit](https://github.com/VowpalWabbit/vowpal_wabbit/wiki/Contextual-Bandit-algorithms)
-  is a great resource: [Microsoft Research](https://www.microsoft.com/research/)
-  has [extensively researched](https://arxiv.org/abs/1402.0555v2) contextual
-  bandit algorithms, provided both blazingly fast implementations of recent
-  algorithms, and written good documentation for them.
+  is a great resource: [John Langford](http://hunch.net/~jl/) and the team at
+  [Microsoft Research](https://www.microsoft.com/research/) has [extensively
+  researched](https://arxiv.org/abs/1402.0555v2) contextual bandit algorithms.
+  They've provided both blazingly fast implementations of recent algorithms, and
+  written good documentation for them.
+
+---
+
+[^1]: Did you know you can make [colored equations with MathJax](http://adereth.github.io/blog/2013/11/29/colorful-equations/)? Technology frightens me sometimes.
+
+[^2]: This explanation is largely drawn from [from John Langford's `hunch.net`](http://hunch.net/?p=298).
+
+[^3]: If you don't want to do Bishop's exercises, the answers are given in equations 1 and 2 of [the Google Brain paper](https://arxiv.org/abs/1802.09127) :wink:.
