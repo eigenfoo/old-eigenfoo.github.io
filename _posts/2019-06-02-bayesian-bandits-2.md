@@ -63,7 +63,7 @@ D_{1:t})}$$ to $$\color{green}{\pi_{t+1}(\theta | D_{1:t+1})}$$.
 This is a quintessential application of Bayes' Theorem. Mathematically:
 
 $$ \color{green}{\pi_{t+1}(\theta | D_{1:t+1})} \propto \color{blue}{P(D_{t+1} |
-\theta)} \cdot \color{red}{\pi_t (\theta | D_{1:t})} $$
+\theta)} \cdot \color{red}{\pi_t (\theta | D_{1:t})} \tag{1} \label{1} $$
 
 However, for problems with nonstationary rewards distributions, we would like
 data points observed a long time ago to have less weight than data points
@@ -75,7 +75,7 @@ Bayesian update to:
 $$ \color{green}{\pi_{t+1}(\theta | D_{1:t+1})} \propto \color{magenta}{[}
 \color{blue}{P(D_{t+1} | \theta)} \cdot \color{red}{\pi_t (\theta | D_{1:t})}
 {\color{magenta}{]^{1-\epsilon}}} \cdot
-\color{purple}{\pi_0(\theta)}^\color{magenta}{\epsilon} $$
+\color{purple}{\pi_0(\theta)}^\color{magenta}{\epsilon} \tag{2} \label{2} $$
 
 for some $$ 0 < \color{magenta}{\epsilon} \ll 1 $$. We can think of
 $$\color{magenta}{\epsilon}$$ as controlling the rate of decay of the
@@ -84,20 +84,22 @@ Notice how if we stop collecting data at time $$T$$, then $$
 \color{red}{\pi_t(\theta | D_{1:T})} \rightarrow \color{purple}{\pi_0(\theta)}
 $$ as $$ t \rightarrow \infty $$.
 
-Decaying the evidence (and therefore the posterior) is a nice trick that can be
-used to address both types of nonstationarity identified in the previous
-section: simply use the decaying update step when updating the conjugate model
-hyperparameters.
+Decaying the evidence (and therefore the posterior) can be used to address both
+types of nonstationarity identified above. Simply use $$(\ref{2})$$ as a drop-in
+replacement for $$(\ref{1})$$ when updating the hyperparameters. Whether you're
+using a conjugate model or the trick by [Agarwal and
+Goyal](https://arxiv.org/abs/1111.1797) (introduced in [the previous blog
+post](https://eigenfoo.xyz/bayesian-bandits)), using the new update rule will
+decay the evidence, as desired.
 
-For more information on decaying evidence and posteriors, check out [Austin
-Rochford's talk for Boston
+For more information (and a worked example for the Beta-Binomial model!), check
+out [Austin Rochford's talk for Boston
 Bayesians](https://austinrochford.com/resources/talks/boston-bayesians-2017-bayes-bandits.slides.html#/3)
 about Bayesian bandit algorithms for e-commerce.
 
 ## Contextual Bandits
 
-We can think of the $$k$$-armed bandit problem (as presented in [my first blog
-post](https://eigenfoo.xyz/bayesian-bandits/)) as follows[^2]:
+We can think of the $$k$$-armed bandit problem as follows[^2]:
 
 1. A policy chooses an arm $$a$$ from $$k$$ arms.
 2. The world reveals the reward $$R_a$$ of the chosen arm.
@@ -106,7 +108,7 @@ However, this formulation fails to capture an important phenomenon: there is
 almost always extra information that is available while making each decision.
 For instance, online ads occur in the context of the web page in which they
 appear, and online store recommendations are given in the context of the user's
-current cart contents.
+current cart contents (among other features).
 
 To take advantage of this information, we might think of a different formulation
 where, on each round:
@@ -116,17 +118,17 @@ where, on each round:
 3. The world reveals the reward $$R_a$$ of the chosen arm.
 
 In other words, contextual bandits call for some way of taking context as input
-and producing actions as output.
+and producing arms/actions as output.
 
 Alternatively, if you think of regular multi-armed bandits as taking no input
-whatsoever (but still producing outputs: actions), you can think of contextual
-bandits as algorithms that both take inputs and produce outputs.
+whatsoever (but still producing outputs), you can think of contextual bandits as
+algorithms that both take inputs and produce outputs.
 
 ### Bayesian contextual bandits
 
-The contextual bandit problem is an very general framework for thinking about
-sequential decision making (or reinforcement learning). Clearly, there are many
-ways to make a bandit algorithm take context into account: linear regression is
+Contextual bandits give us a very general framework for thinking about
+sequential decision making (and reinforcement learning). Clearly, there are many
+ways to make a bandit algorithm take context into account. Linear regression is
 a classic example: we assume that the rewards, $$y$$, are a linear function of
 the context, $$z$$.
 
@@ -136,9 +138,9 @@ Learning_](https://www.microsoft.com/en-us/research/people/cmbishop/#!prml-book)
 by Christopher Bishop (specifically, section 3.3 on Bayesian linear regression
 and exercises 3.12 and 3.13[^3]). Briefly though, if we place a Gaussian prior
 on the regression weights and an inverse gamma prior on the noise parameter
-(that is, the noise of the observations), then these priors will be conjugate to
-a Gaussian likelihood, and the posterior predictive distribution for the rewards
-will be a Student's t.
+(that is, the noise of the observations), then their joint prior will be
+conjugate to a Gaussian likelihood, and the posterior predictive distribution
+for the rewards will be a Student's t.
 
 Since we need to maintain posteriors of the rewards for each arm (so that we can
 do Thompson sampling), we need to run a separate Bayesian linear regression for
@@ -153,10 +155,10 @@ before feeding them into a Bayesian linear regression. However, in the 21st
 century, the trendier thing to do is to have a neural network learn those
 features for you. This is exactly what is proposed in a [2018 paper by Google
 Brain](https://arxiv.org/pdf/1802.09127.pdf). They find that this model — which
-they dub NeuralLinear — performs fairly well across a variety of tasks. In the
+they dub `NeuralLinear` — performs fairly well across a variety of tasks. In the
 words of the authors:
 
-> We believe [NeuralLinear's] main strength is that it is able to
+> We believe [`NeuralLinear`'s] main strength is that it is able to
 > _simultaneously_ learn a data representation that greatly simplifies the task
 > at hand, and to accurately quantify the uncertainty over linear models that
 > explain the observed rewards in terms of the proposed representation.
@@ -178,6 +180,9 @@ it](https://github.com/tensorflow/models/tree/master/research/deep_contextual_ba
 
 - For more theory, [_Bandit Algorithms_ by Tor Lattimore and Csaba
   Szepesvári](https://banditalgs.com/) is an amazing book.
+
+> This is the second of a two-part series about Bayesian bandit algorithms.
+> Check out the first post [here](https://eigenfoo.xyz/bayesian-bandits/).
 
 ---
 
