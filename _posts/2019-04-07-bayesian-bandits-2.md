@@ -16,7 +16,11 @@ last_modified_at: 2019-06-31
 > Check out the first post [here](https://eigenfoo.xyz/bayesian-bandits/).
 
 In my previous post, I outlined the multi-armed bandit problem, and a Bayesian
-approach to the
+bandit algorithm based on Thompson sampling. I demonstrated that conjugate
+models made it possible to run the bandit algorithm online: the same is even
+true for non-conjugate models, so long as the rewards were bounded.
+
+In this blog post, I'll take a look at two
 
 Unlike the first blog post, this blog post will more theoretical and math-heavy,
 outlining the variations on the multi-armed bandit problem and extensions to the
