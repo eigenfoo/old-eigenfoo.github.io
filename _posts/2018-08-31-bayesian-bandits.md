@@ -1,11 +1,10 @@
 ---
-title: Multi-Armed Bandits, Conjugate Models and Bayesian Reinforcement Learning
+title: Multi-Armed Bandits and Conjugate Models — Bayesian Reinforcement Learning (Part 1)
 excerpt: "In this blog post I hope to show that there is more to Bayesianism than just
 MCMC sampling and suffering, by demonstrating a Bayesian approach to a classic
 reinforcement learning problem: the _multi-armed bandit_."
 tags:
   - bayesianism
-  - pymc3
   - reinforcement learning
   - machine learning
 header:
@@ -14,6 +13,9 @@ header:
 mathjax: true
 last_modified_at: 2018-08-31
 ---
+
+> This is the first of a two-part series about Bayesian bandit algorithms. Check
+> out the second post [here](https://eigenfoo.xyz/bayesian-bandits-2/).
 
 Let's talk about Bayesianism. It's developed a reputation (not entirely
 justified, but not entirely unjustified either) for being too mathematically
@@ -189,10 +191,13 @@ Also, if you want to see all the code that went into this blog post, check out
 [the notebook
 here](https://github.com/eigenfoo/wanderings/blob/afcf37a8c6c2a2ac38f6708c1f3dd50db2ebe71f/bayes/bayesian-bandits.ipynb).
 
+> This is the first of a two-part series about Bayesian bandit algorithms. Check
+> out the second post [here](https://eigenfoo.xyz/bayesian-bandits-2/).
+
 ---
 
 [^1]: I've hopped on board the functional programming bandwagon, and couldn't help but think that to demonstrate this idea, I didn't need a framework, a library or even a class. Just two functions!
 
 [^2]: Davidson-Pilon, Cameron. “Multi-Armed Bandits.” DataOrigami, 6 Apr. 2013, [dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits](https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits)
 
-[^3]: [arXiv:1111.1797](https://arxiv.org/abs/1111.1797)
+[^3]: [arXiv:1111.1797](https://arxiv.org/abs/1111.1797) [cs.LG]
