@@ -1,5 +1,5 @@
 ---
-title: Decaying Posteriors and Contextual Bandits — Bayesian Reinforcement Learning (Part 2)
+title: Decaying Evidence and Contextual Bandits — Bayesian Reinforcement Learning (Part 2)
 excerpt: "In this blog post, we'll take a look at two extensions to the
 multi-armed bandit. The first allows the bandit to model nonstationary rewards
 distributions, whereas the second allows the bandit to model context."
