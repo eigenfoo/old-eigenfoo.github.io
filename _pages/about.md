@@ -11,9 +11,9 @@ Hello! My name is George, and this is my personal website. I'm a data scientist,
 machine learner, dabbling mathematician and coffee ~~addict~~ lover. (I also really
 like sushi.)
 
-I'm currently a data scientist/ research analyst at [Point72 Asset Management,
-L.P.](http://point72.com), where I help power the alpha capture business and
-internal research efforts. I'm based in New York and work out of Point72's
+I'm currently a data scientist/ research analyst at [Point72 Asset
+Management](http://point72.com), where I help power the alpha capture business
+and internal research efforts. I'm based in New York and work out of Point72's
 [Hudson Yards office](https://www.hudsonyardsnewyork.com/work/55-hudson-yards).
 
 Outside of work, I contribute to and maintain the PyMC project (particularly
@@ -21,8 +21,8 @@ Outside of work, I contribute to and maintain the PyMC project (particularly
 
 Previously, I studied engineering at [The Cooper
 Union](http://cooper.edu/welcome) with minors in computer science and
-mathematics, and interned at [Quantopian, Inc.](https://www.quantopian.com/) on
-the quantitative research/data science team.
+mathematics, and interned at [Quantopian](https://www.quantopian.com/) on the
+quantitative research/data science team.
 
 [Click for my Resume](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){: .btn .btn--primary .btn--default}
 
