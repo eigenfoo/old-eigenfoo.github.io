@@ -200,4 +200,4 @@ here](https://github.com/eigenfoo/wanderings/blob/afcf37a8c6c2a2ac38f6708c1f3dd5
 
 [^2]: Davidson-Pilon, Cameron. “Multi-Armed Bandits.” DataOrigami, 6 Apr. 2013, [dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits](https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits)
 
-[^3]: [arXiv:1111.1797](https://arxiv.org/abs/1111.1797)
+[^3]: [arXiv:1111.1797](https://arxiv.org/abs/1111.1797) [cs.LG]
