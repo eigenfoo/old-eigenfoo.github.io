@@ -12,8 +12,8 @@ scientist, machine learner, math enthusiast and coffee ~~addict~~ lover. (I also
 really like sushi.)
 
 Previously, I studied engineering, computer science and mathematics at [The
-Cooper Union](http://cooper.edu/welcome) in New York, and interned with the
-quant research and data science team at
+Cooper Union](http://cooper.edu/welcome) in New York. For two summers, I
+interned with the quant research and data science team at
 [Quantopian](https://www.quantopian.com/) in Boston, where I researched models
 and develop open-source software for the algorithmic hedge fund.
 
