@@ -7,15 +7,15 @@ subscribe: true
 
 ![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
 
-Hello! My name is George, and this is my personal website. I'm a PyData
-ninja, machine learner, math enthusiast and coffee ~~addict~~ lover. (I also
+Hello! My name is George, and this is my personal website and blog. I'm a data
+scientist, machine learner, math enthusiast and coffee ~~addict~~ lover. (I also
 really like sushi.)
 
-I'm currently a senior at [The Cooper Union](http://cooper.edu/welcome) in New
-York, studying for a BSE in general engineering. I'm also a two-time
-quantitative research and data science intern at
-[Quantopian](https://www.quantopian.com/) in Boston, where I helped power
-research analytics and open-source software for the algorithmic hedge fund.
+Previously, I studied engineering, computer science and mathematics at [The
+Cooper Union](http://cooper.edu/welcome) in New York. For two summers, I
+interned with the quant research and data science team at
+[Quantopian](https://www.quantopian.com/) in Boston, where I researched models
+and develop open-source software for the algorithmic hedge fund.
 
 [Click for my Resume](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){: .btn .btn--primary .btn--default}
 
