@@ -41,8 +41,8 @@ issues for Alphalens.
 ### [Knead](https://github.com/font-bakers/knead) and [Glaze](https://github.com/font-bakers/glaze)
 
 <figure class="half">
-    <img src="https://raw.githubusercontent.com/font-bakers/knead/master/docs/img/logo.png">
-    <img src="https://raw.githubusercontent.com/font-bakers/glaze/master/docs/img/logo.png">
+    <img src="https://raw.githubusercontent.com/font-bakers/knead/master/docs/img/logo.png" alt="Knead logo">
+    <img src="https://raw.githubusercontent.com/font-bakers/glaze/master/docs/img/logo.png" alt="Glaze logo">
 </figure>
 
 Knead and Glaze are command line tools and Python libraries for preprocessing,
