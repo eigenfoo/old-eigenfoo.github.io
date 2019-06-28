@@ -58,9 +58,11 @@ So without further ado...
    `jax`](https://colindcarroll.com/2019/04/06/exercises-in-automatic-differentiation-using-autograd-and-jax/)
    by Colin Carroll. This is the first in a series of blog posts that explain
    HMC from the very beginning. See also [Hamiltonian Monte Carlo from
-   Scratch](https://colindcarroll.com/2019/04/11/hamiltonian-monte-carlo-from-scratch/)
-   and [Step Size Adaptation in Hamiltonian Monte
-   Carlo](https://colindcarroll.com/2019/04/21/step-size-adaptation-in-hamiltonian-monte-carlo/).
+   Scratch](https://colindcarroll.com/2019/04/11/hamiltonian-monte-carlo-from-scratch/),
+   [Step Size Adaptation in Hamiltonian Monte
+   Carlo](https://colindcarroll.com/2019/04/21/step-size-adaptation-in-hamiltonian-monte-carlo/),
+   and [Choice of Symplectic Integrator in Hamiltonian Monte
+   Carlo](https://colindcarroll.com/2019/04/28/choice-of-symplectic-integrator-in-hamiltonian-monte-carlo/).
 4. [The No-U-Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte
    Carlo](https://arxiv.org/abs/1111.4246) by Matthew Hoffman and Andrew Gelman.
    The original NUTS paper.
