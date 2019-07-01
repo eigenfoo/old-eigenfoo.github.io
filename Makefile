@@ -34,4 +34,4 @@ stop: clean  # Stop local serving.
 	PID="$(shell pgrep -f jekyll)"; kill $$PID
 
 clean:  # Remove _site/ and _posts/_site/ directories
-	rm -rf _site/ _posts/_site/ Gemfile.lock
+	rm -rf Gemfile.lock package-lock.json _site/ _posts/_site/
