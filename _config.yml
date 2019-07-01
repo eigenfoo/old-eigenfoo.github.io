@@ -277,9 +277,9 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
+      share: true
       subscribe: true
       comments: false
-      share: false
       related: false
 
   # _pages
@@ -290,7 +290,7 @@ defaults:
       layout: single
       author_profile: true
       read_time: false
+      share: false
       subscribe: false
       comments: false
-      share: false
       related: false
