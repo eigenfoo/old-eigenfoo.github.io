@@ -66,7 +66,7 @@
 
       {% if author.email %}
         <li>
-          <a href="{{ author.email }}">
+          <a href="mailto:{{ author.email }}">
             <meta itemprop="email" content="{{ author.email }}" />
             <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].email_label | default: "Email" }}
           </a>
@@ -89,138 +89,33 @@
         </li>
       {% endif %}
 
-      {% if author.medium %}
-        <li>
-          <a href="https://medium.com/@{{ author.medium }}" itemprop="sameAs">
-            <i class="fab fa-medium" aria-hidden="true"></i> Medium
-          </a>
-        </li>
-      {% endif %}
-
-      {% if author.github %}
-        <li>
-          <a href="https://github.com/{{ author.github }}" itemprop="sameAs">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
-          </a>
-        </li>
-      {% endif %}
-
-      {% if author.gitlab %}
-        <li>
-<<<<<<< HEAD
-          <a href="https://gitlab.com/{{ author.gitlab }}" itemprop="sameAs">
-            <i class="fab fa-fw fa-gitlab" aria-hidden="true"></i> GitLab
-||||||| merged common ancestors
-          <a href="https://www.linkedin.com/in/{{ author.linkedin }}" itemprop="sameAs">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
-=======
-          <a href="https://www.linkedin.com/in/{{ author.linkedin }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
->>>>>>> 9232a38f2a27d19dd9f1c0962ccbcc0ec90eeca9
-          </a>
-        </li>
-      {% endif %}
-
-      {% if author.bitbucket %}
-        <li>
-<<<<<<< HEAD
-          <a href="https://bitbucket.org/{{ author.bitbucket }}" itemprop="sameAs">
-            <i class="fab fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket
-||||||| merged common ancestors
-          <a href="https://www.xing.com/profile/{{ author.xing }}" itemprop="sameAs">
-            <i class="fab fa-fw fa-xing-square" aria-hidden="true"></i> XING
-=======
-          <a href="https://www.xing.com/profile/{{ author.xing }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-xing-square" aria-hidden="true"></i> XING
->>>>>>> 9232a38f2a27d19dd9f1c0962ccbcc0ec90eeca9
-          </a>
-        </li>
-      {% endif %}
-
-      {% if author.stackoverflow %}
-        <li>
-<<<<<<< HEAD
-          <a href="https://www.stackoverflow.com/users/{{ author.stackoverflow }}" itemprop="sameAs">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
-||||||| merged common ancestors
-          <a href="https://instagram.com/{{ author.instagram }}" itemprop="sameAs">
-            <i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram
-=======
-          <a href="https://instagram.com/{{ author.instagram }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram
->>>>>>> 9232a38f2a27d19dd9f1c0962ccbcc0ec90eeca9
-          </a>
-        </li>
-      {% endif %}
-
       {% if author.facebook %}
         <li>
-<<<<<<< HEAD
-          <a href="https://www.facebook.com/{{ author.facebook }}" itemprop="sameAs">
+          <a href="https://www.facebook.com/{{ author.facebook }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
             <i class="fab fa-fw fa-facebook-square" aria-hidden="true"></i> Facebook
-||||||| merged common ancestors
-          <a href="https://{{ author.tumblr }}.tumblr.com" itemprop="sameAs">
-            <i class="fab fa-fw fa-tumblr-square" aria-hidden="true"></i> Tumblr
-=======
-          <a href="https://{{ author.tumblr }}.tumblr.com" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-tumblr-square" aria-hidden="true"></i> Tumblr
->>>>>>> 9232a38f2a27d19dd9f1c0962ccbcc0ec90eeca9
-          </a>
-        </li>
-      {% endif %}
-
-      {% if author.google_plus %}
-        <li>
-<<<<<<< HEAD
-          <a href="https://plus.google.com/{{ author.google_plus }}" itemprop="sameAs">
-            <i class="fab fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
-||||||| merged common ancestors
-          <a href="https://bitbucket.org/{{ author.bitbucket }}" itemprop="sameAs">
-            <i class="fab fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket
-=======
-          <a href="https://bitbucket.org/{{ author.bitbucket }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket
->>>>>>> 9232a38f2a27d19dd9f1c0962ccbcc0ec90eeca9
           </a>
         </li>
       {% endif %}
 
       {% if author.linkedin %}
         <li>
-<<<<<<< HEAD
-          <a href="https://www.linkedin.com/in/{{ author.linkedin }}" itemprop="sameAs">
+          <a href="https://www.linkedin.com/in/{{ author.linkedin }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
             <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
-||||||| merged common ancestors
-          <a href="https://github.com/{{ author.github }}" itemprop="sameAs">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
-=======
-          <a href="https://github.com/{{ author.github }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
->>>>>>> 9232a38f2a27d19dd9f1c0962ccbcc0ec90eeca9
           </a>
         </li>
       {% endif %}
 
       {% if author.xing %}
         <li>
-<<<<<<< HEAD
-          <a href="https://www.xing.com/profile/{{ author.xing }}" itemprop="sameAs">
+          <a href="https://www.xing.com/profile/{{ author.xing }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
             <i class="fab fa-fw fa-xing-square" aria-hidden="true"></i> XING
-||||||| merged common ancestors
-          <a href="https://gitlab.com/{{ author.gitlab }}" itemprop="sameAs">
-            <i class="fab fa-fw fa-gitlab" aria-hidden="true"></i> GitLab
-=======
-          <a href="https://gitlab.com/{{ author.gitlab }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-gitlab" aria-hidden="true"></i> GitLab
->>>>>>> 9232a38f2a27d19dd9f1c0962ccbcc0ec90eeca9
           </a>
         </li>
       {% endif %}
 
       {% if author.instagram %}
         <li>
-<<<<<<< HEAD
-          <a href="https://instagram.com/{{ author.instagram }}" itemprop="sameAs">
+          <a href="https://instagram.com/{{ author.instagram }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
             <i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram
           </a>
         </li>
@@ -228,15 +123,40 @@
 
       {% if author.tumblr %}
         <li>
-          <a href="https://{{ author.tumblr }}.tumblr.com" itemprop="sameAs">
+          <a href="https://{{ author.tumblr }}.tumblr.com" itemprop="sameAs" rel="nofollow noopener noreferrer">
             <i class="fab fa-fw fa-tumblr-square" aria-hidden="true"></i> Tumblr
-||||||| merged common ancestors
-          <a href="https://www.stackoverflow.com/users/{{ author.stackoverflow }}" itemprop="sameAs">
+          </a>
+        </li>
+      {% endif %}
+
+      {% if author.bitbucket %}
+        <li>
+          <a href="https://bitbucket.org/{{ author.bitbucket }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket
+          </a>
+        </li>
+      {% endif %}
+
+      {% if author.github %}
+        <li>
+          <a href="https://github.com/{{ author.github }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      {% endif %}
+
+      {% if author.gitlab %}
+        <li>
+          <a href="https://gitlab.com/{{ author.gitlab }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-gitlab" aria-hidden="true"></i> GitLab
+          </a>
+        </li>
+      {% endif %}
+
+      {% if author.stackoverflow %}
+        <li>
+          <a href="https://stackoverflow.com/users/{{ author.stackoverflow }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
             <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
-=======
-          <a href="https://www.stackoverflow.com/users/{{ author.stackoverflow }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
->>>>>>> 9232a38f2a27d19dd9f1c0962ccbcc0ec90eeca9
           </a>
         </li>
       {% endif %}
