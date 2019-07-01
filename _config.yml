@@ -25,7 +25,7 @@ teaser                   : # path of fallback teaser image, e.g. "/assets/images
 #breadcrumbs              : true # true, false (default)
 words_per_minute         : 150
 comments:
-  provider               : "custom" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2", "utterances", "custom"
+  provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2", "utterances", "custom"
   disqus:
     shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
@@ -275,7 +275,7 @@ defaults:
       author_profile: true
       read_time: true
       subscribe: true
-      comments: true
+      comments: false
       share: false
       related: false
 
