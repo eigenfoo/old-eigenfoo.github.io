@@ -5,7 +5,7 @@ title: "About Me"
 subscribe: true
 ---
 
-![image-right]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
+![Me, happy with sushi]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
 
 Hello! My name is George, and this is my personal website and blog. I'm a data
 scientist, machine learner, math enthusiast and coffee ~~addict~~ lover. (I also
