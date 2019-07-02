@@ -71,7 +71,8 @@ _“determine your frame”_.
 > any discernible way when shit tested, it will be generally considered that you
 > failed the test.
 
-Finally, not only do shit tests test your frame, but they also serve a specific, critical social function:
+Finally, not only do shit tests test your frame, but they also serve a specific,
+critical social function:
 
 > When it comes right down to it shit tests are typically women’s way of
 > flirting.
@@ -117,7 +118,7 @@ Whatever Reddit is though, two things are for certain:
    States](https://www.alexa.com/topsites/countries/US) and the [sixth most popular
    globally](https://www.alexa.com/topsites).
 
-2. Where there is free speech, there is hate speech. Reddit’s hate speech
+1. Where there is free speech, there is hate speech. Reddit’s hate speech
    problem is [well
    documented](https://www.wired.com/2015/08/reddit-mods-handle-hate-speech/),
    the [center of recent
