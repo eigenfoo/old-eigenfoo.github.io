@@ -46,35 +46,35 @@ autoregressive generative sequence models_. That's quite a mouthful of jargon
     to compare them to recurrent neural networks (RNNs), which are far more
     well-known.
 
-  <figure>
-    <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png"><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png" alt="Recurrent neural network (RNN) block diagram, both rolled and unrolled"></a>
-    <figcaption>Obligatory RNN diagram. Source: <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">Chris Olah</a>.</figcaption>
-  </figure>
+    <figure>
+        <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png"><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png" alt="Recurrent neural network (RNN) block diagram, both rolled and unrolled"></a>
+        <figcaption>Obligatory RNN diagram. Source: <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">Chris Olah</a>.</figcaption>
+    </figure>
 
-  * Like an RNN, an autoregressive model's output $$h_t$$ at time $$t$$ depends
-    on not just $$x_t$$, but also $$x$$'s from previous time steps. However,
-    _unlike_ an RNN, the previous $$x$$'s are not provided via some hidden
-    state: they are given as just another input to the model.
-  * The following animation of Google DeepMind's WaveNet illustrates this well:
-    the $$t$$th output is generated in a _feed-forward_ fashion from several
-    input $$x$$ values.[^1]
+    * Like an RNN, an autoregressive model's output $$h_t$$ at time $$t$$
+      depends on not just $$x_t$$, but also $$x$$'s from previous time steps.
+      However, _unlike_ an RNN, the previous $$x$$'s are not provided via some
+      hidden state: they are given as just another input to the model.
+    * The following animation of Google DeepMind's WaveNet illustrates this
+      well: the $$t$$th output is generated in a _feed-forward_ fashion from
+      several input $$x$$ values.[^1]
 
-  <figure>
-    <a href="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig2-Anim-160908-r01.gif"><img src="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig2-Anim-160908-r01.gif" alt="WaveNet animation"></a>
-    <figcaption>WaveNet animation. Source: <a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/">Google DeepMind</a>.</figcaption>
-  </figure>
+    <figure>
+        <a href="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig2-Anim-160908-r01.gif"><img src="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig2-Anim-160908-r01.gif" alt="WaveNet animation"></a>
+        <figcaption>WaveNet animation. Source: <a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/">Google DeepMind</a>.</figcaption>
+    </figure>
 
-  * Put simply, **an autoregressive model is merely a feed-forward model which
-    predicts future values from past values.**
-  * I'll explain this more later, but it's worth saying now: autoregressive
-    models offer a compelling bargain. You can have stable, parallel and
-    easy-to-optimize training, faster inference computations, and completely do
-    away with the fickleness of [truncated backpropagation through
-    time](https://en.wikipedia.org/wiki/Backpropagation_through_time), if you
-    are willing to accept a model that (by design) _cannot have_ infinite
-    memory. There is [recent
-    research](http://www.offconvex.org/2018/07/27/approximating-recurrent/) to
-    suggest that this is a worthwhile tradeoff.
+    * Put simply, **an autoregressive model is merely a feed-forward model which
+      predicts future values from past values.**
+    * I'll explain this more later, but it's worth saying now: autoregressive
+      models offer a compelling bargain. You can have stable, parallel and
+      easy-to-optimize training, faster inference computations, and completely
+      do away with the fickleness of [truncated backpropagation through
+      time](https://en.wikipedia.org/wiki/Backpropagation_through_time), if you
+      are willing to accept a model that (by design) _cannot have_ infinite
+      memory. There is [recent
+      research](http://www.offconvex.org/2018/07/27/approximating-recurrent/) to
+      suggest that this is a worthwhile tradeoff.
 
 1. Generative
   * Informally, a generative model is one that can generate new data after
@@ -202,27 +202,27 @@ Network can model video](https://arxiv.org/abs/1610.00527).[^3]
   * As far as I am aware, there is no prior literature on having both problems:
     a variable-length output of continuous values.
 
-1. Autoregressive models can model multiple timescales
+1. Autoregressive models can model multiple time scales
   * In the case of music, there are important patterns to model at multiple time
     scales: individual musical notes drive correlations between audio samples at
     the millisecond scale, and music exhibits rhythmic patterns over the course
     of minutes. This is well illustrated by the following animation:
 
-  <figure>
-    <a href="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig1-Anim-160908-r01.gif"><img src="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig1-Anim-160908-r01.gif" alt="Audio at multiple timescales"></a>
-    <figcaption>Audio exhibits patterns at multiple timescales. Source: <a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/">Google DeepMind</a>.</figcaption>
-  </figure>
+    <figure>
+        <a href="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig1-Anim-160908-r01.gif"><img src="https://storage.googleapis.com/deepmind-live-cms/documents/BlogPost-Fig1-Anim-160908-r01.gif" alt="Audio at multiple time scales"></a>
+        <figcaption>Audio exhibits patterns at multiple time scales. Source: <a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/">Google DeepMind</a>.</figcaption>
+    </figure>
 
-  * There are two main ways capture these many patterns at these many different
-    time scales: either make the receptive field of your model _extremely_ wide
-    (e.g. through dilated convolutions), or condition your model on a subsampled
-    version of your generated output, which is in turn produced by an
-    unconditioned model.
-    * Google DeepMind composes an unconditional PixelRNN with one or more
-      conditional PixelRNNs to form a so-called "multi-scale" PixelRNN: the
-      first PixelRNN generates a lower-resolution image that conditions the
-      subsequent PixelRNNs.
-    * WaveNet employs a technique and calls them "context stacks".
+    * There are two main ways capture these many patterns at these many
+      different time scales: either make the receptive field of your model
+      _extremely_ wide (e.g. through dilated convolutions), or condition your
+      model on a subsampled version of your generated output, which is in turn
+      produced by an unconditioned model.
+      * Google DeepMind composes an unconditional PixelRNN with one or more
+        conditional PixelRNNs to form a so-called "multi-scale" PixelRNN: the
+        first PixelRNN generates a lower-resolution image that conditions the
+        subsequent PixelRNNs.
+      * WaveNet employs a technique and calls them "context stacks".
 
 1. How the hell can any of this stuff work?
   * RNNs are theoretically more expressive and powerful than autoregressive
