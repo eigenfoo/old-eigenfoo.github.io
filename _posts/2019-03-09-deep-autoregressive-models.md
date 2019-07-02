@@ -231,11 +231,11 @@ Network can model video](https://arxiv.org/abs/1610.00527).[^3]
   * To quote [John Miller at the Berkeley AI Research
     lab](http://www.offconvex.org/2018/07/27/approximating-recurrent/):
 
-  > **Recurrent models trained in practice are effectively feed-forward.** This
-  > could happen either because truncated backpropagation through time cannot
-  > learn patterns significantly longer than $$k$$ steps, or, more
-  > provocatively, because models _trainable by gradient descent_ cannot have
-  > long-term memory.
+    > **Recurrent models trained in practice are effectively feed-forward.**
+    > This could happen either because truncated backpropagation through time
+    > cannot learn patterns significantly longer than $$k$$ steps, or, more
+    > provocatively, because models _trainable by gradient descent_ cannot have
+    > long-term memory.
 
 ---
 
