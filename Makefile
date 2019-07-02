@@ -33,5 +33,19 @@ serve:  # Serve site locally.
 stop: clean  # Stop local serving.
 	PID="$(shell pgrep -f jekyll)"; kill $$PID
 
+lint:  # Lint Markdown files.
+	# Disabled rules:
+	# MD002 First header should be a top level header
+	# MD013 Line length
+	# MD033 Inline HTML
+	bundle exec mdl _posts/ --ignore-front-matter --rules=~MD002,~MD013,~MD033
+
+test:  # Test generated HTML files.
+	# Ignore /r/TheRedPill error
+	bundle exec jekyll build --future
+	bundle exec htmlproofer ./_site --only-4xx --check-html --url-ignore=https://www.reddit.com/r/TheRedPill/comments/22qnmk/newbies_read_this_the_definitive_guide_to_shit/
+
+check: clean lint test  # Alias for `make clean lint test`
+
 clean:  # Remove _site/ and _posts/_site/ directories
 	rm -rf Gemfile.lock package-lock.json _site/ _posts/_site/

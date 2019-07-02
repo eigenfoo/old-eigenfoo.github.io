@@ -1,18 +1,26 @@
 language: ruby
 sudo: false
-rvm:
-  - 2.4.1
+
+matrix:
+  include:
+  - name: "RVM 2.4.1 Test"
+    rvm: 2.4.1
+    env: NAME="TEST"
+  - name: "RVM 2.4.1 Lint"
+    rvm: 2.4.1
+    env: NAME="LINT"
 
 install:
-  - bundle install
+  - make setup
+  - bundle exec bundle list
 
 script:
-  - bundle exec jekyll build --future
-  - bundle exec htmlproofer ./_site --only-4xx --check-html
+  - if [[ $NAME == TEST ]]; then make test; fi
+  - if [[ $NAME == LINT ]]; then make lint; fi
 
 env:
   global:
-  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true  # Speeds up installation of html-proofer
 
 addons:
   apt:
