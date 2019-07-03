@@ -134,10 +134,10 @@ footer:
       url: /privacy
     - label: "Source"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/eigenfoo/eigenfoo.xyz/"
+      url: "https://github.com/eigenfoo/eigenfoo.github.io/"
     - label: "Sitemap"
       icon: "fas fa-fw fa-sitemap"
-      url: "https://eigenfoo.xyz/sitemap.xml"
+      url: "/sitemap.xml"
 
 
 # Reading Files

@@ -9,7 +9,7 @@ tags:
   - natural language processing
 header:
   overlay_image: https://i.kym-cdn.com/entries/icons/original/000/017/390/reddit-snoo-vinyl-toy-16-1422482502-329653993671.pfHX0qSPQk6jv8Gb1QJf.jpg
-  overlay_filter: 0.4
+  overlay_filter: 0.5
   caption: "Snoo the Reddit Alien! Photo credit: [KnowYourMeme](http://knowyourmeme.com/memes/snoo)"
 last_modified_at: 2018-03-18
 ---
