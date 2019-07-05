@@ -1,6 +1,6 @@
 ---
 layout: single
-permalink: /about
+permalink: /about/
 title: "About Me"
 subscribe: true
 ---
