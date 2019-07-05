@@ -1,6 +1,6 @@
 ---
 layout: single
-permalink: /privacy
+permalink: /privacy/
 title: "Privacy Policy"
 author_profile: false
 ---

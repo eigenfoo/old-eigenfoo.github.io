@@ -1,6 +1,6 @@
 ---
 title: "Blog Archive"
-permalink: /tags
+permalink: /tags/
 layout: tags
 author_profile: false
 sidebar:
