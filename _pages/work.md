@@ -1,6 +1,6 @@
 ---
 layout: single
-permalink: /work/
+permalink: /work
 toc: true
 toc_sticky: true
 title: Work
