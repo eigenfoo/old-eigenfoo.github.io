@@ -38,7 +38,7 @@ lint:  # Lint Markdown files.
 	# MD002 First header should be a top level header
 	# MD013 Line length
 	# MD033 Inline HTML
-	bundle exec mdl _posts/ --ignore-front-matter --rules=~MD002,~MD013,~MD033
+	bundle exec mdl _posts --ignore-front-matter --rules=~MD002,~MD013,~MD033
 
 test:  # Test generated HTML files.
 	# Ignore /r/TheRedPill error

@@ -46,7 +46,7 @@ Nonstationarity could mean one of two things for us:
    throughout all time (e.g. the rewards are always normally distributed, or
    always binomially distributed), and that it is merely the parameters of these
    distributions that are liable to change,
-2. or we aren't so unlucky, and the rewards distributions are not only changing,
+1. or we aren't so unlucky, and the rewards distributions are not only changing,
    but don't even have a nice parametric form.
 
 Good news, though: there is a neat trick to deal with both forms of
@@ -102,7 +102,7 @@ about Bayesian bandit algorithms for e-commerce.
 We can think of the multi-armed bandit problem as follows[^2]:
 
 1. A policy chooses an arm $$a$$ from $$k$$ arms.
-2. The world reveals the reward $$R_a$$ of the chosen arm.
+1. The world reveals the reward $$R_a$$ of the chosen arm.
 
 However, this formulation fails to capture an important phenomenon: there is
 almost always extra information that is available when making each decision.
@@ -114,8 +114,8 @@ To take advantage of this information, we might think of a different formulation
 where, on each round:
 
 1. The world announces some context information $$x$$.
-2. A policy chooses an arm $$a$$ from $$k$$ arms.
-3. The world reveals the reward $$R_a$$ of the chosen arm.
+1. A policy chooses an arm $$a$$ from $$k$$ arms.
+1. The world reveals the reward $$R_a$$ of the chosen arm.
 
 In other words, contextual bandits call for some way of taking context as input
 and producing arms/actions as output.

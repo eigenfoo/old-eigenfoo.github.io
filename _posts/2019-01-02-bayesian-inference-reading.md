@@ -41,7 +41,7 @@ So without further ado...
    Dummies](https://twiecki.github.io/blog/2015/11/10/mcmc-sampling/) by Thomas
    Wiecki. A basic introduction to MCMC with accompanying Python snippets. The
    Metropolis sampler is used an introduction to sampling.
-2. [Introduction to Markov Chain Monte
+1. [Introduction to Markov Chain Monte
    Carlo](http://www.mcmchandbook.net/HandbookChapter1.pdf) by Charles Geyer.
    The first chapter of the aptly-named [_Handbook of Markov Chain Monte
    Carlo_](http://www.mcmchandbook.net/).
@@ -51,10 +51,10 @@ So without further ado...
 1. [Hamiltonian Monte Carlo
    explained](https://arogozhnikov.github.io/2016/12/19/markov_chain_monte_carlo.html).
    A visual and intuitive explanation of HMC: great for starters.
-2. [A Conceptual Introduction to Hamiltonian Monte
+1. [A Conceptual Introduction to Hamiltonian Monte
    Carlo](https://arxiv.org/abs/1701.02434) by Michael Betancourt. An excellent
    paper for a solid conceptual understanding and principled intuition for HMC.
-3. [Exercises in Automatic Differentiation using `autograd` and
+1. [Exercises in Automatic Differentiation using `autograd` and
    `jax`](https://colindcarroll.com/2019/04/06/exercises-in-automatic-differentiation-using-autograd-and-jax/)
    by Colin Carroll. This is the first in a series of blog posts that explain
    HMC from the very beginning. See also [Hamiltonian Monte Carlo from
@@ -63,12 +63,12 @@ So without further ado...
    Carlo](https://colindcarroll.com/2019/04/21/step-size-adaptation-in-hamiltonian-monte-carlo/),
    and [Choice of Symplectic Integrator in Hamiltonian Monte
    Carlo](https://colindcarroll.com/2019/04/28/choice-of-symplectic-integrator-in-hamiltonian-monte-carlo/).
-4. [The No-U-Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte
+1. [The No-U-Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte
    Carlo](https://arxiv.org/abs/1111.4246) by Matthew Hoffman and Andrew Gelman.
    The original NUTS paper.
-5. [MCMC Using Hamiltonian
+1. [MCMC Using Hamiltonian
    Dynamics](http://www.mcmchandbook.net/HandbookChapter5.pdf) by Radford Neal.
-6. [Hamiltonian Monte Carlo in
+1. [Hamiltonian Monte Carlo in
    PyMC3](https://colindcarroll.com/talk/hamiltonian-monte-carlo/) by Colin
    Carroll.
 
@@ -80,7 +80,7 @@ So without further ado...
    authors' textbook on SMC](https://www.springer.com/us/book/9780387951461)
    provides motivation for using SMC methods, and gives a brief introduction to
    a basic particle filter.
-2. [Sequential Monte Carlo Methods & Particle Filters
+1. [Sequential Monte Carlo Methods & Particle Filters
    Resources](http://www.stats.ox.ac.uk/~doucet/smc_resources.html) by Arnaud
    Doucet. A list of resources on SMC and particle filters: way more than you
    probably ever need to know about them.
@@ -92,7 +92,7 @@ So without further ado...
    by Christopher Bishop. Covers rejection, importance, Metropolis-Hastings,
    Gibbs and slice sampling. Perhaps not as rampantly useful as NUTS, but good
    to know nevertheless.
-2. [The Markov-chain Monte Carlo Interactive
+1. [The Markov-chain Monte Carlo Interactive
    Gallery](https://chi-feng.github.io/mcmc-demo/) by Chi Feng. A fantastic
    library of visualizations of various MCMC samplers.
 
@@ -105,11 +105,11 @@ So without further ado...
    Wolf. The first blog post in a series that builds from EM all the way to VI.
    Also check out [Deriving Mean-Field Variational
    Bayes](http://willwolf.io/2018/11/23/mean-field-variational-bayes/).
-2. [Variational Inference: A Review for
+1. [Variational Inference: A Review for
    Statisticians](https://arxiv.org/abs/1601.00670) by David Blei, Alp
    Kucukelbir and Jon McAuliffe. An high-level overview of variational
    inference: the authors go over one example (performing VI on GMMs) in depth.
-3. Chapter 10 (Approximate Inference) of [Pattern Recognition and Machine
+1. Chapter 10 (Approximate Inference) of [Pattern Recognition and Machine
    Learning](https://www.microsoft.com/en-us/research/people/cmbishop/#!prml-book)
    by Christopher Bishop.
 
@@ -118,7 +118,7 @@ So without further ado...
 1. [Automatic Differentiation Variational
    Inference](https://arxiv.org/abs/1603.00788) by Alp Kucukelbir, Dustin Tran
    et al. The original ADVI paper.
-2. [Automatic Variational Inference in
+1. [Automatic Variational Inference in
    Stan](https://papers.nips.cc/paper/5758-automatic-variational-inference-in-stan)
    by Alp Kucukelbir, Rajesh Ranganath, Andrew Gelman and David Blei.
 
@@ -129,14 +129,14 @@ inference, and it is instructive to look into the inference methods that they do
 (or do not!) implement.
 
 1. [Stan](http://mc-stan.org/)
-2. [PyMC3](http://docs.pymc.io/)
-3. [Pyro](http://pyro.ai/)
-4. [Tensorflow Probability](https://www.tensorflow.org/probability/)
-5. [Edward](http://edwardlib.org/)
-6. [Greta](https://greta-stats.org/)
-7. [Infer.NET](https://dotnet.github.io/infer/)
-8. [BUGS](https://www.mrc-bsu.cam.ac.uk/software/bugs/)
-9. [JAGS](http://mcmc-jags.sourceforge.net/)
+1. [PyMC3](http://docs.pymc.io/)
+1. [Pyro](http://pyro.ai/)
+1. [Tensorflow Probability](https://www.tensorflow.org/probability/)
+1. [Edward](http://edwardlib.org/)
+1. [Greta](https://greta-stats.org/)
+1. [Infer.NET](https://dotnet.github.io/infer/)
+1. [BUGS](https://www.mrc-bsu.cam.ac.uk/software/bugs/)
+1. [JAGS](http://mcmc-jags.sourceforge.net/)
 
 ## Further Topics
 
