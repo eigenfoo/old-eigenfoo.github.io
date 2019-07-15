@@ -144,7 +144,7 @@ I would propose two changes to the original paper:
    [According to Michael Betancourt and the PyMC3 docs, this is more numerically
    stable](https://docs.pymc.io/notebooks/LKJ.html), and will lead to better
    inference.
-2. Use a more robust sampler such as NUTS (instead of a Gibbs sampler), or even
+1. Use a more robust sampler such as NUTS (instead of a Gibbs sampler), or even
    resort to variational inference. The paper makes it clear that BPMF is a
    computationally painful endeavor, so any speedup to the method would be a
    great help. It seems to me that for practical real-world applications to
@@ -184,7 +184,7 @@ machine learning. Don't forget to take a look at the speaker notes too!
 </style>
 <div class="responsive-wrap">
 <!-- this is the embed code provided by Google -->
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vT_yB6dMJCnnwKRtkGbdx90lhYGGH329QAGrYw8SaR2mCh0VuocMWGEVJ2XhFNp44JQtPV_vOlQkslo/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe> 
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vT_yB6dMJCnnwKRtkGbdx90lhYGGH329QAGrYw8SaR2mCh0VuocMWGEVJ2XhFNp44JQtPV_vOlQkslo/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 <!-- Google embed ends -->
 </div>
 
