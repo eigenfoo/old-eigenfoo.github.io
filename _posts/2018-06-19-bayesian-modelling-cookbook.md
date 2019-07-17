@@ -193,7 +193,7 @@ alt="PyMC3 logo">
   # Different numbers of examples for each species
   species = (48 * ['setosa'] + 52 * ['virginica'] + 63 * ['versicolor'])
   num_species = len(list(set(species)))  # 3
-  # One variable per group 
+  # One variable per group
   heights_per_species = pm.Normal('heights_per_species',
                                   mu=0, sd=1, shape=num_species)
   idx = sklearn.preprocessing.LabelEncoder().fit_transform(species)
@@ -253,7 +253,7 @@ alt="PyMC3 logo">
    sure that the `tune` parameter increases commensurately with the `draws`
    parameter.
 
-2. Check for divergences. PyMC3's sampler will spit out a warning if there are
+1. Check for divergences. PyMC3's sampler will spit out a warning if there are
    diverging chains, but the following code snippet may make things easier:
 
    ```python
@@ -264,14 +264,14 @@ alt="PyMC3 logo">
    print('Percentage of Divergent Chains: {:.1f}'.format(diverging_perc))
    ```
 
-3. Check the traceplot (`pm.traceplot(trace)`). You're looking for traceplots
+1. Check the traceplot (`pm.traceplot(trace)`). You're looking for traceplots
    that look like “fuzzy caterpillars”. If the trace moves into some region and
    stays there for a long time (a.k.a. there are some “sticky regions”), that's
    cause for concern! That indicates that once the sampler moves into some
    region of parameter space, it gets stuck there (probably due to high
    curvature or other bad topological properties).
 
-4. In addition to the traceplot, there are [a ton of other
+1. In addition to the traceplot, there are [a ton of other
    plots](https://docs.pymc.io/api/plots.html) you can make with your trace:
 
    - `pm.plot_posterior(trace)`: check if your posteriors look reasonable.
@@ -291,7 +291,7 @@ alt="PyMC3 logo">
      doesn't seem to be wildly useful unless you're plotting posteriors from
      multiple models.
 
-5. PyMC3 has a nice helper function to pretty-print a summary table of the
+1. PyMC3 has a nice helper function to pretty-print a summary table of the
    trace: `pm.summary(trace)` (I usually tack on a `.round(2)` for my sanity).
    Look out for:
    - the $$\hat{R}$$ values (a.k.a. the Gelman–Rubin statistic, a.k.a. the
@@ -303,14 +303,14 @@ alt="PyMC3 logo">
      model. (E.g. parameters of the unexpected sign that have low uncertainties
      might indicate that your model needs interaction terms.)
 
-6. As a drastic debugging measure, try to `pm.sample` with `draws=1`,
+1. As a drastic debugging measure, try to `pm.sample` with `draws=1`,
    `tune=500`, and `discard_tuned_samples=False`, and inspect the traceplot.
    During the tuning phase, we don't expect to see friendly fuzzy caterpillars,
    but we _do_ expect to see good (if noisy) exploration of parameter space. So
    if the sampler is getting stuck during the tuning phase, that might explain
    why the trace looks horrible.
 
-7. If you get scary errors that describe mathematical problems (e.g. `ValueError:
+1. If you get scary errors that describe mathematical problems (e.g. `ValueError:
    Mass matrix contains zeros on the diagonal. Some derivatives might always be
    zero.`), then you're ~~shit out of luck~~ exceptionally unlucky: those kinds of
    errors are notoriously hard to debug. I can only point to the [Folk Theorem of
@@ -441,7 +441,7 @@ alt="PyMC3 logo">
                kwargs_divergence={'color': 'C2'})
    ```
 
-2. Look at your posteriors (either from the traceplot, density plots or
+1. Look at your posteriors (either from the traceplot, density plots or
    posterior plots). Do they even make sense? E.g. are there outliers or long
    tails that you weren't expecting? Do their uncertainties look reasonable to
    you? If you had [a plate](https://en.wikipedia.org/wiki/Plate_notation) of
@@ -450,7 +450,7 @@ alt="PyMC3 logo">
    only one who knows your problem/use case, so the posteriors better look good
    to you!
 
-3. Broadly speaking, there are four kinds of bad geometries that your posterior
+1. Broadly speaking, there are four kinds of bad geometries that your posterior
    can suffer from:
    - highly correlated posteriors: this will probably cause divergences or
      traces that don't look like “fuzzy caterpillars”. Either look at the
@@ -471,11 +471,11 @@ alt="PyMC3 logo">
      multimodality using a mixture model), you're out of luck: just let NUTS
      sample for a day or so, and hopefully you'll get a good trace.
 
-4. Pick a small subset of your raw data, and see what exactly your model does
+1. Pick a small subset of your raw data, and see what exactly your model does
    with that data (i.e. run the model on a specific subset of your data). I find
    that a lot of problems with your model can be found this way.
 
-5. Run [_posterior predictive
+1. Run [_posterior predictive
    checks_](https://docs.pymc.io/notebooks/posterior_predictive.html) (a.k.a.
    PPCs): sample from your posterior, plug it back in to your model, and
    “generate new data sets”. PyMC3 even has a nice function to do all this for
