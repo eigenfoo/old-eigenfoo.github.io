@@ -14,7 +14,7 @@ comments: false
 last_modified_at: 2019-07-22
 ---
 
-Some exciting personal news: I've (_finally_) graduated from [The Cooper
+Some exciting personal news: I've _(finally)_ graduated from [The Cooper
 Union](http://cooper.edu/welcome), and I'm joining [Point72 Asset
 Management](https://www.point72.com/) as a data scientist/research analyst!
 
@@ -27,11 +27,11 @@ Yards](https://www.hudsonyardsnewyork.com/work/55-hudson-yards) offices.
 In this next chapter of my life, my professional and personal focuses are:
 
 1. **Keep learning.** Bayesian methods and deep learning, mostly.
-1. **Open source.** I've been involved in the PyMC project: in particular,
-   developing [PyMC4](https://github.com/pymc-devs/pymc4). I hope to keep
-   contributing!
-1. **Photography and cardistry.** Those are my two current hobbies — I want to
-   spend more time practicing and really get good at them!
+1. **Open source.** I've been involved with developing
+   [PyMC4](https://github.com/pymc-devs/pymc4). These are exciting times for the
+   PyMC project: I hope to keep contributing!
+1. **Hobbies.** Photography and cardistry, currently. I want to spend more time
+   practicing and really get good at them!
 
 My four years of college were incredibly rewarding, but I'm excited to enter the
 real world. Stay tuned!
