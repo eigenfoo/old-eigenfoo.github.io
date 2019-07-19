@@ -48,4 +48,4 @@ test:  # Test generated HTML files.
 check: clean lint test  # Alias for `make clean lint test`
 
 clean:  # Remove _site/ and _posts/_site/ directories
-	rm -rf Gemfile.lock package-lock.json _site/ _posts/_site/
+	rm -rf Gemfile.lock package-lock.json _site/ _posts/_site/ vendor/
