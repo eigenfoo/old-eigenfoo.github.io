@@ -5,7 +5,7 @@ title: "About Me"
 subscribe: true
 ---
 
-![Me, happy with sushi]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
+![George smiling in front of a plate of sushi]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
 
 Hello! My name is George.
 
@@ -15,18 +15,20 @@ Management](http://point72.com) as a data scientist/research analyst.
 Outside of work, I contribute to and maintain [several open-source
 libraries](https://eigenfoo.xyz/work/#software) (particularly the [PyMC
 project](https://github.com/pymc-devs)). Away from the keyboard, I spend my time
-pursuing cardistry and photography. Oh, and drinking coffee :coffee: :coffee:.
+pursuing cardistry and photography. Oh, and drinking coffee! :coffee: :coffee:
 
 Previously, I studied engineering at [The Cooper
 Union](http://cooper.edu/welcome) with minors in computer science and
 mathematics, and I interned at [Quantopian](https://www.quantopian.com/) on
 their quant research and data science teams.
 
-[Click for my Resume](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){: .btn .btn--primary .btn--default}
+[Click for my
+Resume](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){:
+.btn .btn--primary .btn--default}
 
-## What's with your username/handle?
+## What's with your username?
 
-It seemed like a clever pun at the time... but people keep asking, so maybe not.
+It seemed clever at the time... but people keep asking, so maybe not.
 
 _Eigen_ is a German for _own_, but probably a better translation (especially for
 math terms like
@@ -38,5 +40,5 @@ _Foo_ is a [placeholder name in computer
 programming](https://en.wikipedia.org/wiki/Foobar), and is basically a techier
 version of "stuff" or "thing".
 
-So taken together, `eigenfoo` probably means something like "things
-belonging to [George]".
+So on one hand, my username is unique and belongs to me because its `eigen`, but
+on the other hand its just a `foo`. The juxtaposition was funny to me.
