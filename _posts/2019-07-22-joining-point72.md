@@ -24,14 +24,12 @@ Yards](https://www.hudsonyardsnewyork.com/work/55-hudson-yards) offices.
 
 ![Point72 logo](https://www.point72.com/wp-content/uploads/2017/03/point72-recropped.png)
 
-In this next chapter of my life, my professional and personal focuses are:
+In this next chapter of my life, my professional focuses are:
 
 1. **Keep learning.** Bayesian methods and deep learning, mostly.
 1. **Open source.** I've been involved with developing
    [PyMC4](https://github.com/pymc-devs/pymc4). These are exciting times for the
    PyMC project: I hope to keep contributing!
-1. **Hobbies.** Photography and cardistry, currently. I want to spend more time
-   practicing and really get good at them!
 
 My four years of college were incredibly rewarding, but I'm excited to enter the
 real world. Stay tuned!
