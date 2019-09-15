@@ -16,23 +16,21 @@ last_modified_at: 2019-09-10
 
 This is a cookbook, not a tutorial.
 
-For personal projects.
+For personal (or at least, small) projects.
 
 ## Checklist
 
 You should have the following files in your top-level directory:
 
-- [ ] `README.md`
-- [ ] `requirements.txt`
-- [ ] `LICENSE`
+- [ ] A README, usually `README.md`
+- [ ] Some requirements file, usually `requirements.txt`
+- [ ] Some license file, usually `LICENSE`
 
 ## `__init__.py` (top-level)
 
 The top-level `__init__.py` should contain some dunder variables that are
 relevant to your package (e.g. `__version__`). You can write your `setup.py`
 to grep out those variables.
-
-## `__init__.py` (all others)
 
 ## `setup.py`
 
@@ -55,9 +53,29 @@ twine upload dist/*
 
 https://packaging.python.org/tutorials/packaging-projects/#uploading-the-distribution-archives
 
-## Turning it into a command line script
+## I want my Python package to be a command line tool
+
+Use the [`entry_points` argument in the `setup`
+function](https://python-packaging.readthedocs.io/en/latest/command-line-scripts.html#the-console-scripts-entry-point).
+Specifically, something like this:
+
+```python
+setup(
+    ...
+    entry_points={"console_scripts": ["command = main:run"]}
+)
+```
+
+which tells `setuptools` to run the `run` function inside `main.py` when
+`command` is entered at the command line.
+
+You can read more about Python entry points [on the PyPA
+specification](https://packaging.python.org/specifications/entry-points/).
 
 ## What is a `MANIFEST.in`?
+
+E.g. if you want to bundle up a `templates/` directory with HTML/CSS/JavaScript
+templates for `jinja2`.
 
 ## References
 
