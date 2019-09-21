@@ -1,32 +1,51 @@
 ---
-title: What is a Probabilistic Programming Framework, Really?
+title: Anatomy of a Probabilistic Programming Framework
 excerpt:
 tags:
   - probabilistic programming
   - pymc3
+  - pymc4
+  - stan
+  - tensorflow probability
+  - pyro
+  - edward
 header:
-  overlay_image: /assets/images/cool-backgrounds/cool-background1.png
+  overlay_filter: 0.3
+  overlay_image: /assets/images/cool-backgrounds/cool-background2.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
+toc: true
+toc_sticky: true
+toc_icon: "kiwi-bird"
 last_modified_at: 2019-09-20
 ---
 
 Probabilistic programming languages (PPLs)
 
+I assume you know a bit about probabilistic programming and Bayesian modelling. 
+
+https://eigenfoo.xyz/bayesian-inference-reading/
+
 ## The Anatomy of a Probabilistic Programming Framework
 
-1. Some language or API to specify a model
-1. Some collection of probability distributions and transformations of
-   probability distributions.
-1. Some inference engine: usually MCMC (specifically, HMC) and/or VI
-1. Some optimizer (usually L-BFGS)
-1. Some way to compute gradients (specifically, of the log likelihood of the
-   specified model)
-1. Some way to monitor/analyze/diagnose inference (e.g. sampler diagnostics like
-   R_hat for MCMC)
+A probabilistic programming framework needs six things:
+
+1. A language or API for users to specify a model
+1. A library of probability distributions and transformations to build the model
+   density
+1. At least one inference algorithm to sample from the posterior, or obtain some
+   approximation of it
+1. At least one optimizer to find the mode of the model density
+1. An autodifferentiation library to compute gradients required by the inference
+   algorithm and optimizer
+1. A suite of diagnostics to monitor and analyze the quality of inference
+
+All those pieces come together like so:
 
 INSERT DIAGRAM HERE
 
-### Language/API
+Let's break them down one at a time.
+
+### Specifying the model: language/API
 
 How will users specify their model?
 
@@ -35,7 +54,7 @@ Do you believe that Python is the best language to specify models?
 Python is more hackable and you don't need to learn a new language. On the other
 hand, Python forces some deep-seated abstractions onto users.
 
-### Distributions and transformations
+### Building the model density: distributions and transformations
 
 Tensorflow Probability: "distributions vs bijectors"
 
@@ -58,7 +77,7 @@ variables (a.k.a. bijectors).
    https://ericmjl.github.io/blog/2019/5/29/reasoning-about-shapes-and-probability-distributions/
    and TFD paper (section on shape semantics)
 
-### Inference engine
+### Computing the posterior: inference algorithm
 
 This is the part that actually implements inference: given a model and some
 data, compute the posterior (either by sampling from it, in the case of MCMC, or
@@ -67,7 +86,7 @@ by approximating it, in the case of VI).
 Most probabilistic programming frameworks out there either implement HMC (or
 NUTS, or some variant thereof) or VI.
 
-### Optimizer
+### Computing the mode: optimizer
 
 Sometimes, instead of performing full-blown inference, it is useful to find
 modes of the density specified by the model. These modes can be used as point
@@ -79,9 +98,9 @@ algorithm](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfa
 (e.g. some quasi-Newton method like
 [L-BFGS](https://en.wikipedia.org/wiki/Limited-memory_BFGS)) and call it a day.
 
-### Autodifferentiation
+### Computing the gradients: autodifferentiation library
 
-Both the inference engine and the optimizer rely on gradients (at least, if
+Both the inference algorithm and the optimizer rely on gradients (at least, if
 you're using reasonable inference algorithms and optimizers!), and so you'll
 need some way to compute these gradients.
 
@@ -91,7 +110,7 @@ like TensorFlow or PyTorch.
 Is this a good idea? Forces you into thinking of your model density as a
 graphical model.
 
-### Diagnostics
+### Monitoring inference: diagnostics
 
 E.g. R hats, n_eff, etc. Very easy.
 
@@ -125,11 +144,11 @@ on the GPU).
 
 Contrary to popular belief, Stan does not implement NUTS:
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Stan implements a dynamic Hamiltonian Monte Carlo method with multinomial sampling of dynamic length trajectories, generalized termination criterion, and improved adaptation of the Euclidean metric.</p>&mdash; Dan Simpson (@dan_p_simpson) <a href="https://twitter.com/dan_p_simpson/status/1037332473175265280?ref_src=twsrc%5Etfw">September 5, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Stan implements a dynamic Hamiltonian Monte Carlo method with multinomial sampling of dynamic length trajectories, generalized termination criterion, and improved adaptation of the Euclidean metric.</p>&mdash; Dan Simpson (<a href="https://twitter.com/dan_p_simpson">@dan_p_simpson</a>) <a href="https://twitter.com/dan_p_simpson/status/1037332473175265280">September 5, 2018</a></blockquote>
 
 And in case you're wondering what Stan _actually_ implements:
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Adaptive HMC. <a href="https://twitter.com/betanalpha?ref_src=twsrc%5Etfw">@betanalpha</a> is reluctant to give it a more specific name because, to paraphrase, that’s just marketing bullshit that leads to us celebrating tiny implementation details rather than actual meaningful contributions to comp stats. This is a wide-ranging subtweet. <a href="https://t.co/yi6lLeyZiC">https://t.co/yi6lLeyZiC</a></p>&mdash; Dan Simpson (@dan_p_simpson) <a href="https://twitter.com/dan_p_simpson/status/1034098649406554113?ref_src=twsrc%5Etfw">August 27, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Adaptive HMC. <a href="https://twitter.com/betanalpha">@betanalpha</a> is reluctant to give it a more specific name because, to paraphrase, that’s just marketing bullshit that leads to us celebrating tiny implementation details rather than actual meaningful contributions to comp stats. This is a wide-ranging subtweet.</p>&mdash; Dan Simpson (<a href="https://twitter.com/dan_p_simpson">@dan_p_simpson</a>) <a href="https://twitter.com/dan_p_simpson/status/1034098649406554113">August 27, 2018</a></blockquote>
 
 ### TensorFlow Probability
 
