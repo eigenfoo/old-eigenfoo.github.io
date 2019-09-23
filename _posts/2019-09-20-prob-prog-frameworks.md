@@ -1,5 +1,5 @@
 ---
-title: Anatomy of a Probabilistic Programming Framework
+title: How Does a Probabilistic Programming Framework Work?
 excerpt:
 tags:
   - probabilistic programming
@@ -41,7 +41,8 @@ A probabilistic programming framework needs six things:
 
 All those pieces come together like so:
 
-INSERT DIAGRAM HERE
+![Flowchart illustrating how probabilistic programming
+frameworks](/assets/images/prob-prog-framework-flowchart.png)
 
 Let's break them down one at a time.
 
@@ -61,6 +62,8 @@ Tensorflow Probability: "distributions vs bijectors"
 (There are some rumblings on [normalizing
 flows](https://arxiv.org/abs/1505.05770) that I am confident I do not
 understand).
+
+Computing the model density (a.k.a. the model logp)
 
 This is by far the hardest thing:
 
@@ -88,10 +91,10 @@ NUTS, or some variant thereof) or VI.
 
 ### Computing the mode: optimizer
 
-Sometimes, instead of performing full-blown inference, it is useful to find
-modes of the density specified by the model. These modes can be used as point
-estimates of parameters, or as the basis of approximations to a Bayesian
-posterior. Thus, this calls for an optimizer.
+Sometimes, instead of performing full-blown inference, it's useful to find the
+mode of the model density. These modes can be used as point estimates of
+parameters, or as the basis of approximations to a Bayesian posterior. Thus,
+this calls for an optimizer.
 
 A simple and sensible thing to do is to use some [BFGS-based optimization
 algorithm](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm)
@@ -146,7 +149,7 @@ Contrary to popular belief, Stan does not implement NUTS:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Stan implements a dynamic Hamiltonian Monte Carlo method with multinomial sampling of dynamic length trajectories, generalized termination criterion, and improved adaptation of the Euclidean metric.</p>&mdash; Dan Simpson (<a href="https://twitter.com/dan_p_simpson">@dan_p_simpson</a>) <a href="https://twitter.com/dan_p_simpson/status/1037332473175265280">September 5, 2018</a></blockquote>
 
-And in case you're wondering what Stan _actually_ implements:
+And in case you're wondering what that's called:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Adaptive HMC. <a href="https://twitter.com/betanalpha">@betanalpha</a> is reluctant to give it a more specific name because, to paraphrase, that’s just marketing bullshit that leads to us celebrating tiny implementation details rather than actual meaningful contributions to comp stats. This is a wide-ranging subtweet.</p>&mdash; Dan Simpson (<a href="https://twitter.com/dan_p_simpson">@dan_p_simpson</a>) <a href="https://twitter.com/dan_p_simpson/status/1034098649406554113">August 27, 2018</a></blockquote>
 
