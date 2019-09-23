@@ -1,5 +1,5 @@
 ---
-title: How Does a Probabilistic Programming Framework Work?
+title: How Does a Probabilistic Programming Libraries Work?
 excerpt:
 tags:
   - probabilistic programming
@@ -25,9 +25,9 @@ I assume you know a bit about probabilistic programming and Bayesian modelling.
 
 https://eigenfoo.xyz/bayesian-inference-reading/
 
-## The Anatomy of a Probabilistic Programming Framework
+## The Anatomy of a Probabilistic Programming Library
 
-A probabilistic programming framework needs six things:
+A probabilistic programming library needs to provide six things:
 
 1. A language or API for users to specify a model
 1. A library of probability distributions and transformations to build the model
@@ -42,7 +42,7 @@ A probabilistic programming framework needs six things:
 All those pieces come together like so:
 
 ![Flowchart illustrating how probabilistic programming
-frameworks](/assets/images/prob-prog-framework-flowchart.png)
+libraries](/assets/images/prob-prog-framework-flowchart.png)
 
 Let's break them down one at a time.
 
@@ -86,7 +86,7 @@ This is the part that actually implements inference: given a model and some
 data, compute the posterior (either by sampling from it, in the case of MCMC, or
 by approximating it, in the case of VI).
 
-Most probabilistic programming frameworks out there either implement HMC (or
+Most probabilistic programming libraries out there either implement HMC (or
 NUTS, or some variant thereof) or VI.
 
 ### Computing the mode: optimizer
@@ -117,28 +117,27 @@ graphical model.
 
 E.g. R hats, n_eff, etc. Very easy.
 
-## A Zoo of Probabilistic Programming Frameworks
+## A Zoo of Probabilistic Programming Libraries
 
 ### Stan
 
 Very easy answers to all of these questions: literally everything is implemented
 from scratch in C++.
 
-There is a compiler for [a small domain-specific language for specifying
-Bayesian models](https://github.com/stan-dev/stan/tree/develop/src/stan/lang),
-libraries of [probability
-distributions](https://github.com/stan-dev/math/tree/develop/stan/math/prim) and
-[transforms](https://github.com/stan-dev/math/tree/develop/stan/math/prim/scal/fun),
-implementations of [dynamic
-HMC](https://github.com/stan-dev/stan/tree/develop/src/stan/mcmc/hmc) and
-[variational
-inference](https://github.com/stan-dev/stan/tree/develop/src/stan/variational),
-[a separate autodifferentiation
-library](https://github.com/stan-dev/math/tree/develop/stan/math), an [L-BFGS
-based
-optimizer](https://github.com/stan-dev/stan/tree/develop/src/stan/optimization)
-and a [suite of
-diagnostics](https://github.com/stan-dev/stan/tree/develop/src/stan/analyze/mcmc).
+1. Stan has a compiler for [a small domain-specific language for specifying
+   Bayesian models](https://github.com/stan-dev/stan/tree/develop/src/stan/lang)
+1. Stan has libraries of [probability
+   distributions](https://github.com/stan-dev/math/tree/develop/stan/math/prim)
+   and
+   [transforms](https://github.com/stan-dev/math/tree/develop/stan/math/prim/scal/fun)
+1. Stan implements [dynamic
+   HMC](https://github.com/stan-dev/stan/tree/develop/src/stan/mcmc/hmc) and
+   [variational
+   inference](https://github.com/stan-dev/stan/tree/develop/src/stan/variational)
+1. Stan also rolls their own [autodifferentiation library](https://github.com/stan-dev/math/tree/develop/stan/math)
+1. Stan has an [L-BFGS based optimizer](https://github.com/stan-dev/stan/tree/develop/src/stan/optimization)
+1. Finally, Stan has a [suite of
+   diagnostics](https://github.com/stan-dev/stan/tree/develop/src/stan/analyze/mcmc).
 
 > Rolling your own autodifferentiation library is the path of a crazy person.
 
@@ -155,11 +154,51 @@ And in case you're wondering what that's called:
 
 ### TensorFlow Probability
 
+1. TFP users write Python.
+1. TFP [implements their own distributions](https://arxiv.org/abs/1711.10604).
+1. TFP
+1. TFP
+1. TFP relies on TensorFlow to compute gradients (um, duh).
+1. TFP
+
 ### PyMC3
+
+1. PyMC3 users write Python code, using a particular context manager pattern
+   (i.e. `with pm.Model as model`)
+1. PyMC3 implements its own
+   [distributions](https://github.com/pymc-devs/pymc3/tree/master/pymc3/distributions)
+   and
+   [transforms](https://github.com/pymc-devs/pymc3/blob/master/pymc3/distributions/transforms.py).
+1. PyMC3 implements
+   [NUTS](https://github.com/pymc-devs/pymc3/blob/master/pymc3/step_methods/hmc/nuts.py),
+   (as well as [a range of other MCMC step
+   methods](https://github.com/pymc-devs/pymc3/tree/master/pymc3/step_methods))
+   and [several variational inference
+   algorithms](https://github.com/pymc-devs/pymc3/tree/master/pymc3/variational),
+   although NUTS is the default and recommended inference algorithm.
+1. PyMC3 (specifically, PyMC3's `find_MAP` function) [relies on
+   `scipy.optimize`](https://github.com/pymc-devs/pymc3/blob/master/pymc3/tuning/starting.py),
+   which in turn implements a BFGS-based optimizer.
+1. PyMC3 [relies on
+   Theano](https://github.com/pymc-devs/pymc3/blob/master/pymc3/theanof.py) to
+   compute gradients.
+1. PyMC3 [delegates posterior visualization and diagnostics to
+   ArviZ](https://github.com/pymc-devs/pymc3/blob/master/pymc3/plots/__init__.py).
+
+- PyMC3's context manager pattern is an interceptor for sampling statements:
+  essentially an accidental implementation of effect handlers.
+- PyMC3 distributions must simply have a `random` and a `logp` method, in
+  contrast to TFP and PyTorch distributions, which implement a whole bunch of
+  other things like shape handling, names, parameterizations, etc.
 
 ### Pyro
 
-### Edward and Edward2
+1. Pyro users write Python.
+1. Pyro relies on PyTorch distributions.
+1. Pyro
+1. Pyro
+1. Pyro relies on PyTorch to compute gradients.
+1. Pyro
 
 ### PyMC4
 
