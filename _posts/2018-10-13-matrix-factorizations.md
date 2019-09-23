@@ -22,8 +22,8 @@ is](https://clarifai.com/models/)). For example, [Sebastian
 Ruder](https://ruder.io) predicted that the field is [close to a watershed
 moment](https://thegradient.pub/nlp-imagenet/), and that soon we'll have
 downloadable language models. However, [Ana
-Marasović](https://amarasovic.github.io/) points out that there is [a tremendous
-amount of work demonstrating
+Marasović](https://thegradient.pub/author/ana/) points out that there is [a
+tremendous amount of work demonstrating
 that](https://thegradient.pub/frontiers-of-generalization-in-natural-language-processing/):
 
 > “despite good performance on benchmark datasets, modern NLP techniques are
