@@ -1,14 +1,13 @@
 ---
-title: How Does a Probabilistic Programming Libraries Work?
+title: How Does a Probabilistic Programming Library Work?
 excerpt:
 tags:
   - probabilistic programming
-  - pymc3
-  - pymc4
   - stan
+  - pymc3
   - tensorflow probability
   - pyro
-  - edward
+  - pymc4
 header:
   overlay_filter: 0.3
   overlay_image: /assets/images/cool-backgrounds/cool-background2.png
