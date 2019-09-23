@@ -43,7 +43,7 @@ lint:  # Lint Markdown files.
 test:  # Test generated HTML files.
 	# Ignore /r/TheRedPill error
 	bundle exec jekyll build --future
-	bundle exec htmlproofer ./_site --only-4xx --check-html --url-ignore=https://www.reddit.com/r/TheRedPill/comments/22qnmk/newbies_read_this_the_definitive_guide_to_shit/
+	bundle exec htmlproofer ./_site/_posts/ --only-4xx --check-html --url-ignore=https://www.reddit.com/r/TheRedPill/comments/22qnmk/newbies_read_this_the_definitive_guide_to_shit/
 
 check: clean lint test  # Alias for `make clean lint test`
 
