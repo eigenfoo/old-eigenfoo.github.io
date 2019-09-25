@@ -31,9 +31,9 @@ A probabilistic programming library needs to provide six things:
 1. A language or API for users to specify a model
 1. A library of probability distributions and transformations to build the model
    density
-1. At least one inference algorithm to sample from the posterior, or obtain some
-   approximation of it
-1. At least one optimizer to find the mode of the model density
+1. At least one inference algorithm, which samples from the posterior or
+   computes some approximation of it
+1. At least one optimizer, which can compute the mode of the posterior density
 1. An autodifferentiation library to compute gradients required by the inference
    algorithm and optimizer
 1. A suite of diagnostics to monitor and analyze the quality of inference
@@ -118,6 +118,8 @@ E.g. R hats, n_eff, etc. Very easy.
 
 ## A Zoo of Probabilistic Programming Libraries
 
+Links to the relevant source code where appropriate.
+
 ### Stan
 
 Very easy answers to all of these questions: literally everything is implemented
@@ -143,7 +145,7 @@ from scratch in C++.
 Stan's autodiff is optimized for statistical modelling though (it doesn't rely
 on the GPU).
 
-Contrary to popular belief, Stan does not implement NUTS:
+Note that contrary to popular belief, Stan _does not_ implement NUTS:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Stan implements a dynamic Hamiltonian Monte Carlo method with multinomial sampling of dynamic length trajectories, generalized termination criterion, and improved adaptation of the Euclidean metric.</p>&mdash; Dan Simpson (<a href="https://twitter.com/dan_p_simpson">@dan_p_simpson</a>) <a href="https://twitter.com/dan_p_simpson/status/1037332473175265280">September 5, 2018</a></blockquote>
 
@@ -154,16 +156,28 @@ And in case you're wondering what that's called:
 ### TensorFlow Probability
 
 1. TFP users write Python.
-1. TFP [implements their own distributions](https://arxiv.org/abs/1711.10604).
-1. TFP
-1. TFP
+1. TFP implements their own
+   [distributions](https://github.com/tensorflow/probability/tree/master/tensorflow_probability/python/distributions)
+   and
+   [transforms](https://github.com/tensorflow/probability/tree/master/tensorflow_probability/python/bijectors)
+   (which TensorFlow calls "bijectors"). You can read more about TensorFlow's
+   distributions and bijectors in [their arXiv
+   paper](https://arxiv.org/abs/1711.10604).
+1. TFP implements [a ton of
+   MCMC](https://github.com/tensorflow/probability/tree/master/tensorflow_probability/python/mcmc)
+   algorithms, and a handful of [VI
+   algorithms](https://github.com/tensorflow/probability/tree/master/tensorflow_probability/python/vi)
+   as well.
+1. TFP implements [several
+   optimizers](https://github.com/tensorflow/probability/tree/master/tensorflow_probability/python/optimizer),
+   including Nelder-Mead, BFGS and L-BFGS.
 1. TFP relies on TensorFlow to compute gradients (um, duh).
-1. TFP
+1. TFP uses Edward2 for diagnostics and visualization (a.k.a. model criticism)??
 
 ### PyMC3
 
-1. PyMC3 users write Python code, using a particular context manager pattern
-   (i.e. `with pm.Model as model`)
+1. PyMC3 users write Python code, using a context manager pattern (i.e. `with
+   pm.Model as model`)
 1. PyMC3 implements its own
    [distributions](https://github.com/pymc-devs/pymc3/tree/master/pymc3/distributions)
    and
@@ -181,8 +195,9 @@ And in case you're wondering what that's called:
 1. PyMC3 [relies on
    Theano](https://github.com/pymc-devs/pymc3/blob/master/pymc3/theanof.py) to
    compute gradients.
-1. PyMC3 [delegates posterior visualization and diagnostics to
-   ArviZ](https://github.com/pymc-devs/pymc3/blob/master/pymc3/plots/__init__.py).
+1. PyMC3 [delegates posterior visualization and
+   diagnostics](https://github.com/pymc-devs/pymc3/blob/master/pymc3/plots/__init__.py).
+   to [ArviZ](https://arviz-devs.github.io/arviz/).
 
 - PyMC3's context manager pattern is an interceptor for sampling statements:
   essentially an accidental implementation of effect handlers.
@@ -190,17 +205,47 @@ And in case you're wondering what that's called:
   contrast to TFP and PyTorch distributions, which implement a whole bunch of
   other things like shape handling, names, parameterizations, etc.
 
-### Pyro
-
-1. Pyro users write Python.
-1. Pyro relies on PyTorch distributions.
-1. Pyro
-1. Pyro
-1. Pyro relies on PyTorch to compute gradients.
-1. Pyro
-
 ### PyMC4
 
----
+PyMC4 is still under active development (at least, at the time of writing), but
+it's safe to call out the overall architecture.
 
-FOOTNOTES AND REFERENCES HERE
+1. PyMC4 users will write Python, although now with a generator pattern (e.g. `x
+   = yield Normal(0, 1, "x")`), instead of the previous context manager.
+1. PyMC4 will [rely on TensorFlow distributions (a.k.a.
+   `tfd`)](https://github.com/pymc-devs/pymc4/tree/master/pymc4/distributions/tensorflow)
+   for both distributions and transforms.
+1. PyMC4 will also [rely on TensorFlow for
+   MCMC](https://github.com/pymc-devs/pymc4/tree/master/pymc4/inference/tensorflow)
+   (although the specifics of the exact MCMC algorithm are still fairly fluid at
+   the time of writing).
+1. As far as I can tell, the optimizer is still TBD.
+1. Because PyMC4 relies on TensorFlow for inference, TensorFlow manages all
+   gradient computation automatically.
+1. PyMC4 will, like PyMC3, delegate all diagnostics and visualization
+   capabilities to ArviZ.
+
+### Pyro
+
+Disclaimer: Pyro focuses on variational inference and normalizing flows, which
+I'm not that familiar with. I may be completely off base here.
+
+1. Pyro users write Python.
+1. Pyro [relies on PyTorch
+   distributions](https://github.com/pyro-ppl/pyro/blob/dev/pyro/distributions/__init__.py)
+   ([implementing its own where
+   necessary](https://github.com/pyro-ppl/pyro/tree/dev/pyro/distributions)),
+   and also relies on PyTorch distributions [for its
+   transforms](https://github.com/pyro-ppl/pyro/tree/dev/pyro/distributions/transforms).
+1. Pyro implements [many inference
+   algorithms](http://docs.pyro.ai/en/stable/inference.html) (including [HMC and
+   NUTS](https://github.com/pyro-ppl/pyro/tree/dev/pyro/infer/mcmc)), but
+   support for [stochastic variational inference
+   (SVI)](https://github.com/pyro-ppl/pyro/blob/dev/pyro/infer/svi.py) is the
+   most extensive.
+1. Pyro implements [its own
+   optimizer](https://github.com/pyro-ppl/pyro/blob/master/pyro/optim/optim.py).
+1. Pyro relies on PyTorch to compute gradients (obviously).
+1. As far as I can tell, Pyro doesn't provide any diagnostic or visualization
+   functionality.
+
