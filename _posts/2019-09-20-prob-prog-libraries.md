@@ -1,5 +1,5 @@
 ---
-title: How Does a Probabilistic Programming Library Work?
+title: Anatomy of a Probabilistic Programming Library — How Do They Work?
 excerpt:
 tags:
   - probabilistic programming
@@ -12,19 +12,28 @@ header:
   overlay_filter: 0.3
   overlay_image: /assets/images/cool-backgrounds/cool-background2.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
+mathjax: true
 toc: true
 toc_sticky: true
 toc_icon: "kiwi-bird"
 last_modified_at: 2019-09-20
 ---
 
-Probabilistic programming languages (PPLs)
+Recently, the PyMC4 development team [submitted an
+abstract](https://openreview.net/forum?id=rkgzj5Za8H) to the [_Programs
+Transformations for Machine Learning_ NeurIPS
+workshop](https://program-transformations.github.io/). However, I realized that
+despite knowing a bit about Bayesian modelling, I don't understand how
+probabilistic programming library are structured or how they even work, and
+therefore couldn't appreciate the design work going into PyMC4. So I dove
+straight down the rabbit hole, and here's what I've got!
 
-I assume you know a bit about probabilistic programming and Bayesian modelling. 
+I assume you know a fair bit about probabilistic programming and Bayesian
+modelling, and are familiar with the big players in probabilistic programming
+world. If you're unsure, you can [read up
+here](https://eigenfoo.xyz/bayesian-inference-reading/).
 
-https://eigenfoo.xyz/bayesian-inference-reading/
-
-## The Anatomy of a Probabilistic Programming Library
+## Dissecting Probabilistic Programming Libraries
 
 A probabilistic programming library needs to provide six things:
 
@@ -38,38 +47,56 @@ A probabilistic programming library needs to provide six things:
    algorithm and optimizer
 1. A suite of diagnostics to monitor and analyze the quality of inference
 
-All those pieces come together like so:
+These six pieces come together like so:
 
 ![Flowchart illustrating how probabilistic programming
 libraries](/assets/images/prob-prog-framework-flowchart.png)
 
-Let's break them down one at a time.
+Let's break this down one by one.
 
 ### Specifying the model: language/API
 
-How will users specify their model?
+This is the part that users will use to specify their model. Most libraries just
+let you write in some programming language (calling functions and classes in the
+library, of course), but others roll their own domain-specific language.
 
-Do you believe that Python is the best language to specify models?
+At this point I should point out the Python bias in this post: there are plenty
+of interesting and important non-Python probabilistic programming libraries out
+there (e.g.  [Greta](https://greta-stats.org/) in R,
+[Turing](https://turing.ml/dev/) and [Gen](https://probcomp.github.io/Gen/) in
+Julia, [Figaro](https://github.com/p2t2/figaro) and
+[Ranier](https://github.com/stripe/rainier) in Scala). I just don't know
+anything about any of them.
+
+At any rate, the main question here is whether or not you think
+Python/R/Julia/Scala is the appropriate language.
 
 Python is more hackable and you don't need to learn a new language. On the other
 hand, Python forces some deep-seated abstractions onto users.
 
 ### Building the model density: distributions and transformations
 
-Tensorflow Probability: "distributions vs bijectors"
+These are the parts that your user's model calls, in order to compile/build the
+model itself (whether that means a model log probability, or some loss function
+to minimize depends on the particular inference algorithm you're using). By
+_distributions_, I mean the probability distributions that the random variables
+in your model can assume (e.g. Normal or Poisson), and by _transformations_ I
+mean deterministic mathematical operations you can perform on these random
+variables, while still keeping track of the derivative of these transformations
+(e.g.  taking exponentials, logarithms, sines or cosines).
 
-(There are some rumblings on [normalizing
-flows](https://arxiv.org/abs/1505.05770) that I am confident I do not
-understand).
+This is a good time to point out that the interplay between the language/API and
+the distributions and transformations is (at least in my opinion) one of the
+hardest problems. Here is a short list of the problems
 
-Computing the model density (a.k.a. the model logp)
+It turns out that such transformations must be [local
+diffeomorphisms](https://en.wikipedia.org/wiki/Local_diffeomorphism), and the
+derivative information requires computing the log determinant of the Jacobian of
+the transformation, commonly abbreviated to `log_det_jac` or something similar.
 
-This is by far the hardest thing:
+1. The library needs to keep track of every distribution and transformation that
+   the model specifies, while also 
 
-There is the idea of splitting up distributions and transformations of random
-variables (a.k.a. bijectors).
-
-1. Must build the model log likelihood in some way
 1. Be careful not to get bitten: theoretically, the model can be the same for
    sampling, inference and debugging, but in practice, the implementation needs
    to change. E.g. Stan must be rewritten if you have missing data (cite Gelman
@@ -85,20 +112,29 @@ This is the part that actually implements inference: given a model and some
 data, compute the posterior (either by sampling from it, in the case of MCMC, or
 by approximating it, in the case of VI).
 
-Most probabilistic programming libraries out there either implement HMC (or
-NUTS, or some variant thereof) or VI.
+Most probabilistic programming libraries out there implement both MCMC
+algorithms and VI algorithms, although strength of support and quality of
+documentation can lean heavily one way or another. For example, Stan invests
+heavily into its MCMC, whereas Pyro has the most extensive support for its SVI
+algorithms.
 
 ### Computing the mode: optimizer
 
 Sometimes, instead of performing full-blown inference, it's useful to find the
 mode of the model density. These modes can be used as point estimates of
-parameters, or as the basis of approximations to a Bayesian posterior. Thus,
-this calls for an optimizer.
+parameters, or as the basis of approximations to a Bayesian posterior. Or
+perhaps you're performing VI, and you need some way to perform SGD on a loss
+function. In either case, a probabilistic programming library calls for an
+optimizer.
 
-A simple and sensible thing to do is to use some [BFGS-based optimization
+If you don't need to do VI, then a simple and sensible thing to do is to use
+some [BFGS-based optimization
 algorithm](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm)
 (e.g. some quasi-Newton method like
 [L-BFGS](https://en.wikipedia.org/wiki/Limited-memory_BFGS)) and call it a day.
+However, libraries that focus on VI need to implement an optimizer commonly seen
+in deep learning, such as [Adam or
+RMSProp](http://docs.pyro.ai/en/stable/optimization.html#module-pyro.optim.optim).
 
 ### Computing the gradients: autodifferentiation library
 
@@ -114,11 +150,14 @@ graphical model.
 
 ### Monitoring inference: diagnostics
 
-E.g. R hats, n_eff, etc. Very easy.
+E.g. $$\hat{R}$$s, number of effective samples, etc. Very easy.
 
 ## A Zoo of Probabilistic Programming Libraries
 
-Links to the relevant source code where appropriate.
+Having briefly outlined the deep (dark) underbelly of most probabilistic
+programming libraries, it's helpful to go through several of the more popular
+Python libraries as examples. I've also tried to links to the relevant source
+code in the library where possible.
 
 ### Stan
 
