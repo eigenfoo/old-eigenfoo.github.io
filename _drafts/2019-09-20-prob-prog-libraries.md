@@ -19,6 +19,10 @@ toc_icon: "kiwi-bird"
 last_modified_at: 2019-09-20
 ---
 
+{% if page.noindex == true %}
+  <meta name="robots" content="noindex">
+{% endif %}
+
 Recently, the PyMC4 development team [submitted an
 abstract](https://openreview.net/forum?id=rkgzj5Za8H) to the [_Programs
 Transformations for Machine Learning_ NeurIPS
