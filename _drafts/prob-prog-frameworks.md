@@ -60,7 +60,7 @@ things:
 These six pieces come together like so:
 
 ![Flowchart illustrating the structure of a probabilistic programming
-frameworks](/assets/images/prob-prog-framework-flowchart.png)
+frameworks](/assets/images/prob-prog-flowchart.png)
 
 Let's break this down one by one.
 
