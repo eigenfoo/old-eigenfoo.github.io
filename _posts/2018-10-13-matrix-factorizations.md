@@ -190,4 +190,6 @@ machine learning. Don't forget to take a look at the speaker notes too!
 
 ---
 
-[^1]: which is, by the way, a [severely underappreciated technique in machine learning](http://scikit-learn.org/stable/modules/decomposition.html)
+[^1]: which is, by the way, a [severely underappreciated technique in machine
+      learning](http://scikit-learn.org/stable/modules/decomposition.html)
+
