@@ -17,6 +17,7 @@ toc: true
 toc_sticky: true
 toc_icon: "kiwi-bird"
 last_modified_at: 2019-09-20
+search: false
 ---
 
 {% if page.noindex == true %}

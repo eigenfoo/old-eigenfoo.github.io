@@ -266,6 +266,11 @@ compress_html:
   ignore:
     envs: development
 
+# Collections
+collections:
+  drafts:
+    output: true  # Override Jekyll default: force publication of drafts.
+    permalink: /:categories/:title/
 
 # Defaults
 defaults:
@@ -281,6 +286,7 @@ defaults:
       subscribe: true
       comments: false
       related: false
+      sitemap: true
 
   # _pages
   - scope:
@@ -294,3 +300,18 @@ defaults:
       subscribe: false
       comments: false
       related: false
+      sitemap: true
+
+  # _drafts
+  - scope:
+      path: ""
+      type: drafts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      share: false
+      comments: false
+      related: false
+      sitemap: false
+      noindex: true   # To hide from robots and crawlers
