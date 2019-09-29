@@ -1,7 +1,8 @@
 ---
 title: The Anatomy of a Probabilistic Programming Framework
-excerpt: "In this blog post, we'll take a look at how some of the popular
-probabilistic programming frameworks are structured and how they work."
+excerpt: "In this blog post, we'll break down what probabilistic programming
+frameworks are made up of, and how the various pieces are organized and
+structured. We'll take a look at some open source frameworks as examples."
 tags:
   - probabilistic programming
   - stan
@@ -10,7 +11,7 @@ tags:
   - pymc4
   - pyro
 header:
-  overlay_filter: 0.3
+  overlay_filter: 0.4
   overlay_image: /assets/images/cool-backgrounds/cool-background2.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
 mathjax: true
