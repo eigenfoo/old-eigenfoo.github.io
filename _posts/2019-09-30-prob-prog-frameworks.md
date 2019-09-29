@@ -19,7 +19,7 @@ toc: true
 toc_sticky: true
 toc_label: "Do not feed the animals"
 toc_icon: "kiwi-bird"
-last_modified_at: 2019-09-28
+last_modified_at: 2019-09-30
 ---
 
 Recently, the PyMC4 developers [submitted an
