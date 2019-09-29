@@ -186,8 +186,14 @@ ground.
 
 ---
 
-[^1]: Did you know you can make [colored equations with MathJax](http://adereth.github.io/blog/2013/11/29/colorful-equations/)? Technology frightens me sometimes.
+[^1]: Did you know you can make [colored equations with
+      MathJax](http://adereth.github.io/blog/2013/11/29/colorful-equations/)?
+      Technology frightens me sometimes.
 
-[^2]: This explanation is largely drawn from [from John Langford's `hunch.net`](http://hunch.net/?p=298).
+[^2]: This explanation is largely drawn from [from John Langford's
+      `hunch.net`](http://hunch.net/?p=298).
 
-[^3]: If you don't want to do Bishop's exercises, there's a partially complete solutions manual [on GitHub](https://github.com/GoldenCheese/PRML-Solution-Manual/) :wink:
+[^3]: If you don't want to do Bishop's exercises, there's a partially complete
+      solutions manual [on
+      GitHub](https://github.com/GoldenCheese/PRML-Solution-Manual/) :wink:
+

@@ -17,21 +17,26 @@ draft:  # Start a draft blog post.
 	echo "excerpt:" >> $$DATE-draft.md; \
 	echo "tags:" >> $$DATE-draft.md; \
 	echo "  - " >> $$DATE-draft.md; \
-	echo "  - " >> $$DATE-draft.md; \
 	echo "header:" >> $$DATE-draft.md; \
 	echo "  overlay_image: /assets/images/cool-backgrounds/cool-background1.png" >> $$DATE-draft.md; \
 	echo "  caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'" >> $$DATE-draft.md; \
 	echo "last_modified_at:" >> $$DATE-draft.md; \
+	echo "search: false" >> $$DATE-draft.md; \
 	echo "---" >> $$DATE-draft.md; \
 	echo "" >> $$DATE-draft.md; \
-	mv $$DATE-draft.md _posts/; \
+	echo "{% if page.noindex == true %}" >> $$DATE-draft.md; \
+	echo "  <meta name=\"robots\" content=\"noindex\">" >> $$DATE-draft.md; \
+	echo "{% endif %}" >> $$DATE-draft.md; \
+	echo "" >> $$DATE-draft.md; \
+	mv $$DATE-draft.md _drafts/; \
 	)
 
 serve:  # Serve site locally.
 	bundle exec jekyll serve --incremental 2>&1 >> /dev/null &
 
-stop: clean  # Stop local serving.
+stop:  # Stop local serving.
 	PID="$(shell pgrep -f jekyll)"; kill $$PID
+	make clean
 
 lint:  # Lint Markdown files.
 	# Disabled rules:

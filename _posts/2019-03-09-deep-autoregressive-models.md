@@ -239,8 +239,15 @@ Network can model video](https://arxiv.org/abs/1610.00527).[^3]
 
 ---
 
-[^1]: There's actually a lot more nuance than meets the eye in this animation, but all I'm trying to illustrate is the feed-forward nature of autoregressive models.
+[^1]: There's actually a lot more nuance than meets the eye in this animation,
+      but all I'm trying to illustrate is the feed-forward nature of autoregressive
+      models.
 
-[^2]: I personally think it's breathtakingly that machines can do this. Imagine your phone keyboard's word suggestions (those are autoregressive!) spitting out an entire novel. Or imagine weaving a sweater but you had to choose the color of every stitch, in order, in advance.
+[^2]: I personally think it's breathtakingly that machines can do this. Imagine
+      your phone keyboard's word suggestions (those are autoregressive!) spitting
+      out an entire novel. Or imagine weaving a sweater but you had to choose the
+      color of every stitch, in order, in advance.
 
-[^3]: In case you haven't noticed, Google DeepMind seemed to have had an infatuation with autoregressive models back in 2016.
+[^3]: In case you haven't noticed, Google DeepMind seemed to have had an
+      infatuation with autoregressive models back in 2016.
+
