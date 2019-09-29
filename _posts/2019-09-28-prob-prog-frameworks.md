@@ -334,8 +334,8 @@ with. I may be completely off base here.
       for this project.
 
 [^2]: Universal probabilistic programming is an interesting field of inquiry,
-      but has mainly remained in the realm of academic research. For more
-      context, check out [Tom Rainforth's PhD
+      but has mainly remained in the realm of academic research. For a (much)
+      more comprehensive treatment, check out [Tom Rainforth's PhD
       thesis](http://www.robots.ox.ac.uk/~twgr/assets/pdf/rainforth2017thesis.pdf).
 
 [^3]: It turns out that such transformations must be [local
