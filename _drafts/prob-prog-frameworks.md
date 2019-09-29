@@ -44,8 +44,7 @@ here](https://eigenfoo.xyz/bayesian-inference-reading/).
 
 ## Dissecting Probabilistic Programming Frameworks
 
-A probabilistic programming framework (from now on, PPF) needs to provide six
-things:
+A probabilistic programming framework needs to provide six things:
 
 1. A language or API for users to specify a model
 1. A library of probability distributions and transformations to build the
