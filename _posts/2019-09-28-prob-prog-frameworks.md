@@ -20,12 +20,7 @@ toc_sticky: true
 toc_label: "Do not feed the animals"
 toc_icon: "kiwi-bird"
 last_modified_at: 2019-09-28
-search: false
 ---
-
-{% if page.noindex == true %}
-  <meta name="robots" content="noindex">
-{% endif %}
 
 Recently, the PyMC4 developers [submitted an
 abstract](https://openreview.net/forum?id=rkgzj5Za8H) to the [_Program
