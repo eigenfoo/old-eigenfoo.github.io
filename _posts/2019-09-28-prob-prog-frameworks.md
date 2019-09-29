@@ -74,13 +74,16 @@ abstractions for your particular framework use case (as [Stan
 does](https://mc-stan.org/docs/2_20/reference-manual/blocks-chapter.html), for
 example).
 
-At this point I should point out the Python bias in this post: there are plenty
-of interesting non-Python probabilistic programming frameworks out there (e.g.
-[Greta](https://greta-stats.org/) in R, [Turing](https://turing.ml/dev/) and
-[Gen](https://probcomp.github.io/Gen/) in Julia,
-[Figaro](https://github.com/p2t2/figaro) and
-[Ranier](https://github.com/stripe/rainier) in Scala). I just don't know
-anything about any of them.
+At this point I should point out the non-universal, Python bias in this post:
+there are plenty of interesting non-Python probabilistic programming frameworks
+out there (e.g.  [Greta](https://greta-stats.org/) in R,
+[Turing](https://turing.ml/dev/) and [Gen](https://probcomp.github.io/Gen/) in
+Julia, [Figaro](https://github.com/p2t2/figaro) and
+[Ranier](https://github.com/stripe/rainier) in Scala), as well as universal
+probabilistic programming systems[^2] (e.g.
+[Venture](http://probcomp.csail.mit.edu/software/venture/) from MIT,
+[Angelican](https://probprog.github.io/anglican/index.html) from Oxford). I just
+don't know anything about any of them.
 
 ### Building the model density: distributions and transformations
 
@@ -90,18 +93,17 @@ some loss function to minimize, in the case of VI). By _distributions_, I mean
 the probability distributions that the random variables in your model can assume
 (e.g. Normal or Poisson), and by _transformations_ I mean deterministic
 mathematical operations you can perform on these random variables, while still
-keeping track of the derivative of these transformations[^2] (e.g. exponentials,
+keeping track of the derivative of these transformations[^3] (e.g. exponentials,
 logarithms, sines or cosines).
 
 This is a good time to point out that the interactions between the language/API
 and the distributions and transformations libraries is a major design problem.
-Here's an embarassingly short list of necessary considerations:
+Here's a (by no means exhaustive) list of necessary considerations:
 
-1. In order to build the posterior density, the framework must keep track of
-   every distribution and transformation specified by the model, while also
-   computing the derivatives of any such transformations. Should this happen
-   eagerly, or should it be deferred until the user specifies what the model
-   will be used for?
+1. In order to build the model density, the framework must keep track of every
+   distribution and transformation, while also computing the derivatives of any
+   such transformations. Should this happen eagerly, or should it be deferred
+   until the user specifies what the model will be used for?
 1. Theoretically, a model's specification should be the same whether it is to be
    used for evaluation, inference or debugging. However, in practice, the
    program execution (and computational graph) are different for these three
@@ -139,8 +141,8 @@ some [BFGS-based optimization
 algorithm](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm)
 (e.g. some quasi-Newton method like
 [L-BFGS](https://en.wikipedia.org/wiki/Limited-memory_BFGS)) and call it a day.
-However, frameworks that focus on VI need to implement [an optimizer commonly
-seen in deep
+However, frameworks that focus on VI need to implement [optimizers commonly seen
+in deep
 learning](http://docs.pyro.ai/en/stable/optimization.html#module-pyro.optim.optim),
 such as Adam or RMSProp.
 
@@ -151,7 +153,7 @@ you're not using ancient inference algorithms and optimizers!), and so you'll
 need some way to compute these gradients.
 
 The easiest thing to do would be to rely on a deep learning framework like
-TensorFlow or PyTorch. I've learnt not to get too excited about this though:
+TensorFlow or PyTorch. I've learned not to get too excited about this though:
 while deep learning frameworks' heavy optimization of parallelized routines lets
 you e.g. obtain [thousands of MCMC chains in a reasonable amount of
 time](https://colindcarroll.com/2019/08/18/very-parallel-mcmc-sampling/), it's
@@ -164,8 +166,8 @@ Finally, once the inference algorithm has worked its magic, you'll want a way to
 verify the validity and efficiency of that inference. This involves some
 [off-the-shelf statistical
 diagnostics](https://arviz-devs.github.io/arviz/api.html#stats) (e.g. BFMI,
-information criteria, number of effective samples, etc.), but mainly [lots and
-lots of visualization](https://arviz-devs.github.io/arviz/api.html#plots).
+information criteria, effective sample size, etc.), but mainly [lots and lots of
+visualization](https://arviz-devs.github.io/arviz/api.html#plots).
 
 ## A Zoo of Probabilistic Programming Frameworks
 
@@ -189,7 +191,7 @@ implemented from scratch in C++.
    [variational
    inference](https://github.com/stan-dev/stan/tree/develop/src/stan/variational)
 1. Stan also rolls their own [autodifferentiation
-   library](https://github.com/stan-dev/math/tree/develop/stan/math)[^3]
+   library](https://github.com/stan-dev/math/tree/develop/stan/math)[^4]
 1. Stan implements an [L-BFGS based
    optimizer](https://github.com/stan-dev/stan/tree/develop/src/stan/optimization)
    (but also implements [a less efficient Newton
@@ -224,8 +226,10 @@ And in case you're looking for a snazzy buzzword to drop:
    optimizers](https://github.com/tensorflow/probability/tree/master/tensorflow_probability/python/optimizer),
    including Nelder-Mead, BFGS and L-BFGS (again, in TensorFlow)
 1. TFP relies on TensorFlow to compute gradients (er, duh)
-1. As far as I can tell, TFP doesn't implement any diagnostics or visualization:
-   even
+1. TFP implements [a handful of
+   metrics](https://github.com/tensorflow/probability/blob/master/tensorflow_probability/python/mcmc/diagnostic.py)
+   (e.g. effective sample size and potential scale reduction), but seems to lack
+   a comprehensive suite of diagnostics and visualizations: even
    [Edward2](https://github.com/tensorflow/probability/tree/master/tensorflow_probability/python/experimental/edward2)
    (an experimental interface to TFP for flexible modelling, inference and
    criticism) suggests that you [build your metrics manually or use boilerplate
@@ -262,7 +266,7 @@ Some remarks:
 - PyMC3's context manager pattern is an interceptor for sampling statements:
   essentially [an accidental implementation of effect
   handlers](https://arxiv.org/abs/1811.06150).
-- PyMC3's distirbutions are simpler than those of TFP or PyTorch: they simply
+- PyMC3's distributions are simpler than those of TFP or PyTorch: they simply
   need to have a `random` and a `logp` method, whereas TFP/PyTorch implement a
   whole bunch of other methods to handle shapes, parameterizations, etc. In
   retrospect, we  realize that this is [one of PyMC3's design
@@ -285,8 +289,8 @@ it's safe to call out the overall architecture.
 1. As far as I can tell, the optimizer is still TBD
 1. Because PyMC4 relies on TFP, which relies on TensorFlow, TensorFlow manages
    all gradient computations automatically
-1. Like its predecessory, PyMC4 will delegate all diagnostics and visualization
-   capabilities to ArviZ
+1. Like its predecessor, PyMC4 will delegate diagnostics and visualization to
+   ArviZ
 
 Remarks:
 
@@ -324,19 +328,23 @@ with. I may be completely off base here.
 
 ---
 
-[^1]: In case you're testifying under oath and need a more reliable source than
+[^1]: In case you're testifying under oath and need more reliable sources than
       a blog post, I've kept a [Zotero
       collection](https://www.zotero.org/eigenfoo/items/collectionKey/AE8882GQ)
       for this project.
 
-[^2]: It turns out that such transformations must be [local
+[^2]: Universal probabilistic programming is an interesting field of inquiry,
+      but has mainly remained in the realm of academic research. For more
+      context, check out [Tom Rainforth's PhD
+      thesis](http://www.robots.ox.ac.uk/~twgr/assets/pdf/rainforth2017thesis.pdf).
+
+[^3]: It turns out that such transformations must be [local
       diffeomorphisms](https://en.wikipedia.org/wiki/Local_diffeomorphism), and
       the derivative information requires computing the log determinant of the
       Jacobian of the transformation, commonly abbreviated to `log_det_jac` or
       something similar.
 
-[^3]: As an aside, I'll say that it's mind boggling how Stan does this. To quote
+[^4]: As an aside, I'll say that it's mind boggling how Stan does this. To quote
       a PyMC developer:
       > I think that maintaining your own autodifferentiation library is the
       > path of a crazy person.
-
