@@ -102,8 +102,10 @@ Here's a (by no means exhaustive) list of necessary considerations:
 
 1. In order to build the model density, the framework must keep track of every
    distribution and transformation, while also computing the derivatives of any
-   such transformations. Should this happen eagerly, or should it be deferred
-   until the user specifies what the model will be used for?
+   such transformations. This results in a Jekyll-and-Hyde problem where every
+   transformation requires a forward and backwards definition. Should this
+   tracking happen eagerly, or should it be deferred until the user specifies
+   what the model will be used for?
 1. Theoretically, a model's specification should be the same whether it is to be
    used for evaluation, inference or debugging. However, in practice, the
    program execution (and computational graph) are different for these three
@@ -114,6 +116,13 @@ Here's a (by no means exhaustive) list of necessary considerations:
    or [the original Tensorflow Distributions
    paper](https://arxiv.org/abs/1711.10604) (specifically section 3.3 on shape
    semantics) for more details.
+
+For a more comprehensive treatment, I can't recommend [Junpeng Lao's PyData
+Córdoba 2019
+talk](https://docs.google.com/presentation/d/1xgNRJDwkWjTHOYMj5aGefwWiV8x-Tz55GfkBksZsN3g/edit?usp=sharing)
+highly enough — he explains in depth the main challenges in implementing a
+probabilistic programming API and highlights how various frameworks manage these
+difficulties.
 
 ### Computing the posterior: inference algorithm
 
@@ -292,7 +301,7 @@ it's safe to call out the overall architecture.
 1. Like its predecessor, PyMC4 will delegate diagnostics and visualization to
    ArviZ
 
-Remarks:
+Some remarks:
 
 - With the generator pattern for model specification, PyMC4 embraces the notion
   of a probabilistic program as one that defers its computation. For more color
@@ -322,6 +331,14 @@ Remarks:
 1. Pyro relies on PyTorch to compute gradients (again, duh)
 1. As far as I can tell, Pyro doesn't provide any diagnostic or visualization
    functionality
+
+Some remarks:
+
+- Pyro includes the Poutine submodule, which is a library of composable [effect
+  handlers](https://arxiv.org/abs/1811.06150). While this might sound like
+  recondite abstractions, they allow you to implement your own custom inference
+  algorithms and otherwise manipulate Pyro probabilistic programs. In fact, all
+  of Pyro's inference algorithms use these effect handlers.
 
 ---
 
