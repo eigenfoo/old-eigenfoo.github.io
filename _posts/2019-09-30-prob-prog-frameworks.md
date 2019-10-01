@@ -33,8 +33,8 @@ papers, documentation and source code[^1] of various open-source probabilistic
 programming frameworks, and this is what I've managed to take away from it.
 
 I assume you know a fair bit about probabilistic programming and Bayesian
-modelling, and are familiar with the big players in probabilistic programming
-world. If you're unsure, you can [read up
+modelling, and are familiar with the big players in the probabilistic
+programming world. If you're unsure, you can [read up
 here](https://eigenfoo.xyz/bayesian-inference-reading/).
 
 ## Dissecting Probabilistic Programming Frameworks
@@ -76,13 +76,13 @@ example).
 
 At this point I should point out the non-universal, Python bias in this post:
 there are plenty of interesting non-Python probabilistic programming frameworks
-out there (e.g.  [Greta](https://greta-stats.org/) in R,
+out there (e.g. [Greta](https://greta-stats.org/) in R,
 [Turing](https://turing.ml/dev/) and [Gen](https://probcomp.github.io/Gen/) in
 Julia, [Figaro](https://github.com/p2t2/figaro) and
 [Rainier](https://github.com/stripe/rainier) in Scala), as well as universal
 probabilistic programming systems[^2] (e.g.
 [Venture](http://probcomp.csail.mit.edu/software/venture/) from MIT,
-[Angelican](https://probprog.github.io/anglican/index.html) from Oxford). I just
+[Angelican](https://probprog.github.io/anglican/index.html) from Oxford)[^3]. I just
 don't know anything about any of them.
 
 ### Building the model density: distributions and transformations
@@ -93,7 +93,7 @@ some loss function to minimize, in the case of VI). By _distributions_, I mean
 the probability distributions that the random variables in your model can assume
 (e.g. Normal or Poisson), and by _transformations_ I mean deterministic
 mathematical operations you can perform on these random variables, while still
-keeping track of the derivative of these transformations[^3] (e.g. exponentials,
+keeping track of the derivative of these transformations[^4] (e.g. exponentials,
 logarithms, sines or cosines).
 
 This is a good time to point out that the interactions between the language/API
@@ -130,18 +130,17 @@ Having specified and built the model, the framework must now actually perform
 inference: given a model and some data, obtain the posterior (either by sampling
 from it, in the case of MCMC, or by approximating it, in the case of VI).
 
-Most probabilistic programming frameworks out there implement both MCMC
-algorithms and VI algorithms, although strength of support and quality of
-documentation can lean heavily one way or another. For example, Stan invests
-heavily into its MCMC, whereas Pyro has the most extensive support for its
-stochastic VI algorithms.
+Most probabilistic programming frameworks out there implement both MCMC and VI
+algorithms, although strength of support and quality of documentation can lean
+heavily one way or another. For example, Stan invests heavily into its MCMC,
+whereas Pyro has the most extensive support for its stochastic VI.
 
 ### Computing the mode: optimizer
 
 Sometimes, instead of performing full-blown inference, it's useful to find the
 mode of the model density. These modes can be used as point estimates of
 parameters, or as the basis of approximations to a Bayesian posterior. Or
-perhaps you're performing VI, and you need some way to perform SGD on a loss
+perhaps you're doing VI, and you need some way to perform SGD on a loss
 function. In either case, a probabilistic programming framework calls for an
 optimizer.
 
@@ -200,7 +199,7 @@ implemented from scratch in C++.
    [variational
    inference](https://github.com/stan-dev/stan/tree/develop/src/stan/variational)
 1. Stan also rolls their own [autodifferentiation
-   library](https://github.com/stan-dev/math/tree/develop/stan/math)[^4]
+   library](https://github.com/stan-dev/math/tree/develop/stan/math)[^5]
 1. Stan implements an [L-BFGS based
    optimizer](https://github.com/stan-dev/stan/tree/develop/src/stan/optimization)
    (but also implements [a less efficient Newton
@@ -352,13 +351,18 @@ Some remarks:
       more comprehensive treatment, check out [Tom Rainforth's PhD
       thesis](http://www.robots.ox.ac.uk/~twgr/assets/pdf/rainforth2017thesis.pdf).
 
-[^3]: It turns out that such transformations must be [local
+[^3]: Since publishing this blog post, I have been informed that I am more
+      ignorant than I know: I have forgotten
+      [Soss.jl](https://github.com/cscherrer/Soss.jl) in Julia and
+      [ZhuSuan](https://github.com/thu-ml/zhusuan) in Python.
+
+[^4]: It turns out that such transformations must be [local
       diffeomorphisms](https://en.wikipedia.org/wiki/Local_diffeomorphism), and
       the derivative information requires computing the log determinant of the
       Jacobian of the transformation, commonly abbreviated to `log_det_jac` or
       something similar.
 
-[^4]: As an aside, I'll say that it's mind boggling how Stan does this. To quote
+[^5]: As an aside, I'll say that it's mind boggling how Stan does this. To quote
       a (nameless) PyMC core developer:
       > I think that maintaining your own autodifferentiation library is the
       > path of a crazy person.
