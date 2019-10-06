@@ -1,6 +1,9 @@
 # [`eigenfoo.xyz`](https://eigenfoo.xyz/)
 
 [![Build Status](https://travis-ci.org/eigenfoo/eigenfoo.github.io.svg?branch=master)](https://travis-ci.org/eigenfoo/eigenfoo.github.io)
+||||||| merged common ancestors
+[![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/mmistakes/minimal-mistakes/master/LICENSE.txt)
+[![Jekyll](https://img.shields.io/badge/jekyll-%3E%3D%203.6-blue.svg)](https://jekyllrb.com/)
 
 The source of my personal website and blog.
 
