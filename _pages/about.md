@@ -10,8 +10,8 @@ subscribe: true
 > open-source software.
 
 [Click for my
-Resume](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){:
-.btn .btn--primary .btn--default}
+Résumé](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){:
+.btn .btn--info .btn--default}
 
 ![George smiling in front of a plate of sushi]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
 
