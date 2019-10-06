@@ -13,7 +13,9 @@ subscribe: true
 Résumé](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){:
 .btn .btn--info .btn--default}
 
-![George smiling in front of a plate of sushi]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.jpg){: .align-right}
+![Black-and-white photo of George smiling while sitting cross legged and
+brushing his hair]({{ site.url }}{{ site.baseurl
+}}/assets/images/portrait.jpg){: .align-center}
 
 Hello! My name is George.
 
@@ -21,7 +23,7 @@ I'm a financial data scientist and machine learning researcher, with a focus on
 Bayesian modelling and probabilistic programming. I'm based in New York and I
 work for [Point72 Asset Management](http://point72.com).
 
-In my ~copious~ free time, I contribute to and maintain [several open-source
+In my ~~copious~~ free time, I contribute to and maintain [several open-source
 libraries](https://eigenfoo.xyz/work/#software) (particularly the [PyMC
 project](https://github.com/pymc-devs)). Away from the keyboard, I spend my time
 drinking coffee, taking photos and obsessing over [mechanical
