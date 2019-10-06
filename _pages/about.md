@@ -10,7 +10,7 @@ subscribe: true
 > open-source software.
 
 [Click for my
-Résumé](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){:
+Résumé](https://github.com/eigenfoo/eigenfoo.github.io/raw/master/assets/documents/resume.pdf){:
 .btn .btn--info .btn--default}
 
 ![Black-and-white photo of George smiling while sitting cross legged and
