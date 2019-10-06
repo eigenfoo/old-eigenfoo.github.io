@@ -13,7 +13,7 @@ subscribe: true
 Résumé](https://github.com/eigenfoo/eigenfoo.xyz/raw/master/assets/documents/resume.pdf){:
 .btn .btn--info .btn--default}
 
-![George smiling in front of a plate of sushi]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.png){: .align-right}
+![George smiling in front of a plate of sushi]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.jpg){: .align-right}
 
 Hello! My name is George.
 
