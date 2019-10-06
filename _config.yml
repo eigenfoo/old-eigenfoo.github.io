@@ -141,6 +141,7 @@ footer:
       icon: "fas fa-fw fa-sitemap"
       url: "/sitemap.xml"
 
+
 # Reading Files
 include:
   - .htaccess
