@@ -9,7 +9,8 @@ subscribe: true
 > (mainly) blog about Bayesian modelling, probabilistic programming and
 > open-source software.
 
-[Click for my Résumé](https://www.dropbox.com/s/eg0o1q5ve7rlhro/resume.pdf){:
+[Click for my
+Résumé](https://ln2.sync.com/dl/37ab0c9b0/pu7bvjv3-9gv6sjie-ggmayp6u-jy8jr59r/view/doc/3232755570013){:
 .btn .btn--info .btn--default}
 
 ![Black-and-white photo of George smiling while sitting cross legged and
