@@ -6,7 +6,7 @@ subscribe: true
 ---
 
 > **tldr:** I'm a financial data scientist and machine learning researcher. I
-> mainly blog about Bayesian modelling, probabilistic programming and
+> (mainly) blog about Bayesian modelling, probabilistic programming and
 > open-source software.
 
 [Click for my
@@ -24,8 +24,10 @@ work for [Point72 Asset Management](http://point72.com).
 In my ~copious~ free time, I contribute to and maintain [several open-source
 libraries](https://eigenfoo.xyz/work/#software) (particularly the [PyMC
 project](https://github.com/pymc-devs)). Away from the keyboard, I spend my time
-drinking coffee, taking photos and obsessing over mechanical keyboards,
-headphones and fountain pens.
+drinking coffee, taking photos and obsessing over [mechanical
+keyboards](https://www.reddit.com/r/MechanicalKeyboards/),
+[headphones](https://www.reddit.com/r/headphones/) and [fountain
+pens](https://www.reddit.com/r/fountainpens/).
 
 Previously, I studied engineering at [The Cooper
 Union](http://cooper.edu/welcome) with minors in computer science and
