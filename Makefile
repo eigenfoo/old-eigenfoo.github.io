@@ -59,3 +59,4 @@ compress:  # Compress images losslessly
 
 clean:  # Remove _site/ and _posts/_site/ directories
 	rm -rf Gemfile.lock package-lock.json _site/ _posts/_site/ vendor/
+	jekyll clean
