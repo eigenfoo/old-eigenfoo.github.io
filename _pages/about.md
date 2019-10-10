@@ -9,7 +9,7 @@ subscribe: true
 > (mainly) blog about Bayesian modelling, probabilistic programming and
 > open-source software.
 
-[Click for my
+[<i class="fas fa-file-pdf"></i>
 Résumé](https://ln2.sync.com/dl/37ab0c9b0/pu7bvjv3-9gv6sjie-ggmayp6u-jy8jr59r/view/doc/3232755570013){:
 .btn .btn--info .btn--default}
 
