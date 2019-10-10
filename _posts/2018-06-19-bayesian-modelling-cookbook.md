@@ -5,7 +5,8 @@ modelling that I've collected from everywhere: papers, documentation, peppering
 my more experienced colleagues with questions."
 tags:
   - bayesianism
-  - pymc3
+  - pymc
+  - open source
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background5.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'

@@ -5,11 +5,8 @@ frameworks are made up of, and how the various pieces are organized and
 structured. We'll take a look at some open source frameworks as examples."
 tags:
   - probabilistic programming
-  - stan
-  - tensorflow probability
-  - pymc3
-  - pymc4
-  - pyro
+  - pymc
+  - open source
 header:
   overlay_filter: 0.4
   overlay_image: /assets/images/cool-backgrounds/cool-background2.png

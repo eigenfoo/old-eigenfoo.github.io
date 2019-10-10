@@ -4,7 +4,6 @@ excerpt: "A talk I gave about a recent project to model hate speech on Reddit.
 In this blog post, I describe the thought processes behind the project, and the
 stumbling blocks encountered along the way."
 tags:
-  - reddit
   - machine learning
   - natural language processing
   - talks
