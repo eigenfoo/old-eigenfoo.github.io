@@ -9,9 +9,12 @@ subscribe: true
 > (mainly) blog about Bayesian modelling, probabilistic programming and
 > open-source software.
 
-[<i class="fas fa-file-pdf"></i>
+[<i class="fas fa-file-pdf"></i> See my
 Résumé](https://ln2.sync.com/dl/37ab0c9b0/pu7bvjv3-9gv6sjie-ggmayp6u-jy8jr59r/view/doc/3232755570013){:
-.btn .btn--info .btn--default}
+.btn .btn--info .btn--large}
+[<i class="fab fa-paypal"></i> Donate via
+PayPal](https://paypal.me/eigenfoo/5){: .btn .btn--info .btn--large}
+
 
 ![Black-and-white photo of George smiling while sitting cross legged and
 brushing his hair]({{ site.url }}{{ site.baseurl
