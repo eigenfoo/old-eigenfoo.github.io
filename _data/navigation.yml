@@ -12,8 +12,8 @@ main:
 blogroll:
     - title: "Company Blogs"
       children:
-        - title: "Etsy Engineering"
-          url: https://codeascraft.com/
+        - title: "Data Origami"
+          url: https://dataorigami.net/blogs/napkin-folding
         - title: "Explosion AI"
           url: https://explosion.ai/blog/
         - title: "Facebook Research"
@@ -30,8 +30,6 @@ blogroll:
           url: https://multithreaded.stitchfix.com/blog/
     - title: "Personal Blogs"
       children:
-        - title: "Austin Rochford"
-          url: https://austinrochford.com/
         - title: "Chris Olah"
           url: http://colah.github.io/
         - title: "Colin Carroll"
@@ -45,6 +43,8 @@ blogroll:
         - title: "Sebastian Ruder"
           url: http://ruder.io/
         - title: "Thomas Wiecki"
-          url: http://twiecki.github.io/
+          url: http://twiecki.io/
+        - title: "Vincent Warmerdam"
+          url: http://koaning.io/
         - title: "Will Wolf"
           url: http://willwolf.io/
