@@ -12,6 +12,8 @@ main:
 blogroll:
     - title: "Company Blogs"
       children:
+        - title: "AYLIEN"
+          url: http://blog.aylien.com/
         - title: "Data Origami"
           url: https://dataorigami.net/blogs/napkin-folding
         - title: "Explosion AI"
