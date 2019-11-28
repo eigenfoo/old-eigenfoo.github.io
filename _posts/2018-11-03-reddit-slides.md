@@ -19,8 +19,7 @@ look at my first post, please do!
 
 I recently gave a talk on the technical, data science side of the project,
 describing not just the final result, but also the trajectory of the whole
-project: stumbling blocks, dead ends and all. Below is the slide deck, as well
-as the speaker notes. Enjoy!
+project: stumbling blocks, dead ends and all. Below is the slide deck: enjoy!
 
 ## Abstract
 
@@ -38,13 +37,5 @@ the slides have been scrubbed to be safe for work!
 
 ## Slides
 
-(Don't forget to take a look at the speaker notes!)
-
-<style>
-.responsive-wrap iframe{ max-width: 100%;}
-</style>
-<div class="responsive-wrap">
-<!-- this is the embed code provided by Google -->
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vS9wBAwScepPz3vmvyMrq-osBfIGzL7C3wArXmL3ky_A2dfaqlVSshTz2CyHuMibQBX3Ej6QCsZ0qv_/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<!-- Google embed ends -->
-</div>
+<blockquote class="embedly-card"><h4><a href="https://speakerdeck.com/_eigenfoo/modelling-hate-speech-on-reddit-a-three-act-play">Modelling Hate Speech on Reddit - A Three-Act Play</a></h4><p>Reddit is the one of the most popular discussion websites today, and is famously broad-minded in what it allows to be said on its forums: however, where there is free speech, there are invariably pockets of hate speech. In this talk, I present a recent project to model hate speech on Reddit.</p></blockquote>
+<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>

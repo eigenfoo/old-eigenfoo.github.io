@@ -177,16 +177,10 @@ I experimented with using these techniques to cluster subreddits ([sound
 familiar?](https://eigenfoo.xyz/reddit-clusters)). In a nutshell, nothing seemed
 to work out very well, and I opine on why I think that's the case in the slide
 deck below. This talk was delivered to a graduate-level course in frequentist
-machine learning. Don't forget to take a look at the speaker notes too!
+machine learning.
 
-<style>
-.responsive-wrap iframe{ max-width: 100%;}
-</style>
-<div class="responsive-wrap">
-<!-- this is the embed code provided by Google -->
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vT_yB6dMJCnnwKRtkGbdx90lhYGGH329QAGrYw8SaR2mCh0VuocMWGEVJ2XhFNp44JQtPV_vOlQkslo/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<!-- Google embed ends -->
-</div>
+<blockquote class="embedly-card"><h4><a href="https://speakerdeck.com/_eigenfoo/probabilistic-and-bayesian-matrix-factorizations-for-text-clustering">Probabilistic and Bayesian Matrix Factorizations for Text Clustering</a></h4><p> I experimented with using these techniques to cluster subreddits. In a nutshell, nothing seemed to work out very well, and I opine on why I think that’s the case in this slide deck. This talk was delivered to a graduate-level course in frequentist machine learning. </p></blockquote>
+<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
 
 ---
 
