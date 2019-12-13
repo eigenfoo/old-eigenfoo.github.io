@@ -1,7 +1,8 @@
 ---
 title: Benchmarks for Mass Matrix Adaptation
-excerpt: "During the Gradient Retreat, I benchmarked various mass matrix
-adaptation methods. It's more nuanced than I expected!"
+excerpt: "I benchmarked various mass matrix adaptation methods in PyMC3.
+Sane defaults are easy to take for granted: it's more nuanced than I initially
+expected!"
 tags:
   - open source
   - pymc
@@ -19,8 +20,8 @@ search: false
 I was lucky enough to be invited to attend the [Gradient
 Retreat](https://gradientretreat.com/) earlier this month. It was an entire week
 on a beautiful island with some amazingly intelligent Bayesians, and no demands
-on my time other than the vague goal of contributing to probabilistic
-programming in some way.
+on my time other than the self-set (and admittedly vague) goal of contributing
+to probabilistic programming in some way.
 
 I initially tried to implement mass matrix adaptation in Tensorflow Probability,
 but I quickly readjusted my goals[^1] to something more achievable: running some
@@ -160,9 +161,7 @@ for each model.
   low-rank: you can just estimate the full mass matrix!
 
 - I set `target_accept` (a.k.a. `adapt delta` to Stan users) to 0.9 to make all
-  divergences go away (I'm actually fairly concerned how `target_accept = 0.9`
-  yields some "false positive divergences" with the full mass matrix... This
-  doesn't happen in Stan! But that is a question for another time.)
+  divergences go away.
 
 - All of these numbers were collected by sampling once per model per adaptation
   method (yes only once, sorry) in PyMC3, running on my MacBook Pro.
