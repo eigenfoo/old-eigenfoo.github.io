@@ -24,7 +24,7 @@ on my time other than the self-set (and admittedly vague) goal of contributing
 to probabilistic programming in some way.
 
 I initially tried to implement mass matrix adaptation in Tensorflow Probability,
-but I quickly readjusted my goals[^1] to something more achievable: running some
+but I quickly readjusted my goals to something more achievable: running some
 benchmarks with tuning in Hamiltonian Monte Carlo (HMC).
 
 <figure class="half">
@@ -35,8 +35,8 @@ benchmarks with tuning in Hamiltonian Monte Carlo (HMC).
 
 A quick rundown for those unfamiliar: _tuning_ is what happens before sampling,
 during which the goal is not to actually draw samples, but to _prepare_ to draw
-samples[^2]. For HMC and its variants, this means estimating HMC parameters such
-as the step size, integration time and mass matrix[^3], the last of which is
+samples[^1]. For HMC and its variants, this means estimating HMC parameters such
+as the step size, integration time and mass matrix[^2], the last of which is
 basically the covariance matrix of the model parameters. Because my life is
 finite (and I assume everybody else's is too), I limited myself to mass matrix
 adaptation.
@@ -98,7 +98,7 @@ call "directions for further work").
 ### Tuning Times
 
 This tabulates the tuning time, in seconds, of each adaptation method for each
-model.
+model. Lower is better.
 
 |              |**`mvnormal`**|**`lrnormal`**|**`stoch_vol`**|**`gp`**|**`eight`**|**`baseball`**
 |:-------------|-------------:|-------------:|--------------:|-------:|----------:|------------:|
@@ -111,7 +111,7 @@ model.
 ### Effective Samples per Second
 
 This tabulates the number of effective samples drawn by each adaptation method
-for each model.
+for each model. Higher is better.
 
 |              |**`mvnormal`**|**`lrnormal`**|**`stoch_vol`**|**`gp`**|**`eight`**|**`baseball`**
 |:-------------|-------------:|-------------:|--------------:|-------:|----------:|------------:|
@@ -188,22 +188,18 @@ for each model.
   extensively on more models that people in The Real World™ use.
 - If you are interested in taking these benchmarks further (or perhaps just want
   to fact-check me on my results), the code is [sitting in this GitHub
-  repository](https://github.com/eigenfoo/mass-matrix-benchmarks)[^4].
+  repository](https://github.com/eigenfoo/mass-matrix-benchmarks)[^3].
 
 ---
 
-[^1]: To quote a (nameless) PyMC developer,
-      > Every Googler I meet is rather vocal about the dumpster fire that is
-      > TensorFlow.
-
-[^2]: It's good to point out that mass matrix adaptation is to make sampling
+[^1]: It's good to point out that mass matrix adaptation is to make sampling
       more efficient, not more valid. Theoretically, any mass matrix would work,
       but a good one (i.e. a good estimate of the covariance matrix of the model
       parameters) could sample orders of magnitudes more efficiently.
 
-[^3]: …uh, _*sweats and looks around nervously for differential geometers*_
+[^2]: …uh, _*sweats and looks around nervously for differential geometers*_
       more formally called the _metric_…
 
-[^4]: There are some violin plots lying around in the notebook, a relic from a
+[^3]: There are some violin plots lying around in the notebook, a relic from a
       time when I thought that I would have the patience to run each model and
       adaptation method multiple times.
