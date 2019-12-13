@@ -1,7 +1,7 @@
 ---
 title: Benchmarks for Mass Matrix Adaptation
-excerpt: "I ran some benchmarks for various mass matrix adaptation methods and
-investigate."
+excerpt: "During the Gradient Retreat, I benchmarked various mass matrix
+adaptation methods. It's more nuanced than I expected!"
 tags:
   - open source
   - pymc
@@ -22,20 +22,20 @@ on a beautiful island with some amazingly intelligent Bayesians, and no demands
 on my time other than the vague goal of contributing to probabilistic
 programming in some way.
 
+I initially tried to implement mass matrix adaptation in Tensorflow Probability,
+but I quickly readjusted my goals[^1] to something more achievable: running some
+benchmarks with HMC tuning.
+
 <figure class="half">
     <a href="/assets/images/galiano.jpg"><img src="/assets/images/galiano.jpg"></a>
     <a href="/assets/images/galiano2.jpg"><img src="/assets/images/galiano2.jpg"></a>
     <figcaption>Pictures from Galiano Island.</figcaption>
 </figure>
 
-I initially tried to implement mass matrix adaptation in Tensorflow Probability,
-but I quickly readjusted my goals[^1] to something more achievable: running some
-experiments with HMC tuning.
-
 A quick rundown for those unfamiliar: _tuning_ is what happens before sampling,
 during which the goal is not to actually draw samples, but to _prepare_ to draw
-samples. For HMC and its variants, this means estimating HMC parameters such as
-the step size, integration time and mass matrix[^2], the last of which is
+samples[^2]. For HMC and its variants, this means estimating HMC parameters such
+as the step size, integration time and mass matrix[^3], the last of which is
 basically the covariance matrix of the model parameters. Because my life is
 finite (and I assume everybody else's is too), I limited myself to mass matrix
 adaptation.
@@ -75,7 +75,7 @@ I benchmarked five different mass matrix adaptation methods:
   1. A full mass matrix adapted on an expanding schedule (`diag_exp`)
   1. A low-rank approximation to the mass matrix using [Adrian Seyboldt's `covadapt` library](https://github.com/aseyboldt/covadapt).
 
-I benchmarked these tuning methods against six models:
+I benchmarked these adaptation methods against six models:
 
   1. A 100-dimensional multivariate normal with a non-diagonal covariance matrix (`mvnormal`)
   1. A 100-dimensional multivariate normal with a low-rank covariance matrix (`lrnormal`)
@@ -86,13 +86,13 @@ I benchmarked these tuning methods against six models:
 
 Without further ado, the main results are shown below. Afterwards, I make some
 general observations on the benchmarks, and finally (for the readers who care or
-want to contribute) I describe my experimental setup and directions for further
-work.
+want to contribute) I describe various shortcomeings of my experimental setup
+(which, if I were more optimistic, I would call "directions for further work").
 
 ### Tuning Times
 
-This tabulates the tuning time, in seconds, of each mass matrix adaptation
-method for each model.
+This tabulates the tuning time, in seconds, of each adaptation method for each
+model.
 
 |            |**`mvnormal`**|**`lrnormal`**|**`stoch_vol`**|**`gp`**|**`eight`**|**`baseball`**
 |:-----------|-------------:|-------------:|--------------:|-------:|----------:|------------:|
@@ -104,8 +104,8 @@ method for each model.
 
 ### Effective Samples per Second
 
-This tabulates the number of effective samples drawn by each mass matrix
-adaptation method for each model.
+This tabulates the number of effective samples drawn by each adaptation method
+for each model.
 
 |            |**`mvnormal`**|**`lrnormal`**|**`stoch_vol`**|**`gp`**|**`eight`**|**`baseball`**
 |:-----------|-------------:|-------------:|--------------:|-------:|----------:|------------:|
@@ -117,8 +117,8 @@ adaptation method for each model.
 
 ## Observations
 
-> **tldr:** As is typical with these sorts of things, no one method uniformly
-> outperforms the others.
+> **tldr:** As is typical with these sorts of things, no one adapataion method
+> uniformly outperforms the others.
 
 - A full mass matrix can provide significant improvements over a diagonal mass
   matrix for both the tuning time and the number of effective samples per
@@ -164,10 +164,10 @@ adaptation method for each model.
   yields some "false positive divergences" with the full mass matrix... This
   doesn't happen in Stan! But that is a question for another time.)
 
-- All of these numbers were collected by warming up and sampling once per model
-  per adaptation method (yes, only once, sorry), running on my MacBook Pro.
+- All of these numbers were collected by sampling once per model per adaptation
+  method (yes only once, sorry) in PyMC3, running on my MacBook Pro.
 
-## Shortcomings and Directions for Further Work
+## Shortcomings
 
 - In some sense comparing tuning times is not a fair comparison: it's possible
   that some mass matrix estimates converge quicker than others, and so comparing
@@ -186,8 +186,7 @@ adaptation method for each model.
 
 - If you are interested in taking these benchmarks further (or perhaps just want
   to fact-check me on my results), the code is [sitting in this GitHub
-  repository](https://github.com/eigenfoo/mass-matrix-benchmarks). There are
-  some violin plots
+  repository](https://github.com/eigenfoo/mass-matrix-benchmarks)[^4].
 
 ## References and Further Reading
 
@@ -206,5 +205,14 @@ adaptation method for each model.
       > Every Googler I meet is rather vocal about the dumpster fire that is
       > TensorFlow.
 
-[^2]: uh, _*sweats and looks around nervously for differential geometers*_
+[^2]: It's good to point out that mass matrix adaptation is to make sampling
+      more efficient, not more valid. Theoretically, any mass matrix would work:
+      but a good one (i.e. a good estimate of the covariance matrix of the model
+      parameters) could sample orders of magnitudes more efficiently.
+
+[^3]: uh, _*sweats and looks around nervously for differential geometers*_
       more formally called the _metric_
+
+[^4]: There are some violin plots lying around in the notebook, a relic of a
+      time when I thought that I would have the patience run each model and
+      adaptation method multiple times.
