@@ -1,6 +1,7 @@
 ---
 title: Benchmarks for Mass Matrix Adaptation
-excerpt:
+excerpt: "I ran some benchmarks for various mass matrix adaptation methods and
+investigate."
 tags:
   - open source
   - pymc
@@ -17,8 +18,15 @@ search: false
 
 I was lucky enough to be invited to attend the [Gradient
 Retreat](https://gradientretreat.com/) earlier this month. It was an entire week
-on an amazing island with no demands on my time other than the vague goal of
-contributing to probabilistic programming in some way.
+on a beautiful island with some amazingly intelligent Bayesians, and no demands
+on my time other than the vague goal of contributing to probabilistic
+programming in some way.
+
+<figure class="half">
+    <a href="/assets/images/galiano.jpg"><img src="/assets/images/galiano.jpg"></a>
+    <a href="/assets/images/galiano2.jpg"><img src="/assets/images/galiano2.jpg"></a>
+    <figcaption>Pictures from Galiano Island.</figcaption>
+</figure>
 
 I initially tried to implement mass matrix adaptation in Tensorflow Probability,
 but I quickly readjusted my goals[^1] to something more achievable: running some
@@ -59,18 +67,29 @@ matrix adaptation. Here are the questions I was interested in answering:
    simplifying mass matrix adaptation? For example, could we approximate the
    mass matrix as low rank?
 
-I benchmarked five different mass matrix adaptation methods: a diagonal mass
-matrix, a full (a.k.a. dense) mass matrix, the same two matrices but adapted
-with an expanding schedule instead of a constant one, and finally approximating
-the mass matrix as low-rank using [Adrian Seyboldt's `covadapt`
-library](https://github.com/aseyboldt/covadapt).
+I benchmarked five different mass matrix adaptation methods:
+
+  1. A diagonal mass matrix (`diag`)
+  1. A full (a.k.a. dense) mass matrix (`full`)
+  1. A diagonal mass matrix adapted on an expanding schedule (`diag_exp`)
+  1. A full mass matrix adapted on an expanding schedule (`diag_exp`)
+  1. A low-rank approximation to the mass matrix using [Adrian Seyboldt's `covadapt` library](https://github.com/aseyboldt/covadapt).
+
+I benchmarked these tuning methods against six models:
+
+  1. A 100-dimensional multivariate normal with a non-diagonal covariance matrix (`mvnormal`)
+  1. A 100-dimensional multivariate normal with a low-rank covariance matrix (`lrnormal`)
+  1. A [stochastic volatility model](https://docs.pymc.io/notebooks/stochastic_volatility.html) (`stoch_vol`)
+  1. The [eight schools model](https://docs.pymc.io/notebooks/Diagnosing_biased_Inference_with_Divergences.html#The-Eight-Schools-Model) (`eight`)
+  1. The [baseball model](https://docs.pymc.io/notebooks/hierarchical_partial_pooling.html) (`baseball`)
+  1. A [Gaussian process](https://docs.pymc.io/notebooks/GP-SparseApprox.html#Examples) (`gp`)
 
 Without further ado, the main results are shown below. Afterwards, I make some
 general observations on the benchmarks, and finally (for the readers who care or
 want to contribute) I describe my experimental setup and directions for further
 work.
 
-## Tuning Times
+### Tuning Times
 
 This tabulates the tuning time, in seconds, of each mass matrix adaptation
 method for each model.
@@ -83,7 +102,7 @@ method for each model.
 |**full_exp**|          8.46|        142.20|         686.58|   14.87|       3.21|         6.04|
 |**covadapt**|        386.13|         89.92|         398.08|     N/A|        N/A|          N/A|
 
-## Effective Samples per Second
+### Effective Samples per Second
 
 This tabulates the number of effective samples drawn by each mass matrix
 adaptation method for each model.
@@ -96,11 +115,10 @@ adaptation method for each model.
 |**full_exp**|      1,799.11|      1,753.65|           0.16|  101.99|     618.28|       360.14|
 |**covadapt**|          0.02|        693.87|           5.71|     N/A|        N/A|          N/A|
 
-# Observations
+## Observations
 
 > **tldr:** As is typical with these sorts of things, no one method uniformly
-> outperforms the others. The most we can hope for are sensible defaults and
-> users perceptive enough to criticize defaults!
+> outperforms the others.
 
 - A full mass matrix can provide significant improvements over a diagonal mass
   matrix for both the tuning time and the number of effective samples per
@@ -126,31 +144,20 @@ adaptation method for each model.
   benchmarks I ran into an inscrutable and non-reproducible
   [`ArpackError`](https://stackoverflow.com/q/18436667) from SciPy.
 
-# Experimental Setup
-
-- I didn't run `covadapt` for models with fewer than 100 model parameters.
-  There's no reason to do that, since we would just use a full matrix.
+## Experimental Setup
 
 - All samplers were run for 2000 tuning steps and 1000 sampling steps. This is
-  unusually high, but is necessary for `covadapt` to work well.
+  unusually high, but is necessary for `covadapt` to work well, and I wanted to
+  use the same number of iterations across all the benchmarks.
 
 - My expanding schedule is as follows: the first adaptation window is 100
   iterations, and each subsequent window is 1.005 times the previous window.
   These numbers give 20 updates within 2000 iterations, while maintaining an
   exponentially increasing adaptation window size.
 
-- I benchmarked against six models:
-
-  1. A 100-dimensional multivariate normal with a non-diagonal covariance matrix (`mvnormal`)
-  1. A 100-dimensional multivariate normal with a low-rank covariance matrix (`lrnormal`)
-  1. A [stochastic volatility model](https://docs.pymc.io/notebooks/stochastic_volatility.html) (`stoch_vol`)
-  1. The [eight schools model](https://docs.pymc.io/notebooks/Diagnosing_biased_Inference_with_Divergences.html#The-Eight-Schools-Model) (`eight`)
-  1. The [baseball model](https://docs.pymc.io/notebooks/hierarchical_partial_pooling.html) (`baseball`)
-  1. A [Gaussian process](https://docs.pymc.io/notebooks/GP-SparseApprox.html#Examples) (`gp`)
-
-  I think this is a decent assortment of models: between the six of them, there
-  are some with correlated parameters (and not), large numbers of parameters,
-  hierarchical pooling...
+- I didn't run `covadapt` for models with fewer than 100 model parameters.
+  With so few parameters, there's no need to approximate a mass matrix as
+  low-rank: you can just estimate the full mass matrix!
 
 - I set `target_accept` (a.k.a. `adapt delta` to Stan users) to 0.9 to make all
   divergences go away (I'm actually fairly concerned how `target_accept = 0.9`
@@ -160,7 +167,7 @@ adaptation method for each model.
 - All of these numbers were collected by warming up and sampling once per model
   per adaptation method (yes, only once, sorry), running on my MacBook Pro.
 
-# Shortcomings and Directions for Further Work
+## Shortcomings and Directions for Further Work
 
 - In some sense comparing tuning times is not a fair comparison: it's possible
   that some mass matrix estimates converge quicker than others, and so comparing
@@ -179,9 +186,10 @@ adaptation method for each model.
 
 - If you are interested in taking these benchmarks further (or perhaps just want
   to fact-check me on my results), the code is [sitting in this GitHub
-  repository](https://github.com/eigenfoo/mass-matrix-benchmarks).
+  repository](https://github.com/eigenfoo/mass-matrix-benchmarks). There are
+  some violin plots
 
-# References and Further Reading
+## References and Further Reading
 
 - [Colin Carroll's talk on HMC
   tuning](https://colcarroll.github.io/hmc_tuning_talk/)
