@@ -93,9 +93,9 @@ I benchmarked these adaptation methods against six models:
   1. A [sparse Gaussian process approximation](https://docs.pymc.io/notebooks/GP-SparseApprox.html#Examples) (`gp`)
 
 Without further ado, the main results are shown below. Afterwards, I make some
-general observations on the benchmarks, and finally (for the readers who care or
-want to contribute) I describe various shortcomings of my experimental setup
-(which, if I were more optimistic, I would call "directions for further work").
+general observations on the benchmarks, and finally I describe various
+shortcomings of my experimental setup (which, if I were more optimistic, I would
+call "directions for further work").
 
 ### Tuning Times
 
@@ -151,6 +151,10 @@ for each model.
   more careful estimates using expanding windows can provide much better
   sampling).
 
+- I suspect the number of effective samples per second for a full mass matrix on
+  the `lrnormal` model (0.01 effective samples per second) is a mistake (or
+  some other computational fluke): it looks way too low to be reasonable.
+
 - `covadapt` seems to run into some numerical difficulties? While running these
   benchmarks I ran into an inscrutable and non-reproducible
   [`ArpackError`](https://stackoverflow.com/q/18436667) from SciPy.
@@ -170,7 +174,7 @@ for each model.
   With so few parameters, there's no need to approximate a mass matrix as
   low-rank: you can just estimate the full mass matrix!
 
-- I set `target_accept` (a.k.a. `adapt delta` to Stan users) to 0.9 to make all
+- I set `target_accept` (a.k.a. `adapt_delta` to Stan users) to 0.9 to make all
   divergences go away.
 
 - All of these numbers were collected by sampling once per model per adaptation
@@ -212,5 +216,5 @@ for each model.
       more formally called the _metric_…
 
 [^4]: There are some violin plots lying around in the notebook, a relic from a
-      time when I thought that I would have the patience run each model and
+      time when I thought that I would have the patience to run each model and
       adaptation method multiple times.
