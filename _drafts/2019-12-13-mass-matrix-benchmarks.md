@@ -9,7 +9,7 @@ tags:
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background6.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
-last_modified_at: 2019-12-12
+last_modified_at: 2019-12-13
 search: false
 ---
 
@@ -25,7 +25,7 @@ to probabilistic programming in some way.
 
 I initially tried to implement mass matrix adaptation in Tensorflow Probability,
 but I quickly readjusted my goals[^1] to something more achievable: running some
-benchmarks with HMC tuning.
+benchmarks with tuning in Hamiltonian Monte Carlo (HMC).
 
 <figure class="half">
     <a href="/assets/images/galiano.jpg"><img src="/assets/images/galiano.jpg"></a>
@@ -41,15 +41,22 @@ basically the covariance matrix of the model parameters. Because my life is
 finite (and I assume everybody else's is too), I limited myself to mass matrix
 adaptation.
 
+(If you're still uncertain about the details of tuning or mass matrix
+adaptation, check out [Colin Carroll's essay on HMC
+tuning](https://colcarroll.github.io/hmc_tuning_talk/) or the [Stan reference
+manual on HMC
+parameters](https://mc-stan.org/docs/2_20/reference-manual/hmc-algorithm-parameters.html):
+I don't explain many more concepts in the rest of this post.)
+
 The interesting thing about tuning is that there are no rules: there are no
-asymptotic guarantees we can rely on and no mathematical results we can turn to
-for enlightened inspiration. The only thing we care about is obtaining a decent
-estimate of the mass matrix, and preferably quickly.
+asymptotic guarantees we can rely on and no mathematical results to which we can
+turn for enlightened inspiration. The only thing we care about is obtaining a
+decent estimate of the mass matrix, and preferably quickly.
 
 Accompanying this lack of understanding of mass matrix adaptation is an
 commensurate lack of (apparent) scientific inquiry — there is scant literature
-to look to, and for open source developers, there is precious little prior art
-to draw from when writing new implementations of HMC!
+to look to, and for open source developers, there is little prior art to draw
+from when writing new implementations of HMC!
 
 So I decided to do some empirical legwork and benchmark various methods of mass
 matrix adaptation. Here are the questions I was interested in answering:
@@ -82,12 +89,12 @@ I benchmarked these adaptation methods against six models:
   1. A 100-dimensional multivariate normal with a low-rank covariance matrix (`lrnormal`)
   1. A [stochastic volatility model](https://docs.pymc.io/notebooks/stochastic_volatility.html) (`stoch_vol`)
   1. The [eight schools model](https://docs.pymc.io/notebooks/Diagnosing_biased_Inference_with_Divergences.html#The-Eight-Schools-Model) (`eight`)
-  1. The [baseball model](https://docs.pymc.io/notebooks/hierarchical_partial_pooling.html) (`baseball`)
-  1. A [Gaussian process](https://docs.pymc.io/notebooks/GP-SparseApprox.html#Examples) (`gp`)
+  1. The [PyMC3 baseball model](https://docs.pymc.io/notebooks/hierarchical_partial_pooling.html) (`baseball`)
+  1. A [sparse Gaussian process approximation](https://docs.pymc.io/notebooks/GP-SparseApprox.html#Examples) (`gp`)
 
 Without further ado, the main results are shown below. Afterwards, I make some
 general observations on the benchmarks, and finally (for the readers who care or
-want to contribute) I describe various shortcomeings of my experimental setup
+want to contribute) I describe various shortcomings of my experimental setup
 (which, if I were more optimistic, I would call "directions for further work").
 
 ### Tuning Times
@@ -118,7 +125,7 @@ for each model.
 
 ## Observations
 
-> **tldr:** As is typical with these sorts of things, no one adapataion method
+> **tldr:** As is typical with these sorts of things, no one adaptation method
 > uniformly outperforms the others.
 
 - A full mass matrix can provide significant improvements over a diagonal mass
@@ -126,6 +133,9 @@ for each model.
   second. This improvement can sometimes go up to two orders of magnitude!
   - This is most noticeable in the `mvnormal` model, with heavily correlated
     parameters.
+  - Happily, my benchmarks are not the only instance of full mass matrices
+    outperforming diagonal ones: [Dan Foreman-Mackey demonstrated something
+    similar in one of his blog posts](https://dfm.io/posts/pymc3-mass-matrix/).
   - However, in models with less extreme correlations among parameters, this
     advantage shrinks significantly (although it doesn't go away entirely).
     Full matrices can also take longer to tune. You can see this in the baseball
@@ -187,17 +197,6 @@ for each model.
   to fact-check me on my results), the code is [sitting in this GitHub
   repository](https://github.com/eigenfoo/mass-matrix-benchmarks)[^4].
 
-## References and Further Reading
-
-- [Colin Carroll's talk on HMC
-  tuning](https://colcarroll.github.io/hmc_tuning_talk/)
-- [Stan reference manual of HMC algorithm
-  parameters](https://mc-stan.org/docs/2_20/reference-manual/hmc-algorithm-parameters.html)
-- [Dan Foreman-Mackey's blog post on dense mass matrices in
-  PyMC3](https://dfm.io/posts/pymc3-mass-matrix/)
-- [Adrian Seyboldt's low-rank mass matrix
-  approximations](https://github.com/aseyboldt/covadapt)
-
 ---
 
 [^1]: To quote a (nameless) PyMC developer,
@@ -205,13 +204,13 @@ for each model.
       > TensorFlow.
 
 [^2]: It's good to point out that mass matrix adaptation is to make sampling
-      more efficient, not more valid. Theoretically, any mass matrix would work:
+      more efficient, not more valid. Theoretically, any mass matrix would work,
       but a good one (i.e. a good estimate of the covariance matrix of the model
       parameters) could sample orders of magnitudes more efficiently.
 
-[^3]: uh, _*sweats and looks around nervously for differential geometers*_
-      more formally called the _metric_
+[^3]: …uh, _*sweats and looks around nervously for differential geometers*_
+      more formally called the _metric_…
 
-[^4]: There are some violin plots lying around in the notebook, a relic of a
+[^4]: There are some violin plots lying around in the notebook, a relic from a
       time when I thought that I would have the patience run each model and
       adaptation method multiple times.
