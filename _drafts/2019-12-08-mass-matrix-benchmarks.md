@@ -7,7 +7,7 @@ tags:
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background6.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
-last_modified_at: 2019-12-09
+last_modified_at: 2019-12-12
 search: false
 ---
 
@@ -16,41 +16,64 @@ search: false
 {% endif %}
 
 I was lucky enough to be invited to attend the [Gradient
-Retreat](https://gradientretreat.com/) this past week.
+Retreat](https://gradientretreat.com/) earlier this month. It was an entire week
+on an amazing island with no demands on my time other than the vague goal of
+contributing to probabilistic programming in some way.
 
-## Questions
+I initially tried to implement mass matrix adaptation in Tensorflow Probability,
+but I quickly readjusted my goals[^1] to something more achievable: running some
+experiments with HMC tuning.
 
-A quick low-down for those unfamiliar: _tuning_ is what happens before sampling,
+A quick rundown for those unfamiliar: _tuning_ is what happens before sampling,
 during which the goal is not to actually draw samples, but to _prepare_ to draw
-samples. For HMC and its variants, this usually means estimating HMC parameters
-such as the step size, integration time and mass matrix[^1], the last of which
-is essentially the covariance matrix of the model parameters. Because life is
-finite, this post will only focus on mass matrix adaptation.
+samples. For HMC and its variants, this means estimating HMC parameters such as
+the step size, integration time and mass matrix[^2], the last of which is
+basically the covariance matrix of the model parameters. Because my life is
+finite (and I assume everybody else's is too), I limited myself to mass matrix
+adaptation.
 
 The interesting thing about tuning is that there are no rules: there are no
 asymptotic guarantees we can rely on and no mathematical results we can turn to
-for enlightened inspiration. The only thing we care about is obtaining decent
-estimates of the mass matrix, and preferably quickly.
+for enlightened inspiration. The only thing we care about is obtaining a decent
+estimate of the mass matrix, and preferably quickly.
 
-Accompanying this lack of understanding of mass matrix adaptation is a
-commensurate lack of scientific inquiry into adaptation - there is scant
-literature to draw from, and for some open source developers, there is precious
-little prior art to look to when writing new implementations of HMC!
+Accompanying this lack of understanding of mass matrix adaptation is an
+commensurate lack of (apparent) scientific inquiry — there is scant literature
+to look to, and for open source developers, there is precious little prior art
+to draw from when writing new implementations of HMC!
 
 So I decided to do some empirical legwork and benchmark various methods of mass
-matrix adaptation. I benchmarked five different mass matrix adaptation methods,
-testing each on six different models.
+matrix adaptation. Here are the questions I was interested in answering:
 
-## Results
+1. Is the assumption that the mass matrix is diagonal (in other words, assume
+   that all parameters are uncorrelated) a good assumption to make?  What are
+   the implications of this assumption for the tuning time, and the number of
+   effective samples per second?
 
-Without further ado, the main results are shown below. I make some general
-observations on the benchmarks, and finally (for the loving readers who care)
-describe my experimental setup and possible directions for further research.
+1. Does the tuning schedule (i.e. the sizes of the adaptation windows) make a
+   big difference? Specifically, should we have a schedule of constant
+   adaptation windows, or an "expanding schedule" of exponentially growing
+   adaptation windows?
 
-### Tuning Times
+1. Besides assuming the mass matrix is diagonal, are there any other ways of
+   simplifying mass matrix adaptation? For example, could we approximate the
+   mass matrix as low rank?
 
-The tuning time, in seconds, of each mass matrix adaptation method for each
-model.
+I benchmarked five different mass matrix adaptation methods: a diagonal mass
+matrix, a full (a.k.a. dense) mass matrix, the same two matrices but adapted
+with an expanding schedule instead of a constant one, and finally approximating
+the mass matrix as low-rank using [Adrian Seyboldt's `covadapt`
+library](https://github.com/aseyboldt/covadapt).
+
+Without further ado, the main results are shown below. Afterwards, I make some
+general observations on the benchmarks, and finally (for the readers who care or
+want to contribute) I describe my experimental setup and directions for further
+work.
+
+## Tuning Times
+
+This tabulates the tuning time, in seconds, of each mass matrix adaptation
+method for each model.
 
 |            |**`mvnormal`**|**`lrnormal`**|**`stoch_vol`**|**`gp`**|**`eight`**|**`baseball`**
 |:-----------|-------------:|-------------:|--------------:|-------:|----------:|------------:|
@@ -60,10 +83,10 @@ model.
 |**full_exp**|          8.46|        142.20|         686.58|   14.87|       3.21|         6.04|
 |**covadapt**|        386.13|         89.92|         398.08|     N/A|        N/A|          N/A|
 
-### Effective Samples per Second
+## Effective Samples per Second
 
-The number of effective samples, drawn by each mass matrix adaptation method for
-each model.
+This tabulates the number of effective samples drawn by each mass matrix
+adaptation method for each model.
 
 |            |**`mvnormal`**|**`lrnormal`**|**`stoch_vol`**|**`gp`**|**`eight`**|**`baseball`**
 |:-----------|-------------:|-------------:|--------------:|-------:|----------:|------------:|
@@ -73,13 +96,15 @@ each model.
 |**full_exp**|      1,799.11|      1,753.65|           0.16|  101.99|     618.28|       360.14|
 |**covadapt**|          0.02|        693.87|           5.71|     N/A|        N/A|          N/A|
 
-## Observations
+# Observations
 
-> **tldr:** there are a lot of options, but sane defaults are good!
+> **tldr:** As is typical with these sorts of things, no one method uniformly
+> outperforms the others. The most we can hope for are sensible defaults and
+> users perceptive enough to criticize defaults!
 
-- A full mass matrix can provide significant speedups over a diagonal mass
-  matrix, sometimes up to two orders of magnitude, for both the tuning time and
-  the number of effective samples per second.
+- A full mass matrix can provide significant improvements over a diagonal mass
+  matrix for both the tuning time and the number of effective samples per
+  second. This improvement can sometimes go up to two orders of magnitude!
   - This is most noticeable in the `mvnormal` model, with heavily correlated
     parameters.
   - However, in models with less extreme correlations among parameters, this
@@ -87,25 +112,32 @@ each model.
     Full matrices can also take longer to tune. You can see this in the baseball
     or eight schools model.
   - Nevertheless, full mass matrices never seem to perform egregiously _worse_
-    than diagonal mass matrices.
+    than diagonal mass matrices. This makes sense theoretically: a full mass
+    matrix can be estimated to be diagonal, but not vice versa.
 
-- Having an “expanding” schedule (similar to what Stan does) for tuning can
-  sometimes give better performance, but nowhere near as significant as the
-  difference between diagonal and full matrices. This difference is most
-  noticeable for the `mvnormal` and `lrnormal` models (probably because these
-  models have a constant covariance matrix and so more careful estimates using
-  expanding windows can provide much better sampling).
+- Having an expanding schedule for tuning can sometimes give better performance,
+  but nowhere near as significant as the difference between diagonal and full
+  matrices. This difference is most noticeable for the `mvnormal` and `lrnormal`
+  models (probably because these models have a constant covariance matrix and so
+  more careful estimates using expanding windows can provide much better
+  sampling).
 
 - `covadapt` seems to run into some numerical difficulties? While running these
   benchmarks I ran into an inscrutable and non-reproducible
   [`ArpackError`](https://stackoverflow.com/q/18436667) from SciPy.
 
-## Experimental Setup
+# Experimental Setup
 
-- All samplers were run for 2000 tuning steps and 1000 sampling steps. If the
-  number of tuning steps seem high, it's because it is: neither PyMC nor Stan
-  have those as their defaults. However, it's necessary to have it high enough
-  for `covadapt` to work.
+- I didn't run `covadapt` for models with fewer than 100 model parameters.
+  There's no reason to do that, since we would just use a full matrix.
+
+- All samplers were run for 2000 tuning steps and 1000 sampling steps. This is
+  unusually high, but is necessary for `covadapt` to work well.
+
+- My expanding schedule is as follows: the first adaptation window is 100
+  iterations, and each subsequent window is 1.005 times the previous window.
+  These numbers give 20 updates within 2000 iterations, while maintaining an
+  exponentially increasing adaptation window size.
 
 - I benchmarked against six models:
 
@@ -125,36 +157,31 @@ each model.
   yields some "false positive divergences" with the full mass matrix... This
   doesn't happen in Stan! But that is a question for another time.)
 
-## Shortcomings and Directions for Further Inquiry
+- All of these numbers were collected by warming up and sampling once per model
+  per adaptation method (yes, only once, sorry), running on my MacBook Pro.
 
-- There is some trickiness with the tuning time comparisons: it's entirely
-  possible that some mass matrix estimates converge quicker than others, and so
-  forcing them to tune for longer is unfair to such mass matrix adaptation
-  routines.
+# Shortcomings and Directions for Further Work
 
-- It's also entirely possible that the expansion schedule for the adaptation
-  windows is just suboptimal! There's no reason why 1.1 should be an obvious
-  number.
+- In some sense comparing tuning times is not a fair comparison: it's possible
+  that some mass matrix estimates converge quicker than others, and so comparing
+  their tuning times is essentially penalizing these methods for converging
+  faster than others.
+
+- It's also possible that my expanding schedule for the adaptation windows just
+  sucks! There's no reason why the first window needs to be 100 iterations, or
+  why 1.005 should be a good multiplier. It looks like Stan [doubles their
+  adaptation window
+  sizes](https://github.com/stan-dev/stan/blob/736311d88e99b997f5b902409752fb29d6ec0def/src/stan/mcmc/windowed_adaptation.hpp#L95)
+  during warmup.
 
 - These benchmarks are done only for very basic toy models: I should test more
-  extensively on more models that people in the real world use. I’m actually not
-  sure how I can improve on these benchmarks, asides from grabbing more models
-  to test them out on. Any feedback welcome!
+  extensively on more models that people in The Real World™ use.
 
-## Questions
+- If you are interested in taking these benchmarks further (or perhaps just want
+  to fact-check me on my results), the code is [sitting in this GitHub
+  repository](https://github.com/eigenfoo/mass-matrix-benchmarks).
 
-- Is the assumption that the mass matrix is diagonal a good assumption to make?
-  What are its implications for the wall time of tuning, and the number of
-  effective samples per second?
-
-- Does the scheduling (i.e. the multiplier each time) make a big difference?
-  Compare multipliers of 1 and 2, and evaluate similarly to above.
-
-- Besides assuming the mass matrix is diagonal, are there any other ways of
-  simplifying mass matrix adaptation? For example, could we [approximate the mass
-  matrix as low rank](https://github.com/aseyboldt/covadapt)?
-
-## References and Further Reading
+# References and Further Reading
 
 - [Colin Carroll's talk on HMC
   tuning](https://colcarroll.github.io/hmc_tuning_talk/)
@@ -167,5 +194,9 @@ each model.
 
 ---
 
-[^1]: uh, _*sweats and looks around nervously for differential geometers*_
+[^1]: To quote a (nameless) PyMC developer,
+      > Every Googler I meet is rather vocal about the dumpster fire that is
+      > TensorFlow.
+
+[^2]: uh, _*sweats and looks around nervously for differential geometers*_
       more formally called the _metric_
