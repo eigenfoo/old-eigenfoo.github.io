@@ -65,12 +65,10 @@ matrix adaptation. Here are the questions I was interested in answering:
    that all parameters are uncorrelated) a good assumption to make?  What are
    the implications of this assumption for the tuning time, and the number of
    effective samples per second?
-
 1. Does the tuning schedule (i.e. the sizes of the adaptation windows) make a
    big difference? Specifically, should we have a schedule of constant
    adaptation windows, or an "expanding schedule" of exponentially growing
    adaptation windows?
-
 1. Besides assuming the mass matrix is diagonal, are there any other ways of
    simplifying mass matrix adaptation? For example, could we approximate the
    mass matrix as low rank?
@@ -102,26 +100,26 @@ call "directions for further work").
 This tabulates the tuning time, in seconds, of each adaptation method for each
 model.
 
-|            |**`mvnormal`**|**`lrnormal`**|**`stoch_vol`**|**`gp`**|**`eight`**|**`baseball`**
-|:-----------|-------------:|-------------:|--------------:|-------:|----------:|------------:|
-|**diag**    |        365.34|        340.10|         239.59|   18.47|       2.92|         5.32|
-|**full**    |          8.29|        364.07|         904.95|   14.24|       2.91|         4.93|
-|**diag_exp**|        358.50|        360.91|         219.65|   16.25|       3.05|         5.08|
-|**full_exp**|          8.46|        142.20|         686.58|   14.87|       3.21|         6.04|
-|**covadapt**|        386.13|         89.92|         398.08|     N/A|        N/A|          N/A|
+|              |**`mvnormal`**|**`lrnormal`**|**`stoch_vol`**|**`gp`**|**`eight`**|**`baseball`**
+|:-------------|-------------:|-------------:|--------------:|-------:|----------:|------------:|
+|**`diag`**    |        365.34|        340.10|         239.59|   18.47|       2.92|         5.32|
+|**`full`**    |          8.29|        364.07|         904.95|   14.24|       2.91|         4.93|
+|**`diag_exp`**|        358.50|        360.91|         219.65|   16.25|       3.05|         5.08|
+|**`full_exp`**|          8.46|        142.20|         686.58|   14.87|       3.21|         6.04|
+|**`covadapt`**|        386.13|         89.92|         398.08|     N/A|        N/A|          N/A|
 
 ### Effective Samples per Second
 
 This tabulates the number of effective samples drawn by each adaptation method
 for each model.
 
-|            |**`mvnormal`**|**`lrnormal`**|**`stoch_vol`**|**`gp`**|**`eight`**|**`baseball`**
-|:-----------|-------------:|-------------:|--------------:|-------:|----------:|------------:|
-|**diag**    |          0.02|          1.55|          11.22|   65.36|     761.82|       455.23|
-|**full**    |          1.73|          0.01|           6.71|  106.30|     840.77|       495.93|
-|**diag_exp**|          0.02|          1.51|           9.79|   59.89|     640.90|       336.71|
-|**full_exp**|      1,799.11|      1,753.65|           0.16|  101.99|     618.28|       360.14|
-|**covadapt**|          0.02|        693.87|           5.71|     N/A|        N/A|          N/A|
+|              |**`mvnormal`**|**`lrnormal`**|**`stoch_vol`**|**`gp`**|**`eight`**|**`baseball`**
+|:-------------|-------------:|-------------:|--------------:|-------:|----------:|------------:|
+|**`diag`**    |          0.02|          1.55|          11.22|   65.36|     761.82|       455.23|
+|**`full`**    |          1.73|          0.01|           6.71|  106.30|     840.77|       495.93|
+|**`diag_exp`**|          0.02|          1.51|           9.79|   59.89|     640.90|       336.71|
+|**`full_exp`**|      1,799.11|      1,753.65|           0.16|  101.99|     618.28|       360.14|
+|**`covadapt`**|          0.02|        693.87|           5.71|     N/A|        N/A|          N/A|
 
 ## Observations
 
@@ -142,19 +140,17 @@ for each model.
     or eight schools model.
   - Nevertheless, full mass matrices never seem to perform egregiously _worse_
     than diagonal mass matrices. This makes sense theoretically: a full mass
-    matrix can be estimated to be diagonal, but not vice versa.
-
+    matrix can be estimated to be diagonal (at the cost of a quadratic memory
+    requirement as opposed to linear), but not vice versa.
 - Having an expanding schedule for tuning can sometimes give better performance,
   but nowhere near as significant as the difference between diagonal and full
   matrices. This difference is most noticeable for the `mvnormal` and `lrnormal`
   models (probably because these models have a constant covariance matrix and so
   more careful estimates using expanding windows can provide much better
   sampling).
-
 - I suspect the number of effective samples per second for a full mass matrix on
   the `lrnormal` model (0.01 effective samples per second) is a mistake (or
   some other computational fluke): it looks way too low to be reasonable.
-
 - `covadapt` seems to run into some numerical difficulties? While running these
   benchmarks I ran into an inscrutable and non-reproducible
   [`ArpackError`](https://stackoverflow.com/q/18436667) from SciPy.
@@ -164,19 +160,15 @@ for each model.
 - All samplers were run for 2000 tuning steps and 1000 sampling steps. This is
   unusually high, but is necessary for `covadapt` to work well, and I wanted to
   use the same number of iterations across all the benchmarks.
-
 - My expanding schedule is as follows: the first adaptation window is 100
   iterations, and each subsequent window is 1.005 times the previous window.
   These numbers give 20 updates within 2000 iterations, while maintaining an
   exponentially increasing adaptation window size.
-
 - I didn't run `covadapt` for models with fewer than 100 model parameters.
   With so few parameters, there's no need to approximate a mass matrix as
   low-rank: you can just estimate the full mass matrix!
-
 - I set `target_accept` (a.k.a. `adapt_delta` to Stan users) to 0.9 to make all
   divergences go away.
-
 - All of these numbers were collected by sampling once per model per adaptation
   method (yes only once, sorry) in PyMC3, running on my MacBook Pro.
 
@@ -186,17 +178,14 @@ for each model.
   that some mass matrix estimates converge quicker than others, and so comparing
   their tuning times is essentially penalizing these methods for converging
   faster than others.
-
 - It's also possible that my expanding schedule for the adaptation windows just
   sucks! There's no reason why the first window needs to be 100 iterations, or
   why 1.005 should be a good multiplier. It looks like Stan [doubles their
   adaptation window
   sizes](https://github.com/stan-dev/stan/blob/736311d88e99b997f5b902409752fb29d6ec0def/src/stan/mcmc/windowed_adaptation.hpp#L95)
   during warmup.
-
 - These benchmarks are done only for very basic toy models: I should test more
   extensively on more models that people in The Real World™ use.
-
 - If you are interested in taking these benchmarks further (or perhaps just want
   to fact-check me on my results), the code is [sitting in this GitHub
   repository](https://github.com/eigenfoo/mass-matrix-benchmarks)[^4].
