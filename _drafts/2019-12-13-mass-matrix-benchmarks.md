@@ -98,28 +98,30 @@ call "directions for further work").
 ### Tuning Times
 
 This tabulates the tuning time, in seconds, of each adaptation method for each
-model. Lower is better.
+model. Lower is better. The lowest tuning time for each model is shown in bold
+italics.
 
-|              |**`mvnormal`**|**`lrnormal`**|**`stoch_vol`**|**`gp`**|**`eight`**|**`baseball`**
-|:-------------|-------------:|-------------:|--------------:|-------:|----------:|------------:|
-|**`diag`**    |        365.34|        340.10|         239.59|   18.47|       2.92|         5.32|
-|**`full`**    |          8.29|        364.07|         904.95|   14.24|       2.91|         4.93|
-|**`diag_exp`**|        358.50|        360.91|         219.65|   16.25|       3.05|         5.08|
-|**`full_exp`**|          8.46|        142.20|         686.58|   14.87|       3.21|         6.04|
-|**`covadapt`**|        386.13|         89.92|         398.08|     N/A|        N/A|          N/A|
+|              |**`mvnormal`**|**`lrnormal`**|**`stoch_vol`**|   **`gp`**|**`eight`**|**`baseball`**
+|:-------------|-------------:|-------------:|--------------:|----------:|----------:|------------:|
+|**`diag`**    |        365.34|        340.10|         239.59|      18.47|       2.92|         5.32|
+|**`full`**    |    _**8.29**_|        364.07|         904.95|_**14.24**_| _**2.91**_|   _**4.93**_|
+|**`diag_exp`**|        358.50|        360.91|   _**219.65**_|      16.25|       3.05|         5.08|
+|**`full_exp`**|          8.46|        142.20|         686.58|      14.87|       3.21|         6.04|
+|**`covadapt`**|        386.13|   _**89.92**_|         398.08|        N/A|        N/A|          N/A|
 
 ### Effective Samples per Second
 
 This tabulates the number of effective samples drawn by each adaptation method
-for each model. Higher is better.
+for each model. Higher is better. The highest numbers of effective samples per
+second is shown in bold italics.
 
-|              |**`mvnormal`**|**`lrnormal`**|**`stoch_vol`**|**`gp`**|**`eight`**|**`baseball`**
-|:-------------|-------------:|-------------:|--------------:|-------:|----------:|------------:|
-|**`diag`**    |          0.02|          1.55|          11.22|   65.36|     761.82|       455.23|
-|**`full`**    |          1.73|          0.01|           6.71|  106.30|     840.77|       495.93|
-|**`diag_exp`**|          0.02|          1.51|           9.79|   59.89|     640.90|       336.71|
-|**`full_exp`**|      1,799.11|      1,753.65|           0.16|  101.99|     618.28|       360.14|
-|**`covadapt`**|          0.02|        693.87|           5.71|     N/A|        N/A|          N/A|
+|              |**`mvnormal`**|**`lrnormal`**|**`stoch_vol`**|    **`gp`**| **`eight`**|**`baseball`**
+|:-------------|-------------:|-------------:|--------------:|-----------:|-----------:|------------:|
+|**`diag`**    |          0.02|          1.55|    _**11.22**_|       65.36|      761.82|       455.23|
+|**`full`**    |          1.73|          0.01|           6.71|_**106.30**_|_**840.77**_| _**495.93**_|
+|**`diag_exp`**|          0.02|          1.51|           9.79|       59.89|      640.90|       336.71|
+|**`full_exp`**|_**1,799.11**_|_**1,753.65**_|           0.16|      101.99|      618.28|       360.14|
+|**`covadapt`**|          0.02|        693.87|           5.71|         N/A|         N/A|          N/A|
 
 ## Observations
 
@@ -151,6 +153,9 @@ for each model. Higher is better.
 - I suspect the number of effective samples per second for a full mass matrix on
   the `lrnormal` model (0.01 effective samples per second) is a mistake (or
   some other computational fluke): it looks way too low to be reasonable.
+- I'm also surprised that `full_exp` does really badly (in terms of effective
+  samples per second) on the `stoch_vol` model, despite `full` doing decently
+  well! This is either a fluke, or a really interesting phenomenon to dig in to.
 - `covadapt` seems to run into some numerical difficulties? While running these
   benchmarks I ran into an inscrutable and non-reproducible
   [`ArpackError`](https://stackoverflow.com/q/18436667) from SciPy.
