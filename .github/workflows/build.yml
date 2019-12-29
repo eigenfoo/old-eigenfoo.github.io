@@ -25,7 +25,7 @@ jobs:
       run: |
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "htmlproofer ./_site/ --only-4xx --check-html --url-ignore=https://www.reddit.com/r/TheRedPill/comments/22qnmk/newbies_read_this_the_definitive_guide_to_shit/"
+        jekyll/builder:latest /bin/bash -c "bundle exec htmlproofer ./_site/ --only-4xx --check-html --url-ignore=https://www.reddit.com/r/TheRedPill/comments/22qnmk/newbies_read_this_the_definitive_guide_to_shit/"
 
     - name: Lint Markdown content in the jekyll/builder container
       run: |
