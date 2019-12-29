@@ -13,10 +13,10 @@ jobs:
       run: |
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "make setup"
+        jekyll/builder:latest /bin/bash -c "sudo chown -R $(whoami):$(whoami) . && make setup && chmod 777 /srv/jekyll"
 
     - name: Build and proof site in the jekyll/builder container
       run: |
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod 777 /srv/jekyll && make test"
+        jekyll/builder:latest /bin/bash -c "make test"
