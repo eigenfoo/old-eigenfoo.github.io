@@ -1,4 +1,4 @@
-name: Jekyll CI
+name: Jekyll site CI
 
 on: [push]
 
@@ -9,26 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Setup
+    - name: Build the site in the jekyll/builder container
       run: |
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "touch Gemfile.lock && chmod 777 Gemfile.lock && make setup && chmod 777 /srv/jekyll"
-
-    - name: Build site in the jekyll/builder container
-      run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "jekyll build --future"
-
-    - name: Proof HTML pages in the jekyll/builder container
-      run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "bundle exec htmlproofer ./_site/ --only-4xx --check-html --url-ignore=https://www.reddit.com/r/TheRedPill/comments/22qnmk/newbies_read_this_the_definitive_guide_to_shit/"
-
-    - name: Lint Markdown content in the jekyll/builder container
-      run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "bundle exec mdl _posts --ignore-front-matter --rules=~MD002,~MD013,~MD033"
+        jekyll/builder:latest /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
