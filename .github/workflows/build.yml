@@ -1,4 +1,4 @@
-name: Jekyll site CI
+name: Jekyll CI
 
 on: [push]
 
@@ -13,10 +13,16 @@ jobs:
       run: |
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "sudo chown -R $(whoami):$(whoami) . && make setup && chmod 777 /srv/jekyll"
+        jekyll/builder:latest /bin/bash -c "touch Gemfile.lock && chmod 777 Gemfile.lock && make setup && chmod 777 /srv/jekyll"
 
-    - name: Build and proof site in the jekyll/builder container
+    - name: Build site and proof html in the jekyll/builder container
       run: |
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         jekyll/builder:latest /bin/bash -c "make test"
+
+    - name: Lint Markdown content in the jekyll/builder container
+      run: |
+        docker run \
+        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+        jekyll/builder:latest /bin/bash -c "make lint"
