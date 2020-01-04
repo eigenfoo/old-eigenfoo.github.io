@@ -6,9 +6,9 @@ tags:
   - machine learning
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background4.png
-  overlay_filter: 0.1
+  overlay_filter: 0.05
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
-last_modified_at: 2020-01-05
+last_modified_at: 2020-01-04
 mathjax: true
 toc: true
 toc_sticky: true
