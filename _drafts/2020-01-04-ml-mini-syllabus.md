@@ -46,7 +46,7 @@ Welcome! Some notes before we begin:
   (maximum likelihood methods, Bayesian statistics, linear models) are mostly
   covered somewhere below.
 
-1. Basic basic stuff: literally work through anything you find online. Like,
+1. The absolute basics: literally work through anything you find online. Like,
    Khan Academy or something. You just want to know the shape of the ideas here.
    Optionally, chapters 2 and 3 of _Deep Learning_[^3] is probably a nice
    refresher.
@@ -73,8 +73,9 @@ Welcome! Some notes before we begin:
 
 - So there's a zoo of ML algorithms that you should know. This following
   menagerie should get you started.
-- You can read the `scikit-learn` documentation[^2] for some ideas.
-- There is a heavy supervised-learning bias in the following selection.
+- You can read the `scikit-learn` documentation[^2] for a good overview/guide to
+  these algorithms.
+- There is a heavy supervised learning bias in the following selection.
 
 1. Linear models for regression
     - Linear regression
@@ -88,25 +89,44 @@ Welcome! Some notes before we begin:
     - $$k$$-fold cross validation
     - Metrics for model evaluation: precision, recall, F1, ROC curve, etc.
 1. Ensemble methods
-    - Bagging
+    - Bootstrapping and bagging
     - Boosting
 
-- If you have time, you should look through the following.
+- If you have time (and maybe even if you don't), you should look through the
+  following.
+- There's less of a focus on supervised learning, and more
 
 1. Feature preprocessing/engineering
 1. Clustering techniques
 1. Dimensionality reduction techniques
+1. Novelty/outlier detection
+1. Kernel methods (Bishop[^1] is the best reference on these that I've found)
 
 ### Deep learning
 
 - I feel like most places expect you to have a basic understanding of this. And
   even if that wasn't true, I think deep learning has captured so much of the
   public discourse that you need to be able to speak their language.
-- After that, I think I'd recommend working though a MOOC[^6] or something
-  similar.
 - If you want to ease your way into it, you can go through a book to get a basic
   understanding of deep learning[^4].  Although most MOOCs cover this stuff
   anyway.
+- After that, I think I'd recommend working though a MOOC[^6] or something
+  similar.
+- In particular, you should have a good grip on:
+
+1. Stochastic gradient descent and deep learning computation
+1. Multi-layered perceptrons
+1. Convolutional neural networks
+
+- Time permitting, you could also look into the following (although you could
+  probably spend a lifetime fully learning these things, so be careful how you
+  spend your time!):
+
+1. Recurrent neural networks
+1. Sequence models
+1. Attention mechanisms
+1. Tasks and models in natural language processing
+1. Tasks and models in computer vision
 
 ## Selected Advanced Topics
 
@@ -139,8 +159,12 @@ Some non-machine learning stuff that will be critical to have a good grip on.
   - What is a generator, and how is it related to the `yield` keyword?
   - How is unit testing done in Python?
   - Can you make your own pip-installable Python package?
+  - Python wasn't designed for heavy-duty numerical computation, so how/why is
+    all our machine learning done in Python?
 - Get familiar with popular libraries or frameworks for ML
-  - NumPy, Pandas and Matplotlib are pretty universally used.
+  - NumPy, Pandas and Matplotlib are pretty universal.
+  - Beyond that, what frameworks/libraries you want to learn depends on what you
+    want to do.
 - Containers (e.g. Docker)
 
 ## Resources
