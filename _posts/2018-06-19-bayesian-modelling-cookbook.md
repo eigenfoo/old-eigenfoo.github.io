@@ -47,6 +47,11 @@ alt="PyMC3 logo">
 - First of all, _welcome!_ It's a brave new world out there — where statistics
   is cool, Bayesian and (if you're lucky) even easy. Dive in!
 
+> **EDIT (1/24/2020):** I published a [subsequent blog
+> post](https://eigenfoo.xyz/bayesian-inference-reading/) with a reading list
+> for Bayesian inference and modelling. Check it out for reading material in
+> addition to the ones I list below!
+
 ### Bayesian modelling
 
 - If you don't know any probability, I'd recommend [Michael
@@ -110,13 +115,12 @@ alt="PyMC3 logo">
   has your data as outputs? This will help you both explore your data, as well
   as help you arrive at a reasonable model formulation.
 
-- Try to avoid correlated variables. Some of the more robust samplers (**cough**
-  NUTS **cough cough**) can cope with _a posteriori_ correlated random
-  variables, but sampling is much easier for everyone involved if the variables
-  are uncorrelated. By the way, the bar is pretty low here: if the
-  jointplot/scattergram of the two variables looks like an ellipse, thats
-  usually okay. It's when the ellipse starts looking like a line that you should
-  be alarmed.
+- Try to avoid correlated variables. Some of the more robust samplers can cope
+  with _a posteriori_ correlated random variables, but sampling is much easier
+  for everyone involved if the variables are uncorrelated. By the way, the bar
+  is pretty low here: if the jointplot/scattergram of the two variables looks
+  like an ellipse, thats usually okay. It's when the ellipse starts looking like
+  a line that you should be alarmed.
 
 - Try to avoid discrete latent variables, and discrete parameters in general.
   There is no good method to sample them in a smart way (since discrete
@@ -136,7 +140,7 @@ alt="PyMC3 logo">
 
 ### Hierarchical models
 
-- First of all, hierarchical models are amazing! [The PyMC3
+- First of all, hierarchical models can be amazing! [The PyMC3
   docs](https://docs.pymc.io/notebooks/GLM-hierarchical.html) opine on this at
   length, so let's not waste any digital ink.
 
@@ -230,11 +234,11 @@ alt="PyMC3 logo">
   efficient MCMC sampler known to man, and `jitter+adapt_diag`… well, you get
   the point.
 
-- However, if you're truly grasping at straws, the more powerful initialization
-  setting would be `advi` or `advi+adapt_diag`, which uses variational
-  inference to initialize the sampler. An even better option would be to use
-  `advi+adapt_diag_grad`, which is (at the time of writing) an experimental
-  feature in beta.
+- However, if you're truly grasping at straws, a more powerful initialization
+  setting would be `advi` or `advi+adapt_diag`, which uses variational inference
+  to initialize the sampler. An even better option would be to use
+  `advi+adapt_diag_grad` ~~which is (at the time of writing) an experimental
+  feature in beta~~.
 
 - Never initialize the sampler with the MAP estimate! In low dimensional
   problems the MAP estimate (a.k.a. the mode of the posterior) is often quite a
@@ -250,9 +254,9 @@ alt="PyMC3 logo">
   what? First of all, make sure that your sampler didn't barf itself, and that
   your chains are safe for consumption (i.e., analysis).
 
-1. Run the chain for as long as you have the patience or resources for. Make
-   sure that the `tune` parameter increases commensurately with the `draws`
-   parameter.
+1. Theoretically, run the chain for as long as you have the patience or
+   resources for. In practice, just use the PyMC3 defaults: 500 tuning
+   iterations, 1000 sampling iterations.
 
 1. Check for divergences. PyMC3's sampler will spit out a warning if there are
    diverging chains, but the following code snippet may make things easier:
@@ -261,8 +265,8 @@ alt="PyMC3 logo">
    # Display the total number and percentage of divergent chains
    diverging = trace['diverging']
    print('Number of Divergent Chains: {}'.format(diverging.nonzero()[0].size))
-   diverging_perc = diverging.nonzero()[0].size / len(trace) * 100
-   print('Percentage of Divergent Chains: {:.1f}'.format(diverging_perc))
+   diverging_pct = diverging.nonzero()[0].size / len(trace) * 100
+   print('Percentage of Divergent Chains: {:.1f}'.format(diverging_pct))
    ```
 
 1. Check the traceplot (`pm.traceplot(trace)`). You're looking for traceplots
@@ -338,14 +342,14 @@ alt="PyMC3 logo">
   divergences. However, divergences that _don't_ go away are cause for alarm.
 
 - Increasing `tune` can sometimes help as well: this gives the sampler more time
-  to 1) find the typical set and 2) find good values for step sizes, scaling
-  factors, etc. If you're running into divergences, it's always possible that
-  the sampler just hasn't started the mixing phase and is still trying to find
-  the typical set.
+  to 1) find the typical set and 2) find good values for the step size, mass
+  matrix elements, etc. If you're running into divergences, it's always possible
+  that the sampler just hasn't started the mixing phase and is still trying to
+  find the typical set.
 
-- Consider a _noncentered_ parameterization. This is an amazing trick: it all boils down
-  to the familiar equation $$X = \sigma Z + \mu$$ from STAT 101, but it honestly
-  works wonders. See [Thomas Wiecki's blog
+- Consider a _noncentered_ parameterization. This is an amazing trick: it all
+  boils down to the familiar equation $$X = \sigma Z + \mu$$ from STAT 101, but
+  it honestly works wonders. See [Thomas Wiecki's blog
   post](http://twiecki.github.io/blog/2017/02/08/bayesian-hierchical-non-centered/)
   on it, and [this page from the PyMC3
   documentation](https://docs.pymc.io/notebooks/Diagnosing_biased_Inference_with_Divergences.html).
@@ -361,14 +365,18 @@ alt="PyMC3 logo">
   flat-out _invalid_, the rest of these warnings indicate that your inference is
   merely (lol, “merely”) _inefficient_.
 
+- It's also worth noting that the [Brief Guide to Stan's
+  Warnings](https://mc-stan.org/misc/warnings.html) is a tremendous resource for
+  exactly what kinds of errors you might get when running HMC or NUTS, and how
+  you should think about them.
+
 - `The number of effective samples is smaller than XYZ for some parameters.`
   - Quoting [Junpeng Lao on
-    discourse.pymc3.io](https://discourse.pymc.io/t/the-number-of-effective-samples-is-smaller-than-25-for-some-parameters/1050/3):
+    `discourse.pymc3.io`](https://discourse.pymc.io/t/the-number-of-effective-samples-is-smaller-than-25-for-some-parameters/1050/3):
     “A low number of effective samples is usually an indication of strong
     autocorrelation in the chain.”
   - Make sure you're using an efficient sampler like NUTS. (And not, for
-    instance, Metropolis–Hastings. (I mean seriously, it's the 21st century, why
-    would you ever want Metropolis–Hastings?))
+    instance, Gibbs or Metropolis–Hastings.)
   - Tweak the acceptance probability (`target_accept`) — it should be large
     enough to ensure good exploration, but small enough to not reject all
     proposals and get stuck.
@@ -384,9 +392,9 @@ alt="PyMC3 logo">
 - `The chain reached the maximum tree depth. Increase max_treedepth, increase
   target_accept or reparameterize.`
   - NUTS puts a cap on the depth of the trees that it evaluates during each
-    iteration, which is controlled through the `max_treedepth`. Reaching the maximum
-    allowable tree depth indicates that NUTS is prematurely pulling the plug to
-    avoid excessive compute time.
+    iteration, which is controlled through the `max_treedepth`. Reaching the
+    maximum allowable tree depth indicates that NUTS is prematurely pulling the
+    plug to avoid excessive compute time.
   - Yeah, what the _Magic Inference Button™_ says: try increasing
     `max_treedepth` or `target_accept`.
 
@@ -394,11 +402,10 @@ alt="PyMC3 logo">
 
 - Countless warnings have told you to engage in this strange activity of
   “reparameterization”. What even is that? Luckily, the [Stan User
-  Manual](https://github.com/stan-dev/stan/releases/download/v2.17.1/stan-reference-2.17.1.pdf)
-  (specifically the _Reparameterization and Change of Variables_ section) has
-  an excellent explanation of reparameterization, and even some practical tips
-  to help you do it (although your mileage may vary on how useful those tips
-  will be to you).
+  Manual](https://github.com/stan-dev/stan/releases) (specifically the
+  _Reparameterization and Change of Variables_ section) has an excellent
+  explanation of reparameterization, and even some practical tips to help you do
+  it (although your mileage may vary on how useful those tips will be to you).
 
 - Asides from meekly pointing to other resources, there's not much I can do to
   help: this stuff really comes from a combination of intuition, statistical
@@ -424,8 +431,8 @@ alt="PyMC3 logo">
   somewhat artificial (since problems with your chains indicate problems with
   your model), but I still think it's useful to make this distinction because
   these checks indicate that you're thinking about your data in the wrong way,
-  (i.e. you made a poor modelling decision), and _not_ that the sampler is having
-  a hard time doing its job.
+  (i.e. you made a poor modelling decision), and _not_ that the sampler is
+  having a hard time doing its job.
 
 1. Run the following snippet of code to inspect the pairplot of your variables
    one at a time (if you have a plate of variables, it's fine to pick a couple
@@ -460,7 +467,7 @@ alt="PyMC3 logo">
      some other way, to remove these correlations.
    - posteriors that form “funnels”: this will probably cause divergences. Try
      using a noncentered parameterization.
-   - long tailed posteriors: this will probably raise warnings about
+   - heavy tailed posteriors: this will probably raise warnings about
      `max_treedepth` being exceeded. If your data has long tails, you should
      model that with a long-tailed distribution. If your data doesn't have long
      tails, then your model is ill-specified: perhaps a more informative prior
@@ -499,5 +506,5 @@ alt="PyMC3 logo">
      fall within the 90% credible interval of the posterior). The posterior
      predictive distribution tells you what values for data you would expect if
      we were to remeasure, given that you've already observed the data you did.
-     As such, it's informed by your prior as well as your data, and it's not
-     its job to adequately fit your data!
+     As such, it's informed by your prior as well as your data, and it's not its
+     job to adequately fit your data!
