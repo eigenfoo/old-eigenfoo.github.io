@@ -45,6 +45,10 @@ So without further ado...
    Carlo](http://www.mcmchandbook.net/HandbookChapter1.pdf) by Charles Geyer.
    The first chapter of the aptly-named [_Handbook of Markov Chain Monte
    Carlo_](http://www.mcmchandbook.net/).
+1. [Markov Chain Monte Carlo Methods, a survey with some frequent
+   misunderstandings](https://arxiv.org/abs/2001.06249) is an instructive
+   collection of Cross-Validated questions that clear up common
+   misunderstandings of MCMC.
 
 ### Hamiltonian Monte Carlo and the No-U-Turn Sampler
 
@@ -72,20 +76,7 @@ So without further ado...
    PyMC3](https://colindcarroll.com/talk/hamiltonian-monte-carlo/) by Colin
    Carroll.
 
-### Sequential Monte Carlo and particle filters
-
-1. [An Introdution to Sequential Monte Carlo
-   Methods](https://www.stats.ox.ac.uk/~doucet/doucet_defreitas_gordon_smcbookintro.pdf)
-   by Arnaud Doucet, Nando de Freitas and Neil Gordon. This chapter from [the
-   authors' textbook on SMC](https://www.springer.com/us/book/9780387951461)
-   provides motivation for using SMC methods, and gives a brief introduction to
-   a basic particle filter.
-1. [Sequential Monte Carlo Methods & Particle Filters
-   Resources](http://www.stats.ox.ac.uk/~doucet/smc_resources.html) by Arnaud
-   Doucet. A list of resources on SMC and particle filters: way more than you
-   probably ever need to know about them.
-
-### Other sampling methods
+### Sequential Monte Carlo and other sampling methods
 
 1. Chapter 11 (Sampling Methods) of [Pattern Recognition and Machine
    Learning](https://www.microsoft.com/en-us/research/people/cmbishop/#!prml-book)
@@ -95,6 +86,17 @@ So without further ado...
 1. [The Markov-chain Monte Carlo Interactive
    Gallery](https://chi-feng.github.io/mcmc-demo/) by Chi Feng. A fantastic
    library of visualizations of various MCMC samplers.
+1. For non-Markov chain based Monte Carlo methods, there is [An Introdution to
+   Sequential Monte Carlo
+   Methods](https://www.stats.ox.ac.uk/~doucet/doucet_defreitas_gordon_smcbookintro.pdf)
+   by Arnaud Doucet, Nando de Freitas and Neil Gordon. This chapter from [the
+   authors' textbook on SMC](https://www.springer.com/us/book/9780387951461)
+   provides motivation for using SMC methods, and gives a brief introduction to
+   a basic particle filter.
+1. [Sequential Monte Carlo Methods & Particle Filters
+   Resources](http://www.stats.ox.ac.uk/~doucet/smc_resources.html) by Arnaud
+   Doucet. A list of resources on SMC and particle filters: way more than you
+   probably ever need to know about them.
 
 ## Variational Inference
 
