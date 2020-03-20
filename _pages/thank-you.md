@@ -2,8 +2,8 @@
 title: Thank You for Subscribing!
 layout: single
 permalink: /thank-you/
-subscribe: false
 search: false
+sitemap: false
 ---
 
 {% if page.noindex == true %}
