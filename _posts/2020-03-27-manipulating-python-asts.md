@@ -9,12 +9,7 @@ header:
   overlay_image: /assets/images/cool-backgrounds/cool-background9.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
 last_modified_at: 2020-03-27
-search: false
 ---
-
-{% if page.noindex == true %}
-  <meta name="robots" content="noindex">
-{% endif %}
 
 A while back, I explored the possibility of simplifying [^1] PyMC4's model specification
 API by manipulating the [Python abstract syntax
@@ -53,7 +48,7 @@ intrusion in that respect.
 
 Finally, this model specification API is essentially moving the problem off of our
 plates and onto our users. The entire point of the PyMC project is to provide a friendly
-and easy-to-use interface for Bayesian modeling.
+and easy-to-use interface for Bayesian modelling.
 
 To enumerate the problem further, we wanted to
 
