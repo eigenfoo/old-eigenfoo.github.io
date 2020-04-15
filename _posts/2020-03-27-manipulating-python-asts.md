@@ -35,9 +35,9 @@ Originally, PyMC4's proposed model specification API looked something like this:
 
 The main drawback to this API was that the `yield` keyword was confusing. Many users
 don’t really understand Python generators, and those who do might only understand
-`yield` as a drop-in replacement for return (that is, they might understand what it
-means for a function to end in `yield foo`, but would be uncomfortable with `bar =
-yield foo`).
+`yield` as a drop-in replacement for `return` (that is, they might understand what it
+means for a function to end in `yield foo`, but would be uncomfortable with `bar = yield
+foo`).
 
 Furthermore, the `yield` keyword introduces a leaky abstraction[^2]: users don’t care
 about whether model is a function or a generator, and they shouldn't need to. More
@@ -50,7 +50,7 @@ Finally, this model specification API is essentially moving the problem off of o
 plates and onto our users. The entire point of the PyMC project is to provide a friendly
 and easy-to-use interface for Bayesian modelling.
 
-To enumerate the problem further, we wanted to
+To enumerate the problem further, we wanted to:
 
 1. Hide the `yield` keyword from the user-facing model specification API.
 1. Obtain the user-defined model as a generator.
@@ -101,7 +101,7 @@ this recompiled AST defines a new function called `_pm_compiled_model_generator`
 new function, accessed via the `locals` variable[^4], is then bound to the class's
 `self.model_generator`, which explains the confusing-looking line 25.
 
-Finally, the user facing API looks like this, while the
+Finally, the user facing API looks like this:
 
 <script src="https://gist.github.com/eigenfoo/0bc4047ea0245a3f5f3c3a6ff8143154.js"></script>
 
