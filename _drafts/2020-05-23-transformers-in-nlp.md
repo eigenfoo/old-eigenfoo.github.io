@@ -116,7 +116,6 @@ illuminate the history of NLP.
   * At the risk of peeking ahead, GPT is largely BERT but with Transformer decoder
     blocks, instead of encoder blocks. Note that in doing this, we lose the
     autoregressive/unidirectional nature of the model.
-  * GPT-2 is a subsequent improvement on GPT-1
   * GPT-2 generated some controversy, as OpenAI [initially refused to open-source the
     model](https://www.theverge.com/2019/2/14/18224704/ai-machine-learning-language-models-read-write-openai-gpt2),
     citing potential malicious uses, but [ended up releasing the model
@@ -193,37 +192,38 @@ Here I comment on some general trends that I see in Transformer-based models in 
    * I'm personally not sure what to make of this development: why did we collectively
      agree that architectural research wasn't worth pursuing anymore?
 
-1. Representations
-   * asdfasdf
-     1. Contextual vs non-contextual embeddings
-        + Only word2vec and GloVe are non-contextual.
-        + All other embeddings are contextual now.
-     1. Unidirectional vs bidirectional embeddings
-        + ELMo: bidirectional
-        + Transformer: bidirectional encoder, unidirectional decoder
-        + BERT: bidirectional (just a stack of encoders!)
-        + GPT-2: unidirectional (just a stack of decoders!)
-        + T5: bidirectional
-        + XLNet: unidirectional
-
 1. It was never a question of _whether_ NLP systems would follow computer vision's model
    of fine-tuning pre-trained models (i.e. training a model on ImageNet and then doing
    task-specific fine-tuning for downstream applications), but rather _how_.
    1. What specific task and/or dataset should NLP models be pre-trained on?
-      + Language modelling has really won out here.
+      * Language modelling has really won out here.
    1. Exactly _what_ is being learnt during pre-training?
-      + It used to be vectors for words, now it is an entire network, or what Sebastian
+      * It used to be vectors for words, now it is an entire network, or what Sebastian
         Ruder calls _shallow to deep pre-training_.
    * Sebastian Ruder [wrote a great article](https://thegradient.pub/nlp-imagenet/) in
      The Gradient that delves more into this topic.
 
-1. Text-to-text nature of models
-   * The Transformer and GPT models (and probably other pre-BERT Transformer models)
-     were all focused on _text generation_.
-   * BERT was the first Transformer-based model that offered an easy way to do pre-train
-     on unlabelled text and generalize to _any_ NLP task: simply add another layer at
-     the end of BERT, and that layer will learn task-specific knowledge during
-     fine-tuning.
-   * Now, T5 harks back to text generation, but preserves the ability to generallize to
-     arbitrary NLP tasks.
+1. Different NLP models learn different kinds of embeddings, and it's worth
+   understanding the differences between these various learnt representations.
+   1. Contextual vs non-contextual embeddings
+      * The first word embeddings (that is, word2vec and GloVe) were _non-contextual_:
+        each word had its own embedding, independent of the words that came before or
+        after it.
+      * Almost all other embeddings are _contextual_ now: when embedding a token, they
+        also consider the tokens before &/ after it.
+   1. Unidirectional vs bidirectional embeddings
+      * When considering the context of a token, the question is whether you should
+        consider the tokens both before and after it (i.e. bidirectional embeddings), or
+        just the tokens that came before (i.e. unidirectional embeddings).
+      * Unidirectional embeddings make the sense when generating text (i.e. text
+        generation must be done in the way humans write text: in one direction). On the
+        other hand, bidirectional embeddings make sense when performing sentence-level
+        tasks such as summarization or rewriting.
+      * The Transformer was notable in that it had bidirectional encoder blocks and
+        unidirectional decoder blocks. That's why BERT [GPT-2] produces bidirectional
+        [unidirectional] embeddings, since it's a stack of Transformer encoders
+        [decoders].
+      * Note that the unidirectional/bidirectional distinction is related to whether or
+        not the model is autoregressive: autoregressive models learn unidirectional
+        embeddings.
 
