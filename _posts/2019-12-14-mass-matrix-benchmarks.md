@@ -23,8 +23,8 @@ but I quickly readjusted my goals to something more achievable: running some
 benchmarks with tuning in Hamiltonian Monte Carlo (HMC).
 
 <figure class="half">
-    <a href="/assets/images/galiano.jpg"><img src="/assets/images/galiano.jpg"></a>
-    <a href="/assets/images/galiano2.jpg"><img src="/assets/images/galiano2.jpg"></a>
+    <a href="/assets/images/galiano.jpg"><img src="/assets/images/galiano.jpg" alt="A view of a forest on Galiano Island"></a>
+    <a href="/assets/images/galiano2.jpg"><img src="/assets/images/galiano2.jpg" alt="The view from a bluff on Galiano Island"></a>
     <figcaption>Pictures from Galiano Island.</figcaption>
 </figure>
 
