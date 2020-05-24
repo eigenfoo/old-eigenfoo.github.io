@@ -4,9 +4,9 @@ on: [push]
 
 jobs:
   build:
-    name: Build Jekyll site
     runs-on: ubuntu-latest
 
+    steps:
     # Jekyll Builder for GitHub Pages (Action)
     # https://github.com/marketplace/actions/jekyll-builder-for-github-pages?version=v1
     - name: Build Jekyll site
