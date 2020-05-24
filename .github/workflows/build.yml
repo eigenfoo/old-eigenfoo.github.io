@@ -1,5 +1,13 @@
-# Jekyll Builder for GitHub Pages (Action)
-# https://github.com/marketplace/actions/jekyll-builder-for-github-pages?version=v1
-- name: build
-  on: push
-  uses: meitar/jekyll-builder-for-github-pages-action@v1
+name: build
+
+on: [push]
+
+jobs:
+  build:
+    name: Build Jekyll site
+    runs-on: ubuntu-latest
+
+    # Jekyll Builder for GitHub Pages (Action)
+    # https://github.com/marketplace/actions/jekyll-builder-for-github-pages?version=v1
+    - name: Build Jekyll site
+      uses: meitar/jekyll-builder-for-github-pages-action@v1
