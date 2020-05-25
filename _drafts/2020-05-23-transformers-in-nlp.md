@@ -162,8 +162,8 @@ illuminate the history of NLP.
    * The authors use an identical architecture to BERT, but propose several improvements
      to the training routine, such as changing the dataset and removing the
      next-sentence-prediction (NSP) pre-training task. Funnily enough, far and away the
-     best thing the authors did to improve BERT was to do the most obvious thing: train
-     it for longer!
+     best thing the authors did to improve BERT was just the most obvious thing: train
+     BERT for longer!
    * Further reading:
      + [arXiv Paper](https://arxiv.org/abs/1907.11692)
      + [Accompanying blog post](https://ai.facebook.com/blog/roberta-an-optimized-method-for-pretraining-self-supervised-nlp-systems/)
