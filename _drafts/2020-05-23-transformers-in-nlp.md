@@ -44,8 +44,8 @@ illuminate the history of NLP.
    * GloVe: Pennington et al., Stanford CS. EMNLP 2014.
    * These were the first instances of word embeddings pre-trained on large amounts of
      unlabeled text. These word embeddings generalized well to most other tasks (even
-     with limited amounts of labeled data), usually led to appreciable improvements in
-     performance.
+     with limited amounts of labeled data), and usually led to appreciable improvements
+     in performance.
    * These ideas were immensely influential and have served NLP extraordinarily well.
      However, they suffer from a major limitation. They are _shallow_ representations
      that can only be used in the first layer of any network: the remainder of the
@@ -64,7 +64,7 @@ illuminate the history of NLP.
      + [Subsequent word2vec arXiv paper](http://arxiv.org/abs/1310.4546)
      + [GloVe website](https://nlp.stanford.edu/projects/glove/)
 
-1. Broadly speaking, after word2vec/GloVe and before Transformers, a lot of ink has been
+1. Broadly speaking, after word2vec/GloVe and before Transformers, a lot of ink was
    spilled on other different approaches to NLP, including (but certainly not limited
    to)
    1. Convolutional neural networks
@@ -76,27 +76,27 @@ illuminate the history of NLP.
      embeddings using LSTMs, and began NLP's fondness of Sesame Street.
    * I won't go into much more detail here: partly because not all of these approaches
      have held up as well as current Transformer-based models, and partly because I have
-     other things to do with my computer than blog about recent advances in NLP.
+     plans for my computer that don't involve blogging about recent advances in NLP.
    * Here is [a survey paper](https://arxiv.org/abs/1708.02709) (and an [associated blog
      post](https://medium.com/dair-ai/deep-learning-for-nlp-an-overview-of-recent-trends-d0d8f40a776d))
-     (published shortly after the Transformer was invented), which summarizes a lot of
-     the work that was being done before the Transformer was invented.
+     published shortly after the Transformer was invented, which summarizes a lot of the
+     work that was being done during this period.
 
 1. Transformer
    * Vaswani et al., Google Brain. December 2017.
    * The authors introduce a feed-forward network architecture, using only attention
-     mechanisms and dispensing with convolutions and recurrence entirely (which were
-     not uncommon techniques in NLP at the time).
+     mechanisms and dispensing with convolutions and recurrence entirely (which were not
+     uncommon techniques in NLP at the time).
    * It achieved state-of-the-art performance on several tasks, and (perhaps more
-     importantly) was found to generalize very well to other NLP tasks, even with limited
-     data.
+     importantly) was found to generalize very well to other NLP tasks, even with
+     limited data.
    * Since this architecture was the progenitor of so many other NLP models, it's
      worthwhile to dig into the details a bit. The architecture is illustrated below:
-     note that its feed-forward nature and multi-attention heads are critical aspects of
-     this architecture!
+     note that its feed-forward nature and multi-head self attention are critical
+     aspects of this architecture!
 
    <figure class="align-center">
-     <a href="https://cdn.analyticsvidhya.com/wp-content/uploads/2019/06/Screenshot-from-2019-06-17-20-01-32.png"><img style="float: middle" src="https://cdn.analyticsvidhya.com/wp-content/uploads/2019/06/Screenshot-from-2019-06-17-20-01-32.png" alt="Graphical representation of a Transformer block"></a>
+     <a href="https://cdn.analyticsvidhya.com/wp-content/uploads/2019/06/Screenshot-from-2019-06-17-20-01-32.png"><img style="float: middle" src="https://cdn.analyticsvidhya.com/wp-content/uploads/2019/06/Screenshot-from-2019-06-17-20-01-32.png" alt="Graphical representation of the Transformer"></a>
      <figcaption>Graphical representation of a Transformer block. Source: <a href="https://www.analyticsvidhya.com/blog/2019/06/understanding-transformers-nlp-state-of-the-art-models/">Analytics Vidhya</a>.</figcaption>
    </figure>
 
@@ -161,7 +161,9 @@ illuminate the history of NLP.
 
    * The authors use an identical architecture to BERT, but propose several improvements
      to the training routine, such as changing the dataset and removing the
-     next-sentence-prediction (NSP) pre-training task.
+     next-sentence-prediction (NSP) pre-training task. Funnily enough, far and away the
+     best thing the authors did to improve BERT was to do the most obvious thing: train
+     it for longer!
    * Further reading:
      + [arXiv Paper](https://arxiv.org/abs/1907.11692)
      + [Accompanying blog post](https://ai.facebook.com/blog/roberta-an-optimized-method-for-pretraining-self-supervised-nlp-systems/)
