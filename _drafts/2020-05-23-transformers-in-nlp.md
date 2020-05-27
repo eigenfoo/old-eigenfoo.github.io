@@ -27,7 +27,7 @@ of my reading and research: I assume basic familiarity with deep learning, and a
 highlight general trends in deep NLP, instead of commenting on individual architectures
 or systems.
 
-As a disclaimer, this post by no means exhaustive and is biased towards
+As a disclaimer, this post is by no means exhaustive and is biased towards
 Transformer-based models, which seem to be the dominant breed of NLP systems (at least,
 at the time of writing).
 
