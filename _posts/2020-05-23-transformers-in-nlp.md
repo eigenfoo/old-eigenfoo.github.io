@@ -193,10 +193,10 @@ Here I comment on some general trends that I see in Transformer-based models in 
         _next-sentence prediction_ (NSP) pre-training task, which RoBERTa completely did
         away with.
    1. Exactly _what_ is being learnt during pre-training?
-      * Initially to be vectors for words, now it is an entire network, or what Sebastian
-        Ruder calls _shallow to deep pre-training_.
-     * Sebastian Ruder [wrote a great article](https://thegradient.pub/nlp-imagenet/) in
-       The Gradient that delves more into this topic.
+      * Initially it was a separate vector for each token (i.e. pre-training a shallow
+        representation of text), and these days it is an entire network is pre-trained.
+      * Sebastian Ruder [wrote a great article](https://thegradient.pub/nlp-imagenet/)
+        that delves more into this topic.
 
 1. Different NLP models learn different kinds of embeddings, and it's worth
    understanding the differences between these various learnt representations.
