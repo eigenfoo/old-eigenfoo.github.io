@@ -1,7 +1,5 @@
 # [`eigenfoo.xyz`](https://eigenfoo.xyz/)
 
-![Build Status](https://github.com/eigenfoo/eigenfoo.github.io/workflows/build/badge.svg)
-
 The source of my personal website and blog.
 
 ## License
