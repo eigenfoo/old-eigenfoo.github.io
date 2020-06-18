@@ -6,7 +6,7 @@ subscribe: true
 ---
 
 > **tldr:** I'm a financial data scientist and machine learning researcher. I
-> (mainly) blog about Bayesian modelling, probabilistic programming and
+> (mainly) blog about Bayesian modelling, natural language processing and
 > open-source software.
 
 [<i class="fas fa-file-pdf"></i> See my

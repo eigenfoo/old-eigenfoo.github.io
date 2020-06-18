@@ -124,9 +124,6 @@ author:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/eigenfoo/"
-    - label: "Keybase"
-      icon: "fab fa-fw fa-keybase"
-      url: "https://keybase.io/eigenfoo"
 
 # Site Footer
 footer:
