@@ -192,7 +192,7 @@ Here I comment on some general trends that I see in Transformer-based models in 
      we are still making meaningful advances with the same architecture. In fact, it is
      still an open question how and why Transformers perform as well as they do: there
      is an open field of research focusing on answering this question for BERT (since
-     BERT has been uniquely) called
+     BERT has been uniquely successful model) called
      [BERTology](https://huggingface.co/transformers/bertology.html).
 
 1. It was never a question of _whether_ NLP systems would follow computer vision's model
