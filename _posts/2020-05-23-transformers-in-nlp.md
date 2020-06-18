@@ -46,7 +46,7 @@ non-Transformer-based models, because I think they illuminate the history of NLP
      semantic meanings of words.
 
    <figure class="align-center">
-     <a href="https://www.tensorflow.org/images/linear-relationships.png"><img style="float: middle" src="https://www.tensorflow.org/images/linear-relationships.png" alt="Linear vector relationships in word embeddings"></a>
+     <img style="float: middle" src="https://www.tensorflow.org/images/linear-relationships.png" alt="Linear vector relationships in word embeddings">
      <figcaption>Linear vector relationships in word embeddings. Source: <a href="https://www.tensorflow.org/images/linear-relationships.png">TensorFlow documentation</a>.</figcaption>
    </figure>
 
@@ -87,7 +87,7 @@ non-Transformer-based models, because I think they illuminate the history of NLP
      aspects of this architecture!
 
    <figure class="align-center">
-     <a href="https://cdn.analyticsvidhya.com/wp-content/uploads/2019/06/Screenshot-from-2019-06-17-20-01-32.png"><img style="float: middle" src="https://cdn.analyticsvidhya.com/wp-content/uploads/2019/06/Screenshot-from-2019-06-17-20-01-32.png" alt="Graphical representation of the Transformer"></a>
+     <img style="float: middle" src="https://cdn.analyticsvidhya.com/wp-content/uploads/2019/06/Screenshot-from-2019-06-17-20-01-32.png" alt="Graphical representation of the Transformer">
      <figcaption>Graphical representation of a Transformer block. Source: <a href="https://www.analyticsvidhya.com/blog/2019/06/understanding-transformers-nlp-state-of-the-art-models/">Analytics Vidhya</a>.</figcaption>
    </figure>
 
@@ -109,6 +109,9 @@ non-Transformer-based models, because I think they illuminate the history of NLP
    * At the risk of peeking ahead, GPT is largely BERT but with Transformer decoder
      blocks, instead of encoder blocks. Note that in doing this, we lose the
      autoregressive/unidirectional nature of the model.
+   * Arguably the main contribution of GPT-2 is that it demonstrated the value of
+     training larger Transformer models (a trend that I personally refer to as the
+     _Embiggening_).
    * GPT-2 generated some controversy, as OpenAI [initially refused to open-source the
      model](https://www.theverge.com/2019/2/14/18224704/ai-machine-learning-language-models-read-write-openai-gpt2),
      citing potential malicious uses, but [ended up releasing the model
@@ -127,7 +130,7 @@ non-Transformer-based models, because I think they illuminate the history of NLP
      architecture changes, as illustrated below.
 
    <figure class="align-center">
-     <a href="https://i.pinimg.com/originals/02/95/a3/0295a3be438ae68f604e53fc88c7edb4.png"><img style="float: middle" src="https://i.pinimg.com/originals/02/95/a3/0295a3be438ae68f604e53fc88c7edb4.png" alt="Graphical representation of BERT"></a>
+     <img style="float: middle" src="https://i.pinimg.com/originals/02/95/a3/0295a3be438ae68f604e53fc88c7edb4.png" alt="Graphical representation of BERT">
      <figcaption>Graphical representation of BERT. Source: <a href="https://i.pinimg.com/originals/02/95/a3/0295a3be438ae68f604e53fc88c7edb4.png">Pinterest</a>.</figcaption>
    </figure>
 
@@ -184,6 +187,13 @@ Here I comment on some general trends that I see in Transformer-based models in 
    formulating a new NLP task to measure "language understanding", etc.
    * I'm personally not sure what to make of this development: why did we collectively
      agree that architectural research wasn't worth pursuing anymore?
+   * But spinning this the other way, we see that Transformers are a _fascinating_
+     architecture: the model has proven so surprisingly versatile and easy to teach that
+     we are still making meaningful advances with the same architecture. In fact, it is
+     still an open question how and why Transformers perform as well as they do: there
+     is an open field of research focusing on answering this question for BERT (since
+     BERT has been uniquely) called
+     [BERTology](https://huggingface.co/transformers/bertology.html).
 
 1. It was never a question of _whether_ NLP systems would follow computer vision's model
    of fine-tuning pre-trained models (i.e. training a model on ImageNet and then doing
@@ -197,6 +207,40 @@ Here I comment on some general trends that I see in Transformer-based models in 
         representation of text), and these days it is an entire network is pre-trained.
       * Sebastian Ruder [wrote a great article](https://thegradient.pub/nlp-imagenet/)
         that delves more into this topic.
+
+1. There are (generally speaking) three flavors of Transformer models.
+   1. Autoregressive models
+   1. Autoencoding models
+   1. Sequence-to-sequence models
+   - Hugging Face does an excellent job of summarizing the differences between these
+     three flavors of models in [their _Summary of the
+     Models_](https://huggingface.co/transformers/summary.html), which I've reproduced
+     here:
+
+   > Autoregressive models are pretrained on the classic language modeling task: guess
+   > the next token having read all the previous ones. They correspond to the decoder of
+   > the original transformer model, and a mask is used on top of the full sentence so
+   > that the attention heads can only see what was before in the next, and not what’s
+   > after. Although those models can be fine-tuned and achieve great results on many
+   > tasks, the most natural application is text generation. A typical example of such
+   > models is GPT.
+   > 
+   > Autoencoding models are pretrained by corrupting the input tokens in some way and
+   > trying to reconstruct the original sentence. They correspond to the encoder of the
+   > original transformer model in the sense that they get access to the full inputs
+   > without any mask. Those models usually build a bidirectional representation of the
+   > whole sentence. They can be fine-tuned and achieve great results on many tasks such
+   > as text generation, but their most natural application is sentence classification
+   > or token classification. A typical example of such models is BERT.
+   > 
+   > [...]
+   > 
+   > Sequence-to-sequence models use both the encoder and the decoder of the original
+   > transformer, either for translation tasks or by transforming other tasks to
+   > sequence-to-sequence problems. They can be fine-tuned to many tasks but their most
+   > natural applications are translation, summarization and question answering. The
+   > original transformer model is an example of such a model (only for translation), T5
+   > is an example that can be fine-tuned on other tasks.
 
 1. Different NLP models learn different kinds of embeddings, and it's worth
    understanding the differences between these various learnt representations.
@@ -221,6 +265,19 @@ Here I comment on some general trends that I see in Transformer-based models in 
       * Note that the unidirectional/bidirectional distinction is related to whether or
         not the model is autoregressive: autoregressive models learn unidirectional
         embeddings.
+
+1. Transformer-based models have had an interesting history with scaling.
+   - This trend probably started when GPT-2 was published: "it sounds very dumb and too
+     easy, but magical things happen if you make your Transformer model bigger".
+   - An open question is, how do Transformer models scale (along any dimension of
+     interest)? For example, how much does dataset size or the number of layers or the
+     number of training iterations matter in the ultimate performance of a Transformer
+     model? At what point does making your Transformer model "bigger" (along any
+     dimension of interest) provide diminishing returns?
+   - There is some [solid
+     work](https://github.com/huggingface/awesome-papers#march-24-2020) being done to
+     answer this question, and there seems to be good evidence for some fairly
+     surprising conclusions!
 
 ---
 

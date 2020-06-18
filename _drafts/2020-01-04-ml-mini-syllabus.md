@@ -94,7 +94,6 @@ Welcome! Some notes before we begin:
 
 - If you have time (and maybe even if you don't), you should look through the
   following.
-- There's less of a focus on supervised learning, and more
 
 1. Feature preprocessing/engineering
 1. Clustering techniques
@@ -132,13 +131,24 @@ Welcome! Some notes before we begin:
 
 After going through the core stuff you might want to choose one or two
 "subdisciplines" within ML to specialize it, or get a broad understanding of a
-lot of them. I've ended up specializing heavily in the first one, but I can
-probably give some pointers for most of them.
+lot of them. I've ended up specializing heavily in the first two, but I can
+probably give some pointers for most of them. (And it should go without saying,
+the following list is by no means exhaustive :smile:).
 
 1. Probabilistic programming and Bayesian machine learning
 1. Natural language processing
 1. Computer vision
 1. Recommendation engines
+
+And there are also other fields that are useful in data sciencey positions, but not
+exactly machine learning _per se_ (although the arguing about the distinction often
+devolves into unenlightening semantics).
+
+1. Mathematical optimization (with a focus on linear/quadratic programming and
+   convex optimization)
+1. Statistics and statistical inference
+1. E-commerce problems (e.g. A/B testing, churn prediction, attribution
+   analysis)
 
 Here are also some subdisciplines that are interesting but I don't think anybody
 in the real world uses (yet):

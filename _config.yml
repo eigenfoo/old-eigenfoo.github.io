@@ -109,7 +109,7 @@ analytics:
 author:
   name             : "George Ho"
   avatar           : "/assets/images/profile-pic.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Point72 researcher and PyMC core developer. Bayesian modelling, machine learning and coffee."
+  bio              : "Point72 researcher and PyMC core developer. Bayesian modelling, natural language processing and coffee."
   location         : "NYC | HKG"
   links:
     - label: "Email"
