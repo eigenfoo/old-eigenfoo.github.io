@@ -10,8 +10,8 @@ subscribe: true
 > open-source software.
 
 [<i class="fas fa-file-pdf"></i> See my
-Résumé](https://ln2.sync.com/dl/37ab0c9b0/pu7bvjv3-9gv6sjie-ggmayp6u-jy8jr59r){:
-.btn .btn--info .btn--default}
+Résumé](https://eigenfoo.xyz/assets/documents/resume.pdf){: .btn .btn--info
+.btn--default}
 
 ![Black-and-white photo of George smiling while sitting cross legged and
 brushing his hair]({{ site.url }}{{ site.baseurl
