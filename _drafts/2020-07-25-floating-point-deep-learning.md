@@ -1,8 +1,8 @@
 ---
-title: Floating-Point Precision and Deep Learning
-excerpt: ""
+title: Floating-Point and Deep Learning
+excerpt: "What floating-point is, why you (a deep learner) should care, and what you (a
+deep learner) can do about it."
 tags:
-  - pytorch
   - deep learning
   - machine learning
 header:
@@ -12,11 +12,29 @@ last_modified_at: 2020-07-25
 mathjax: true
 ---
 
-there is a trend in deep learning towards using FP16 instead of FP32 because lower
-precision calculations seem to be not critical for neural networks. Additional precision
-gives nothing, while being slower, takes more memory and reduces speed of communication.
+1. Why should you, a deep learning practitioner, care about floating-point?
+2. What even _is_ floating-point, especially these new floating-point formats made
+   specifically for deep learning?
+3. What practical advice is there on floating-point for deep learning?
+
+## Floating-Point? In _My_ Deep Learning?
+
+[It's more likely than you
+think!](https://knowyourmeme.com/photos/6052-its-more-likely-than-you-think)
+
+It's been known for quite some time that [deep neural networks can
+tolerate](https://arxiv.org/abs/1502.02551) [lower numerical
+precision](https://arxiv.org/abs/1502.02551). High-precision calculations turn out not
+to be that useful in training or inferencing neural networks: additional precision
+confers no benefit while being slower and less memory-efficient.
+
+Surprisingly, some models can even reach a higher accuracy with lower precision, which
+recent research attributes to the [regularization effects from the lower
+precision](https://arxiv.org/abs/1809.00095).
 
 ## Floating-Point Formats
+
+There are a lot more floating-point formats, but only a few have gained traction.
 
 ### IEEE Floating-Point Formats
 
@@ -76,6 +94,11 @@ is well-supported on modern GPUs.
 Basically the same as half-precision floating-point format, but 3 mantissa bits become
 exponent bits. In this way, bfloats can express more scale
 
+<figure class="align-center">
+  <img style="float: middle" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Three_floating-point_formats.max-700x700.png" alt="Diagram illustrating the number and type of bits in a bfloat">
+  <figcaption>The number and type of bits in a bfloat. Source: <a href="https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus">Google Cloud blog</a>.</figcaption>
+</figure>
+
 ### NVIDIA TensorFloat
 
 Strictly speaking, this isn't really its own floating-point format, just an overzealous
@@ -92,14 +115,21 @@ you're only thinking about storage, it's just a 32-bit float.
   <figcaption>The number and type of bits in an NVIDIA TensorFloat. Source: <a href="https://blogs.nvidia.com/blog/2020/05/14/tensorfloat-32-precision-format/">NVIDIA blog</a>.</figcaption>
 </figure>
 
-## Mixed Precision Training
+> TODO: why should people be excited about this??
 
-### AMP
+## Floating-Point Precision and Deep Learning
+
+There are basically three ways:
+
+1. Most GPUs: AMP
+2. TPUs: bfloat
+3. NVIDIA A100s: TensorFloat?
+
+### Automatic Mixed Precision (AMP) Training
 
 - Apex
 - PyTorch uses this... where?
 - What about TensorFlow?
-
 - https://docs.nvidia.com/deeplearning/performance/mixed-precision-training/index.html
 
 1. *Loss scaling:* multiply the loss by some large number, and divide the gradient
@@ -111,16 +141,19 @@ you're only thinking about storage, it's just a 32-bit float.
    benefits). During the weight update, the FP16 gradients are cast to FP32 to update
    the master copy.
 
-You can read more about these techniques in this [paper by NVIDIA and Baidu
+You can read more about these techniques in [this paper by NVIDIA and Baidu
 Research](https://arxiv.org/abs/1710.03740), or on the accompanying [blog post by
 NVIDIA](https://developer.nvidia.com/blog/mixed-precision-training-deep-neural-networks/).
 
+### Google TPUs
 
-## Remarks and
+If you're lucky enough to have access to Google TPUs, a good option would be to use
+bfloats.
 
-- Has an impact on training!
-- See first paragraph of
-  * https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus
+### NVIDIA A100
+
+NVIDIA A100s are the first(?) GPUs to support TensorFloat, which might be better than
+AMP?
 
 ---
 
@@ -133,4 +166,4 @@ Links
 
 [^1]: Technically speaking, there are [quadruple-](https://en.wikipedia.org/wiki/Quadruple-precision_floating-point_format) and [octuple-precision](https://en.wikipedia.org/wiki/Octuple-precision_floating-point_format) floating-point formats, but those are pretty rarely used, and certainly unheard of in deep learning.
 
-[^2]: A Tensor Core is essentially a mixed-precision FP16/FP32 core, which NVIDIA has optimized for deep learning application.
+[^2]: A Tensor Core is essentially a mixed-precision FP16/FP32 core, which NVIDIA has optimized for deep learning applications.
