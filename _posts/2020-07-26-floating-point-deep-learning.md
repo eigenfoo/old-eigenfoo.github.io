@@ -1,9 +1,8 @@
 ---
 title: Floating-Point Formats and Deep Learning
-excerpt: "Floating-point formats are not the most important consideration when working
-with deep learning models, but they can make a significant difference. What
-floating-point is, why you (a deep learning practictioner) should care, and what you can
-do about it."
+excerpt: "Floating-point format is not a crucial consideration in deep learning, but it
+can make a significant difference. What is floating-point, why should you (a deep
+learning practictioner) should care, and what can you do about it?"
 tags:
   - deep learning
   - machine learning
@@ -13,23 +12,27 @@ header:
 last_modified_at: 2020-07-26
 toc: true
 toc_sticky: true
+toc_label: "Let me float my point..."
 toc_icon: "calculator"
 mathjax: true
 ---
 
-Floating-point formats are not the most glamorous or (frankly) important consideration
-when working with deep learning models: if your model isn't working well, then your
-floating-point format certainly isn't going to save you. However, past a certain point
-of model complexity/model size/training time, floating-point formats can have a
-significant impact on your work!
+Floating-point formats are not the most glamorous or (frankly) the important
+consideration when working with deep learning models: if your model isn't working well,
+then your floating-point format certainly isn't going to save you! However, past a
+certain point of model complexity/model size/training time, your choice of
+floating-point format can have a significant impact on your model training times and
+even performance.
 
-Here's how the rest of this blog post is going to roll:
+Here's how the rest of this post is structured:
 
-1. Why should you, a deep learning practitioner, care about what floating-point format
-   your model uses?
-2. What even _is_ floating-point, especially these new floating-point formats made
-   specifically for deep learning?
-3. What practical advice is there on using floating-point formats for deep learning?
+1. [Why should you, a deep learning practitioner,
+   care](#floating-point-in-my-deep-learning) about what floating-point format your
+   model uses?
+2. [What even _is_ floating-point](#floating-point-formats), especially these new
+   floating-point formats made specifically for deep learning?
+3. [What practical advice is there](#advice-for-practitioners) on using floating-point
+   formats for deep learning?
 
 ## Floating-Point? In _My_ Deep Learning?
 
@@ -49,16 +52,17 @@ precision](https://arxiv.org/abs/1809.00095).
 Finally (and this is speculation on my part —  I haven't seen any experiments or papers
 corroborating this), it's possible that certain complicated models _cannot converge_
 unless you use an appropriately precise format. There's a drift between the analytical
-gradient update and what the actual backwards pass looks like: the lower the precision,
-the bigger the drift. I think that deep learning is particularly susceptible to an issue
-here because there's a lot of multiplications, divisions and reduction operations.
+gradient update and what the actual backward propagation looks like: the lower the
+precision, the bigger the drift. I'd expect that deep learning is particularly
+susceptible to an issue here because there's a lot of multiplications, divisions and
+reduction operations.
 
 ## Floating-Point Formats
 
 Let's take a quick look at three floating-point formats for deep learning. There are a
 lot more floating-point formats, but only a few have gained traction: floating-point
-formats require the appropriate hardware and firmware support, which restrictions
-inception and adoption.
+formats require the appropriate hardware and firmware support, which restricts the
+introduction and adoption of new formats.
 
 For a quick overview, Grigory Sapunov wrote a great [run-down of various floating-point
 formats for deep
@@ -75,20 +79,21 @@ of deep learning we are only interested three:
 half-, single- and double-precision floating-point formats)[^1].
 
 Let's take FP32 as an example. Each FP32 number is a sequence of 32 bits,
-$ b_{31} b_{30} ... b_{0} $. Altogether, this sequence represents the real number
+$$b_{31} b_{30} ... b_{0}$$. Altogether, this sequence represents the real number
 
 $$ (-1)^{b_{31}} \cdot 2^{(b_{30} b_{29} ... b_{23}) - 127} \cdot (1.b_{22} b_{21} ... b_{0})_2 $$
 
-Here, $ b_{31} $ (the _sign bit_) determines the sign of the represented value.
+Here, $$b_{31}$$ (the _sign bit_) determines the sign of the represented value.
 
-$ b_{30} $ through $ b_{23} $ determine the magnitude or scale of the represented value
+$$b_{30}$$ through $$b_{23}$$ determine the magnitude or scale of the represented value
 (notice that a change in any of these bits drastically changes the size of the
 represented value). These bits are called the _exponent_ or _scale bits_.
 
-Finally, $ b_{22} $ through $ b_{0} $ determine the precise value of the represented
+Finally, $$b_{22}$$ through $$b_{0}$$ determine the precise value of the represented
 value.  These bits are called the _mantissa_ or _precision bits_.
 
-Obviously, the more bits you have, the more you can do. Here's how the cookie crumbles:
+Obviously, the more bits you have, the more you can do. Here's how the three formats
+break down:
 
 |      | Sign Bits   | Exponent (Scale) Bits | Mantissa (Precision) Bits |
 | :--- | ----------: | --------------------: | ------------------------: |
@@ -103,8 +108,8 @@ page](https://en.wikipedia.org/wiki/Floating-point_arithmetic#IEEE_754:_floating
 and of course the [latest revision of the IEEE standard
 754](https://ieeexplore.ieee.org/document/8766229) itself.
 
-FP32 and FP64 are widely supported by software (C/C++, PyTorch, TensorFlow) and hardware
-(x86 CPUs and most NVIDIA/AMD GPUs).
+FP32 and FP64 are widely supported by both software (C/C++, PyTorch, TensorFlow) and
+hardware (x86 CPUs and most NVIDIA/AMD GPUs).
 
 FP16, on the other hand, is not as widely supported in software (you need to use [a
 special library](http://half.sourceforge.net/) to use them in C/C++). However, since
@@ -129,7 +134,7 @@ activations and gradients. Google suggests storing weights and gradients in FP32
 storing activations in bfloat16. However, in particularly gracious circumstances,
 weights can be stored in bfloat16 without a significant performance degradation.
 
-You can read a lot more about bfloat16 on the [Google Cloud
+You can read a lot more on the [Google Cloud
 blog](https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus),
 and [this paper by Intel and Facebook studying the bfloat16
 format](https://arxiv.org/abs/1905.12322).
@@ -161,12 +166,19 @@ the range of FP32 (8 bits). However, if you're not using Tensor Cores, it's just
   <figcaption>The number and type of bits in an NVIDIA TensorFloat. Source: <a href="https://blogs.nvidia.com/blog/2020/05/14/tensorfloat-32-precision-format/">NVIDIA blog</a>.</figcaption>
 </figure>
 
+One distinct advantage of TF32 is that they're kind of like FP32. To quote from the
+NVIDIA developer blog,
+
+> Applications using NVIDIA libraries enable users to harness the benefits of TF32 with no
+> code change required. TF32 Tensor Cores operate on FP32 inputs and produce results in
+> FP32. Non-matrix operations continue to use FP32.
+
 You can read more about TF32 [on the NVIDIA
 blog](https://blogs.nvidia.com/blog/2020/05/14/tensorfloat-32-precision-format/), and
 about its hardware support in the Ampere architecture on [the NVIDIA developer
 blog](https://developer.nvidia.com/blog/nvidia-ampere-architecture-in-depth/).
 
-TF32 is not at all in the C/C++ standard, but is supported in [CUDA
+TF32 is not in the C/C++ standard at all, but is supported in [CUDA
 11](https://developer.nvidia.com/blog/cuda-11-features-revealed/).
 
 Hardware-wise, the NVIDIA A100 is the first GPU (and, at the time of writing, the only
@@ -186,20 +198,19 @@ hardware you have available to you.
 ### Automatic mixed precision (AMP) training — a good default
 
 Most deep learning stacks support mixed-precision training, which is a pretty good
-option to take advantage of better
+default option to reap some of the benefits of low-precision training, while still
+reasonably avoiding underflow and overflow problems.
 
 TensorFlow supports [mixed-precision training
 natively](https://www.tensorflow.org/guide/mixed_precision), whereas the [NVIDIA Apex
 library](https://github.com/NVIDIA/apex) makes automatic mixed precision training
-available in PyTorch.
-
-To get started, take a look at NVIDIA's [developer guide for
+available in PyTorch. To get started, take a look at NVIDIA's [developer guide for
 AMP](https://developer.nvidia.com/automatic-mixed-precision), and [documentation for
 training in mixed
 precision](https://docs.nvidia.com/deeplearning/performance/mixed-precision-training/index.html).
 
-I think it's worth going over the gist of mixed precision training. There are basically
-two main tricks:
+It's worth going over the gist of mixed precision training. There are basically two main
+tricks:
 
 1. *Loss scaling:* multiply the loss by some large number, and divide the gradient
    updates by this same large number. This avoids the loss underflowing (i.e. clamping
