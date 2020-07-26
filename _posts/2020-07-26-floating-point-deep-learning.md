@@ -2,7 +2,7 @@
 title: Floating-Point Formats and Deep Learning
 excerpt: "Floating-point format is not a crucial consideration in deep learning, but it
 can make a significant difference. What is floating-point, why should you (a deep
-learning practictioner) should care, and what can you do about it?"
+learning practictioner) care, and what can you do about it?"
 tags:
   - deep learning
   - machine learning
