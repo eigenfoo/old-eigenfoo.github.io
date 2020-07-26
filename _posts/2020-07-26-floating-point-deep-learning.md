@@ -1,7 +1,9 @@
 ---
-title: Floating-Point and Deep Learning
-excerpt: "What floating-point is, why you (a deep learner) should care, and what you (a
-deep learner) can do about it."
+title: Floating-Point Formats and Deep Learning
+excerpt: "Floating-point formats are not the most important consideration when working
+with deep learning models, but they can make a significant difference. What
+floating-point is, why you (a deep learning practictioner) should care, and what you can
+do about it."
 tags:
   - deep learning
   - machine learning
@@ -13,12 +15,7 @@ toc: true
 toc_sticky: true
 toc_icon: "calculator"
 mathjax: true
-search: false
 ---
-
-{% if page.noindex == true %}
-  <meta name="robots" content="noindex">
-{% endif %}
 
 Floating-point formats are not the most glamorous or (frankly) important consideration
 when working with deep learning models: if your model isn't working well, then your
@@ -26,7 +23,7 @@ floating-point format certainly isn't going to save you. However, past a certain
 of model complexity/model size/training time, floating-point formats can have a
 significant impact on your work!
 
-So here's how the rest of this blog post is going to roll:
+Here's how the rest of this blog post is going to roll:
 
 1. Why should you, a deep learning practitioner, care about what floating-point format
    your model uses?
@@ -78,18 +75,18 @@ of deep learning we are only interested three:
 half-, single- and double-precision floating-point formats)[^1].
 
 Let's take FP32 as an example. Each FP32 number is a sequence of 32 bits,
-$b_{31} b_{30} ... b_{0}$. Altogether, this sequence represents the real number
+$ b_{31} b_{30} ... b_{0} $. Altogether, this sequence represents the real number
 
 $$ (-1)^{b_{31}} \cdot 2^{(b_{30} b_{29} ... b_{23}) - 127} \cdot (1.b_{22} b_{21} ... b_{0})_2 $$
 
-Here, $b_{31}$ (the _sign bit_) determines the sign of the represented value.
+Here, $ b_{31} $ (the _sign bit_) determines the sign of the represented value.
 
-$b_{30}$ through $b_{23}$ determine the magnitude or scale of the represented value
+$ b_{30} $ through $ b_{23} $ determine the magnitude or scale of the represented value
 (notice that a change in any of these bits drastically changes the size of the
 represented value). These bits are called the _exponent_ or _scale bits_.
 
-Finally, $b_{22}$ through $b_{0}$ determine the precise value of the represented value.
-These bits are called the _mantissa_ or _precision bits_.
+Finally, $ b_{22} $ through $ b_{0} $ determine the precise value of the represented
+value.  These bits are called the _mantissa_ or _precision bits_.
 
 Obviously, the more bits you have, the more you can do. Here's how the cookie crumbles:
 
@@ -175,7 +172,7 @@ TF32 is not at all in the C/C++ standard, but is supported in [CUDA
 Hardware-wise, the NVIDIA A100 is the first GPU (and, at the time of writing, the only
 device) supporting TF32.
 
-## Practical Advice
+## Advice for Practitioners
 
 The first thing to say is that floating-point formats are _by no means_ the most
 important consideration for your deep learning model — not even close. Floating-point
