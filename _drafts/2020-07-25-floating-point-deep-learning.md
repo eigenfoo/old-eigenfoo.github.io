@@ -8,14 +8,31 @@ tags:
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background15.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
-last_modified_at: 2020-07-25
+last_modified_at: 2020-07-26
+toc: true
+toc_sticky: true
+toc_icon: "calculator"
 mathjax: true
+search: false
 ---
 
-1. Why should you, a deep learning practitioner, care about floating-point?
+{% if page.noindex == true %}
+  <meta name="robots" content="noindex">
+{% endif %}
+
+Floating-point formats are not the most glamorous or (frankly) important consideration
+when working with deep learning models: if your model isn't working well, then your
+floating-point format certainly isn't going to save you. However, past a certain point
+of model complexity/model size/training time, floating-point formats can have a
+significant impact on your work!
+
+So here's how the rest of this blog post is going to roll:
+
+1. Why should you, a deep learning practitioner, care about what floating-point format
+   your model uses?
 2. What even _is_ floating-point, especially these new floating-point formats made
    specifically for deep learning?
-3. What practical advice is there on floating-point for deep learning?
+3. What practical advice is there on using floating-point formats for deep learning?
 
 ## Floating-Point? In _My_ Deep Learning?
 
@@ -32,7 +49,7 @@ Surprisingly, some models can even reach a higher accuracy with lower precision,
 recent research attributes to the [regularization effects from the lower
 precision](https://arxiv.org/abs/1809.00095).
 
-Finally (and this is speculation on my part - I haven't seen any experiments or papers
+Finally (and this is speculation on my part —  I haven't seen any experiments or papers
 corroborating this), it's possible that certain complicated models _cannot converge_
 unless you use an appropriately precise format. There's a drift between the analytical
 gradient update and what the actual backwards pass looks like: the lower the precision,
@@ -46,7 +63,11 @@ lot more floating-point formats, but only a few have gained traction: floating-p
 formats require the appropriate hardware and firmware support, which restrictions
 inception and adoption.
 
-### IEEE Floating-Point Formats
+For a quick overview, Grigory Sapunov wrote a great [run-down of various floating-point
+formats for deep
+learning](https://medium.com/@moocaholic/fp64-fp32-fp16-bfloat16-tf32-and-other-members-of-the-zoo-a1ca7897d407).
+
+### IEEE floating-point formats
 
 These floating-point formats are probably what most people think of when someone says
 "floating-point". The IEEE standard 754 sets out several formats, but for the purposes
@@ -70,7 +91,7 @@ represented value). These bits are called the _exponent_ or _scale bits_.
 Finally, $b_{22}$ through $b_{0}$ determine the precise value of the represented value.
 These bits are called the _mantissa_ or _precision bits_.
 
-Obviously, the more bits you have, the more you can do. Here's how that cookie crumbles:
+Obviously, the more bits you have, the more you can do. Here's how the cookie crumbles:
 
 |      | Sign Bits   | Exponent (Scale) Bits | Mantissa (Precision) Bits |
 | :--- | ----------: | --------------------: | ------------------------: |
@@ -97,10 +118,9 @@ modern GPUs.
 
 ### Google BFloat16
 
-a.k.a. the Brain Floating-Point Format (after Google Brain),
-
-Basically the same as half-precision floating-point format, but 3 mantissa bits become
-exponent bits (i.e. bfloat16 trades 3 bits' worth of precision for scale).
+BFloat16 (a.k.a. the Brain Floating-Point Format, after Google Brain) is basically the
+same as FP16, but 3 mantissa bits become exponent bits (i.e. bfloat16 trades 3 bits'
+worth of precision for scale).
 
 <figure class="align-center">
   <img style="float: middle" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Three_floating-point_formats.max-700x700.png" alt="Diagram illustrating the number and type of bits in bfloat16.">
@@ -157,18 +177,32 @@ device) supporting TF32.
 
 ## Practical Advice
 
-Advice is heavily dependent on what hardware you have available to you:
+The first thing to say is that floating-point formats are _by no means_ the most
+important consideration for your deep learning model — not even close. Floating-point
+formats will most likely only make a difference for very large or complex models, for
+which fitting the model on GPU memory is a challenge, or for which training times are
+excruciatingly long.
 
-1. Most GPUs: AMP
-2. Google TPUs: bfloat
-3. NVIDIA A100s: TensorFloat?
+The second thing to say is that any practical advice has to be heavily dependent on what
+hardware you have available to you.
 
-### Automatic Mixed Precision (AMP) Training
+### Automatic mixed precision (AMP) training — a good default
 
-- Apex
-- PyTorch uses this... where?
-- What about TensorFlow?
-- https://docs.nvidia.com/deeplearning/performance/mixed-precision-training/index.html
+Most deep learning stacks support mixed-precision training, which is a pretty good
+option to take advantage of better
+
+TensorFlow supports [mixed-precision training
+natively](https://www.tensorflow.org/guide/mixed_precision), whereas the [NVIDIA Apex
+library](https://github.com/NVIDIA/apex) makes automatic mixed precision training
+available in PyTorch.
+
+To get started, take a look at NVIDIA's [developer guide for
+AMP](https://developer.nvidia.com/automatic-mixed-precision), and [documentation for
+training in mixed
+precision](https://docs.nvidia.com/deeplearning/performance/mixed-precision-training/index.html).
+
+I think it's worth going over the gist of mixed precision training. There are basically
+two main tricks:
 
 1. *Loss scaling:* multiply the loss by some large number, and divide the gradient
    updates by this same large number. This avoids the loss underflowing (i.e. clamping
@@ -183,22 +217,20 @@ You can read more about these techniques in [this paper by NVIDIA and Baidu
 Research](https://arxiv.org/abs/1710.03740), or on the accompanying [blog post by
 NVIDIA](https://developer.nvidia.com/blog/mixed-precision-training-deep-neural-networks/).
 
-### Google TPUs
+### Alternative floating-point formats — make sure it'll be worth it
 
-If you're lucky enough to have access to Google TPUs, a good option would be to use
-bfloats.
+If you've already trained your model in mixed precision, it might not be worth the time
+or effort to port your code to take advantage of an alternative floating-point format
+and bleeding edge hardware.
 
-### NVIDIA A100
+However, if you choose to go that route, make sure your use case really demands it.
+Perhaps you can't scale up your model without using bfloat16, or you really need to cut
+down on training times.
 
-NVIDIA A100s are the first(?) GPUs to support TensorFloat, which might be better than
-AMP?
-
----
-
-Links
-
-- https://medium.com/@moocaholic/fp64-fp32-fp16-bfloat16-tf32-and-other-members-of-the-zoo-a1ca7897d407
-- https://www.quora.com/What-is-the-difference-between-FP16-and-FP32-when-doing-deep-learning/answer/Travis-Addair
+Unfortunately, I don't have a well-informed opinion on how bfloat16 stacks up against
+TF32, so "do your homework" is all I can advise. However, since the NVIDIA A100s only
+just (at the time of writing) dropped into the market, it'll be interesting to see what
+the machine learning community thinks of the various low precision options available.
 
 ---
 
