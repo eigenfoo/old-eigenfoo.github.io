@@ -12,7 +12,7 @@ header:
 last_modified_at: 2020-07-26
 toc: true
 toc_sticky: true
-toc_label: "Let me float my point..."
+toc_label: "Wait, where's the water?"
 toc_icon: "calculator"
 mathjax: true
 ---
