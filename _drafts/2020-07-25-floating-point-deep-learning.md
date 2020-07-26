@@ -39,14 +39,14 @@ There are a lot more floating-point formats, but only a few have gained traction
 ### IEEE Floating-Point Formats
 
 These floating-point formats are probably what most people think of when someone says
-"floating-point". They were defined by the IEEE standard 754, which sets out several
-formats. For the purposes of deep learning, we are only interested three:
+"floating-point". The IEEE standard 754 sets out several formats, but for the purposes
+of deep learning we are only interested three:
 [FP16](https://en.wikipedia.org/wiki/Half-precision_floating-point_format),
 [FP32](https://en.wikipedia.org/wiki/Single-precision_floating-point_format) and
 [FP64](https://en.wikipedia.org/wiki/Double-precision_floating-point_format) (a.k.a.
 half-, single- and double-precision floating-point formats)[^1].
 
-Let's take FP32 as an example. Each FP32 number is represented as a sequence of 32 bits,
+Let's take FP32 as an example. Each FP32 number is a sequence of 32 bits,
 $b_{31} b_{30} ... b_{0}$. Altogether, this sequence represents the real number
 
 $$ (-1)^{b_{31}} \cdot 2^{(b_{30} b_{29} ... b_{23}) - 127} \cdot (1.b_{22} b_{21} ... b_{0})_2 $$
@@ -69,27 +69,29 @@ tabulated, they look like:
 | FP32 | 1           | 8                     | 23                        |
 | FP64 | 1           | 11                    | 53                        |
 
-There are some details that need to be ironed out (e.g. how to represent NaNs, positive
-and negative infinities), but by and large, this is how floating point numbers work.
-
-A lot more detail can be found on their [Wikipedia
-entry](https://en.wikipedia.org/wiki/Floating-point_arithmetic#IEEE_754:_floating_point_in_modern_computers)
+There are some details that I'm leaving out here (e.g. how to represent NaNs, positive
+and negative infinities), but this is largely how floating point numbers work. A lot
+more detail can be found on the [Wikipedia
+page](https://en.wikipedia.org/wiki/Floating-point_arithmetic#IEEE_754:_floating_point_in_modern_computers)
 and of course the [latest revision of the IEEE 754
 standard](https://ieeexplore.ieee.org/document/8766229) itself.
 
 FP32 and FP64 are widely supported by software (C/C++, PyTorch, TensorFlow) and hardware
-(x86 CPUs and most NVIDIA/AMD GPUs). FP16, on the other hand, is not supported in C/C++
-(you need to use [a special library](http://half.sourceforge.net/)). However, since deep
-learning is trending towards favoring FP16 over FP32, it has found support in the main
-deep learning frameworks (e.g. `tf.float16` and `torch.float16`).
+(x86 CPUs and most NVIDIA/AMD GPUs).
 
-In terms of hardware support, FP16 is not supported in x86 CPUs as a distinct type, but
-is well-supported on modern GPUs.
+FP16, on the other hand, is not as widely supported in software (you need to use [a
+special library](http://half.sourceforge.net/) to use them in C/C++). However, since
+deep learning is trending towards favoring FP16 over FP32, it has found support in the
+main deep learning frameworks (e.g. `tf.float16` and `torch.float16`). In terms of
+hardware, FP16 is not supported in x86 CPUs as a distinct type, but is well-supported on
+modern GPUs.
 
-### Google bfloat16
+### Google BFloat16
 
 - https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus
 - https://www.nextplatform.com/2018/05/10/tearing-apart-googles-tpu-3-0-ai-coprocessor/
+
+a.k.a. Brain Floating-Point Format, after Google Brain.
 
 Basically the same as half-precision floating-point format, but 3 mantissa bits become
 exponent bits. In this way, bfloats can express more scale
