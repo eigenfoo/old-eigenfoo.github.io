@@ -25,16 +25,26 @@ think!](https://knowyourmeme.com/photos/6052-its-more-likely-than-you-think)
 It's been known for quite some time that [deep neural networks can
 tolerate](https://arxiv.org/abs/1502.02551) [lower numerical
 precision](https://arxiv.org/abs/1502.02551). High-precision calculations turn out not
-to be that useful in training or inferencing neural networks: additional precision
+to be that useful in training or inferencing neural networks: the additional precision
 confers no benefit while being slower and less memory-efficient.
 
 Surprisingly, some models can even reach a higher accuracy with lower precision, which
 recent research attributes to the [regularization effects from the lower
 precision](https://arxiv.org/abs/1809.00095).
 
+Finally (and this is speculation on my part - I haven't seen any experiments or papers
+corroborating this), it's possible that certain complicated models _cannot converge_
+unless you use an appropriately precise format. There's a drift between the analytical
+gradient update and what the actual backwards pass looks like: the lower the precision,
+the bigger the drift. I think that deep learning is particularly susceptible to an issue
+here because there's a lot of multiplications, divisions and reduction operations.
+
 ## Floating-Point Formats
 
-There are a lot more floating-point formats, but only a few have gained traction.
+Let's take a quick look at three floating-point formats for deep learning. There are a
+lot more floating-point formats, but only a few have gained traction: floating-point
+formats require the appropriate hardware and firmware support, which restrictions
+inception and adoption.
 
 ### IEEE Floating-Point Formats
 
@@ -60,8 +70,7 @@ represented value). These bits are called the _exponent_ or _scale bits_.
 Finally, $b_{22}$ through $b_{0}$ determine the precise value of the represented value.
 These bits are called the _mantissa_ or _precision bits_.
 
-The number of exponent and mantissa bits change as we go from FP16 to FP32 to FP64. When
-tabulated, they look like:
+Obviously, the more bits you have, the more you can do. Here's how that cookie crumbles:
 
 |      | Sign Bits   | Exponent (Scale) Bits | Mantissa (Precision) Bits |
 | :--- | ----------: | --------------------: | ------------------------: |
@@ -73,8 +82,8 @@ There are some details that I'm leaving out here (e.g. how to represent NaNs, po
 and negative infinities), but this is largely how floating point numbers work. A lot
 more detail can be found on the [Wikipedia
 page](https://en.wikipedia.org/wiki/Floating-point_arithmetic#IEEE_754:_floating_point_in_modern_computers)
-and of course the [latest revision of the IEEE 754
-standard](https://ieeexplore.ieee.org/document/8766229) itself.
+and of course the [latest revision of the IEEE standard
+754](https://ieeexplore.ieee.org/document/8766229) itself.
 
 FP32 and FP64 are widely supported by software (C/C++, PyTorch, TensorFlow) and hardware
 (x86 CPUs and most NVIDIA/AMD GPUs).
@@ -88,18 +97,36 @@ modern GPUs.
 
 ### Google BFloat16
 
-- https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus
-- https://www.nextplatform.com/2018/05/10/tearing-apart-googles-tpu-3-0-ai-coprocessor/
-
-a.k.a. Brain Floating-Point Format, after Google Brain.
+a.k.a. the Brain Floating-Point Format (after Google Brain),
 
 Basically the same as half-precision floating-point format, but 3 mantissa bits become
-exponent bits. In this way, bfloats can express more scale
+exponent bits (i.e. bfloat16 trades 3 bits' worth of precision for scale).
 
 <figure class="align-center">
-  <img style="float: middle" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Three_floating-point_formats.max-700x700.png" alt="Diagram illustrating the number and type of bits in a bfloat">
-  <figcaption>The number and type of bits in a bfloat. Source: <a href="https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus">Google Cloud blog</a>.</figcaption>
+  <img style="float: middle" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Three_floating-point_formats.max-700x700.png" alt="Diagram illustrating the number and type of bits in bfloat16.">
+  <figcaption>The number and type of bits in bfloat16. Source: <a href="https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus">Google Cloud blog</a>.</figcaption>
 </figure>
+
+When it comes to deep learning, there are generally three "flavors" of values: weights,
+activations and gradients. Google suggests storing weights and gradients in FP32, and
+storing activations in bfloat16. However, in particularly gracious circumstances,
+weights can be stored in bfloat16 without a significant performance degradation.
+
+You can read a lot more about bfloat16 on the [Google Cloud
+blog](https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus),
+and [this paper by Intel and Facebook studying the bfloat16
+format](https://arxiv.org/abs/1905.12322).
+
+In terms of software support, bfloat16 is not supported in C/C++, but is supported in
+TensorFlow ([`tf.bfloat16`](https://www.tensorflow.org/api_docs/python/tf#bfloat16)) and
+PyTorch ([`torch.bfloat16`](https://www.tensorflow.org/api_docs/python/tf#bfloat16)).
+
+In terms of hardware support, it is supported by [some modern
+CPUS](https://en.wikipedia.org/wiki/Cooper_Lake_(microarchitecture)), but the real
+support comes out in GPUs and ASICs. At the time of writing, bfloat16 is supported by
+the NVIDIA A100 (the first GPU to support it!), and [will be supported in future AMD
+GPUs](https://www.techpowerup.com/260344/future-amd-gpu-architecture-to-implement-bfloat16-hardware).
+And of course, it is supported by Google TPU v2/v3.
 
 ### NVIDIA TensorFloat
 
@@ -107,24 +134,33 @@ Strictly speaking, this isn't really its own floating-point format, just an over
 branding of the technique that NVIDIA developed to train in mixed precision on their
 Tensor Core hardware[^2].
 
-An NVIDIA TensorFloat is just a 32-bit float that drops 13 precision bits in order to
-execute on Tensor Cores. Thus, it has the precision of FP16 (10 bits), with the range of
-FP32 (8 bits). However, if you're not using Tensor Cores, it's just a 32-bit float; if
-you're only thinking about storage, it's just a 32-bit float.
+An NVIDIA TensorFloat (a.k.a. TF32) is just a 32-bit float that drops 13 precision bits
+in order to execute on Tensor Cores. Thus, it has the precision of FP16 (10 bits), with
+the range of FP32 (8 bits). However, if you're not using Tensor Cores, it's just a
+32-bit float; if you're only thinking about storage, it's just a 32-bit float.
 
 <figure class="align-center">
   <img style="float: middle" src="https://blogs.nvidia.com/wp-content/uploads/2020/05/tf32-Mantissa-chart-hi-res-FINAL.png" alt="Diagram illustrating the number and type of bits in an NVIDIA TensorFloat">
   <figcaption>The number and type of bits in an NVIDIA TensorFloat. Source: <a href="https://blogs.nvidia.com/blog/2020/05/14/tensorfloat-32-precision-format/">NVIDIA blog</a>.</figcaption>
 </figure>
 
-> TODO: why should people be excited about this??
+You can read more about TF32 [on the NVIDIA
+blog](https://blogs.nvidia.com/blog/2020/05/14/tensorfloat-32-precision-format/), and
+about its hardware support in the Ampere architecture on [the NVIDIA developer
+blog](https://developer.nvidia.com/blog/nvidia-ampere-architecture-in-depth/).
 
-## Floating-Point Precision and Deep Learning
+TF32 is not at all in the C/C++ standard, but is supported in [CUDA
+11](https://developer.nvidia.com/blog/cuda-11-features-revealed/).
 
-There are basically three ways:
+Hardware-wise, the NVIDIA A100 is the first GPU (and, at the time of writing, the only
+device) supporting TF32.
+
+## Practical Advice
+
+Advice is heavily dependent on what hardware you have available to you:
 
 1. Most GPUs: AMP
-2. TPUs: bfloat
+2. Google TPUs: bfloat
 3. NVIDIA A100s: TensorFloat?
 
 ### Automatic Mixed Precision (AMP) Training
