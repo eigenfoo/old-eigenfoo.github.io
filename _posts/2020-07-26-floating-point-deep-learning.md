@@ -41,7 +41,7 @@ think!](https://knowyourmeme.com/photos/6052-its-more-likely-than-you-think)
 
 It's been known for quite some time that [deep neural networks can
 tolerate](https://arxiv.org/abs/1502.02551) [lower numerical
-precision](https://arxiv.org/abs/1502.02551). High-precision calculations turn out not
+precision](https://arxiv.org/abs/1412.7024). High-precision calculations turn out not
 to be that useful in training or inferencing neural networks: the additional precision
 confers no benefit while being slower and less memory-efficient.
 
