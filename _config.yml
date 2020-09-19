@@ -95,8 +95,9 @@ social:
   type                   : # Person or Organization (defaults to Person)
   name                   : # If the user or organization name differs from the site's name
   links                  : # An array of links to social media profiles
-    - "https://twitter.com/_eigenfoo"
-    - "https://www.linkedin.com/in/eigenfoo/"
+    - "https://twitter.com/_eigenfoo/"
+    - "https://github.com/eigenfoo/"
+    - "https://linkedin.com/in/eigenfoo/"
 
 # Analytics
 analytics:
@@ -117,13 +118,16 @@ author:
       url: "https://raw.githubusercontent.com/eigenfoo/eigenfoo.xyz/master/assets/images/email.png"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/@_eigenfoo/"
+      url: "https://twitter.com/_eigenfoo/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/eigenfoo/"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/eigenfoo/"
+    - label: "OpenPGP"
+      icon: "fas fa-key"
+      url: "https://eigenfoo.xyz/public.asc"
 
 # Site Footer
 footer:
