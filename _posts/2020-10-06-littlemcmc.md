@@ -1,5 +1,5 @@
 ---
-title: "`littlemcmc` — A Standalone HMC and NUTS Sampler"
+title: "`littlemcmc` — A Standalone HMC and NUTS Sampler in Python"
 excerpt: "Introducing `littlemcmc` — a lightweight and performant implementation of HMC
 and NUTS in Python, spun out of the PyMC project."
 tags:
