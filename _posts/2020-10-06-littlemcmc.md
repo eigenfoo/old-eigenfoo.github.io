@@ -10,12 +10,7 @@ header:
   overlay_image: /assets/images/cool-backgrounds/cool-background6.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
 last_modified_at: 2020-10-06
-search: false
 ---
-
-{% if page.noindex == true %}
-  <meta name="robots" content="noindex">
-{% endif %}
 
 [![LittleMCMC logo](https://raw.githubusercontent.com/eigenfoo/littlemcmc/main/docs/_static/logo/default-cropped.png){: .align-center}](https://github.com/eigenfoo/littlemcmc)
 
