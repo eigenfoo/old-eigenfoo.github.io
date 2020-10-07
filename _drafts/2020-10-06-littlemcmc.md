@@ -19,16 +19,15 @@ search: false
 
 [![LittleMCMC logo](https://raw.githubusercontent.com/eigenfoo/littlemcmc/main/docs/_static/logo/default-cropped.png){: .align-center}](https://github.com/eigenfoo/littlemcmc)
 
-Recently there has been a modularization (or, if you're hip with the tech-lingo,
-an
+Recently there has been a modularization (or, if you're hip with tech-lingo, an
 [_unbundling_](https://techcrunch.com/2015/04/18/the-unbundling-of-everything/))
 of Bayesian modelling libraries. Whereas before, probability distributions,
 model specification, inference and diagnostics were more or less rolled into one
 library, it's becoming more and more realistic to specify a model in one
-framework, accelerate it using another, perform inference in a third and use a
-fourth library to visualize the results. (For example, Junpeng Lao has recently
-had [good success](https://twitter.com/junpenglao/status/1309470970223226882)
-doing exactly this!)
+library, accelerate it using another, perform inference with a third and use a
+fourth to visualize the results. (For example, Junpeng Lao has recently had
+[good success](https://twitter.com/junpenglao/status/1309470970223226882) doing
+exactly this!)
 
 It's in this spirit of unbundling that the PyMC developers wanted to [spin out
 the core HMC and NUTS samplers from PyMC3 into a separate
