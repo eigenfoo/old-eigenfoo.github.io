@@ -12,7 +12,7 @@ header:
 last_modified_at: 2020-10-06
 ---
 
-[![LittleMCMC logo](https://raw.githubusercontent.com/eigenfoo/littlemcmc/main/docs/_static/logo/default-cropped.png){: .align-center}](https://github.com/eigenfoo/littlemcmc)
+[![LittleMCMC logo](https://raw.githubusercontent.com/eigenfoo/littlemcmc/master/docs/_static/logo/default-cropped.png){: .align-center}](https://github.com/eigenfoo/littlemcmc)
 
 Recently there has been a modularization (or, if you're hip with tech-lingo, an
 [_unbundling_](https://techcrunch.com/2015/04/18/the-unbundling-of-everything/))
