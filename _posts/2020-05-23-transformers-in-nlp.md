@@ -29,8 +29,8 @@ at the time of writing).
 ## Some Architectures and Developments
 
 Here's an (obviously) abbreviated history of Transformer-based models in NLP[^1] in
-(roughly) chronological order. Note that I also worth cover some other
-non-Transformer-based models, because I think they illuminate the history of NLP.
+(roughly) chronological order. I also cover some other non-Transformer-based models,
+because I think they illuminate the history of NLP.
 
 1. word2vec and GloVe
    * These were the first instances of word embeddings pre-trained on large amounts of
