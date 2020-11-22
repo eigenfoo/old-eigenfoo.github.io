@@ -43,8 +43,7 @@ How do these libraries differ?
    - JAX mimics NumPy as far as possible. PyTorch and TensorFlow all
    - The fewer functions you 
 1. Hardware support
-   - Much more prosaic, but obviously the more hardware you can support, the better. Along this
-     axis, it's fairly
+   - Much more prosaic, but obviously the more hardware you can support, the better.
 
 With this in mind, we can go through the zoo of tensor computation libraries:
 
@@ -52,6 +51,7 @@ With this in mind, we can go through the zoo of tensor computation libraries:
 - JAX
   * Trax and Flax
 - Theano
+  * Static graph
 - Numba and Cython aren't tensor computation libraries (they don't deal with tensors), but (at least
   for me) share the same headspace as all of the things that do, so it's worth disambiguating.
 
@@ -64,15 +64,31 @@ With this in mind, we can go through the zoo of tensor computation libraries:
 
 https://sjmielke.com/jax-purify.htm
 
-## Tension between higher-level programming constructs and tensor computation
+## There is tension between higher-level programming constructs and tensor computation
 
-E.g. if-else statements, for loops, random number generation... are all hard! Let's take them one by
-one.
+It all comes down to how the library builds the computational graph, but whatever you do, there's
+usually some problem with higher-level programming constructs. Whether they're obvious problems or
+edge cases, you can usually expect them.
+
+E.g. control flow
+
+With TensorFlow, you had to compile the graph ahead of time - how can you do loops?
+
+Conditional statements are... weird?
+
+However, depending on how the tensor computation library works, other things may be hard too - e.g.
+random number generation.
+
+- If-Else statements
+- For loops
+  * https://jax.readthedocs.io/en/latest/jax.lax.html#control-flow-operators
+  * https://theano-pymc.readthedocs.io/en/latest/library/scan.html
+  * https://jax.readthedocs.io/en/latest/notebooks/Common_Gotchas_in_JAX.html#%F0%9F%94%AA-Control-Flow
 
 ## Don't fret about understanding how autodifferentiation works
 
-Certainly it's know what autodifferentiation is and how it's different from numerical or symbolic
-differentiation, but
+Certainly it's good to know what autodifferentiation is and how it's different from numerical or
+symbolic differentiation, but I probably put too much effort into understanding the 
 
 https://dl.acm.org/doi/abs/10.5555/3122009.3242010
 
