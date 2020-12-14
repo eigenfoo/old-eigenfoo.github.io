@@ -1,5 +1,5 @@
 ---
-title: What I Wish Someone Had Told Me About Tensor Computation Libraries
+title: Anatomy of a Tensor Computation Library
 excerpt: ""
 tags:
   - theano
@@ -9,25 +9,39 @@ tags:
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background12.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
+toc: true
+toc_sticky: true
+toc_label: "Do not feed the animals"
+toc_icon: "kiwi-bird"
 last_modified_at: 2020-11-22
 ---
 
-## What even is all this stuff?
+I was first introduced to PyTorch and TensorFlow and, having no other reference, I thought they were
+the prototypical examples of tensor libraries. Then I heard about JAX (not to mention [the PyMC
+developers announced that Theano would have a new JAX
+backend](https://pymc-devs.medium.com/the-future-of-pymc3-or-theano-is-dead-long-live-theano-d8005f8a0e9b)),
+which seemed to be a GPU-friendly version of NumPy? But JAX also ships with `jit` and `vmap`, which
+are [clearly first-class citizens](https://jax.readthedocs.io/en/latest/notebooks/quickstart.html).
+And isn't JIT that thing that Numba does? And isn't Numba competing with Cython?
 
-I had used PyTorch and TensorFlow, which I thought were the prototypical examples of tensor
-libraries - after all, 
+The resulting confusion prompted this blog post.
 
-JAX, but JAX also ships with `jit` and `vmap`, which are [clearly first-class
-citizens](https://jax.readthedocs.io/en/latest/notebooks/quickstart.html). And isn't JIT that thing
-that Numba does?
+Similar to [my previous post on the anatomy of probabilistic programming
+frameworks](https://eigenfoo.xyz/prob-prog-frameworks/), I'll highlight
 
-What do they all do? They provide ways of specifying and building computational graphs[^1] and
+## Dissecting Tensor Computation Libraries
 
-1. Running the computation itself (duh), but also running other computations (the most important
-   example is taking gradients)
-2. Manipulating or optimizing the computation itself (think symbolic
-3. Providing the "best execution" for this computation (whether it's changing the runtime by JITting
-   it, or by sending it to a GPU/TPU)
+First, let's take a step back and ask: what do all these tensor computation libraries do? They
+provide ways of specifying and building computational graphs[^1] and
+
+1. Running the computation itself (duh), but also running "related" computations: the most salient
+   example being computing gradients.
+1. Providing "best execution" for this computation: whether it's changing the execution by
+   (just-in-time) compiling it, or by utilizing special hardware (GPUs/TPUs), or by vectorizing the
+   computation, or in any number of different ways.
+1. Optimizing the computation or allowing users to manipulate the computational graph itself: think
+   symbolic simplifications (e.g.  `xy/x = y`), numerical stability (e.g. `log(1 + x)` for small
+   values of `x`), or solving for `x` given `3x + 1 = 2 * (2x - 6)`.
 
 How do these libraries differ?
 
@@ -47,13 +61,24 @@ How do these libraries differ?
 
 With this in mind, we can go through the zoo of tensor computation libraries:
 
-- PyTorch and TensorFlow
-- JAX
+## A Zoo of Tensor Computation Libraries
+
+Having outlined the basic internals of tensor computation libraries, I think it’s helpful to go
+through several of the popular libraries as examples. I've tried to link to the relevant
+documentation where possible.
+
+## PyTorch and TensorFlow
+
+## JAX
   * Trax and Flax
-- Theano
+
+## Theano
   * Static graph
-- Numba and Cython aren't tensor computation libraries (they don't deal with tensors), but (at least
-  for me) share the same headspace as all of the things that do, so it's worth disambiguating.
+
+## Numba and Cython
+
+Numba and Cython aren't tensor computation libraries (they don't deal with tensors), but (at least
+for me) share the same headspace as all of the things that do, so it's worth disambiguating.
 
 > PyTorch builds up a graph as you compute the forward pass, and one call to `backward()` on some
 > "result" node then augments each intermediate node in the graph with the gradient of the result node
@@ -85,25 +110,12 @@ random number generation.
   * https://theano-pymc.readthedocs.io/en/latest/library/scan.html
   * https://jax.readthedocs.io/en/latest/notebooks/Common_Gotchas_in_JAX.html#%F0%9F%94%AA-Control-Flow
 
-## Don't fret about understanding how autodifferentiation works
-
-Certainly it's good to know what autodifferentiation is and how it's different from numerical or
-symbolic differentiation, but I probably put too much effort into understanding the 
-
-https://dl.acm.org/doi/abs/10.5555/3122009.3242010
-
-Just read about forward-mode autodifferentiation: what it is, why it's not great, why backward-mode
-autodifferentiation 
-
-- Forward mode auto differentiation: read about what it is, why it's not that popular (especially
-  with the kinds of computation that we want to do these days)
-- Backward mode auto differentiation
-- Then think of differentiation as a higher order operation - we don't care about how it's done, we
-  just need `df = f.grad()`.
+- https://kth.instructure.com/files/1864796/download
+- https://jdhao.github.io/2017/11/12/pytorch-computation-graph/
+- https://medium.com/intuitionmachine/pytorch-dynamic-computational-graphs-and-modular-deep-learning-7e7f89f18d1
 
 ---
 
 [^1]: I think this definition is reasonable, at least for a sufficiently loose definition of
 "computational graph" (i.e. if you consider computer code and call stack as a "computational
 graph").
-
