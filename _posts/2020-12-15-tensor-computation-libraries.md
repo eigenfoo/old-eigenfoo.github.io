@@ -1,8 +1,8 @@
 ---
-title: What I Wish Someone Told Me About Tensor Computation Libraries
+title: What I Wish Someone Had Told Me About Tensor Computation Libraries
 excerpt: "In this blog post, we'll break down what tensor computation libraries actually are, and
-how they can differ. We'll take a detailed look at some popular libraries as examples, and end with
-an observation on the future of Theano in the context of contemporary tensor computation libraries.
+how they differ. We'll take a detailed look at some popular libraries, and end with an observation
+on the future of Theano in the context of contemporary tensor computation libraries."
 tags:
   - open source
   - machine learning
@@ -17,18 +17,18 @@ toc_label: "Do not feed the animals"
 toc_icon: "kiwi-bird"
 ---
 
-Sometimes it feels like it's raining tensor computation libraries, or computational graph libraries,
-or symbolic algebra libraries.
+Sometimes I get confused with tensor computation libraries (or computational graph libraries, or
+symbolic algebra libraries, or whatever they're marketing themselves as these days).
 
 I was first introduced to PyTorch and TensorFlow and, having no other reference, I thought they were
-the prototypical examples of tensor computation libraries. Then I learnt about Theano, which was an
-older and less popular project, but different than PyTorch or TensorFlow, and better in some
-meaningful ways. This was followed by JAX, which seemed to be basically NumPy with more bells and
-whistles (although I had trouble articulating what they were). Then came [the announcement by the
-PyMC developers that Theano would have a new JAX
+the prototypical examples of tensor computation libraries. Then I learnt about Theano - an older and
+less popular project, but different than PyTorch or TensorFlow and better in some meaningful ways.
+This was followed by JAX, which seemed to be basically NumPy with more bells and whistles (although
+I had trouble articulating what they were). Then came [the announcement by the PyMC developers that
+Theano would have a new JAX
 back-end](https://pymc-devs.medium.com/the-future-of-pymc3-or-theano-is-dead-long-live-theano-d8005f8a0e9b).
 
-Anyways, my confusion prompted a lot of research and eventually, this blog post.
+Anyways, this confusion prompted a lot of research and eventually, this blog post.
 
 Similar to [my previous post on the anatomy of probabilistic programming
 frameworks](https://eigenfoo.xyz/prob-prog-frameworks/), I’ll first discuss tensor computation
@@ -52,7 +52,7 @@ First, a characterization: what do all these tensor computation libraries even d
    (just-in-time) compiling it, or by utilizing special hardware (GPUs/TPUs), or by vectorizing the
    computation, or in any number of different ways,
 
----
+### "Tensor Computation Library" - Maybe Not The Best Name
 
 I realize that the name "tensor computation library" is too broad, and that the characterization
 above precludes some libraries that might also be called "tensor computation libraries". Better name
@@ -77,12 +77,12 @@ Anyways, for the avoidance of doubt, here is a list of libraries that this blog 
     provide abstractions and a user-facing API to utilize tensor computation libraries in a
     friendlier way.
 
----
+### (Some) Differences Between Tensor Computation Libraries
 
-All three goals are fairly ambitious undertakings that have sophisticated solutions, and it
-shouldn't be surprising to learn that design decisions in pursuit on goal can have implications for
-(or even incur a trade-off with!) the other goals. Here's a (non-exhaustive) list of common
-differences along all three axes:
+All three aforementioned goals are ambitious undertakings with sophisticated solutions, so it
+shouldn't be surprising to learn that decisions in pursuit on goal can have implications for (or
+even incur a trade-off with!) other goals. Here's a (non-exhaustive) list of common differences
+along all three axes:
 
 1. Tensor computation libraries can differ in how they represent the computational graph, and how it
    is built.
@@ -126,7 +126,7 @@ differences along all three axes:
      "regular" C or CUDA compilers, or [the XLA compiler for machine-learning specific
      code](https://tensorflow.google.cn/xla)?
 
-## A (Small) Zoo of Tensor Computation Libraries
+## A Zoo of Tensor Computation Libraries
 
 Having outlined the basic similarities and differences of tensor computation libraries, I think
 it'll be helpful to go through several of the popular libraries as examples. I've tried to link to
@@ -219,16 +219,16 @@ tensor computation libraries do not. (I had huge help with this section from [Th
 Wiecki](https://twiecki.io/) and [Brandon Willard](https://brandonwillard.github.io/)).
 
 There's been a consistent movement in most tensor computation libraries away from static graphs (or
-more precisely, statically created graphs): PyTorch and TensorFlow 2 both support dynamically
+more precisely, statically _built_ graphs): PyTorch and TensorFlow 2 both support dynamically
 generated graphs by default, and JAX forgoes an explicit computational graph entirely.
 
 This movement is understandable - generating the computational graph dynamically matches programming
 intuition much cleaner. When I write `z = x + y`, I don't mean _"I want to register a sum operation
 with two inputs, which is waiting for data to be injected"_ - I mean _"I want to compute the sum of
-`x` and `y`"_. The extra layer of indirection is not helpful to most users, who just want to run
+`x` and `y`"._ The extra layer of indirection is not helpful to most users, who just want to run
 their tensor computation at some reasonable speed.
 
-So let me speak in defence of statically created graphs for a bit: having an explicit representation
+So let me speak in defence of statically built graphs for a bit: having an explicit representation
 of the computational graph is immensely useful for certain things, even if it makes the graph harder
 to work with. You can modify the graph (e.g. graph optimizations, simplifications and rewriting),
 and you can reason about and analyze the graph. Having the computation as an actual _object_ helps
