@@ -216,30 +216,31 @@ the relevant documentation where possible.[^1]
 
 ## An Observation on Static Graphs and Theano
 
-Finally, a quick observation on static graphs, Theano and the niche that Theano fills that other
-tensor computation libraries do not. (I had huge help with this section from [Thomas
-Wiecki](https://twiecki.io/) and [Brandon Willard](https://brandonwillard.github.io/)).
+Finally, a quick observation on static graphs and the niche that Theano fills that other tensor
+computation libraries do not. I had huge help from [Thomas Wiecki](https://twiecki.io/) and
+[Brandon Willard](https://brandonwillard.github.io/) with this section.
 
 There's been a consistent movement in most tensor computation libraries away from static graphs (or
 more precisely, statically _built_ graphs): PyTorch and TensorFlow 2 both support dynamically
 generated graphs by default, and JAX forgoes an explicit computational graph entirely.
 
-This movement is understandable - generating the computational graph dynamically matches programming
-intuition much cleaner. When I write `z = x + y`, I don't mean _"I want to register a sum operation
-with two inputs, which is waiting for data to be injected"_ - I mean _"I want to compute the sum of
-`x` and `y`"._ The extra layer of indirection is not helpful to most users, who just want to run
-their tensor computation at some reasonable speed.
+This movement is understandable - building the computational graph dynamically matches people's
+programming intuition much better. When I write `z = x + y`, I don't mean _"I want to register a sum
+operation with two inputs, which is waiting for data to be injected"_ - I mean _"I want to compute
+the sum of `x` and `y`"._ The extra layer of indirection is not helpful to most users, who just want
+to run their tensor computation at some reasonable speed.
 
-So let me speak in defence of statically built graphs for a bit: having an explicit representation
-of the computational graph is immensely useful for certain things, even if it makes the graph harder
-to work with. You can modify the graph (e.g. graph optimizations, simplifications and rewriting),
-and you can reason about and analyze the graph. Having the computation as an actual _object_ helps
-immeasurably for tasks where you need to think about the computation itself, instead of just blindly
-running it.
+So let me speak in defence of statically built graphs.
 
-However, with dynamically generated graphs, the computational graph is never actually defined
-anywhere: the computation is traced out on the fly and behind the scene. You can no longer do
-anything interesting with the computational graph: for example, if the computation is slow, you
+Having an explicit representation of the computational graph is immensely useful for certain things,
+even if it makes the graph harder to work with. You can modify the graph (e.g. graph optimizations,
+simplifications and rewriting), and you can reason about and analyze the graph. Having the
+computation as an actual _object_ helps immeasurably for tasks where you need to think about the
+computation itself, instead of just blindly running it.
+
+On the other hand, with dynamically generated graphs, the computational graph is never actually
+defined anywhere: the computation is traced out on the fly and behind the scene. You can no longer
+do anything interesting with the computational graph: for example, if the computation is slow, you
 can't reason about _what_ parts of the graph are slow. The end result is that you basically have to
 hope that the framework internals are doing the right things, which they might not!
 
