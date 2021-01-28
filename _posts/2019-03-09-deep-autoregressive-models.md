@@ -213,16 +213,16 @@ Network can model video](https://arxiv.org/abs/1610.00527).[^3]
         <figcaption>Audio exhibits patterns at multiple time scales. Source: <a href="https://deepmind.com/blog/wavenet-generative-model-raw-audio/">Google DeepMind</a>.</figcaption>
     </figure>
 
-    * There are two main ways capture these many patterns at these many
-      different time scales: either make the receptive field of your model
-      _extremely_ wide (e.g. through dilated convolutions), or condition your
-      model on a subsampled version of your generated output, which is in turn
-      produced by an unconditioned model.
+    * There are two main ways model many patterns at many different time scales:
+      either make the receptive field of your model _extremely_ wide (e.g.
+      through dilated convolutions), or condition your model on a subsampled
+      version of your generated output, which is in turn produced by an
+      unconditioned model.
       * Google DeepMind composes an unconditional PixelRNN with one or more
         conditional PixelRNNs to form a so-called "multi-scale" PixelRNN: the
         first PixelRNN generates a lower-resolution image that conditions the
         subsequent PixelRNNs.
-      * WaveNet employs a technique and calls them "context stacks".
+      * WaveNet employs a different technique and calls them "context stacks".
 
 1. How the hell can any of this stuff work?
   * RNNs are theoretically more expressive and powerful than autoregressive
@@ -250,4 +250,3 @@ Network can model video](https://arxiv.org/abs/1610.00527).[^3]
 
 [^3]: In case you haven't noticed, Google DeepMind seemed to have had an
       infatuation with autoregressive models back in 2016.
-
