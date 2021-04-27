@@ -5,9 +5,9 @@ title: "About Me"
 subscribe: true
 ---
 
-> **tldr:** I'm a financial data scientist and machine learning researcher. I
-> (mainly) blog about Bayesian modelling, natural language processing and
-> open-source software.
+> **tldr:** I'm a financial data scientist and machine learning researcher based
+> in New York City. I like Bayesian modelling, natural language processing, open
+> source software and coffee.
 
 [<i class="fas fa-file-pdf"></i> See my
 Résumé](https://eigenfoo.xyz/assets/documents/resume.pdf){: .btn .btn--info
@@ -24,9 +24,9 @@ language processing and Bayesian modelling. I'm based in New York City and I wor
 
 In my ~~copious~~ free time, I contribute to and maintain [several open-source
 libraries](https://eigenfoo.xyz/work/#software) (particularly the [PyMC
-project](https://github.com/pymc-devs)). Away from the keyboard, I spend my time
-drinking coffee, taking photos and obsessing over [mechanical
-keyboards](https://www.reddit.com/r/MechanicalKeyboards/).
+project](https://github.com/pymc-devs)). Away from the keyboard, I spend my
+time drinking coffee and accruing new hobbies (to date: cryptic crosswords,
+bouldering, photography, mechanical keyboards...).
 
 Previously, I studied engineering at [The Cooper Union](http://cooper.edu/welcome) with
 minors in computer science and mathematics, and I interned at
