@@ -28,7 +28,7 @@ project](https://github.com/pymc-devs)). Away from the keyboard, I spend my
 time drinking coffee and accruing new hobbies (to date: cryptic crosswords,
 bouldering, photography, mechanical keyboards...).
 
-In previous lives, I worked for [Point72](https://www.point72.com) and
+Previously, I worked for [Point72](https://www.point72.com) and
 [Quantopian](https://www.quantopian.com/), and I studied engineering at [The
 Cooper Union](http://cooper.edu/welcome).
 
