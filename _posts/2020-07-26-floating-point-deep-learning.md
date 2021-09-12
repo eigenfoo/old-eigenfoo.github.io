@@ -125,7 +125,7 @@ same as FP16, but 3 mantissa bits become exponent bits (i.e. bfloat16 trades 3 b
 worth of precision for scale).
 
 <figure class="align-center">
-  <img style="float: middle" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Three_floating-point_formats.max-700x700.png" alt="Diagram illustrating the number and type of bits in bfloat16.">
+  <img style="float: middle" src="/assets/images/bfloat16.png" alt="Diagram illustrating the number and type of bits in bfloat16.">
   <figcaption>The number and type of bits in bfloat16. Source: <a href="https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus">Google Cloud blog</a>.</figcaption>
 </figure>
 
@@ -162,7 +162,7 @@ the range of FP32 (8 bits). However, if you're not using Tensor Cores, it's just
 32-bit float; if you're only thinking about storage, it's just a 32-bit float.
 
 <figure class="align-center">
-  <img style="float: middle" src="https://blogs.nvidia.com/wp-content/uploads/2020/05/tf32-Mantissa-chart-hi-res-FINAL.png" alt="Diagram illustrating the number and type of bits in an NVIDIA TensorFloat">
+  <img style="float: middle" src="/assets/images/tensorfloat32.png" alt="Diagram illustrating the number and type of bits in an NVIDIA TensorFloat">
   <figcaption>The number and type of bits in an NVIDIA TensorFloat. Source: <a href="https://blogs.nvidia.com/blog/2020/05/14/tensorfloat-32-precision-format/">NVIDIA blog</a>.</figcaption>
 </figure>
 
