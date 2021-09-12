@@ -45,10 +45,10 @@ because I think they illuminate the history of NLP.
      representation, and there are linear vector relationships can encode common-sense
      semantic meanings of words.
 
-   <figure class="align-center">
-     <img style="float: middle" src="https://www.tensorflow.org/images/linear-relationships.png" alt="Linear vector relationships in word embeddings">
-     <figcaption>Linear vector relationships in word embeddings. Source: <a href="https://www.tensorflow.org/images/linear-relationships.png">TensorFlow documentation</a>.</figcaption>
-   </figure>
+     <figure class="align-center">
+       <img style="float: middle" src="/assets/images/linear-relationships.png" alt="Linear vector relationships in word embeddings">
+       <figcaption>Linear vector relationships in word embeddings. Source: <a href="https://www.tensorflow.org/images/linear-relationships.png">TensorFlow documentation</a>.</figcaption>
+     </figure>
 
    * Further reading
      + [word2vec: Mikolov et al., Google. January 2013](http://arxiv.org/abs/1301.3781)
@@ -86,10 +86,10 @@ because I think they illuminate the history of NLP.
      note that its feed-forward nature and multi-head self attention are critical
      aspects of this architecture!
 
-   <figure class="align-center">
-     <img style="float: middle" src="https://cdn.analyticsvidhya.com/wp-content/uploads/2019/06/Screenshot-from-2019-06-17-20-01-32.png" alt="Graphical representation of the Transformer">
-     <figcaption>Graphical representation of a Transformer block. Source: <a href="https://www.analyticsvidhya.com/blog/2019/06/understanding-transformers-nlp-state-of-the-art-models/">Analytics Vidhya</a>.</figcaption>
-   </figure>
+     <figure class="align-center">
+       <img style="float: middle" src="/asset/images/transformer-block.png" alt="Graphical representation of BERT">
+       <figcaption>Graphical representation of BERT. Source: <a href="https://i.pinimg.com/originals/02/95/a3/0295a3be438ae68f604e53fc88c7edb4.png">Pinterest</a>.</figcaption>
+     </figure>
 
    * Further reading
      + [Vaswani et al., Google Brain. December 2017.](https://arxiv.org/pdf/1706.03762.pdf)
@@ -122,17 +122,17 @@ because I think they illuminate the history of NLP.
        2019](https://openai.com/blog/better-language-models/).
      + [_The Illustrated GPT-2_ blog post](http://jalammar.github.io/illustrated-gpt2/)
 
-1. BERT (Bidirectional Encoder Representations from Transformers)
+6. BERT (Bidirectional Encoder Representations from Transformers)
    * The authors use the Transformer encoder (and only the encoder) to pre-train deep
      bidirectional representations from unlabeled text. This pre-trained BERT model can
      then be fine-tuned with just one additional output layer to achieve
      state-of-the-art performance for many NLP tasks, without substantial task-specific
      architecture changes, as illustrated below.
 
-   <figure class="align-center">
-     <img style="float: middle" src="https://i.pinimg.com/originals/02/95/a3/0295a3be438ae68f604e53fc88c7edb4.png" alt="Graphical representation of BERT">
-     <figcaption>Graphical representation of BERT. Source: <a href="https://i.pinimg.com/originals/02/95/a3/0295a3be438ae68f604e53fc88c7edb4.png">Pinterest</a>.</figcaption>
-   </figure>
+     <figure class="align-center">
+       <img style="float: middle" src="/assets/images/bert.png" alt="Graphical representation of BERT">
+       <figcaption>Graphical representation of BERT. Source: <a href="https://i.pinimg.com/originals/02/95/a3/0295a3be438ae68f604e53fc88c7edb4.png">Pinterest</a>.</figcaption>
+     </figure>
 
    * BERT was a drastic development in the NLP landscape: it became almost a cliche to
      conclude that BERT performs "surprisingly well" on whatever task or dataset you

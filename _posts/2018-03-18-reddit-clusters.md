@@ -149,7 +149,7 @@ technique in which we’re given data points, and tasked with grouping them in
 some way. A picture will explain better than words:
 
 <figure>
-    <a href="{{ site.url }}{{ site.baseurl }}/assets/images/clusters.png"><img src="{{ site.url }}{{ site.baseurl }}/assets/images/clusters.png" alt="Illustration of clustering"></a>
+    <a href="/assets/images/clusters.png"><img src="/assets/images/clusters.png" alt="Illustration of clustering"></a>
     <figcaption>Clustering.</figcaption>
 </figure>
 

@@ -22,7 +22,7 @@ Point72 is an American hedge fund, headquartered in Connecticut. I'll be based
 in New York, working out of their [Hudson
 Yards](https://www.hudsonyardsnewyork.com/work/55-hudson-yards) offices.
 
-![Point72 logo](https://www.point72.com/wp-content/uploads/2017/03/point72-recropped.png)
+![Point72 logo](/assets/images/point72-logo.png)
 
 In this next chapter of my life, my professional focuses are:
 
