@@ -32,7 +32,7 @@ draft:  # Start a draft blog post.
 	)
 
 serve:  # Serve site locally.
-	bundle exec jekyll serve --incremental 2>&1
+	bundle exec jekyll serve --incremental
 
 test:  # Test generated HTML files.
 	# Ignore broken links from /r/TheRedPill and Tweets (some people delete tweets)
