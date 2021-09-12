@@ -3,9 +3,10 @@ title: "`littlemcmc` — A Standalone HMC and NUTS Sampler in Python"
 excerpt: "Introducing `littlemcmc` — a lightweight and performant implementation of HMC
 and NUTS in Python, spun out of the PyMC project."
 tags:
-  - pymc
-  - littlemcmc
   - open source
+  - probabilistic programming
+  - pymc
+  - python
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background6.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
