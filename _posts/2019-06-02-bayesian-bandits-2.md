@@ -28,7 +28,7 @@ multi-armed bandit. The first allows the bandit to model nonstationary rewards
 distributions, whereas the second allows the bandit to model context. Jump in!
 
 <figure>
-    <a href="https://fsmedia.imgix.net/29/fd/a4/56/8363/4fb0/8c62/20e80649451b/the-multi-armed-bandit-determines-what-you-see-on-the-internet.jpeg?rect=0%2C34%2C865%2C432&auto=format%2Ccompress&dpr=2&w=650"><img src="https://fsmedia.imgix.net/29/fd/a4/56/8363/4fb0/8c62/20e80649451b/the-multi-armed-bandit-determines-what-you-see-on-the-internet.jpeg?rect=0%2C34%2C865%2C432&auto=format%2Ccompress&dpr=2&w=650" alt="Cartoon of a multi-armed bandit"></a>
+    <a href="/assets/images/multi-armed-bandit.jpg"><img src="/assets/images/multi-armed-bandit.jpg" alt="Cartoon of a multi-armed bandit"></a>
     <figcaption>An example of a multi-armed bandit situation. Source: <a href="https://www.inverse.com/article/13762-how-the-multi-armed-bandit-determines-what-ads-and-stories-you-see-online">Inverse</a>.</figcaption>
 </figure>
 

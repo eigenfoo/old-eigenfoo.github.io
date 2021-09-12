@@ -32,11 +32,7 @@ draft:  # Start a draft blog post.
 	)
 
 serve:  # Serve site locally.
-	bundle exec jekyll serve --incremental 2>&1 >> /dev/null &
-
-stop:  # Stop local serving.
-	PID="$(shell pgrep -f jekyll)"; kill $$PID
-	make clean
+	bundle exec jekyll serve --incremental
 
 test:  # Test generated HTML files.
 	# Ignore broken links from /r/TheRedPill and Tweets (some people delete tweets)
