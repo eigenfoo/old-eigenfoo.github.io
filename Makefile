@@ -37,7 +37,7 @@ serve:  # Serve site locally.
 test:  # Test generated HTML files.
 	# Ignore broken links from /r/TheRedPill and Tweets (some people delete tweets)
 	bundle exec jekyll build --future
-	bundle exec htmlproofer ./_site/ --only-4xx --check-html --url-ignore "/reddit.com\/r\/TheRedPill/,/twitter.com\/[a-zA-Z0-9_]*\/status\/[0-9]*/"
+	link_check _site/
 
 compress:  # Compress images losslessly
 	jpegoptim assets/images/*.jpg
