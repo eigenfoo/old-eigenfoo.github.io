@@ -5,7 +5,7 @@ handle streaming data. I walk through a minimal example and discuss why these
 tools are good for the job."
 tags:
   - python
-  - streaming data
+  - streaming
   - tornado
   - websocket
 header:
@@ -62,7 +62,7 @@ post](https://en.proft.me/2014/05/16/realtime-web-application-tornado-and-websoc
   and allowing dropped connections to be detected and closed.
 - It's also worth noting that there's a
   [`tornado.websocket.WebSocketHandler.websocket_max_message_size`](https://www.tornadoweb.org/en/stable/websocket.html?highlight=websocket_max_message_size#tornado.websocket.WebSocketHandler)
-  attribute, which is set to a generous 10 MiB, and it's important that the
+  attribute. While this is set to a generous 10 MiB, it's important that the
   WebSocket messages don't exceed this limit!
 
 <script src="https://gist.github.com/eigenfoo/22f46166fa6924d684d68ca06e08b055.js"></script>
