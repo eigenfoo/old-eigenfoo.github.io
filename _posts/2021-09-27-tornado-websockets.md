@@ -4,7 +4,8 @@ excerpt: "WebSockets with the Tornado web framework is a simple, robust way to
 handle streaming data. I walk through a minimal example and discuss why these
 tools are good for the job."
 tags:
-  - streaming
+  - python
+  - streaming data
   - tornado
   - websocket
 header:
