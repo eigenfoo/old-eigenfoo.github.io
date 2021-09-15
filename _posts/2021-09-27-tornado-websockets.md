@@ -10,7 +10,7 @@ tags:
 header:
   overlay_image: /assets/images/cool-backgrounds/cool-background8.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
-last_modified_at: 2021-08-14
+last_modified_at: 2021-09-27
 ---
 
 A lot of data science and machine learning practice assumes a static dataset,
@@ -37,7 +37,7 @@ a [Beta-Binomial conjugate model](https://eigenfoo.xyz/bayesian-bandits/).
 After walking through the code, I'll discuss these tools, and why they're good
 choices for working with streaming data.
 
-For another good tutorial on this same topic, you can check out [`proft`'s blog
+For another tutorial on this same topic, you can check out [`proft`'s blog
 post](https://en.proft.me/2014/05/16/realtime-web-application-tornado-and-websocket/).
 
 ## Server
@@ -98,6 +98,16 @@ post](https://en.proft.me/2014/05/16/realtime-web-application-tornado-and-websoc
   `websocket_connect`](https://www.tornadoweb.org/en/stable/websocket.html?highlight=ping_#tornado.websocket.websocket_connect)
   configure periodic pings of the WebSocket connection, keeping connections
   alive and allowing dropped connections to be detected and closed.
+- The `callback=self.maybe_retry_connection` is [run on a future
+  `WebSocketClientConnection`](https://github.com/tornadoweb/tornado/blob/1db5b45918da8303d2c6958ee03dbbd5dc2709e9/tornado/websocket.py#L1654-L1655).
+  Here, we simply get the `future.result()` (i.e. the WebSocket client
+  connection itself) — I don't actually do anything with the `self.connection`,
+  but you could if you wanted. In the event of an exception while doing that,
+  we assume there's a problem with the WebSocket connection and retry
+  `connect_and_read` after 3 seconds. This all has the effect of recovering
+  gracefully if the WebSocket is dropped or `server.py` experiences a brief
+  outage for whatever reason (both of which are probably inevitable for
+  long-running apps using WebSockets).
 
 <script src="https://gist.github.com/eigenfoo/341f6c6c578d34120bccc4229e434377.js"></script>
 
@@ -153,9 +163,9 @@ sockets for this application:
 > want is to exchange data between different endpoints and neither is a browser. 
 
 My thought after reading these criticisms is that perhaps WebSockets aren't the
-ideal technology for handling streaming data (between processes that aren't
-browsers), but that doesn't mean that they aren't good scalable technologies
-when they do work.
+ideal technology for handling streaming data (from a maintainability or
+architectural point of view), but that doesn't mean that they aren't good
+scalable technologies when they do work.
 
 ---
 
