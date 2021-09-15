@@ -6,7 +6,7 @@ subscribe: true
 ---
 
 > **tldr:** I'm a data scientist and machine learning researcher based in New
-> York City. I like Bayesian modelling, natural language processing, open source
+> York City. I like natural language processing, Bayesian modelling, open source
 > software and coffee.
 
 [<i class="fas fa-file-pdf"></i> See my
