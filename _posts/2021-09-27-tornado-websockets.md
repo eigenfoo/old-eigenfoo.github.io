@@ -101,14 +101,15 @@ post](https://en.proft.me/2014/05/16/realtime-web-application-tornado-and-websoc
   alive and allowing dropped connections to be detected and closed.
 - The `callback=self.maybe_retry_connection` is [run on a future
   `WebSocketClientConnection`](https://github.com/tornadoweb/tornado/blob/1db5b45918da8303d2c6958ee03dbbd5dc2709e9/tornado/websocket.py#L1654-L1655).
-  Here, we simply get the `future.result()` (i.e. the WebSocket client
-  connection itself) — I don't actually do anything with the `self.connection`,
-  but you could if you wanted. In the event of an exception while doing that,
-  we assume there's a problem with the WebSocket connection and retry
-  `connect_and_read` after 3 seconds. This all has the effect of recovering
-  gracefully if the WebSocket is dropped or `server.py` experiences a brief
-  outage for whatever reason (both of which are probably inevitable for
-  long-running apps using WebSockets).
+  `websocket_connect` doesn't actually establish the connection directly, but
+  rather returns a future. Hence, we try to get the `future.result()` itself
+  (i.e. the WebSocket client connection) — I don't actually do anything with
+  the `self.connection`, but you could if you wanted. In the event of an
+  exception while doing that, we assume there's a problem with the WebSocket
+  connection and retry `connect_and_read` after 3 seconds. This all has the
+  effect of recovering gracefully if the WebSocket is dropped or `server.py`
+  experiences a brief outage for whatever reason (both of which are probably
+  inevitable for long-running apps using WebSockets).
 
 <script src="https://gist.github.com/eigenfoo/341f6c6c578d34120bccc4229e434377.js"></script>
 
