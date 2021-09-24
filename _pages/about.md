@@ -5,9 +5,9 @@ title: "About Me"
 subscribe: true
 ---
 
-> **tldr:** I'm a financial data scientist and machine learning researcher based
-> in New York City. I like Bayesian modelling, natural language processing, open
-> source software and coffee.
+> **tldr:** I'm a data scientist and machine learning researcher based in New
+> York City. I like natural language processing, Bayesian modelling, open source
+> software and coffee.
 
 [<i class="fas fa-file-pdf"></i> See my
 Résumé](https://eigenfoo.xyz/assets/documents/resume.pdf){: .btn .btn--info
@@ -18,9 +18,9 @@ hair]({{ site.url }}{{ site.baseurl }}/assets/images/portrait.jpg){: .align-cent
 
 Hello! My name is George.
 
-I'm a financial data scientist and machine learning researcher, with a focus on natural
-language processing and Bayesian modelling. I'm based in New York City and I work for
-[Point72 Asset Management](http://point72.com).
+I'm a data scientist and machine learning researcher, with a focus on natural
+language processing and Bayesian modelling. I'm based in New York City and I
+work for [Flatiron Health](https://flatiron.com/).
 
 In my ~~copious~~ free time, I contribute to and maintain [several open-source
 libraries](https://eigenfoo.xyz/work/#software) (particularly the [PyMC
@@ -28,10 +28,9 @@ project](https://github.com/pymc-devs)). Away from the keyboard, I spend my
 time drinking coffee and accruing new hobbies (to date: cryptic crosswords,
 bouldering, photography, mechanical keyboards...).
 
-Previously, I studied engineering at [The Cooper Union](http://cooper.edu/welcome) with
-minors in computer science and mathematics, and I interned at
-[Quantopian](https://www.quantopian.com/) on their quant research and data science
-teams.
+Previously, I worked for [Point72](https://www.point72.com) and
+[Quantopian](https://www.quantopian.com/), and I studied engineering at [The
+Cooper Union](http://cooper.edu/welcome).
 
 ## What's with your username?
 
