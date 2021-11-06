@@ -38,7 +38,7 @@ experienced](https://twitter.com/twiecki)
 [colleagues](https://twitter.com/aseyboldt) with questions. It's still very much
 a work in progress, but hopefully somebody else finds it useful!
 
-![PyMC3 logo](/assets/images/pymc3-logo.jpg)
+![PyMC logo](/assets/images/pymc-logo.png)
 
 ## For the Uninitiated
 

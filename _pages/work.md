@@ -13,7 +13,7 @@ contributions to.
 
 ### [PyMC3](https://github.com/pymc-devs/pymc3) and [PyMC4](https://github.com/pymc-devs/pymc4)
 
-![PyMC3 logo](https://camo.githubusercontent.com/2af4bb9d3ff6744a6ad1aab0b2b916b5efee8b49/68747470733a2f2f63646e2e7261776769742e636f6d2f70796d632d646576732f70796d63332f6d61737465722f646f63732f6c6f676f732f7376672f50794d43335f62616e6e65722e737667){: .align-right}
+![PyMC3 logo](../assets/images/pymc-logo.png){: .align-right}
 
 PyMC3 is a popular Python framework for Bayesian modeling and probabilistic
 machine learning, focusing on Markov chain Monte Carlo (MCMC) and variational
@@ -24,14 +24,15 @@ PyMC3](https://eigenfoo.xyz/bayesian-modelling-cookbook/).
 
 ### [Pyfolio](https://github.com/quantopian/pyfolio) and [Alphalens](https://github.com/quantopian/alphalens)
 
-![Pyfolio logo](https://media.quantopian.com/logos/open_source/pyfolio-logo-03.png){: .align-right}
+<figure class="half">
+    <img src="/assets/images/pyfolio-logo.png" alt="Pyfolio logo">
+    <img src="/assets/images/alphalens-logo.png" alt="Alphalens logo">
+</figure>
 
 Pyfolio and Alphalens are Python libraries for risk analysis and performance
 attribution of financial portfolios, and alpha factor research for algorithmic
 trading. Both libraries are fully integrated into the [Quantopian
 platform](http://quantopian.com/).
-
-![Alphalens logo](https://media.quantopian.com/logos/open_source/alphalens-logo-03.png){: .align-right}
 
 I developed the risk and performance attribution capabilities of Pyfolio (read
 more on [my blog post here](https://eigenfoo.xyz/pyfolio/)), and help maintain
@@ -50,6 +51,21 @@ manipulating, rendering and visualizing font files and algorithmically-generated
 typefaces. Both libraries were written as internal tools for [The Font
 Bakers](https://font-bakers.github.io/), to support their research and
 development workflow. I developed and maintain both projects.
+
+## Datasets
+
+### [`cryptics.eigenfoo.xyz`](https://cryptics.eigenfoo.xyz/)
+
+`cryptics.eigenfoo.xyz` is a dataset of [cryptic
+crossword](https://www.newyorker.com/puzzles-and-games-dept/cryptic-crossword/reintroducing-the-new-yorkers-cryptic-crossword)
+clues, indicators and charades, collected from various blogs and publicly
+available digital archives.
+
+The project scrapes several blogs and digital archives for cryptic crosswords.
+Out of these collected web pages, the clues, answers, clue numbers, blogger’s
+explanation and commentary, puzzle title and publication date are all parsed
+and extracted into a tabular dataset. The result is _over half a million clues_
+from cryptic crosswords over the past twelve years.
 
 ## Projects
 
