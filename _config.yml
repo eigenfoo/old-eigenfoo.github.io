@@ -115,7 +115,7 @@ author:
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:george[æ]eigenfoo.xyz"
+      url: "mailto:hello[æ]georgeho.org"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/_eigenfoo/"
@@ -132,9 +132,6 @@ author:
 # Site Footer
 footer:
   links:
-    - label: "Privacy"
-      icon: "fas fa-fw fa-user-secret"
-      url: /privacy
     - label: "Source"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/eigenfoo/eigenfoo.github.io/"
