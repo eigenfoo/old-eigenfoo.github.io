@@ -14,11 +14,11 @@ minimal_mistakes_skin    : "dirt" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Eigenfoo"
+title                    : "George Ho"
 title_separator          : "|"
 name                     : "George Ho"
 description              : ""
-url                      : "https://www.eigenfoo.xyz" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "https://www.georgeho.org" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : / # the subpath of your site, e.g. "/blog"
 repository               : "eigenfoo/eigenfoo.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
@@ -127,7 +127,7 @@ author:
       url: "https://www.linkedin.com/in/eigenfoo/"
     - label: "OpenPGP"
       icon: "fas fa-key"
-      url: "https://eigenfoo.xyz/public.asc"
+      url: "https://www.georgeho.org/public.asc"
 
 # Site Footer
 footer:

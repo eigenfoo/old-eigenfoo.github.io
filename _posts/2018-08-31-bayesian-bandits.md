@@ -15,7 +15,7 @@ last_modified_at: 2018-08-31
 ---
 
 > This is the first of a two-part series about Bayesian bandit algorithms. Check
-> out the second post [here](https://eigenfoo.xyz/bayesian-bandits-2/).
+> out the second post [here](https://www.georgeho.org/bayesian-bandits-2/).
 
 Let's talk about Bayesianism. It's developed a reputation (not entirely
 justified, but not entirely unjustified either) for being too mathematically
@@ -192,7 +192,7 @@ Also, if you want to see all the code that went into this blog post, check out
 here](https://github.com/eigenfoo/wanderings/blob/afcf37a8c6c2a2ac38f6708c1f3dd50db2ebe71f/bayes/bayesian-bandits.ipynb).
 
 > This is the first of a two-part series about Bayesian bandit algorithms. Check
-> out the second post [here](https://eigenfoo.xyz/bayesian-bandits-2/).
+> out the second post [here](https://www.georgeho.org/bayesian-bandits-2/).
 
 ---
 

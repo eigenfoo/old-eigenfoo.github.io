@@ -15,7 +15,7 @@ the latest issue of my newsletter!
 
 In the meantime, feel free to check out my stuff:
 
-[My Blog](https://eigenfoo.xyz){: .btn .btn--primary .btn--large}
-[About Me](https://eigenfoo.xyz/about/){: .btn .btn--primary .btn--large}
+[My Blog](https://www.georgeho.org){: .btn .btn--primary .btn--large}
+[About Me](https://www.georgeho.org/about/){: .btn .btn--primary .btn--large}
 
 ![Cartoon of a newsletter in an envelope](/assets/images/newsletter.png){: .align-center}

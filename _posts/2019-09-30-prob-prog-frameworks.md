@@ -30,7 +30,7 @@ programming frameworks, and this is what I've managed to take away from it.
 
 I assume you know a fair bit about probabilistic programming and Bayesian modelling, and
 are familiar with the big players in the probabilistic programming world. If you're
-unsure, you can [read up here](https://eigenfoo.xyz/bayesian-inference-reading/).
+unsure, you can [read up here](https://www.georgeho.org/bayesian-inference-reading/).
 
 ## Dissecting Probabilistic Programming Frameworks
 

@@ -173,7 +173,7 @@ line](https://twitter.com/@_eigenfoo)!)
       here.](https://twitter.com/year_progress/status/1079889949871300608)
 
 [^2]: If that’s what you’re looking for, check out my [Bayesian modelling
-      cookbook](https://eigenfoo.xyz/bayesian-modelling-cookbook) or [Michael
-      Betancourt’s excellent essay on a principles Bayesian
+      cookbook](https://www.georgeho.org/bayesian-modelling-cookbook) or
+      [Michael Betancourt’s excellent essay on a principles Bayesian
       workflow](https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html).
 

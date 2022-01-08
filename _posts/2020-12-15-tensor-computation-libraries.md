@@ -31,7 +31,7 @@ backend](https://pymc-devs.medium.com/the-future-of-pymc3-or-theano-is-dead-long
 Anyways, this confusion prompted a lot of research and eventually, this blog post.
 
 Similar to [my previous post on the anatomy of probabilistic programming
-frameworks](https://eigenfoo.xyz/prob-prog-frameworks/), I’ll first discuss tensor computation
+frameworks](https://www.georgeho.org/prob-prog-frameworks/), I’ll first discuss tensor computation
 libraries in general - what they are and how they can differ from one another. Then I'll discuss
 some libraries in detail, and finally offer an observation on the future of Theano in the context of
 contemporary tensor computation libraries.

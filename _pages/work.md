@@ -20,7 +20,7 @@ machine learning, focusing on Markov chain Monte Carlo (MCMC) and variational
 inference (VI) algorithms. I'm a member of the core development team, and
 contribute to the PyMC3 internals and documentation. I wrote [a blog post on
 tips and tricks for Bayesian modelling using
-PyMC3](https://eigenfoo.xyz/bayesian-modelling-cookbook/).
+PyMC3](https://www.georgeho.org/bayesian-modelling-cookbook/).
 
 ### [Pyfolio](https://github.com/quantopian/pyfolio) and [Alphalens](https://github.com/quantopian/alphalens)
 
@@ -35,7 +35,7 @@ trading. Both libraries are fully integrated into the [Quantopian
 platform](http://quantopian.com/).
 
 I developed the risk and performance attribution capabilities of Pyfolio (read
-more on [my blog post here](https://eigenfoo.xyz/pyfolio/)), and help maintain
+more on [my blog post here](https://www.georgeho.org/pyfolio/)), and help maintain
 the library. I help develop new features, triage bug reports and troubleshoot
 issues for Alphalens.
 
@@ -82,7 +82,7 @@ defined by a variable number of quadratic Bézier curves. At the time, no
 generative model with vector graphic output has previously appeared in
 literature.
 
-### [Hate Speech on Reddit](https://eigenfoo.xyz/reddit-clusters/)
+### [Hate Speech on Reddit](https://www.georgeho.org/reddit-clusters/)
 
 As part of a project on [Data Science for Social
 Good](http://ee.cooper.edu/~keene/dssg.html), I ran text clustering algorithms
@@ -90,6 +90,6 @@ on well-known hateful and toxic subreddits, and collaborated with a
 cross-disciplinary team of artists, architects and engineers to present the
 findings at [The Cooper Union 2018 End of Year
 Show](https://cooper.edu/events-and-exhibitions/exhibitions/2018-student-exhibition).
-I also wrote [a blog post on my results](https://eigenfoo.xyz/reddit-clusters/),
+I also wrote [a blog post on my results](https://www.georgeho.org/reddit-clusters/),
 and [gave a talk on the data science that went into the
-project](https://eigenfoo.xyz/reddit-slides/).
+project](https://www.georgeho.org/reddit-slides/).
