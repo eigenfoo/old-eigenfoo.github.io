@@ -34,7 +34,7 @@ In this blog post I'll give a minimal example of using Tornado and WebSockets
 to handle streaming data. The toy example I have is one app (`server.py`)
 writing samples of a Bernoulli to a WebSocket, and another app (`client.py`)
 listening to the WebSocket and keeping track of the posterior distribution for
-a [Beta-Binomial conjugate model](https://eigenfoo.xyz/bayesian-bandits/).
+a [Beta-Binomial conjugate model](https://www.georgeho.org/bayesian-bandits/).
 After walking through the code, I'll discuss these tools, and why they're good
 choices for working with streaming data.
 
@@ -74,7 +74,7 @@ post](https://en.proft.me/2014/05/16/realtime-web-application-tornado-and-websoc
      start/stop listening to it in a separate thread
   2. Can process every message (`on_message`) it hears from the WebSocket: in
      this case it simply maintains [a count of the number of trials and
-     successes](https://eigenfoo.xyz/bayesian-bandits/#stochastic-aka-stationary-bandits),
+     successes](https://www.georgeho.org/bayesian-bandits/#stochastic-aka-stationary-bandits),
      but this processing could theoretically be anything. For example, you
      could do some further processing of the message and then dump that into a
      separate WebSocket for other apps (or even users!) to subscribe to.

@@ -14,7 +14,7 @@ last_modified_at: 2017-11-08
 ---
 
 This is a follow-up post to my first post on a recent project to [model hate
-speech on Reddit](https://eigenfoo.xyz/reddit-clusters/). If you haven't taken a
+speech on Reddit](https://www.georgeho.org/reddit-clusters/). If you haven't taken a
 look at my first post, please do!
 
 I recently gave a talk on the technical, data science side of the project,

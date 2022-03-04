@@ -17,7 +17,7 @@ I've recently had to learn a lot about natural language processing (NLP), specif
 Transformer-based NLP models.
 
 Similar to my previous blog post on [deep autoregressive
-models](https://eigenfoo.xyz/deep-autoregressive-models/), this blog post is a write-up
+models](https://www.georgeho.org/deep-autoregressive-models/), this blog post is a write-up
 of my reading and research: I assume basic familiarity with deep learning, and aim to
 highlight general trends in deep NLP, instead of commenting on individual architectures
 or systems.

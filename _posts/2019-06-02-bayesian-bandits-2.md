@@ -15,9 +15,9 @@ last_modified_at: 2019-06-02
 ---
 
 > This is the second of a two-part series about Bayesian bandit algorithms.
-> Check out the first post [here](https://eigenfoo.xyz/bayesian-bandits/).
+> Check out the first post [here](https://www.georgeho.org/bayesian-bandits/).
 
-[Previously](https://eigenfoo.xyz/bayesian-bandits/), I introduced the
+[Previously](https://www.georgeho.org/bayesian-bandits/), I introduced the
 multi-armed bandit problem, and a Bayesian approach to solving/modelling it
 (Thompson sampling). We saw that conjugate models made it possible to run the
 bandit algorithm online: the same is even true for non-conjugate models, so long
@@ -89,7 +89,7 @@ types of nonstationarity identified above. Simply use $$(\ref{2})$$ as a drop-in
 replacement for $$(\ref{1})$$ when updating the hyperparameters. Whether you're
 using a conjugate model or the algorithm by [Agarwal and
 Goyal](https://arxiv.org/abs/1111.1797) (introduced in [the previous blog
-post](https://eigenfoo.xyz/bayesian-bandits)), using $$(\ref{2})$$ will decay
+post](https://www.georgeho.org/bayesian-bandits)), using $$(\ref{2})$$ will decay
 the evidence and posterior, as desired.
 
 For more information (and a worked example for the Beta-Binomial model!), check
@@ -182,7 +182,7 @@ Szepesvári's book](https://banditalgs.com/) covers a breathtaking amount of
 ground.
 
 > This is the second of a two-part series about Bayesian bandit algorithms.
-> Check out the first post [here](https://eigenfoo.xyz/bayesian-bandits/).
+> Check out the first post [here](https://www.georgeho.org/bayesian-bandits/).
 
 ---
 

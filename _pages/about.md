@@ -10,7 +10,7 @@ subscribe: true
 > software and coffee.
 
 [<i class="fas fa-file-pdf"></i> See my
-Résumé](https://eigenfoo.xyz/assets/documents/resume.pdf){: .btn .btn--info
+Résumé](https://www.georgeho.org/assets/documents/resume.pdf){: .btn .btn--info
 .btn--default}
 
 ![Black-and-white photo of George smiling while sitting cross legged and brushing his
@@ -23,7 +23,7 @@ language processing and Bayesian modelling. I'm based in New York City and I
 work for [Flatiron Health](https://flatiron.com/).
 
 In my ~~copious~~ free time, I contribute to and maintain [several open-source
-libraries](https://eigenfoo.xyz/work/#software) (particularly the [PyMC
+libraries](https://www.georgeho.org/work/#software) (particularly the [PyMC
 project](https://github.com/pymc-devs)). Away from the keyboard, I spend my
 time drinking coffee and accruing new hobbies (to date: cryptic crosswords,
 bouldering, photography, mechanical keyboards...).

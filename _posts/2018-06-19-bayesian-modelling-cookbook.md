@@ -46,7 +46,7 @@ a work in progress, but hopefully somebody else finds it useful!
   is cool, Bayesian and (if you're lucky) even easy. Dive in!
 
 > **EDIT (1/24/2020):** I published a [subsequent blog
-> post](https://eigenfoo.xyz/bayesian-inference-reading/) with a reading list
+> post](https://www.georgeho.org/bayesian-inference-reading/) with a reading list
 > for Bayesian inference and modelling. Check it out for reading material in
 > addition to the ones I list below!
 

@@ -291,7 +291,7 @@ In some respects, the clustering provided very little insight into this
 subreddit: each such delicate topic had one or two clusters, and there’s nothing
 really remarkable about any of them. This speaks to the inherent difficulty of
 training a topic model on memes: I rant at greater length about this topic on
-[one of my blog posts](https://eigenfoo.xyz/lda-sucks/).
+[one of my blog posts](https://www.georgeho.org/lda-sucks/).
 
 Both clusters below comprise around 3% of text on `/r/CringeAnarchy`: one is to do
 with race, and the other is to do with homosexuality.
@@ -339,7 +339,7 @@ repository](https://github.com/eigenfoo/reddit-clusters).
 
 **EDIT (11-08-2018):** If you're interested in the technical, data science side
 of the project, check out the slide deck and speaker notes from [my recent
-talk](https://eigenfoo.xyz/reddit-slides/) on exactly that!
+talk](https://www.georgeho.org/reddit-slides/) on exactly that!
 
 ---
 

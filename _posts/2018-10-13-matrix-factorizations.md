@@ -164,7 +164,7 @@ for text clustering? Because it is simultaneously a clustering and a feature
 engineering technique: not only does it offer us a latent representation of the
 original data, but it also gives us a way to easily _reconstruct_ the original
 data from the latent variables! This is something that [latent Dirichlet
-allocation](https://eigenfoo.xyz/lda-sucks), for instance, cannot do.
+allocation](https://www.georgeho.org/lda-sucks), for instance, cannot do.
 
 Matrix factorization lives an interesting double life: clustering technique by
 day, feature transformation technique by night. [Aggarwal and
@@ -174,7 +174,7 @@ clustering or topic modelling) is common practice and is called _concept
 decomposition_, but I haven't seen any other source back this up.
 
 I experimented with using these techniques to cluster subreddits ([sound
-familiar?](https://eigenfoo.xyz/reddit-clusters)). In a nutshell, nothing seemed
+familiar?](https://www.georgeho.org/reddit-clusters)). In a nutshell, nothing seemed
 to work out very well, and I opine on why I think that's the case in the slide
 deck below. This talk was delivered to a graduate-level course in frequentist
 machine learning.
