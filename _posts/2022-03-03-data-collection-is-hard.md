@@ -1,11 +1,10 @@
 ---
 title: Data Collection is Hard. You Should Try It.
-excerpt: "No, seriously."
+excerpt: "No, seriously: collecting data is a good idea, even for selfish reasons!"
 tags:
-  - data
+  - dataset
 header:
-  overlay_image: /assets/images/cool-backgrounds/cool-background9.png
-  overlay_filter: 0.1
+  overlay_image: /assets/images/cool-backgrounds/cool-background15.png
   caption: 'Photo credit: [coolbackgrounds.io](https://coolbackgrounds.io/)'
 last_modified_at: 2022-03-03
 ---
